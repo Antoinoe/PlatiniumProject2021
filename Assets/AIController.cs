@@ -25,7 +25,7 @@ public class AIController : MonoBehaviour
 
         if (timer >= nextTarget)
         {
-            nextTarget = Random.Range(1, iAController.nextTargetMax);
+            nextTarget = Random.Range(iAController.nextTargetMin, iAController.nextTargetMax);
             iAController.NewTarget(gameObject);
             timer = 0;
         }

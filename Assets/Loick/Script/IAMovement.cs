@@ -13,6 +13,7 @@ public class IAMovement : MonoBehaviour
     public Vector3 posPatrollingCenter = Vector3.zero;
     private Vector3 target = Vector3.zero;
     public int nextTargetMax = 1;
+    public int nextTargetMin = 0;
 
     public enum MovementAxis
     {
@@ -55,7 +56,7 @@ public class IAMovement : MonoBehaviour
         }
         else
         {
-            target = new Vector3(xPos, yPos, entitie.transform.position.y);
+            target = new Vector3(xPos, yPos, entitie.transform.position.z);
         }
             entitie.GetComponent<NavMeshAgent>().SetDestination(target);
     }
