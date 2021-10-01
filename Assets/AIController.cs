@@ -14,6 +14,9 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         iAController = GetComponentInParent<IAMovement>();
+        NavMeshAgent navAgent = GetComponent<NavMeshAgent>();
+        navAgent.updateRotation = false;
+        navAgent.updateUpAxis = false;
     }
 
     private void FixedUpdate()
