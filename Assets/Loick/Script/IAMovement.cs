@@ -3,31 +3,20 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
+//A placer en parent de toutes les IA
+
 public class IAMovement : MonoBehaviour
 {
-    private NavMeshAgent navMeshAgent = null;
-    private float timer = 0f;
     public bool patrolling = false;
+    public bool axisMovement = true;
     public float patrollingRange = 4f;
-    public Vector3 target = Vector3.zero;
-    public int nextTarget = 0;
+    public Vector3 posPatrollingCenter = Vector3.zero;
+    private Vector3 target = Vector3.zero;
+    public int nextTargetMax = 1;
 
-    public Transform[] navpoint = null;
-
-    private void Awake()
+    public enum MovementAxis
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-    }
-
-    private void FixedUpdate()
-    {
-        timer += Time.fixedDeltaTime;
-
-        if (timer >= nextTarget )
-        {
-            NewTarget();
-            timer = 0;
-        }
+        X, Y
     }
 
     #region Gizmos
@@ -35,23 +24,40 @@ public class IAMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, patrollingRange);
+        Gizmos.DrawWireSphere(posPatrollingCenter, patrollingRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(target, 0.5f);
     }
 
     #endregion
 
     #region Moving
-    void NewTarget()
+    public void NewTarget(GameObject entitie)
     {
-        float myX = gameObject.transform.position.x;
-        float myZ = gameObject.transform.position.y;
-
+        float myX = posPatrollingCenter.x;
+        float myY = posPatrollingCenter.y;
+        float zPos = myY + Random.Range(myY - patrollingRange, myY + patrollingRange);
         float xPos = myX + Random.Range(myX - patrollingRange, myX + patrollingRange);
-        float zPos = myZ + Random.Range(myZ - patrollingRange, myZ + patrollingRange);
-
-        target = new Vector3(xPos, transform.position.y, zPos);
-        navMeshAgent.SetDestination(target);
+        if (axisMovement)
+        {
+            MovementAxis movement = (MovementAxis)Random.Range(0, 2);
+            switch (movement)
+            {
+                case MovementAxis.X:
+                    target = new Vector3(xPos, entitie.transform.position.y, entitie.transform.position.z);
+                    break;
+                case MovementAxis.Y:
+                    target = new Vector3(entitie.transform.position.x, entitie.transform.position.y, zPos);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            target = new Vector3(xPos, entitie.transform.position.y, zPos);
+        }
+            entitie.GetComponent<NavMeshAgent>().SetDestination(target);
     }
-
     #endregion
 }

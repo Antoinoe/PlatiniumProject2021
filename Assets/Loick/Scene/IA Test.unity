@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 845240227}
   - component: {fileID: 845240226}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,10 +358,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolling: 1
-  patrollingRange: 1
-  target: {x: 0, y: 0, z: 0}
+  patrollingRange: 10.19
+  posPatrollingCenter: {x: 0, y: 0, z: 0}
   nextTarget: 5
-  navpoint: []
 --- !u!65 &1293431034
 BoxCollider:
   m_ObjectHideFlags: 0
