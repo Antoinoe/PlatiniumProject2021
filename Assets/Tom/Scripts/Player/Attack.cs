@@ -17,11 +17,13 @@ public class Attack : MonoBehaviour
     [SerializeField] private float killCooldown;
 
     //Score
-    public int nbOfKills = 0;
-    public float actualScore = 0;
+    private int nbOfKills = 0;
+    private float actualScore = 0;
     public int bounty = 0;
-    public float scorePerKill = 10;
-    public int maxBounty = 4;
+
+    //Mettez ça dans le GM Svp
+    [SerializeField] private float scorePerKill = 10;
+    [SerializeField] private int maxBounty = 4;
 
     public Text t_score, t_kills, t_bounty;
     #endregion
@@ -40,7 +42,8 @@ public class Attack : MonoBehaviour
             if (focusedTarget.tag == "Player")
             {
                 //Kill Player
-                focusedTarget.GetComponent<Attack>().bounty = 0; //rest le bounty du joueur tué 
+
+                focusedTarget.GetComponent<Attack>().bounty = 0; //reset le bounty du joueur tué 
 
                 //PLAYER A FAIT UN KILL
                 actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = x²+10
