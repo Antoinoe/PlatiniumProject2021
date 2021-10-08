@@ -11,7 +11,7 @@ public class AIControllers : MonoBehaviour
     private int nextTarget = 1;
     private float timer = 0f;
     private List<NavMeshAgent> entitiesGroup = new List<NavMeshAgent>();
-    private int nextZone = 0;
+
     private void Start()
     {
         iAController = GetComponentInParent<IAMovement>();
