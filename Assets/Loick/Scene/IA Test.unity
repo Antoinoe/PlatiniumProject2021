@@ -5499,12 +5499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8977a0e490d84f84f90d85516a32b1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolling: 1
   axisMovement: 1
-  patrollingRange: 9.96
-  posPatrollingCenter: {x: 0, y: 4, z: 0}
-  nextTargetMax: 5
-  nextTargetMin: 0
+  patrollingRange: 6.07
+  posPatrollingCenter: {x: 0, y: 0, z: 0}
+  nextTargetMax: 6
+  nextTargetMin: 3
 --- !u!4 &2107394668
 Transform:
   m_ObjectHideFlags: 0
