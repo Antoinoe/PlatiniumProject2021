@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class IAMovement : MonoBehaviour
 {
-    public bool patrolling = false;
     public bool axisMovement = true;
     public float patrollingRange = 4f;
     public Vector3 posPatrollingCenter = Vector3.zero;
@@ -26,6 +25,7 @@ public class IAMovement : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(posPatrollingCenter, patrollingRange);
+
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(target, 0.5f);
     }
@@ -33,32 +33,40 @@ public class IAMovement : MonoBehaviour
     #endregion
 
     #region Moving
-    public void NewTarget(GameObject entitie)
+    public void NewTarget(List<NavMeshAgent> entities)
     {
-        float myX = posPatrollingCenter.x;
-        float myY = posPatrollingCenter.y;
-        float yPos = myY + Random.Range(myY - patrollingRange, myY + patrollingRange);
-        float xPos = myX + Random.Range(myX - patrollingRange, myX + patrollingRange);
-        if (axisMovement)
+      /*float myX = posPatrollingCenter.x;
+        float myY = posPatrollingCenter.y; */
+        for (int i = 0; i < entities.Count; i++)
         {
-            MovementAxis movement = (MovementAxis)Random.Range(0, 2);
-            switch (movement)
+            Vector2 iaPos = entities[i].gameObject.transform.position;
+            float myX = iaPos.x;
+            float myY = iaPos.y;
+            float yPos = myY + Random.Range(myY -  (patrollingRange*2), myY + patrollingRange);
+        float xPos = myX + Random.Range(myX - patrollingRange, myX + patrollingRange);
+                if (axisMovement)
+                {
+                    MovementAxis movement = (MovementAxis)Random.Range(0, 2);
+                    switch (movement)
+                    {
+                        case MovementAxis.X:
+                            target = new Vector3(xPos, entities[i].transform.position.y, entities[i].transform.position.z);
+                            break;
+                        case MovementAxis.Y:
+                            target = new Vector3(entities[i].transform.position.x, yPos, entities[i].transform.position.z);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            
+            NavMeshPath path = new NavMeshPath();
+            if (entities[i].CalculatePath(target, path))
             {
-                case MovementAxis.X:
-                    target = new Vector3(xPos, entitie.transform.position.y, entitie.transform.position.z);
-                    break;
-                case MovementAxis.Y:
-                    target = new Vector3(entitie.transform.position.x, yPos, entitie.transform.position.z);
-                    break;
-                default:
-                    break;
+                entities[i].SetDestination(target);
             }
         }
-        else
-        {
-            target = new Vector3(xPos, yPos, entitie.transform.position.z);
-        }
-            entitie.GetComponent<NavMeshAgent>().SetDestination(target);
     }
     #endregion
 }
+
