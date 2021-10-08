@@ -13,6 +13,7 @@ public class IAMovement : MonoBehaviour
     public Vector3 posPatrollingCenter = Vector3.zero;
     private Vector3 target = Vector3.zero;
     public int nextTargetMax = 1;
+    public int nextTargetMin = 0;
 
     public enum MovementAxis
     {
@@ -36,7 +37,7 @@ public class IAMovement : MonoBehaviour
     {
         float myX = posPatrollingCenter.x;
         float myY = posPatrollingCenter.y;
-        float zPos = myY + Random.Range(myY - patrollingRange, myY + patrollingRange);
+        float yPos = myY + Random.Range(myY - patrollingRange, myY + patrollingRange);
         float xPos = myX + Random.Range(myX - patrollingRange, myX + patrollingRange);
         if (axisMovement)
         {
@@ -47,7 +48,7 @@ public class IAMovement : MonoBehaviour
                     target = new Vector3(xPos, entitie.transform.position.y, entitie.transform.position.z);
                     break;
                 case MovementAxis.Y:
-                    target = new Vector3(entitie.transform.position.x, entitie.transform.position.y, zPos);
+                    target = new Vector3(entitie.transform.position.x, yPos, entitie.transform.position.z);
                     break;
                 default:
                     break;
@@ -55,7 +56,7 @@ public class IAMovement : MonoBehaviour
         }
         else
         {
-            target = new Vector3(xPos, entitie.transform.position.y, zPos);
+            target = new Vector3(xPos, yPos, entitie.transform.position.z);
         }
             entitie.GetComponent<NavMeshAgent>().SetDestination(target);
     }
