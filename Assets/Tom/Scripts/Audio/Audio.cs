@@ -8,6 +8,10 @@ public class Audio
 
     public AudioClip[] clips;
 
+    public int maxInstNb = 1;
+    [HideInInspector]
+    public int curInstNb = 1;
+
     [Range(0f, 1f)]
     public float volume;
     [Range(.1f, 3f)]
