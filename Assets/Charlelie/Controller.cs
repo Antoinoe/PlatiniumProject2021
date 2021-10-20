@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Runtime.InteropServices;
 public class Controller : MonoBehaviour
 {
+
+
+    //[DllImport("DeviceEnumeration", EntryPoint = "main")]
+    //public static extern int main();
+
     EPlayerNum playerNum;
     int pNum = 0;
     string verticalAxis, horizontalAxis;
     float speed = 4;
     void Start()
     {
-        
+        //int test = main();
+        //Debug.Log(test);
     }
 
     void Update()

@@ -4,9 +4,7 @@ using UnityEngine;
 using System.Management;
 using System.Net.NetworkInformation;
 using System;
-using InTheHand.Net.Sockets;
-using InTheHand.Net;
-using InTheHand.Net.Bluetooth;
+
 
 
 public enum EPlayerNum
@@ -29,8 +27,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-            SetupDevices();
+        //if (Input.GetKeyDown(KeyCode.A))
+            //SetupDevices();
     }
 
     void CreatePlayers()
@@ -68,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    List<BluetoothDeviceInfo> deviceList;
+    /*List<BluetoothDeviceInfo> deviceList;
 
     void SetupDevices()
     {
@@ -140,5 +138,5 @@ public class GameManager : MonoBehaviour
         }
 
         return macAddress;
-    }
+    }*/
 }
