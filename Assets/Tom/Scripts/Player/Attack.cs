@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System;
 
 public class Attack : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class Attack : MonoBehaviour
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
+    //Teams
+    public int teamNb = 0;
+
+    public GameManager gm;
+
     public Text t_score, t_kills, t_bounty;
     #endregion
 
@@ -42,8 +48,10 @@ public class Attack : MonoBehaviour
             if (focusedTarget.tag == "Player")
             {
                 //Kill Player
+                Attack killedPlayerScript = focusedTarget.GetComponent<Attack>();
 
-                focusedTarget.GetComponent<Attack>().bounty = 0; //reset le bounty du joueur tué 
+                killedPlayerScript.ChangeTeam(teamNb);
+                killedPlayerScript.bounty = 0; //reset le bounty du joueur tué 
 
                 //PLAYER A FAIT UN KILL
                 actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = x²+10
@@ -186,5 +194,17 @@ public class Attack : MonoBehaviour
 
         killOnCD = false;
         StopCoroutine(KillCooldown(1));
+    }
+
+    private void ChangeTeam(int nb)
+    {
+        teamNb = nb;
+
+        Player p = Array.Find(gm.players, player => player.playerNb == nb);
+
+        if (p == null)
+            return;
+
+        GetComponent<SpriteRenderer>().sprite = p.playerSprite;
     }
 }

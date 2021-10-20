@@ -9,7 +9,7 @@ public class AttackZone : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         GameObject collidingObject = collision.gameObject;
-        if (collidingObject && collidingObject.tag == "Player" | collidingObject.tag == "NPC")
+        if (collidingObject && (collidingObject.tag == "Player" && collidingObject.GetComponent<Attack>().teamNb != playerScript.teamNb) | collidingObject.tag == "NPC")
         {
             playerScript.targets.Add(collidingObject);
         }
