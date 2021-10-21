@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
+using Rewired;
 public class Controller : MonoBehaviour
 {
 
@@ -13,10 +14,12 @@ public class Controller : MonoBehaviour
     int pNum = 0;
     string verticalAxis, horizontalAxis;
     float speed = 4;
+    public Player player;
     void Start()
     {
         //int test = main();
         //Debug.Log(test);
+        player = ReInput.players.GetPlayer(0);
     }
 
     void Update()
@@ -58,11 +61,13 @@ public class Controller : MonoBehaviour
                 horizontalAxis = "Horizontal4";
                 break;
         }
+
+        
     }
 
     private void Move()
     {
-        Vector2 vec = new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis));
+        Vector2 vec = new Vector2(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"));
         transform.Translate(vec * speed * Time.deltaTime);
     }
 }
