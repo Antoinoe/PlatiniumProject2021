@@ -5,21 +5,14 @@ using System.Runtime.InteropServices;
 using Rewired;
 public class Controller : MonoBehaviour
 {
-
-
-    //[DllImport("DeviceEnumeration", EntryPoint = "main")]
-    //public static extern int main();
-
     EPlayerNum playerNum;
     int pNum = 0;
     string verticalAxis, horizontalAxis;
     float speed = 4;
-    public Player player;
+    public Rewired.Player player;
     void Start()
     {
-        //int test = main();
-        //Debug.Log(test);
-        player = ReInput.players.GetPlayer(0);
+        player = Rewired.ReInput.players.GetPlayer(0);
     }
 
     void Update()

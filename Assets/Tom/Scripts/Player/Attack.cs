@@ -26,19 +26,13 @@ public class Attack : MonoBehaviour
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
-    //Teams
-    public int teamNb = 0;
-
-    public GameManager gm;
 
     public Text t_score, t_kills, t_bounty;
     #endregion
 
     private void Start()
     {
-        //Set trigger script
-        AttackZone zoneScript = GetComponentInChildren<AttackZone>();
-        zoneScript.playerScript = this;
+        
     }
 
     public void OnAttack(/*InputAction.CallbackContext context*/)
@@ -48,10 +42,10 @@ public class Attack : MonoBehaviour
             if (focusedTarget.tag == "Player")
             {
                 //Kill Player
-                Attack killedPlayerScript = focusedTarget.GetComponent<Attack>();
+                PlayerController killedPlayerScript = focusedTarget.GetComponent<PlayerController>();
 
-                killedPlayerScript.ChangeTeam(teamNb);
-                killedPlayerScript.bounty = 0; //reset le bounty du joueur tué 
+                killedPlayerScript.ChangeTeam(GetComponent<PlayerController>().teamNb);
+                killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
                 //PLAYER A FAIT UN KILL
                 actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = x²+10
@@ -182,9 +176,9 @@ public class Attack : MonoBehaviour
         }
 
         //affiche les infos sur l ecran
-        t_score.text = "score :" + actualScore.ToString();
-        t_bounty.text = "bounty :" + bounty.ToString();
-        t_kills.text = "kills : " + nbOfKills.ToString();
+        //t_score.text = "score :" + actualScore.ToString();
+        //t_bounty.text = "bounty :" + bounty.ToString();
+        //t_kills.text = "kills : " + nbOfKills.ToString();
         #endregion
     }
 
@@ -196,15 +190,5 @@ public class Attack : MonoBehaviour
         StopCoroutine(KillCooldown(1));
     }
 
-    private void ChangeTeam(int nb)
-    {
-        teamNb = nb;
-
-        Player p = Array.Find(gm.players, player => player.playerNb == nb);
-
-        if (p == null)
-            return;
-
-        GetComponent<SpriteRenderer>().sprite = p.playerSprite;
-    }
+    
 }
