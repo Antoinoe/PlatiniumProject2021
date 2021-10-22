@@ -25,6 +25,8 @@ public class AIController : MonoBehaviour
 
     public float localMoveRange = 1;
 
+    [SerializeField] private float  minDistance;
+    [SerializeField] private float  maxDistance;
 
     private int index = 0;
 
@@ -39,6 +41,7 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         currentEntity = GetComponent<NavMeshAgent>();
+        currentEntity.SetDestination(zonePoint[index].position);
     }
 
     private void FixedUpdate()
@@ -71,11 +74,7 @@ public class AIController : MonoBehaviour
     private float GetDistanceToNextAndCurrentTransform()
     {
         return Vector2.Distance(zonePoint[index].position, GetNextTransform().position);
-    }
 
-    public void RandomNav()
-    {
-        Vector2 middlepos = new Vector2((zonePoint[index].position.x + GetNextTransform().position.x) / 2,(zonePoint[index].position.y + GetNextTransform().position.y));
     }
 
     public void UpdateNav()
