@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using MiscUtil.Xml.Linq.Extensions;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,16 +24,19 @@ public class AIController : MonoBehaviour
 
     public float rangePoint = 0.25f;
 
-    public float localMoveRange = 1;
+    public Vector2 mid;
 
-    [SerializeField] private float  minDistance;
-    [SerializeField] private float  maxDistance;
+    private Vector2 endPos;
+
+    public float localMoveRange = 1;
 
     private int index = 0;
 
     public IndexNavigator indexNavigator;
 
-    private bool hasArriveToPoint = true;
+    private bool hasArriveToLocalPoint = false;
+
+    private bool hasArriveToPoint = false;
 
     public bool showDebug = false;
 
@@ -41,12 +45,32 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         currentEntity = GetComponent<NavMeshAgent>();
-        currentEntity.SetDestination(zonePoint[index].position);
+        MoveSubPoint();
     }
 
     private void FixedUpdate()
     {
         UpdateNav();
+        if (hasArriveToLocalPoint)
+        {
+            MoveSubPoint();
+        }
+    }
+
+    private void MoveSubPoint()
+    {
+        hasArriveToLocalPoint = false;
+        mid = TestDist.SetRandPos(transform, zonePoint[index], localMoveRange);
+        if (Vector2.Distance(transform.position,zonePoint[index].position)< localMoveRange)
+        {
+            hasArriveToPoint = true;
+            currentEntity.SetDestination(zonePoint[index].position);
+        }
+        else
+        {
+            endPos = mid + Random.insideUnitCircle * localMoveRange;
+            currentEntity.SetDestination(endPos);
+        }
     }
 
     private Transform GetNextTransform()
@@ -57,7 +81,7 @@ public class AIController : MonoBehaviour
         }
         else if (index == 0)
         {
-            indexNavigator = IndexNavigator.Back;
+            indexNavigator = IndexNavigator.Next;
         }
 
         switch (indexNavigator)
@@ -71,44 +95,44 @@ public class AIController : MonoBehaviour
         return zonePoint[0];
     }
 
-    private float GetDistanceToNextAndCurrentTransform()
-    {
-        return Vector2.Distance(zonePoint[index].position, GetNextTransform().position);
-
-    }
-
     public void UpdateNav()
     {
-                if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint[index].position, rangePoint))
-                {
-                    switch (indexNavigator)
+        if (IAMovement.NavmeshReachedDestination(currentEntity, endPos, rangePoint))
+        {
+            hasArriveToLocalPoint = true;
+        }
+        if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint[index].position, rangePoint) && hasArriveToPoint)
+        {
+            switch (indexNavigator)
+            {
+                case IndexNavigator.Back:
+                    if (index == 0)
                     {
-                        case IndexNavigator.Back:
-                            if (index == 0)
-                            {
-                                indexNavigator = IndexNavigator.Next;
-                            }
-                            else
-                            {
-                                index--;
-                            }
-
-                            break;
-                        case IndexNavigator.Next:
-                            if (index >= (zonePoint.Length - 1))
-                            {
-                                indexNavigator = IndexNavigator.Back;
-                            }
-                            else
-                            {
-                                index++;
-                            }
-
-                            break;
+                        indexNavigator = IndexNavigator.Next;
+                    }
+                    else
+                    {
+                        index--;
                     }
 
-                    currentEntity.SetDestination(zonePoint[index].position);
-                }
+                    break;
+                case IndexNavigator.Next:
+                    if (index >= (zonePoint.Length - 1))
+                    {
+                        indexNavigator = IndexNavigator.Back;
+                    }
+                    else
+                    {
+                        index++;
+                    }
+
+                    break;
+            }
+
+            hasArriveToPoint = false;
+            hasArriveToLocalPoint = true;
+            currentEntity.SetDestination(zonePoint[index].position);
+        }
 
     }
 
@@ -118,14 +142,14 @@ public class AIController : MonoBehaviour
         {
             GUILayout.Label("NavPoint index : " + index);
             GUILayout.Label("indexNavigator : " + indexNavigator.ToString());
-            GUILayout.Label("hasArriveToPoint : " + hasArriveToPoint);
+            GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
         }
     }
 
-void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, localMoveRange);
+        Gizmos.DrawWireSphere(mid, localMoveRange);
     }
 }
 
