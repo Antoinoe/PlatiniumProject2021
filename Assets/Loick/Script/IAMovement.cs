@@ -7,8 +7,6 @@ public class IAMovement : MonoBehaviour
 {
     public bool axisMovement = true;
     public float patrollingRange = 4f;
-    public int nextTargetMin = 1;
-    public int nextTargetMax = 2;
     private Vector2 _target = Vector3.zero;
     private Vector2 _currentTarget = Vector2.zero;
 
