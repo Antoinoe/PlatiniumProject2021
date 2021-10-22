@@ -7,4 +7,5 @@ public class Player
 
     public Sprite playerSprite;
     public GameObject smokeSystem;
+    public Controller controller;
 }
