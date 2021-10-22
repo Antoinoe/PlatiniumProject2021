@@ -27,8 +27,9 @@ public class TestDist : MonoBehaviour
         Vector2 vec = new Vector2(rangeBtwES * Mathf.Cos(angle), rangeBtwES * Mathf.Sin(angle));
         Mid.position = vec.normalized + (Vector2)S.position/* + new Vector2(range, range)*/;
         //StartCoroutine(MovePerso());
-        Vector2 fVec = (Mid.position + S.position) - S.position;
-        Mid.position = fVec;
+        Vector2 vecF = S.position - Mid.position;
+        Vector2 vecFF = (((Vector2)Mid.position - vecF * range) - (Vector2)Mid.position) + (Vector2)S.position;
+        Mid.position = vecFF;
     }
 
     void SetRandPos()
@@ -69,8 +70,14 @@ public class TestDist : MonoBehaviour
         Gizmos.DrawLine(Vector2.zero, S.position);
         Gizmos.DrawLine(Vector2.zero, E.position);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(S.position, new Vector2(Mid.position.x + range, Mid.position.y + range));
+        /*Gizmos.color = Color.red;
+        Vector2 vec = S.position - Mid.position;
+        Gizmos.DrawLine(Mid.position, (Vector2)Mid.position - vec * range);*/
+
+        /*Gizmos.color = Color.green;
+        Vector2 vecF = S.position - Mid.position;
+        Vector2 vecFF = ((Vector2)Mid.position - vecF * range) - (Vector2)Mid.position;
+        Gizmos.DrawLine(Mid.position, vecFF);*/
     }
 
 }
