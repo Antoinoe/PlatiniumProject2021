@@ -45,7 +45,7 @@ public class AIController : MonoBehaviour
 
     public bool showDebug = false;
 
-    private bool isWating = true;
+    private bool isWating = false;
 
     private bool canMove = true;
 
@@ -147,8 +147,9 @@ public class AIController : MonoBehaviour
             if (!isWating)
             {
                 StartCoroutine(Delay());
+             
             }
-            currentEntity.SetDestination(zonePoint[index].position);
+            
         }
 
     }
@@ -169,6 +170,7 @@ public class AIController : MonoBehaviour
         canMove = false;
         isWating = true;
         yield return new WaitForSeconds(Random.Range(1, delay));
+        currentEntity.SetDestination(zonePoint[index].position);
         Debug.Log("fin de delay");
         canMove = true;
         isWating = false;
