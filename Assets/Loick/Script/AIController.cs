@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
@@ -5,6 +6,7 @@ using MiscUtil.Xml.Linq.Extensions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 
 public class AIController : MonoBehaviour
@@ -28,6 +30,9 @@ public class AIController : MonoBehaviour
 
     private Vector2 endPos;
 
+    [Range(0, 3)]
+    public float delay;
+
     public float localMoveRange = 1;
 
     private int index = 0;
@@ -39,6 +44,10 @@ public class AIController : MonoBehaviour
     private bool hasArriveToPoint = false;
 
     public bool showDebug = false;
+
+    private bool isWating = true;
+
+    private bool canMove = true;
 
     private NavMeshAgent currentEntity = null;
 
@@ -59,18 +68,22 @@ public class AIController : MonoBehaviour
 
     private void MoveSubPoint()
     {
-        hasArriveToLocalPoint = false;
-        mid = TestDist.SetRandPos(transform, zonePoint[index], localMoveRange);
-        if (Vector2.Distance(transform.position,zonePoint[index].position)< localMoveRange)
+        if (canMove)
         {
-            hasArriveToPoint = true;
-            currentEntity.SetDestination(zonePoint[index].position);
+            hasArriveToLocalPoint = false;
+            mid = TestDist.SetRandPos(transform, zonePoint[index], localMoveRange);
+            if (Vector2.Distance(transform.position, zonePoint[index].position) < localMoveRange)
+            {
+                hasArriveToPoint = true;
+                currentEntity.SetDestination(zonePoint[index].position);
+            }
+            else
+            {
+                endPos = mid + Random.insideUnitCircle * localMoveRange;
+                currentEntity.SetDestination(endPos);
+            }
         }
-        else
-        {
-            endPos = mid + Random.insideUnitCircle * localMoveRange;
-            currentEntity.SetDestination(endPos);
-        }
+
     }
 
     private Transform GetNextTransform()
@@ -100,6 +113,7 @@ public class AIController : MonoBehaviour
         if (IAMovement.NavmeshReachedDestination(currentEntity, endPos, rangePoint))
         {
             hasArriveToLocalPoint = true;
+            //StartCoroutine(Delay());
         }
         if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint[index].position, rangePoint) && hasArriveToPoint)
         {
@@ -128,9 +142,12 @@ public class AIController : MonoBehaviour
 
                     break;
             }
-
             hasArriveToPoint = false;
             hasArriveToLocalPoint = true;
+            if (!isWating)
+            {
+                StartCoroutine(Delay());
+            }
             currentEntity.SetDestination(zonePoint[index].position);
         }
 
@@ -143,7 +160,19 @@ public class AIController : MonoBehaviour
             GUILayout.Label("NavPoint index : " + index);
             GUILayout.Label("indexNavigator : " + indexNavigator.ToString());
             GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
+            GUILayout.Label("Is waiting : " + isWating);
         }
+    }
+
+    public IEnumerator Delay()
+    {
+        canMove = false;
+        isWating = true;
+        yield return new WaitForSeconds(Random.Range(1, delay));
+        Debug.Log("fin de delay");
+        canMove = true;
+        isWating = false;
+        yield return null;
     }
 
     void OnDrawGizmos()
@@ -152,5 +181,3 @@ public class AIController : MonoBehaviour
         Gizmos.DrawWireSphere(mid, localMoveRange);
     }
 }
-
-
