@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-//A placé enfant de l'IAMovement
+//A placer enfant de IAMovement
 
 public class AIControllers : MonoBehaviour
 {
     private IAMovement iAController = null;
     private int nextTarget = 1;
     private float timer = 0f;
+    
     private List<NavMeshAgent> entitiesGroup = new List<NavMeshAgent>();
+    private NavMeshAgent currentEntity;
 
     private void Start()
     {
@@ -22,17 +24,23 @@ public class AIControllers : MonoBehaviour
             agent.updateRotation = false;
             agent.updateUpAxis = false;
         }
+
+        currentEntity = entitiesGroup[0];
     }
 
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
 
-        if (timer >= nextTarget)
+        if (timer >= nextTarget /*&& IAMovement.NavmeshReachedDestination(currentEntity,iAController.GetCurrentTarget())*/)
         {
-            nextTarget = Random.Range(iAController.nextTargetMin, iAController.nextTargetMax);
-            iAController.NewTarget(entitiesGroup);
-            timer = 0;
+            for (int i = 0; i < entitiesGroup.Count; i++)
+            {
+                nextTarget = Random.Range(iAController.nextTargetMin, iAController.nextTargetMax);
+                    iAController.NewSubTarget(entitiesGroup[i]);
+                    timer = 0;
+            }
+
         }
     }
 }

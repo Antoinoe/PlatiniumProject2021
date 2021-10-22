@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.AI;
 
 //A placer en parent de toutes les IA
 
@@ -9,10 +7,10 @@ public class IAMovement : MonoBehaviour
 {
     public bool axisMovement = true;
     public float patrollingRange = 4f;
-    public Vector3 posPatrollingCenter = Vector3.zero;
-    private Vector3 target = Vector3.zero;
-    public int nextTargetMax = 1;
-    public int nextTargetMin = 0;
+    public int nextTargetMin = 1;
+    public int nextTargetMax = 2;
+    private Vector2 _target = Vector3.zero;
+    private Vector2 _currentTarget = Vector2.zero;
 
     public enum MovementAxis
     {
@@ -24,49 +22,78 @@ public class IAMovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(posPatrollingCenter, patrollingRange);
+        Gizmos.DrawSphere(_target, patrollingRange);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(target, 0.5f);
+        Gizmos.DrawSphere(_target, 0.5f);
     }
 
     #endregion
 
     #region Moving
-    public void NewTarget(List<NavMeshAgent> entities)
+    public void NewSubTarget(NavMeshAgent entity)
     {
-      /*float myX = posPatrollingCenter.x;
-        float myY = posPatrollingCenter.y; */
-        for (int i = 0; i < entities.Count; i++)
-        {
-            Vector2 iaPos = entities[i].gameObject.transform.position;
-            float myX = iaPos.x;
-            float myY = iaPos.y;
-            float yPos = myY + Random.Range(myY -  (patrollingRange*2), myY + patrollingRange);
+        Vector2 iaPos = entity.gameObject.transform.position;
+        float myX = iaPos.x;
+        float myY = iaPos.y;
+        float yPos = myY + Random.Range(myY - (patrollingRange * 2), myY + patrollingRange);
         float xPos = myX + Random.Range(myX - patrollingRange, myX + patrollingRange);
-                if (axisMovement)
-                {
-                    MovementAxis movement = (MovementAxis)Random.Range(0, 2);
-                    switch (movement)
-                    {
-                        case MovementAxis.X:
-                            target = new Vector3(xPos, entities[i].transform.position.y, entities[i].transform.position.z);
-                            break;
-                        case MovementAxis.Y:
-                            target = new Vector3(entities[i].transform.position.x, yPos, entities[i].transform.position.z);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            
-            NavMeshPath path = new NavMeshPath();
-            if (entities[i].CalculatePath(target, path))
+        if (axisMovement)
+        {
+            MovementAxis movement = (MovementAxis)Random.Range(0, 2);
+            switch (movement)
             {
-                entities[i].SetDestination(target);
+                case MovementAxis.X:
+                    _currentTarget = new Vector2(xPos, myY);
+                    break;
+                case MovementAxis.Y:
+                    _currentTarget = new Vector2(myX, yPos);
+                    break;
             }
         }
+        SetDestination(entity);
+        #endregion 
     }
-    #endregion
-}
 
+    public void SetTarget(NavMeshAgent entity)
+    {
+        Vector2 iaPos = entity.gameObject.transform.position;
+        if (axisMovement)
+        {
+            MovementAxis movement = (MovementAxis)Random.Range(0, 2);
+            switch (movement)
+            {
+                case MovementAxis.X:
+                    _currentTarget = new Vector2(_target.x, iaPos.y);
+                    break;
+                case MovementAxis.Y:
+                    _currentTarget = new Vector2(iaPos.x, _target.y);
+                    break;
+            }
+        }
+        SetDestination(entity);
+    }
+
+    private void SetDestination(NavMeshAgent entity)
+    {
+        NavMeshPath path = new NavMeshPath();
+        if (entity.CalculatePath(_currentTarget, path))
+        {
+            entity.SetDestination(_currentTarget);
+        }
+    }
+
+    public static bool NavmeshReachedDestination(NavMeshAgent meshAgent, Vector2 target,float targetRadius)
+    {
+        Vector2 meshPos = meshAgent.transform.position;
+        float targetMeshPosDistance =  Vector2.Distance(meshPos, target);
+        bool isArrive = targetMeshPosDistance <= targetRadius;
+        return isArrive;
+    }
+
+    public Vector3 GetCurrentTarget()
+    {
+        return _currentTarget;
+    }
+
+}
