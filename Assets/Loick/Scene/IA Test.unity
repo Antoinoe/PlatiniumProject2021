@@ -339,7 +339,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2865,7 +2865,7 @@ Transform:
   - {fileID: 1889076577}
   - {fileID: 136903180}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1344071060
 GameObject:
@@ -2952,11 +2952,10 @@ MonoBehaviour:
   - {fileID: 1889076577}
   - {fileID: 136903180}
   rangePoint: 0.25
+  mid: {x: 0, y: 0}
   localMoveRange: 1
   indexNavigator: 0
   showDebug: 1
-  statMachine: 0
-  nextTarget: 1
 --- !u!1 &1359627917
 GameObject:
   m_ObjectHideFlags: 0

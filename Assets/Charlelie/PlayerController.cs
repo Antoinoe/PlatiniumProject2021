@@ -6,6 +6,8 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     public Player player;
+    Controller controller;
+
     //Teams
     public int teamNb = 0;
 
@@ -13,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        controller = GetComponent<Controller>();
+        controller.SetNum(teamNb);
         //Set trigger script
         AttackZone zoneScript = GetComponentInChildren<AttackZone>();
         zoneScript.playerScript = this;

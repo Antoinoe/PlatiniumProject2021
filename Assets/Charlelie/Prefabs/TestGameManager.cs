@@ -21,7 +21,7 @@ public class TestGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreatePlayers();
+        //CreatePlayers();
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class TestGameManager : MonoBehaviour
             //SetupDevices();
     }
 
-    void CreatePlayers()
+    /*void CreatePlayers()
     {
         for (int i = 0; i < 4; i++)
         {
@@ -64,7 +64,7 @@ public class TestGameManager : MonoBehaviour
                     break;
             } 
         }
-    }
+    }*/
 
     /*List<BluetoothDeviceInfo> deviceList;
 
