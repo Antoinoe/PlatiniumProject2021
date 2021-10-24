@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeTeam(int nb)
     {
+        Debug.Log("Team " + nb + " assimilated a player from Team " + teamNb);
+
         teamNb = nb;
 
         //Player p = Array.Find(gameManager.players, player => player.playerNb == nb);

@@ -26,13 +26,14 @@ public class Attack : MonoBehaviour
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
+    private PlayerController playerController;
 
     public Text t_score, t_kills, t_bounty;
     #endregion
 
     private void Start()
     {
-        
+        playerController = GetComponent<PlayerController>();
     }
 
     public void OnAttack(/*InputAction.CallbackContext context*/)
@@ -44,8 +45,8 @@ public class Attack : MonoBehaviour
                 //Kill Player
                 PlayerController killedPlayerScript = focusedTarget.GetComponent<PlayerController>();
 
-                killedPlayerScript.ChangeTeam(GetComponent<PlayerController>().teamNb);
-                killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
+                killedPlayerScript.ChangeTeam(playerController.teamNb);
+                /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
                 //PLAYER A FAIT UN KILL
                 actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = x²+10
@@ -53,11 +54,12 @@ public class Attack : MonoBehaviour
                 if (bounty < maxBounty) //augmente bounty si pas au max
                     bounty++; 
 
-                nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)
+                nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
             }
             else if (focusedTarget.tag == "NPC")
             {
                 //Kill NPC
+                Debug.Log("NPC killed by Team " + playerController.teamNb);
             }
 
             killOnCD = true;
@@ -123,7 +125,7 @@ public class Attack : MonoBehaviour
                 }*/
 
 
-            if (temporaryTarget && temporaryTarget.tag == "NPC")
+                if (temporaryTarget && temporaryTarget.tag == "NPC")
                 {
                     /*AIBehaviour controller = temporaryTarget.GetComponent<AIBehaviour>();
                     controller.sightsNb += 1;
@@ -135,7 +137,11 @@ public class Attack : MonoBehaviour
                     /*PlayerController controller = temporaryTarget.GetComponent<PlayerController>();
                     controller.sightsNb += 1;
                     controller.marker.SetActive(true);*/
-                    focusedTarget = temporaryTarget;
+
+                    if (temporaryTarget.GetComponent<PlayerController>().teamNb != playerController.teamNb)
+                    {
+                        focusedTarget = temporaryTarget;
+                    }
                 }
             }
         }

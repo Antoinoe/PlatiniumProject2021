@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     public Player[] players;
     public int playerNbrs = 1;
 
+    [SerializeField] private int iAPerPlayer;
+
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject iAPrefab;
 
     private List<int> teams;
     #endregion
@@ -59,6 +62,13 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < playerNbrs; i++)
         {
             GameObject newPlayer = GameObject.Instantiate(playerPrefab, RandomNavmeshLocation(10), playerPrefab.transform.rotation);
+            newPlayer.GetComponent<PlayerController>().teamNb = i;
+
+            for (int i2 = 0; i2 < iAPerPlayer; i2++)
+            {
+                GameObject newIA = GameObject.Instantiate(iAPrefab, RandomNavmeshLocation(10), iAPrefab.transform.rotation);
+                newIA.GetComponent<IAIdentity>().teamNb = i;
+            }
         }
     }
 
