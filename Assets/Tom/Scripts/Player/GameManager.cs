@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     public AudioManager audioManager;
 
-    //public Player[] players;
+    public Player[] players;
     public int playerNbrs = 1;
 
     [SerializeField] private GameObject playerPrefab;
@@ -38,23 +39,26 @@ public class GameManager : MonoBehaviour
         Instantiate(inputManager);
         /*foreach (Player player in players)
         {
-            //séléctionnner un point avec le navMesh
-            GameObject newPlayer = GameObject.Instantiate(playerPrefab);
+            //instancie joueur
+            GameObject newPlayer = GameObject.Instantiate(playerPrefab, RandomNavmeshLocation(100), playerPrefab.transform.rotation);
 
             //team
             newPlayer.GetComponent<PlayerController>().teamNb = player.playerNb;
             teams[player.playerNb] = 1;
 
             //skin
-            newPlayer.GetComponent<SpriteRenderer>().sprite = player.playerSprite;
+            newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = player.playerSprite;
 
             //effects
-            GameObject.Instantiate(player.smokeSystem, newPlayer.transform);
+            if (player.smokeSystem)
+            {
+                GameObject.Instantiate(player.smokeSystem, newPlayer.transform);
+            }
         }*/
 
         for (int i = 0; i < playerNbrs; i++)
         {
-            GameObject newPlayer = GameObject.Instantiate(playerPrefab);
+            GameObject newPlayer = GameObject.Instantiate(playerPrefab, RandomNavmeshLocation(10), playerPrefab.transform.rotation);
         }
     }
 
@@ -62,5 +66,28 @@ public class GameManager : MonoBehaviour
     {
         teams[curTeam] += -1;
         teams[targetTeam] += 1;
+
+        if (targetTeam == players.Length)
+        {
+            Win(targetTeam);
+        }
+    }
+
+    public void Win(int playerNb)
+    {
+        Debug.Log("Player " + playerNb + " win !");
+    }
+
+    public Vector3 RandomNavmeshLocation(float radius)
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * radius;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        Vector3 finalPosition = Vector3.zero;
+        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
     }
 }

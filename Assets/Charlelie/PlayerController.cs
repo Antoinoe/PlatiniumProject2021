@@ -5,7 +5,6 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public Player player;
     Controller controller;
 
     //Teams
