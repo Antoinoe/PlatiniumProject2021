@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<Controller>();
         controller.SetNum(teamNb);
+        gameManager = GameManager.GetInstance();
         //Set trigger script
         AttackZone zoneScript = GetComponentInChildren<AttackZone>();
         zoneScript.playerScript = this;

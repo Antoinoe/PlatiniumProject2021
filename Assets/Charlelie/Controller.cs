@@ -6,7 +6,7 @@ using Rewired;
 public class Controller : MonoBehaviour
 {
     int playerNum;
-    float speed = 4;
+    public float speed = 4;
     public Rewired.Player player;
     void Start()
     {
@@ -21,7 +21,11 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        
+        if (player.GetButtonDown("Attack"))
+        {
+            Debug.Log("Attack");
+            GetComponent<Attack>().OnAttack();
+        }
     }
 
     private void FixedUpdate()
@@ -33,6 +37,11 @@ public class Controller : MonoBehaviour
     private void Move()
     {
         Vector2 vec = new Vector2(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"));
-        transform.Translate(vec * speed * Time.deltaTime);
+        transform.Translate(vec * speed * Time.fixedDeltaTime);
+    }
+
+    private void OnGUI()
+    {
+        
     }
 }
