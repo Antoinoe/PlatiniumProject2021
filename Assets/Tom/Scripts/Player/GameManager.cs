@@ -61,12 +61,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < playerNbrs; i++)
         {
-            GameObject newPlayer = GameObject.Instantiate(playerPrefab, RandomNavmeshLocation(10), playerPrefab.transform.rotation);
+            GameObject newPlayer = GameObject.Instantiate(playerPrefab, RandomNavmeshLocation(10, transform.position), playerPrefab.transform.rotation);
             newPlayer.GetComponent<PlayerController>().teamNb = i;
 
             for (int i2 = 0; i2 < iAPerPlayer; i2++)
             {
-                GameObject newIA = GameObject.Instantiate(iAPrefab, RandomNavmeshLocation(10), iAPrefab.transform.rotation);
+                GameObject newIA = GameObject.Instantiate(iAPrefab, RandomNavmeshLocation(10, transform.position), iAPrefab.transform.rotation);
                 newIA.GetComponent<IAIdentity>().teamNb = i;
             }
         }
@@ -88,10 +88,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player " + playerNb + " win !");
     }
 
-    public Vector3 RandomNavmeshLocation(float radius)
+    public static Vector3 RandomNavmeshLocation(float radius, Vector3 origin)
     {
         Vector3 randomDirection = Random.insideUnitSphere * radius;
-        randomDirection += transform.position;
+        randomDirection += origin;
         NavMeshHit hit;
         Vector3 finalPosition = Vector3.zero;
         if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
