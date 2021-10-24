@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
+using DG.Tweening;
 using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject iAPrefab;
 
     private List<int> teams;
+
+    //Camera shake
+    [SerializeField] private float shakeDur;
+    [SerializeField] private float shakeStrenght;
+    [SerializeField] private int shakeVibrato;
+    [SerializeField] private int shakeRandomness;
     #endregion
 
     private void Awake()
@@ -35,6 +42,15 @@ public class GameManager : MonoBehaviour
     public static GameManager GetInstance()
     {
         return _instance;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("shake your booty !!!");
+            Shake();
+        }
     }
 
     private void Start()
@@ -61,12 +77,14 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < playerNbrs; i++)
         {
-            GameObject newPlayer = GameObject.Instantiate(playerPrefab, RandomNavmeshLocation(10, transform.position), playerPrefab.transform.rotation);
+            Vector3 initPos = RandomNavmeshLocation(10, transform.position);
+            GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(initPos.x, initPos.y, 0), playerPrefab.transform.rotation);
             newPlayer.GetComponent<PlayerController>().teamNb = i;
 
             for (int i2 = 0; i2 < iAPerPlayer; i2++)
             {
-                GameObject newIA = GameObject.Instantiate(iAPrefab, RandomNavmeshLocation(10, transform.position), iAPrefab.transform.rotation);
+                Vector3 initPos2 = RandomNavmeshLocation(10, transform.position);
+                GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), iAPrefab.transform.rotation);
                 newIA.GetComponent<IAIdentity>().teamNb = i;
             }
         }
@@ -99,5 +117,15 @@ public class GameManager : MonoBehaviour
             finalPosition = hit.position;
         }
         return finalPosition;
+    }
+
+    public void Shake()
+    {
+        Camera.main.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness);
+    }
+
+    public void Shake(float duration, float strength, int vibrato, int randomness)
+    {
+        Camera.main.DOShakePosition(duration, strength, vibrato, randomness);
     }
 }

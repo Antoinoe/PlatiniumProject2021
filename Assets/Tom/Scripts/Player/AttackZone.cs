@@ -9,6 +9,7 @@ public class AttackZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("ouille");
         GameObject collidingObject = collision.gameObject;
         if (collidingObject && (collidingObject.tag == "Player" && collidingObject.GetComponent<PlayerController>().teamNb != playerScript.teamNb) | collidingObject.tag == "NPC")
         {

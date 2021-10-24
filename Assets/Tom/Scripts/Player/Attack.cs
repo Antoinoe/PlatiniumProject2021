@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
     #region Variables
 
     //Kill target aquisition
-    [HideInInspector] public List<GameObject> targets;
+    /*[HideInInspector]*/ public List<GameObject> targets;
     private GameObject focusedTarget;
 
     //Kill CD
@@ -34,6 +34,9 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
+        AttackZone zone = GetComponentInChildren<AttackZone>();
+        zone.playerAttack = this;
+        zone.playerScript = playerController;
     }
 
     public void OnAttack(/*InputAction.CallbackContext context*/)
@@ -46,6 +49,9 @@ public class Attack : MonoBehaviour
                 PlayerController killedPlayerScript = focusedTarget.GetComponent<PlayerController>();
 
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
+
+                playerController.gameManager.Shake();
+
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
                 //PLAYER A FAIT UN KILL
@@ -60,6 +66,8 @@ public class Attack : MonoBehaviour
             {
                 //Kill NPC
                 Debug.Log("NPC killed by Team " + playerController.teamNb);
+
+                playerController.gameManager.Shake();
             }
 
             killOnCD = true;
