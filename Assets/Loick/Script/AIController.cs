@@ -20,9 +20,11 @@ public class AIController : MonoBehaviour
 
     //public IAMovement iAController = null;
 
-    public Transform[] zonePoint = new Transform[] { };
+    //public Transform[] zonePoint = new Transform[] { };
 
-    private Vector2 localMove = Vector2.zero;
+    private Vector3 zonePoint = Vector3.zero;
+
+    //private Vector2 localMove = Vector2.zero;
 
     public float rangePoint = 0.25f;
 
@@ -41,7 +43,7 @@ public class AIController : MonoBehaviour
 
     private bool hasArriveToLocalPoint = false;
 
-    private bool hasArriveToPoint = false;
+    //private bool hasArriveToPoint = false;
 
     public bool showDebug = false;
 
@@ -51,108 +53,37 @@ public class AIController : MonoBehaviour
 
     private NavMeshAgent currentEntity = null;
 
+    #region  UnityFunction
+
     private void Start()
     {
         currentEntity = GetComponent<NavMeshAgent>();
-        MoveSubPoint();
+        currentEntity.updateRotation = false;
+        currentEntity.updateUpAxis = false;
+        zonePoint = transform.position;
+        zonePoint = GameManager.RandomNavmeshLocation(localMoveRange, transform.position);
+        currentEntity.SetDestination(zonePoint);
+        //MoveSubPoint();
     }
 
     private void FixedUpdate()
     {
         UpdateNav();
-        if (hasArriveToLocalPoint)
-        {
-            MoveSubPoint();
-        }
+        //if (hasArriveToLocalPoint)
+        //{
+        //    MoveSubPoint();
+        //}
     }
 
-    private void MoveSubPoint()
+    //Debug
+
+    void OnDrawGizmos()
     {
-        if (canMove)
-        {
-            hasArriveToLocalPoint = false;
-            mid = TestDist.SetRandPos(transform, zonePoint[index], localMoveRange);
-            if (Vector2.Distance(transform.position, zonePoint[index].position) < localMoveRange)
-            {
-                hasArriveToPoint = true;
-                currentEntity.SetDestination(zonePoint[index].position);
-            }
-            else
-            {
-                endPos = mid + Random.insideUnitCircle * localMoveRange;
-                currentEntity.SetDestination(endPos);
-            }
-        }
-
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(zonePoint, localMoveRange);
     }
 
-    private Transform GetNextTransform()
-    {
-        if (index >= (zonePoint.Length - 1))
-        {
-            indexNavigator = IndexNavigator.Back;
-        }
-        else if (index == 0)
-        {
-            indexNavigator = IndexNavigator.Next;
-        }
-
-        switch (indexNavigator)
-        {
-            case IndexNavigator.Next:
-                return zonePoint[(index + 1)];
-            case IndexNavigator.Back:
-                return zonePoint[(index - 1)];
-        }
-
-        return zonePoint[0];
-    }
-
-    public void UpdateNav()
-    {
-        if (IAMovement.NavmeshReachedDestination(currentEntity, endPos, rangePoint))
-        {
-            hasArriveToLocalPoint = true;
-            //StartCoroutine(Delay());
-        }
-        if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint[index].position, rangePoint) && hasArriveToPoint)
-        {
-            switch (indexNavigator)
-            {
-                case IndexNavigator.Back:
-                    if (index == 0)
-                    {
-                        indexNavigator = IndexNavigator.Next;
-                    }
-                    else
-                    {
-                        index--;
-                    }
-
-                    break;
-                case IndexNavigator.Next:
-                    if (index >= (zonePoint.Length - 1))
-                    {
-                        indexNavigator = IndexNavigator.Back;
-                    }
-                    else
-                    {
-                        index++;
-                    }
-
-                    break;
-            }
-            hasArriveToPoint = false;
-            hasArriveToLocalPoint = true;
-            if (!isWating)
-            {
-                StartCoroutine(Delay());
-             
-            }
-            
-        }
-
-    }
+    //Debug
 
     private void OnGUI()
     {
@@ -165,21 +96,98 @@ public class AIController : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Function Movement
+
+    //Vérifie si L'IA atteint le point demandé
+
+    public void UpdateNav()
+    {
+        //if (IAMovement.NavmeshReachedDestination(currentEntity, endPos, rangePoint))
+        //{
+        //    hasArriveToLocalPoint = true;
+        //}
+
+        if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
+        {
+            //switch (indexNavigator)
+            //{
+            //    case IndexNavigator.Back:
+            //        if (index == 0)
+            //        {
+            //            indexNavigator = IndexNavigator.Next;
+            //        }
+            //        else
+            //        {
+            //            index--;
+            //        }
+
+            //        break;
+            //    case IndexNavigator.Next:
+            //        if (index >= (zonePoint.Length - 1))
+            //        {
+            //            indexNavigator = IndexNavigator.Back;
+            //        }
+            //        else
+            //        {
+            //            index++;
+            //        }
+
+            //        break;
+            //}
+            zonePoint = GameManager.RandomNavmeshLocation(localMoveRange, transform.position);
+            //hasArriveToPoint = false;
+            //hasArriveToLocalPoint = true;
+
+            if (!isWating)
+            {
+                StartCoroutine(Delay());
+                currentEntity.SetDestination(zonePoint);
+            }
+        }
+
+    }
+
+    //Fonction de déplacement par sous point
+
+    //private void MoveSubPoint()
+    //{
+    //    if (canMove)
+    //    {
+    //        hasArriveToLocalPoint = false;
+    //        mid = TestDist.SetRandPos(transform, zonePoint, localMoveRange);
+    //        if (Vector2.Distance(transform.position, zonePoint) < localMoveRange)
+    //        {
+    //            hasArriveToPoint = true;
+    //            currentEntity.SetDestination(zonePoint);
+    //        }
+    //        else
+    //        {
+    //            endPos = mid + Random.insideUnitCircle * localMoveRange;
+    //            currentEntity.SetDestination(endPos);
+    //        }
+    //    }
+
+    //}
+
+
+    #endregion
+
+
+    #region  Coroutine
     public IEnumerator Delay()
     {
         canMove = false;
         isWating = true;
         yield return new WaitForSeconds(Random.Range(1, delay));
-        currentEntity.SetDestination(zonePoint[index].position);
+        currentEntity.SetDestination(zonePoint);
         Debug.Log("fin de delay");
         canMove = true;
         isWating = false;
         yield return null;
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(mid, localMoveRange);
-    }
+    #endregion
+
 }

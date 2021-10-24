@@ -10,11 +10,11 @@ public class TestDist : MonoBehaviour
 
     //bool isAtPos = false;
 
-    public static Vector2 SetRandPos(Transform iAPos, Transform mainPoint, float range)
+    public static Vector2 SetRandPos(Transform iAPos, Vector3 mainPoint, float range)
     {
         Vector2 mid = iAPos.position + new Vector3(range, range, 0);
-        float rangeBtwES = Vector2.Distance(iAPos.position, mainPoint.position);
-        float angle = (float)System.Math.Atan2(mainPoint.position.y - iAPos.position.y, mainPoint.position.x - iAPos.position.x);
+        float rangeBtwES = Vector2.Distance(iAPos.position, mainPoint);
+        float angle = (float)System.Math.Atan2(mainPoint.y - iAPos.position.y, mainPoint.x - iAPos.position.x);
         Vector2 vec = new Vector2(rangeBtwES * Mathf.Cos(angle), rangeBtwES * Mathf.Sin(angle));
         mid = vec.normalized + (Vector2)iAPos.position;
         Vector2 vecF = (Vector2)iAPos.position - mid;
