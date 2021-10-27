@@ -106,14 +106,15 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player " + playerNb + " win !");
     }
 
-    public static Vector3 RandomNavmeshLocation(float radius, Vector3 origin)
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin)
     {
-        Vector3 randomDirection = Random.insideUnitSphere * radius;
-        randomDirection += origin;
+        float angle = Random.Range(-180,Mathf.PI);
+        Vector2 randomPosition = new Vector2(Mathf.Cos(angle),Mathf.Sin(angle)) * radius;
+        randomPosition += origin;
         NavMeshHit hit;
-        Vector3 finalPosition = Vector3.zero;
-        if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
-        {
+        Vector2 finalPosition = Vector2.zero;
+        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
+        { 
             finalPosition = hit.position;
         }
         return finalPosition;
