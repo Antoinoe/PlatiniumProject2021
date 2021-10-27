@@ -20,7 +20,10 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-        transform.position = Positions[0];
+        if (Positions.Count > 0)
+        {
+            transform.position = Positions[0];
+        }
         vect3 = transform.position;
         size = 1;
         cam.orthographicSize = size;
@@ -32,6 +35,7 @@ public class CameraController : MonoBehaviour
     {
         yield return new WaitForSeconds(.5f);
 
+        
         foreach (Vector3 Pos in Positions)
         {
             for (float i = 0; i < delay; i += speed * 0.005f)
