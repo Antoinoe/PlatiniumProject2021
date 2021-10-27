@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class AttackZone : MonoBehaviour
 {
-    [HideInInspector] public Attack playerScript;
+    [HideInInspector] public PlayerController playerScript;
+    [HideInInspector] public Attack playerAttack;
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log("ouille");
         GameObject collidingObject = collision.gameObject;
-        if (collidingObject && collidingObject.tag == "Player" | collidingObject.tag == "NPC")
+        if (collidingObject && (collidingObject.tag == "Player" && collidingObject.GetComponent<PlayerController>().teamNb != playerScript.teamNb) | collidingObject.tag == "NPC")
         {
-            playerScript.targets.Add(collidingObject);
+            playerAttack.targets.Add(collidingObject);
         }
     }
 
@@ -20,7 +22,7 @@ public class AttackZone : MonoBehaviour
         GameObject collidingObject = collision.gameObject;
         if (collidingObject.tag == "Player" | collidingObject.tag == "NPC")
         {
-            playerScript.targets.Remove(collidingObject);
+            playerAttack.targets.Remove(collidingObject);
         }
     }
 }
