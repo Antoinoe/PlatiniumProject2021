@@ -51,6 +51,8 @@ public class Attack : MonoBehaviour
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
                 playerController.gameManager.Shake();
+                
+                //Physics2D.OverlapBoxAll (use for target detection)
 
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
@@ -195,7 +197,7 @@ public class Attack : MonoBehaviour
         //t_kills.text = "kills : " + nbOfKills.ToString();
         #endregion
     }
-
+    
     private IEnumerator KillCooldown(float time)
     {
         yield return new WaitForSeconds(time);

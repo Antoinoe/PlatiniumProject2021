@@ -4,36 +4,60 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEditor;
 
-[ExecuteAlways]
+
 public class CameraShake : MonoBehaviour
 {
     #region Variables
     //Camera shake
-    [SerializeField] private float shakeDur;
+    [SerializeField] private float shakeDur = 1;
 
-    [SerializeField] private float shakeStrenght;
+    [SerializeField] private float shakeStrenght = 0.1f;
     [SerializeField] private Vector3 shakeStrenghtV3;
     [SerializeField] private bool shakeStrenghtWithVector3 = false;
 
-    [SerializeField] private int shakeVibrato;
+    [SerializeField] private int shakeVibrato = 5;
 
-    [SerializeField] private int shakeRandomness;
+    [Range(0, 90)]
+    [SerializeField] private int shakeRandomness = 10;
 
-    [SerializeField] private bool shakeFadeOut;
+    [SerializeField] private bool shakeFadeOut = true;
+
+    //Game Manager
+    private GameManager gm;
     #endregion
+
+    private void Start()
+    {
+        gm = GameManager.GetInstance();
+        gm.onCameraShake += Shake;
+    }
 
     public void Shake()
     {
         Debug.Log("shake !");
 
+        Vector3 basePos = transform.position;
+
         if (shakeStrenghtWithVector3)
         {
-            Camera.main.DOShakePosition(shakeDur, shakeStrenghtV3, shakeVibrato, shakeRandomness);
+            transform.DOShakePosition(shakeDur, shakeStrenghtV3, shakeVibrato, shakeRandomness, shakeFadeOut);
         }
         else
         {
-            Camera.main.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness);
+            transform.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness, shakeFadeOut);
+            Debug.Log("i'm shaking !");
         }
+
+        StartCoroutine(Reset(basePos));
+    }
+
+    private IEnumerator Reset(Vector3 resetPos)
+    {
+        Debug.Log("start reset");
+        yield return new WaitForSeconds(shakeDur);
+        Debug.Log("end reset");
+        transform.position = resetPos;
+        StopCoroutine(Reset(resetPos));
     }
 
     #if UNITY_EDITOR
@@ -116,6 +140,7 @@ public class CameraShake : MonoBehaviour
             if (GUILayout.Button("SHAKE !"))
             {
                 camShake.Shake();
+                GameManager.GetInstance().Shake();
             }
         }
     }
