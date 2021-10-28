@@ -57,7 +57,7 @@ public class Controller : MonoBehaviour
 
     private void OnGUI()
     {
-        Debug.Log(isPhyGUIShown);
+
         if (!isPhyGUIShown)
             if (GUI.Button(new Rect(Screen.width - 140, Screen.height - 100, 140, 100), "Controller physics"))
                 isPhyGUIShown = true;

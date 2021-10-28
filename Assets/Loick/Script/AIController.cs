@@ -36,6 +36,8 @@ public class AIController : MonoBehaviour
 
     public CircleOrientation.Orientation currentOrientation;
 
+    EntityMoveFeel feel;
+
     //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
     //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
     //Déclaration Variable
@@ -54,12 +56,14 @@ public class AIController : MonoBehaviour
         randomRange = GetRandomRange();
         zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
         currentEntity.SetDestination(zonePoint);
+        feel = GetComponent<EntityMoveFeel>();
     }
 
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        //sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        if (feel.IsMoving != canMove) feel.IsMoving = canMove;
         UpdateNav();
     }
 

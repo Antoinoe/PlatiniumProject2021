@@ -19,10 +19,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<Controller>();
         controller.SetNum(teamNb);
         gameManager = GameManager.GetInstance();
-        //Set trigger script
-        AttackZone zoneScript = GetComponentInChildren<AttackZone>();
-        zoneScript.playerScript = this;
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
 
@@ -35,7 +32,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Team " + nb + " assimilated a player from Team " + teamNb);
 
-        GetComponent<SpriteRenderer>().sprite = gameManager.players[nb].playerSprite;
+        GetComponentInChildren<SpriteRenderer>().sprite = gameManager.players[nb].playerSprite;
         gameManager.WinCheck(teamNb, nb);
 
         teamNb = nb;

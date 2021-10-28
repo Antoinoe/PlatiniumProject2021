@@ -44,13 +44,23 @@ public class Attack : MonoBehaviour
         #region Targets aquisition
         List<GameObject> targets = new List<GameObject>();
 
-        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 0f);
+        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(5, 5), 0f);
         foreach(Collider2D c in collidersInRange)
         {
-            GameObject collidingObject = c.gameObject;
-            if (collidingObject && (collidingObject.CompareTag("Player") && collidingObject.GetComponent<PlayerController>().teamNb != playerController.teamNb) | collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
+            GameObject collidingObject = c.gameObject;           
+            if (collidingObject && collidingObject != gameObject)
             {
-                targets.Add(collidingObject);
+                if (collidingObject.CompareTag("Player"))
+                {
+                    if (collidingObject.GetComponent<PlayerController>().teamNb != playerController.teamNb)
+                    {
+                        targets.Add(collidingObject);
+                    }
+                } else if (collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
+                {
+                    targets.Add(collidingObject);
+                }
+                
             }
         }
         #endregion
@@ -85,7 +95,7 @@ public class Attack : MonoBehaviour
 
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
-                //playerController.gameManager.Shake();
+                playerController.gameManager.Shake();
 
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
@@ -102,7 +112,7 @@ public class Attack : MonoBehaviour
                 //Kill NPC
                 Debug.Log("NPC killed by Team " + playerController.teamNb);
 
-                //playerController.gameManager.Shake();
+                playerController.gameManager.Shake();
             }
 
             killOnCD = true;

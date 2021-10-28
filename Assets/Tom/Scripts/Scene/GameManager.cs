@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private List<int> teams;
 
     //Camera shake
+    [Header("Camera Shake")]
     [SerializeField] private float shakeDur;
     [SerializeField] private float shakeStrenght;
     [SerializeField] private int shakeVibrato;
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
         foreach (Player player in players)
         {
             //instancie joueur
-            Vector2 newLocation = RandomNavmeshLocation(10, transform.position);
+            Vector2 newLocation = RandomNavmeshLocation(6, transform.position);
             GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(newLocation.x, newLocation.y, 0), playerPrefab.transform.rotation);
 
             //team
@@ -77,6 +78,7 @@ public class GameManager : MonoBehaviour
             {
                 Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);
                 GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), iAPrefab.transform.rotation);
+                newIA.AddComponent<EntityMoveFeel>();
                 newIA.GetComponent<IAIdentity>().teamNb = player.playerNb;
                 newIA.GetComponentInChildren<SpriteRenderer>().sprite = player.playerSprite;
             }

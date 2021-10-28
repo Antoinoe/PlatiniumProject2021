@@ -72,11 +72,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangePoint: 0.25
-  mid: {x: -2.32, y: 4.65}
-  delay: 3
-  localMoveRange: 1
-  indexNavigator: 0
+  delayMin: 1
+  delayMax: 2
+  localMinMoveRange: 1
+  localMaxMoveRange: 5
   showDebug: 1
+  currentOrientation: 0
 --- !u!114 &7552138741966933271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
