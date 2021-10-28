@@ -112,6 +112,20 @@ public class GameManager : MonoBehaviour
         Debug.Log("Team " + teamNb + " win !");
     }
 
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation)
+    {
+        AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
+        float angle = UnityEngine.Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+        Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+        randomPosition += origin;
+        NavMeshHit hit;
+        Vector2 finalPosition = Vector2.zero;
+        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    } 
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin)
     {
         float angle = UnityEngine.Random.Range(-180, Mathf.PI);

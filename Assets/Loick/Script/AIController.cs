@@ -34,6 +34,8 @@ public class AIController : MonoBehaviour
 
     private NavMeshAgent currentEntity = null;
 
+    public CircleOrientation.Orientation currenOrientation;
+
     //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
     //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
     //Déclaration Variable
@@ -50,7 +52,7 @@ public class AIController : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
-        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position);
+        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currenOrientation);
         currentEntity.SetDestination(zonePoint);
     }
 
@@ -66,11 +68,11 @@ public class AIController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);       
+        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
         Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(previousPoint,0.1f);
+        Gizmos.DrawSphere(previousPoint, 0.1f);
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(zonePoint, rangePoint);
     }
@@ -83,7 +85,7 @@ public class AIController : MonoBehaviour
         {
             GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
             GUILayout.Label("Is waiting : " + isWating);
-            GUILayout.Label("Delay : "+ delay);
+            GUILayout.Label("Delay : " + delay);
             GUILayout.Label("Random Range : " + randomRange);
         }
     }
@@ -100,7 +102,7 @@ public class AIController : MonoBehaviour
         {
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position);
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currenOrientation);
 
             if (!isWating)
             {
@@ -137,4 +139,36 @@ public class AIController : MonoBehaviour
 
     #endregion
 
+    public class CircleOrientation
+    {
+        public CircleOrientation(Orientation currentOrientation)
+        {
+            switch (currentOrientation)
+            {
+                case Orientation.UpRight:
+                    angleMin = 0;
+                    angleMax = Mathf.PI / 2;
+                    break;
+                case Orientation.UpLeft:
+                    angleMin = Mathf.PI / 2;
+                    angleMax = Mathf.PI;
+                    break;
+                case Orientation.DownLeft:
+                    angleMin = Mathf.PI;
+                    angleMax = 3 * Mathf.PI / 2;
+                    break;
+                case Orientation.DownRight:
+                    angleMin = 3 * Mathf.PI / 2;
+                    angleMax = Mathf.PI * 2;
+                    break;
+            }
+        }
+        public enum Orientation
+        {
+            UpLeft, UpRight, DownLeft, DownRight
+        }
+
+        public float angleMin;
+        public float angleMax;
+    }
 }
