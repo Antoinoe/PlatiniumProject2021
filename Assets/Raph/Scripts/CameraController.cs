@@ -60,12 +60,13 @@ public class CameraController : MonoBehaviour
             for (float i = 0; i < delay; i += speed * 0.005f)
             {
                 vect3 = Vector3.Lerp(transform.position, Pos, i);
-                if (vect3.z != cam.orthographicSize)
+                if (vect3.z * -1 != cam.orthographicSize)
                 {
                     size = vect3.z * -1;
                 }
                 yield return new WaitForSeconds(Time.deltaTime);
             }
+            vect3 = Pos;
         }
         yield return new WaitForSeconds(1);
 
