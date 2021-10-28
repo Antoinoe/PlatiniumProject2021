@@ -37,7 +37,6 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-        size = 1;
         intro = false;
 
         if (Positions.Count > 0 && !skipIntro)
@@ -45,6 +44,7 @@ public class CameraController : MonoBehaviour
             transform.position = Positions[0];
             cam.orthographicSize = size;
             vect3 = transform.position;
+            size = transform.position.z * -1;
             intro = true;
             StartCoroutine(CameraIntro());
         }
