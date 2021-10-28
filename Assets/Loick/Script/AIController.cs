@@ -12,27 +12,12 @@ using Random = UnityEngine.Random;
 public class AIController : MonoBehaviour
 {
 
-    public enum IndexNavigator
-    {
-        Next,
-        Back
-    }
-
-    //public IAMovement iAController = null;
-
-    //public Transform[] zonePoint = new Transform[] { };
-
     private Vector2 zonePoint = Vector2.zero;
 
     private Vector2 previousPoint = Vector2.zero;
 
-    //private Vector2 localMove = Vector2.zero;
     [Range(0.1f, 1)]
     public float rangePoint = 0.25f;
-
-    //public Vector2 mid;
-
-    private Vector2 endPos;
 
     public float delayMin = 1;
     private float delay = 0;
@@ -42,21 +27,18 @@ public class AIController : MonoBehaviour
     private float randomRange = 0;
     public float localMaxMoveRange = 5;
 
-    private int index = 0;
-
-    public IndexNavigator indexNavigator;
-
-    private bool hasArriveToLocalPoint = false;
-
-    //private bool hasArriveToPoint = false;
-
     public bool showDebug = false;
-
+    private bool hasArriveToLocalPoint = false;
     private bool isWating = false;
-
     private bool canMove = true;
 
     private NavMeshAgent currentEntity = null;
+
+    //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
+    //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
+    //Déclaration Variable
+    private SpriteRenderer sprite;
+
 
     #region  UnityFunction
 
@@ -65,7 +47,7 @@ public class AIController : MonoBehaviour
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
-
+        sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
         zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position);
@@ -75,6 +57,7 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
         UpdateNav();
     }
 
@@ -89,7 +72,7 @@ public class AIController : MonoBehaviour
         Gizmos.color = Color.magenta;
         Gizmos.DrawSphere(previousPoint,0.1f);
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(zonePoint,0.1f);
+        Gizmos.DrawSphere(zonePoint, rangePoint);
     }
 
     //Debug
@@ -98,8 +81,6 @@ public class AIController : MonoBehaviour
     {
         if (showDebug)
         {
-            GUILayout.Label("NavPoint index : " + index);
-            GUILayout.Label("indexNavigator : " + indexNavigator.ToString());
             GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
             GUILayout.Label("Is waiting : " + isWating);
             GUILayout.Label("Delay : "+ delay);
@@ -124,7 +105,6 @@ public class AIController : MonoBehaviour
             if (!isWating)
             {
                 StartCoroutine(Delay());
-                currentEntity.SetDestination(zonePoint);
             }
         }
 
