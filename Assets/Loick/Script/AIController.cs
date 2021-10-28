@@ -12,48 +12,35 @@ using Random = UnityEngine.Random;
 public class AIController : MonoBehaviour
 {
 
-    public enum IndexNavigator
-    {
-        Next,
-        Back
-    }
+    private Vector2 zonePoint = Vector2.zero;
 
-    //public IAMovement iAController = null;
+    private Vector2 previousPoint = Vector2.zero;
 
-    //public Transform[] zonePoint = new Transform[] { };
-
-    private Vector3 zonePoint = Vector3.zero;
-
-    //private Vector2 localMove = Vector2.zero;
-
+    [Range(0.1f, 1)]
     public float rangePoint = 0.25f;
 
-    public Vector2 mid;
+    public float delayMin = 1;
+    private float delay = 0;
+    public float delayMax = 2;
 
-    private Vector2 endPos;
-
-    [Range(0, 3)]
-    public float delay;
-
-    public float localMoveRange = 1;
-
-    private int index = 0;
-
-    public IndexNavigator indexNavigator;
-
-    private bool hasArriveToLocalPoint = false;
-
-    //private bool hasArriveToPoint = false;
+    public float localMinMoveRange = 1;
+    private float randomRange = 0;
+    public float localMaxMoveRange = 5;
 
     public bool showDebug = false;
-
+    private bool hasArriveToLocalPoint = false;
     private bool isWating = false;
-
     private bool canMove = true;
 
     private NavMeshAgent currentEntity = null;
 
+    public CircleOrientation.Orientation currentOrientation;
+
+    //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
+    //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
+    //Déclaration Variable
     private SpriteRenderer sprite;
+
 
     #region  UnityFunction
 
@@ -62,21 +49,18 @@ public class AIController : MonoBehaviour
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
-        zonePoint = transform.position;
-        zonePoint = GameManager.RandomNavmeshLocation(localMoveRange, transform.position);
-        currentEntity.SetDestination(zonePoint);
         sprite = GetComponentInChildren<SpriteRenderer>();
-        //MoveSubPoint();
+        zonePoint = transform.position;
+        randomRange = GetRandomRange();
+        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+        currentEntity.SetDestination(zonePoint);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        //sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
         UpdateNav();
-        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
-        //if (hasArriveToLocalPoint)
-        //{
-        //    MoveSubPoint();
-        //}
     }
 
     //Debug
@@ -84,7 +68,13 @@ public class AIController : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(zonePoint, localMoveRange);
+        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(previousPoint, 0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(zonePoint, rangePoint);
     }
 
     //Debug
@@ -93,10 +83,10 @@ public class AIController : MonoBehaviour
     {
         if (showDebug)
         {
-            GUILayout.Label("NavPoint index : " + index);
-            GUILayout.Label("indexNavigator : " + indexNavigator.ToString());
             GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
             GUILayout.Label("Is waiting : " + isWating);
+            GUILayout.Label("Delay : " + delay);
+            GUILayout.Label("Random Range : " + randomRange);
         }
     }
 
@@ -108,85 +98,39 @@ public class AIController : MonoBehaviour
 
     public void UpdateNav()
     {
-        //if (IAMovement.NavmeshReachedDestination(currentEntity, endPos, rangePoint))
-        //{
-        //    hasArriveToLocalPoint = true;
-        //}
-
         if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
         {
-            //switch (indexNavigator)
-            //{
-            //    case IndexNavigator.Back:
-            //        if (index == 0)
-            //        {
-            //            indexNavigator = IndexNavigator.Next;
-            //        }
-            //        else
-            //        {
-            //            index--;
-            //        }
-
-            //        break;
-            //    case IndexNavigator.Next:
-            //        if (index >= (zonePoint.Length - 1))
-            //        {
-            //            indexNavigator = IndexNavigator.Back;
-            //        }
-            //        else
-            //        {
-            //            index++;
-            //        }
-
-            //        break;
-            //}
-            zonePoint = GameManager.RandomNavmeshLocation(localMoveRange, transform.position);
-            //hasArriveToPoint = false;
-            //hasArriveToLocalPoint = true;
+            previousPoint = transform.position;
+            randomRange = GetRandomRange();
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
 
             if (!isWating)
             {
                 StartCoroutine(Delay());
-                currentEntity.SetDestination(zonePoint);
             }
         }
 
     }
 
-    //Fonction de déplacement par sous point
+    //Retourne un nombre aléatoire entre localMaxMoveRange et localMinMoveRange
 
-    //private void MoveSubPoint()
-    //{
-    //    if (canMove)
-    //    {
-    //        hasArriveToLocalPoint = false;
-    //        mid = TestDist.SetRandPos(transform, zonePoint, localMoveRange);
-    //        if (Vector2.Distance(transform.position, zonePoint) < localMoveRange)
-    //        {
-    //            hasArriveToPoint = true;
-    //            currentEntity.SetDestination(zonePoint);
-    //        }
-    //        else
-    //        {
-    //            endPos = mid + Random.insideUnitCircle * localMoveRange;
-    //            currentEntity.SetDestination(endPos);
-    //        }
-    //    }
-
-    //}
-
+    private float GetRandomRange()
+    {
+        return Random.Range(localMinMoveRange, localMaxMoveRange);
+    }
 
     #endregion
 
+    // Definit un temps d'arret ou l'IA ne bouge pas
 
     #region  Coroutine
     public IEnumerator Delay()
     {
         canMove = false;
         isWating = true;
-        yield return new WaitForSeconds(Random.Range(1, delay));
+        delay = Random.Range(delayMin, delayMax);
+        yield return new WaitForSeconds(delay);
         currentEntity.SetDestination(zonePoint);
-        Debug.Log("fin de delay");
         canMove = true;
         isWating = false;
         yield return null;
@@ -194,4 +138,36 @@ public class AIController : MonoBehaviour
 
     #endregion
 
+    public class CircleOrientation
+    {
+        public CircleOrientation(Orientation currentOrientation)
+        {
+            switch (currentOrientation)
+            {
+                case Orientation.UpRight:
+                    angleMin = 0;
+                    angleMax = Mathf.PI / 2;
+                    break;
+                case Orientation.UpLeft:
+                    angleMin = Mathf.PI / 2;
+                    angleMax = Mathf.PI;
+                    break;
+                case Orientation.DownLeft:
+                    angleMin = Mathf.PI;
+                    angleMax = 3 * Mathf.PI / 2;
+                    break;
+                case Orientation.DownRight:
+                    angleMin = 3 * Mathf.PI / 2;
+                    angleMax = Mathf.PI * 2;
+                    break;
+            }
+        }
+        public enum Orientation
+        {
+            UpLeft, UpRight, DownLeft, DownRight
+        }
+
+        public float angleMin;
+        public float angleMax;
+    }
 }
