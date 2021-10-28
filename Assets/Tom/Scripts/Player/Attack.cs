@@ -50,7 +50,7 @@ public class Attack : MonoBehaviour
 
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
-                playerController.gameManager.Shake();
+                //playerController.gameManager.Shake();
                 
                 //Physics2D.OverlapBoxAll (use for target detection)
 
@@ -69,7 +69,7 @@ public class Attack : MonoBehaviour
                 //Kill NPC
                 Debug.Log("NPC killed by Team " + playerController.teamNb);
 
-                playerController.gameManager.Shake();
+                //playerController.gameManager.Shake();
             }
 
             killOnCD = true;

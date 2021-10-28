@@ -45,7 +45,6 @@ public class CameraShake : MonoBehaviour
         else
         {
             transform.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness, shakeFadeOut);
-            Debug.Log("i'm shaking !");
         }
 
         StartCoroutine(Reset(basePos));
@@ -79,6 +78,8 @@ public class CameraShake : MonoBehaviour
 
         CameraShake camShake;
 
+        GameManager gm;
+
         private void OnEnable()
         {
             shakeDurProp = serializedObject.FindProperty("shakeDur");
@@ -94,6 +95,8 @@ public class CameraShake : MonoBehaviour
             shakeFadeOutProp = serializedObject.FindProperty("shakeFadeOut");
 
             camShake = (CameraShake)target;
+
+            gm = GameManager.GetInstance(); 
         }
 
         #endregion
@@ -140,7 +143,7 @@ public class CameraShake : MonoBehaviour
             if (GUILayout.Button("SHAKE !"))
             {
                 camShake.Shake();
-                GameManager.GetInstance().Shake();
+                gm.Shake();
             }
         }
     }
