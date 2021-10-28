@@ -53,6 +53,8 @@ public class AIController : MonoBehaviour
 
     private NavMeshAgent currentEntity = null;
 
+    private SpriteRenderer sprite;
+
     #region  UnityFunction
 
     private void Start()
@@ -63,12 +65,14 @@ public class AIController : MonoBehaviour
         zonePoint = transform.position;
         zonePoint = GameManager.RandomNavmeshLocation(localMoveRange, transform.position);
         currentEntity.SetDestination(zonePoint);
+        sprite = GetComponentInChildren<SpriteRenderer>();
         //MoveSubPoint();
     }
 
     private void FixedUpdate()
     {
         UpdateNav();
+        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
         //if (hasArriveToLocalPoint)
         //{
         //    MoveSubPoint();

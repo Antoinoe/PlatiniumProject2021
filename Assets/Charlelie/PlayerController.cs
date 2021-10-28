@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     public GameManager gameManager;
 
+    private SpriteRenderer sprite;
+
     void Start()
     {
         controller = GetComponent<Controller>();
@@ -20,12 +22,13 @@ public class PlayerController : MonoBehaviour
         //Set trigger script
         AttackZone zoneScript = GetComponentInChildren<AttackZone>();
         zoneScript.playerScript = this;
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
 
     void Update()
     {
-        
+        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
     }
 
     public void ChangeTeam(int nb)
