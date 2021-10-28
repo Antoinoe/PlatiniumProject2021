@@ -10,8 +10,8 @@ public class Attack : MonoBehaviour
     #region Variables
 
     //Kill target aquisition
-    /*[HideInInspector]*/ public List<GameObject> targets;
-    private GameObject focusedTarget;
+    /*[HideInInspector] public List<GameObject> targets;*/
+    //private GameObject focusedTarget;
 
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
@@ -39,20 +39,53 @@ public class Attack : MonoBehaviour
         zone.playerScript = playerController;
     }
 
-    public void OnAttack(/*InputAction.CallbackContext context*/)
+    public void OnAttack()
     {
-        if (!killOnCD && focusedTarget)
+        #region Targets aquisition
+        List<GameObject> targets = new List<GameObject>();
+
+        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 0f);
+        foreach(Collider2D c in collidersInRange)
         {
-            if (focusedTarget.tag == "Player")
+            GameObject collidingObject = c.gameObject;
+            if (collidingObject && (collidingObject.CompareTag("Player") && collidingObject.GetComponent<PlayerController>().teamNb != playerController.teamNb) | collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
+            {
+                targets.Add(collidingObject);
+            }
+        }
+        #endregion
+
+        #region Attack target aquisition
+        float distance = float.PositiveInfinity;
+        GameObject target = null;
+
+        if (targets.Count > 0)
+        {
+            for (int i = 0; i < targets.Count; i++)
+            {
+                if (targets[i] && targets[i] != gameObject)
+                {
+                    float targetDistance = Vector3.Distance(transform.position, targets[i].transform.position);
+                    if (targetDistance < distance)
+                    {
+                        target = targets[i];
+                    }
+                }
+            }
+        }
+        #endregion
+
+        #region Attack !
+        if (!killOnCD && target)
+        {
+            if (target.CompareTag("Player"))
             {
                 //Kill Player
-                PlayerController killedPlayerScript = focusedTarget.GetComponent<PlayerController>();
+                PlayerController killedPlayerScript = target.GetComponent<PlayerController>();
 
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
                 //playerController.gameManager.Shake();
-                
-                //Physics2D.OverlapBoxAll (use for target detection)
 
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
@@ -64,7 +97,7 @@ public class Attack : MonoBehaviour
 
                 nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
             }
-            else if (focusedTarget.tag == "NPC")
+            else if (target.CompareTag("NPC"))
             {
                 //Kill NPC
                 Debug.Log("NPC killed by Team " + playerController.teamNb);
@@ -79,6 +112,11 @@ public class Attack : MonoBehaviour
         {
             Debug.Log("onCooldown");
         }
+        else
+        {
+            Debug.Log("noTarget");
+        }
+        #endregion
     }
 
     void Update()
@@ -89,7 +127,7 @@ public class Attack : MonoBehaviour
         }
 
         #region Targets detection
-        float distance = float.PositiveInfinity;
+        /*float distance = float.PositiveInfinity;
         GameObject temporaryTarget = null;
 
         if (targets.Count > 0)
@@ -113,7 +151,7 @@ public class Attack : MonoBehaviour
            //Feedback visuel (highlight) 
             if (temporaryTarget != focusedTarget && !killOnCD)
             {
-                /*if (focusedTarget != null)
+                if (focusedTarget != null)
                 {
                     if (focusedTarget.tag == "NPC")
                     {
@@ -132,21 +170,21 @@ public class Attack : MonoBehaviour
                     {
                         focusedTarget.GetComponent<PlayerController>().marker.SetActive(false);
                     }
-                }*/
+                }
 
 
                 if (temporaryTarget && temporaryTarget.tag == "NPC")
                 {
-                    /*AIBehaviour controller = temporaryTarget.GetComponent<AIBehaviour>();
+                    AIBehaviour controller = temporaryTarget.GetComponent<AIBehaviour>();
                     controller.sightsNb += 1;
-                    controller.marker.SetActive(true);*/
+                    controller.marker.SetActive(true);
                     focusedTarget = temporaryTarget;
                 }
                 else if (temporaryTarget && temporaryTarget.tag == "Player")
                 {
-                    /*PlayerController controller = temporaryTarget.GetComponent<PlayerController>();
+                    PlayerController controller = temporaryTarget.GetComponent<PlayerController>();
                     controller.sightsNb += 1;
-                    controller.marker.SetActive(true);*/
+                    controller.marker.SetActive(true);
 
                     if (temporaryTarget.GetComponent<PlayerController>().teamNb != playerController.teamNb)
                     {
@@ -159,7 +197,7 @@ public class Attack : MonoBehaviour
         {
             if (focusedTarget != null)
             {
-                /*if (focusedTarget.tag == "NPC")
+                if (focusedTarget.tag == "NPC")
                 {
                     focusedTarget.GetComponent<AIBehaviour>().sightsNb += -1;
                 }
@@ -175,7 +213,7 @@ public class Attack : MonoBehaviour
                 else if (focusedTarget.tag == "Player" && focusedTarget.GetComponent<PlayerController>().sightsNb == 0)
                 {
                     focusedTarget.GetComponent<PlayerController>().marker.SetActive(false);
-                }*/
+                }
                 
                 focusedTarget = null;
             }
@@ -194,7 +232,7 @@ public class Attack : MonoBehaviour
         //affiche les infos sur l ecran
         //t_score.text = "score :" + actualScore.ToString();
         //t_bounty.text = "bounty :" + bounty.ToString();
-        //t_kills.text = "kills : " + nbOfKills.ToString();
+        //t_kills.text = "kills : " + nbOfKills.ToString();*/
         #endregion
     }
     
