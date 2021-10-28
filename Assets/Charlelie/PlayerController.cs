@@ -32,14 +32,10 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Team " + nb + " assimilated a player from Team " + teamNb);
 
+        GetComponent<SpriteRenderer>().sprite = gameManager.players[nb].playerSprite;
+        gameManager.WinCheck(teamNb, nb);
+
         teamNb = nb;
-
-        //Player p = Array.Find(gameManager.players, player => player.playerNb == nb);
-
-        /*if (p == null)
-            return;
-
-        GetComponent<SpriteRenderer>().sprite = p.playerSprite;*/
     }
 
     public void OnDieReset()

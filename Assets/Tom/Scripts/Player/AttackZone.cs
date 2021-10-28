@@ -11,7 +11,7 @@ public class AttackZone : MonoBehaviour
     {
         Debug.Log("ouille");
         GameObject collidingObject = collision.gameObject;
-        if (collidingObject && (collidingObject.tag == "Player" && collidingObject.GetComponent<PlayerController>().teamNb != playerScript.teamNb) | collidingObject.tag == "NPC")
+        if (collidingObject && (collidingObject.tag == "Player" && collidingObject.GetComponent<PlayerController>().teamNb != playerScript.teamNb) | collidingObject.tag == "NPC" && collidingObject.GetComponent<IAIdentity>().teamNb != playerScript.teamNb)
         {
             playerAttack.targets.Add(collidingObject);
         }
