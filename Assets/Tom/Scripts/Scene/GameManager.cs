@@ -5,6 +5,7 @@ using UnityEngine;
 using Rewired;
 using DG.Tweening;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -114,6 +115,18 @@ public class GameManager : MonoBehaviour
 
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation)
     {
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3 };
+        List<int> tempList = allOrientations;
+        for (int i = 0; i < allOrientations.Count; i++)
+        {
+            if (tempList[i] == (int)navmeshOrientation)
+            {
+                tempList.Remove(tempList[i]);
+                break;
+            }
+        }
+        int randomIndex = Random.Range(0, allOrientations.Count);
+        navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
         float angle = UnityEngine.Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
         Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
@@ -125,7 +138,7 @@ public class GameManager : MonoBehaviour
             finalPosition = hit.position;
         }
         return finalPosition;
-    } 
+    }
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin)
     {
         float angle = UnityEngine.Random.Range(-180, Mathf.PI);

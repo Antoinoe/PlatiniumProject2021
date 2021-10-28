@@ -2948,11 +2948,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangePoint: 0.5
-  mid: {x: 0, y: 0}
-  delay: 0
-  localMoveRange: 1
-  indexNavigator: 0
+  delayMin: 1
+  delayMax: 2
+  localMinMoveRange: 1
+  localMaxMoveRange: 2.5
   showDebug: 1
+  currenOrientation: 0
 --- !u!1 &1359627917
 GameObject:
   m_ObjectHideFlags: 0

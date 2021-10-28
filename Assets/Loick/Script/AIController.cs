@@ -34,7 +34,7 @@ public class AIController : MonoBehaviour
 
     private NavMeshAgent currentEntity = null;
 
-    public CircleOrientation.Orientation currenOrientation;
+    public CircleOrientation.Orientation currentOrientation;
 
     //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
     //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
@@ -52,14 +52,14 @@ public class AIController : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
-        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currenOrientation);
+        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
         currentEntity.SetDestination(zonePoint);
     }
 
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        //sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
         UpdateNav();
     }
 
@@ -102,7 +102,7 @@ public class AIController : MonoBehaviour
         {
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currenOrientation);
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
 
             if (!isWating)
             {
@@ -131,7 +131,6 @@ public class AIController : MonoBehaviour
         delay = Random.Range(delayMin, delayMax);
         yield return new WaitForSeconds(delay);
         currentEntity.SetDestination(zonePoint);
-        Debug.Log("fin de delay");
         canMove = true;
         isWating = false;
         yield return null;

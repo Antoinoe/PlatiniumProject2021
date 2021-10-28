@@ -44,7 +44,7 @@ public class GameObjectSpawnerWindow : EditorWindow
     {
         string[] guidAssets = AssetDatabase.FindAssets("", new string[] { "Assets/Entity" });
         gameObjects = new GameObject[guidAssets.Length];
-        for (int i = 0; i < (gameObjects.Length); i++)
+        for (int i = 0; i < gameObjects.Length; i++)
         {
             string currentGuid = guidAssets[i];
             string currentAssetPath = "";
