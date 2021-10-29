@@ -53,11 +53,11 @@ public class Attack : MonoBehaviour
                     {
                         targets.Add(collidingObject);
                     }
-                } else if (collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
+                } 
+                else if (collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
                 {
                     targets.Add(collidingObject);
-                }
-                
+                }               
             }
         }
         #endregion

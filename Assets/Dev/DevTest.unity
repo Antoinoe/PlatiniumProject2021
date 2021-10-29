@@ -641,7 +641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f3464904a9da449a6b1a8e8cc21aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeDur: 10
+  shakeDur: 1
   shakeStrenght: 0.1
   shakeStrenghtV3: {x: 0.1, y: 0.1, z: 0.1}
   shakeStrenghtWithVector3: 0
