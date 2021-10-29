@@ -38,11 +38,32 @@ public class AIController : MonoBehaviour
 
     EntityMoveFeel feel;
 
+    bool isDead;
+
     //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
     //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
     //Déclaration Variable
     private SpriteRenderer sprite;
 
+    public void OnKilled()
+    {
+        isDead = true;
+        GetComponent<BoxCollider>().enabled = false;
+        StartCoroutine(Revive());
+    }
+
+    IEnumerator Revive()
+    {
+        yield return new WaitForSeconds(3.0f);
+        OnRevive();
+        yield return null;
+    }
+
+    void OnRevive()
+    {
+        isDead = false;
+        GetComponent<BoxCollider>().enabled = true;
+    }
 
     #region  UnityFunction
 
@@ -62,7 +83,10 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        if (isDead)
+            sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        else
+            sprite.sortingOrder = -99999999;
         if (feel.IsMoving != canMove) feel.IsMoving = canMove;
         UpdateNav();
     }
