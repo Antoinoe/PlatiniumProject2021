@@ -56,8 +56,7 @@ public class Attack : MonoBehaviour
                     }
                 } else if (collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
                 {
-                    targets.Add(collidingObject);
-                    
+                    targets.Add(collidingObject);                  
                 }
                 
             }

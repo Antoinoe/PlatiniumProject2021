@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         {
             #region Player
             //instancie joueur
-            Vector2 newLocation = RandomNavmeshLocation(6, transform.position);
+            Vector2 newLocation = RandomNavmeshLocation(10, transform.position);
             GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(newLocation.x, newLocation.y, 0), playerPrefab.transform.rotation);
 
             //team

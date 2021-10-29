@@ -45,10 +45,11 @@ public class AIController : MonoBehaviour
     //Déclaration Variable
     private SpriteRenderer sprite;
 
+    #region Kill
     public void OnKilled()
     {
         isDead = true;
-        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(Revive());
     }
 
@@ -62,8 +63,9 @@ public class AIController : MonoBehaviour
     void OnRevive()
     {
         isDead = false;
-        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
     }
+    #endregion
 
     #region  UnityFunction
 
