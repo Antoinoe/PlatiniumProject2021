@@ -34,9 +34,6 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
-        AttackZone zone = GetComponentInChildren<AttackZone>();
-        zone.playerAttack = this;
-        zone.playerScript = playerController;
     }
 
     public void OnAttack()

@@ -50,8 +50,11 @@ public class Controller : MonoBehaviour
 
     private void Move()
     {
-        _movementVec = new Vector2(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"));
-        transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
+        if (player != null)
+        {
+            _movementVec = new Vector2(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"));
+            transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
+        } 
     }
 
 
