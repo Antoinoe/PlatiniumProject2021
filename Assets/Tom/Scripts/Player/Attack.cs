@@ -44,7 +44,8 @@ public class Attack : MonoBehaviour
         Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(5, 5), 0f);
         foreach(Collider2D c in collidersInRange)
         {
-            GameObject collidingObject = c.gameObject;           
+            GameObject collidingObject = c.gameObject;
+
             if (collidingObject && collidingObject != gameObject)
             {
                 if (collidingObject.CompareTag("Player"))
@@ -56,6 +57,7 @@ public class Attack : MonoBehaviour
                 } else if (collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
                 {
                     targets.Add(collidingObject);
+                    
                 }
                 
             }
@@ -108,6 +110,7 @@ public class Attack : MonoBehaviour
             {
                 //Kill NPC
                 Debug.Log("NPC killed by Team " + playerController.teamNb);
+                target.GetComponent<AIController>().OnKilled();
 
                 playerController.gameManager.Shake();
             }
