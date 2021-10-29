@@ -9,33 +9,45 @@ public class PlayerController : MonoBehaviour
 
     //Teams
     public int teamNb = 0;
+    public int playerNb = 0;
 
     public GameManager gameManager;
 
-    private SpriteRenderer sprite;
+    private SpriteRenderer spriteRend;
 
     void Start()
     {
         controller = GetComponent<Controller>();
-        controller.SetNum(teamNb);
+        controller.SetNum(playerNb);
         gameManager = GameManager.GetInstance();
-        sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        spriteRend = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
 
     void Update()
     {
-        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        spriteRend.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
     }
 
     public void ChangeTeam(int nb)
     {
-        Debug.Log("Team " + nb + " assimilated a player from Team " + teamNb);
+        #region Change player team
+        Debug.Log("Team " + nb + " assimilated player " + playerNb);
 
-        GetComponentInChildren<SpriteRenderer>().sprite = gameManager.players[nb].playerSprite;
+        Sprite newSprite = gameManager.players[nb].playerSprite;
+        spriteRend.sprite = newSprite;
         gameManager.WinCheck(teamNb, nb);
 
         teamNb = nb;
+        #endregion
+
+        #region Change AIs team
+        foreach (IAIdentity iA in gameManager.iATeams[playerNb])
+        {
+            iA.teamNb = teamNb;
+            iA.spriteRend.sprite = newSprite; 
+        }
+        #endregion
     }
 
     public void OnDieReset()

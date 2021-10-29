@@ -143,7 +143,7 @@ public class CameraShake : MonoBehaviour
             if (GUILayout.Button("SHAKE !"))
             {
                 camShake.Shake();
-                gm.Shake();
+                //gm.Shake();
             }
         }
     }

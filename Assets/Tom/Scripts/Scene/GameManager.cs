@@ -12,10 +12,12 @@ public class GameManager : MonoBehaviour
     #region Variables
     static GameManager _instance;
 
+    [Header("Managers")]
     public Rewired.InputManager inputManager;
 
     public AudioManager audioManager;
 
+    [Header("Players")]
     public Player[] players;
     public int playerNbrs = 1;
 
@@ -24,7 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject iAPrefab;
 
-    private List<int> teams;
+    private int[] teams;
+    [HideInInspector] public List<IAIdentity[]> iATeams;
 
     //Camera shake
     [Header("Camera Shake")]
@@ -51,18 +54,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        teams = new List<int>();
+        teams = new int[players.Length];
+        iATeams = new List<IAIdentity[]>();
 
         Instantiate(inputManager);
         foreach (Player player in players)
         {
+            #region Player
             //instancie joueur
             Vector2 newLocation = RandomNavmeshLocation(6, transform.position);
             GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(newLocation.x, newLocation.y, 0), playerPrefab.transform.rotation);
 
             //team
-            newPlayer.GetComponent<PlayerController>().teamNb = player.playerNb;
-            teams.Add(1);
+            PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
+            newPlayerController.playerNb = player.playerNb;
+            newPlayerController.teamNb = player.playerNb;
             teams[player.playerNb] = 1;
 
             //skin
@@ -73,15 +79,28 @@ public class GameManager : MonoBehaviour
             {
                 GameObject.Instantiate(player.smokeSystem, newPlayer.transform);
             }
+            #endregion
 
+            #region IA
+            //Create team
+            IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
+
+            //Create each AIs
             for (int i = 0; i < iAPerPlayer; i++)
             {
                 Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);
                 GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), iAPrefab.transform.rotation);
-                newIA.AddComponent<EntityMoveFeel>();
-                newIA.GetComponent<IAIdentity>().teamNb = player.playerNb;
-                newIA.GetComponentInChildren<SpriteRenderer>().sprite = player.playerSprite;
+
+                IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
+                iAIdentity.teamNb = player.playerNb;
+                iAIdentity.spriteRend.sprite = player.playerSprite;
+
+                iATeam[i] = iAIdentity;
             }
+
+            //Allocate team to player
+            iATeams.Add(iATeam);
+            #endregion
         }
 
         /*for (int i = 0; i < playerNbrs; i++)
@@ -99,6 +118,7 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    #region Win
     public void WinCheck(int curTeam, int targetTeam)
     {
         teams[curTeam] += -1;
@@ -114,10 +134,12 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Team " + teamNb + " win !");
     }
+    #endregion
 
+    #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation)
     {
-        List<int> allOrientations = new List<int>() { 0, 1, 2, 3 };
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
         List<int> tempList = allOrientations;
         for (int i = 0; i < allOrientations.Count; i++)
         {
@@ -154,14 +176,13 @@ public class GameManager : MonoBehaviour
         }
         return finalPosition;
     }
+    #endregion
 
+    #region Shake()
     public void Shake()
     {
+        //onCameraShake();
         Camera.main.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness);
     }
-
-    public void Shake(float duration, float strength, int vibrato, int randomness)
-    {
-        Camera.main.DOShakePosition(duration, strength, vibrato, randomness);
-    }
+    #endregion
 }
