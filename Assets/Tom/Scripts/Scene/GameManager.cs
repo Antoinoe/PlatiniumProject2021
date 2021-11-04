@@ -29,14 +29,14 @@ public class GameManager : MonoBehaviour
     private int[] teams;
     [HideInInspector] public List<IAIdentity[]> iATeams;
 
-    //Camera shake
+    /*Camera shake
     [Header("Camera Shake")]
     [SerializeField] private float shakeDur;
     [SerializeField] private float shakeStrenght;
     [SerializeField] private int shakeVibrato;
-    [SerializeField] private int shakeRandomness;
+    [SerializeField] private int shakeRandomness;*/
 
-    public event Action onCameraShake;
+    public event Action OnCameraShake;
     #endregion
 
     private void Awake()
@@ -189,8 +189,7 @@ public class GameManager : MonoBehaviour
     #region Shake()
     public void Shake()
     {
-        //onCameraShake();
-        Camera.main.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness);
+        OnCameraShake();
     }
     #endregion
 }
