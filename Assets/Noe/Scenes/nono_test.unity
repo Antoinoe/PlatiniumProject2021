@@ -258,7 +258,7 @@ MonoBehaviour:
   actualScore: 0
   bounty: 0
   scorePerKill: 10
-  maxBounty: 4
+  bountyRatio: 0.2
   t_score: {fileID: 1015186962}
   t_kills: {fileID: 1039058809}
   t_bounty: {fileID: 869599296}

@@ -1,10 +1,12 @@
 using UnityEngine.Audio;
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public Audio[] sounds;
+    private Audio[] pausedSounds;
 
     void Awake()
     {
@@ -42,6 +44,25 @@ public class AudioManager : MonoBehaviour
             int newIndex = UnityEngine.Random.Range(0, s.clips.Length);
             s.source.clip = s.clips[newIndex];
         }
+
+        if (IsPlaying(name))
+        {
+            if(s.curInstNb < s.maxInstNb)
+            {
+                s.curInstNb += 1;
+
+                AudioSource instancedSource = gameObject.AddComponent<AudioSource>();
+
+                instancedSource.clip = s.source.clip;
+
+                instancedSource.volume = s.volume;
+                instancedSource.pitch = s.pitch;
+
+                instancedSource.Play();
+
+                StartCoroutine(StartInstSourceDestroyCD(s.source.clip.length, s, instancedSource));
+            }
+        }
         else
         {
             s.source.Play();
@@ -58,6 +79,17 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+    public void StopAll()
+    {
+        foreach(Audio s in sounds)
+        {
+            if (s == null)
+                return;
+
+            s.source.Stop();
+        }
+    }
+
     public void Pause(string name)
     {
         Audio s = Array.Find(sounds, sound => sound.name == name);
@@ -68,6 +100,40 @@ public class AudioManager : MonoBehaviour
         s.source.Pause();
     }
 
+    public void PauseAll()
+    {
+        if (pausedSounds.Length > 0)
+        {
+            Array.Clear(pausedSounds, 0, pausedSounds.Length);
+        }
+
+        foreach (Audio s in sounds)
+        {
+            if (s == null)
+                return;
+
+            pausedSounds.SetValue(s, pausedSounds.Length);
+
+            s.source.Pause();
+        }
+    }
+
+    public void PlayAllPaused()
+    {
+        if (pausedSounds.Length > 0)
+        {
+            foreach (Audio s in pausedSounds)
+            {
+                if (s == null)
+                    return;
+
+                s.source.Play();
+            }
+
+            Array.Clear(pausedSounds, 0, pausedSounds.Length);
+        }
+    }
+
     public bool IsPlaying(string name)
     {
         Audio s = Array.Find(sounds, sound => sound.name == name);
@@ -76,5 +142,15 @@ public class AudioManager : MonoBehaviour
             return false;
 
         return s.source.isPlaying;
+    }
+
+    private IEnumerator StartInstSourceDestroyCD (float CD, Audio s, AudioSource instSource)
+    {
+        yield return new WaitForSeconds(CD);
+
+        s.curInstNb += -1;
+        Component.Destroy(instSource);
+
+        StopCoroutine(StartInstSourceDestroyCD(CD, s, instSource));
     }
 }
