@@ -118,6 +118,14 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Application.Quit();
+        }
+    }
+
     #region Win
     public void WinCheck(int curTeam, int targetTeam)
     {

@@ -95,7 +95,7 @@ public class AIController : MonoBehaviour
 
     //Debug
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
@@ -105,7 +105,7 @@ public class AIController : MonoBehaviour
         Gizmos.DrawSphere(previousPoint, 0.1f);
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(zonePoint, rangePoint);
-    }
+    }*/
 
     //Debug
 
