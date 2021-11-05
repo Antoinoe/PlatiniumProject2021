@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDieReset()
     {
-        GetComponent<Attack>().bounty = 0;
+        //GetComponent<Attack>().bounty = 0;
     }
 
     private void OnDrawGizmos()

@@ -8,16 +8,18 @@ using System;
 public class Attack : MonoBehaviour
 {
     #region Variables
-
     //Kill target aquisition
     /*[HideInInspector] public List<GameObject> targets;*/
     //private GameObject focusedTarget;
+
+    //Player Controller
+    private PlayerController playerController;
 
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown;
 
-    //Score
+    /*//Score
     private int nbOfKills = 0;
     private float actualScore = 0;
     public int bounty = 0;
@@ -26,9 +28,7 @@ public class Attack : MonoBehaviour
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
-    private PlayerController playerController;
-
-    public Text t_score, t_kills, t_bounty;
+    public Text t_score, t_kills, t_bounty;*/
     #endregion
 
     private void Start()
@@ -94,6 +94,7 @@ public class Attack : MonoBehaviour
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
                 playerController.gameManager.Shake();
+                playerController.gameManager.SpawnSmoke(transform.position);
 
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 

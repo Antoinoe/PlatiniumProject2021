@@ -29,13 +29,11 @@ public class GameManager : MonoBehaviour
     private int[] teams;
     [HideInInspector] public List<IAIdentity[]> iATeams;
 
-    /*Camera shake
-    [Header("Camera Shake")]
-    [SerializeField] private float shakeDur;
-    [SerializeField] private float shakeStrenght;
-    [SerializeField] private int shakeVibrato;
-    [SerializeField] private int shakeRandomness;*/
+    [Header("Smoke")]
+    [SerializeField] private GameObject protoSmoke;
+    [SerializeField] private float smokeDuration;
 
+    //Camera Shake
     public event Action OnCameraShake;
     #endregion
 
@@ -124,6 +122,11 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SpawnSmoke(Vector2.zero);
+        }
     }
 
     #region Win
@@ -186,10 +189,25 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Shake()
+    #region Shake
     public void Shake()
     {
         OnCameraShake();
+    }
+    #endregion
+
+    #region Smoke
+    public void SpawnSmoke(Vector2 position)
+    {
+        GameObject smoke = GameObject.Instantiate(protoSmoke, position, protoSmoke.transform.rotation);
+        StartCoroutine(DespawnSmoke(smoke, smokeDuration));
+    }
+
+    private IEnumerator DespawnSmoke(GameObject smoke, float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        GameObject.Destroy(smoke);
+        StopCoroutine(DespawnSmoke(smoke, timer));
     }
     #endregion
 }
