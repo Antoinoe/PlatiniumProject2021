@@ -540,7 +540,7 @@ MonoBehaviour:
   iAPerPlayer: 6
   playerPrefab: {fileID: 8550446936934499501, guid: 835470d1a2d516742ba510e55fada03e, type: 3}
   iAPrefab: {fileID: 7552138741966933269, guid: 6e6c94d238cf79941810353c2ae1fc7b, type: 3}
-  protoSmoke: {fileID: 2853080043929831617, guid: 21aea6e984575414d815f8f1835101b7, type: 3}
+  protoSmoke: {fileID: 182276930420136351, guid: f49df0b9b8369b04c84decdac46ea4eb, type: 3}
   smokeDuration: 3
 --- !u!1 &192633852
 GameObject:
