@@ -14,10 +14,15 @@ public class Attack : MonoBehaviour
 
     //Player Controller
     private PlayerController playerController;
+    private Controller controller;
 
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown;
+
+    //Target detection
+    [SerializeField] private float attackRange;
+    [SerializeField] private Vector2 targetDetectionBoxSize;
 
     /*//Score
     private int nbOfKills = 0;
@@ -34,6 +39,13 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
+        controller = GetComponent<Controller>();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector*attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
     }
 
     public void OnAttack()
@@ -41,7 +53,7 @@ public class Attack : MonoBehaviour
         #region Targets aquisition
         List<GameObject> targets = new List<GameObject>();
 
-        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(5, 5), 0f);
+        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector*attackRange, targetDetectionBoxSize, 0);
         foreach(Collider2D c in collidersInRange)
         {
             GameObject collidingObject = c.gameObject;

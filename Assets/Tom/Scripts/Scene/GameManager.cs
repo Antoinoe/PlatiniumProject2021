@@ -235,6 +235,19 @@ public class GameManager : MonoBehaviour
     {
         GameObject smoke = GameObject.Instantiate(protoSmoke, position, protoSmoke.transform.rotation);
         StartCoroutine(DespawnSmoke(smoke, smokeDuration));
+
+        /*List<GameObject> targets = new List<GameObject>();
+
+        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(5, 5), 0f);
+        foreach (Collider2D c in collidersInRange)
+        {
+            GameObject collidingObject = c.gameObject;
+
+            if (collidingObject && collidingObject.CompareTag("Player") || collidingObject.CompareTag("NPC"))
+            {
+                targets.Add(collidingObject);
+            }
+        }*/
     }
 
     private IEnumerator DespawnSmoke(GameObject smoke, float timer)

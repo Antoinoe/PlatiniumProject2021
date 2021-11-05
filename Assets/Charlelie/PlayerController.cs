@@ -54,10 +54,4 @@ public class PlayerController : MonoBehaviour
     {
         //GetComponent<Attack>().bounty = 0;
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)transform.position + GetComponent<Controller>().MovementVector, 1);
-    }
 }
