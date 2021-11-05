@@ -29,13 +29,11 @@ public class GameManager : MonoBehaviour
     private int[] teams;
     [HideInInspector] public List<IAIdentity[]> iATeams;
 
-    /*Camera shake
-    [Header("Camera Shake")]
-    [SerializeField] private float shakeDur;
-    [SerializeField] private float shakeStrenght;
-    [SerializeField] private int shakeVibrato;
-    [SerializeField] private int shakeRandomness;*/
+    [Header("Smoke")]
+    [SerializeField] private GameObject protoSmoke;
+    [SerializeField] private float smokeDuration;
 
+    //Camera Shake
     public event Action OnCameraShake;
     #endregion
 
@@ -118,6 +116,19 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Application.Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SpawnSmoke(Vector2.zero);
+        }
+    }
+
     #region Win
     public void WinCheck(int curTeam, int targetTeam)
     {
@@ -163,6 +174,40 @@ public class GameManager : MonoBehaviour
         }
         return finalPosition;
     }
+
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation, Bounds areaBounds)
+    {
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
+        List<int> tempList = allOrientations;
+        for (int i = 0; i < allOrientations.Count; i++)
+        {
+            if (tempList[i] == (int)navmeshOrientation)
+            {
+                tempList.Remove(tempList[i]);
+                break;
+            }
+        }
+        int randomIndex = Random.Range(0, allOrientations.Count);
+        navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
+        AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
+        float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+        Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+        randomPosition += origin;
+        if (randomPosition.x > areaBounds.max.x || randomPosition.y > areaBounds.max.y
+            || randomPosition.y < areaBounds.min.y || randomPosition.x < areaBounds.min.x)
+        {
+            Debug.Log("Random Point Reset");
+            randomPosition = new Vector2(Random.Range(radius, areaBounds.max.x), Random.Range(radius, areaBounds.max.y));
+        }
+        NavMeshHit hit;
+        Vector2 finalPosition = Vector2.zero;
+        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    }
+
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin)
     {
         float angle = UnityEngine.Random.Range(-180, Mathf.PI);
@@ -178,10 +223,25 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Shake()
+    #region Shake
     public void Shake()
     {
         OnCameraShake();
+    }
+    #endregion
+
+    #region Smoke
+    public void SpawnSmoke(Vector2 position)
+    {
+        GameObject smoke = GameObject.Instantiate(protoSmoke, position, protoSmoke.transform.rotation);
+        StartCoroutine(DespawnSmoke(smoke, smokeDuration));
+    }
+
+    private IEnumerator DespawnSmoke(GameObject smoke, float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        GameObject.Destroy(smoke);
+        StopCoroutine(DespawnSmoke(smoke, timer));
     }
     #endregion
 }
