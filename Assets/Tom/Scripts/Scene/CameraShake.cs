@@ -20,43 +20,52 @@ public class CameraShake : MonoBehaviour
     [Range(0, 90)]
     [SerializeField] private int shakeRandomness = 10;
 
-    [SerializeField] private bool shakeFadeOut = true;
-
-    //Game Manager
-    private GameManager gm;
+    //Safety
+    private bool isShaking;
     #endregion
 
     private void Start()
     {
-        gm = GameManager.GetInstance();
-        gm.onCameraShake += Shake;
+        GameManager gm = GameManager.GetInstance();
+        gm.OnCameraShake += Shake;
     }
 
     public void Shake()
     {
         Debug.Log("shake !");
 
-        Vector3 basePos = transform.position;
-
-        if (shakeStrenghtWithVector3)
+        if (!isShaking)
         {
-            transform.DOShakePosition(shakeDur, shakeStrenghtV3, shakeVibrato, shakeRandomness, shakeFadeOut);
+            Vector3 basePos = transform.position;
+
+            if (shakeStrenghtWithVector3)
+            {
+                transform.DOShakePosition(shakeDur, shakeStrenghtV3, shakeVibrato, shakeRandomness);
+            }
+            else
+            {
+                transform.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness);
+            }
+
+            StartCoroutine(IReset(basePos));
         }
         else
         {
-            transform.DOShakePosition(shakeDur, shakeStrenght, shakeVibrato, shakeRandomness, shakeFadeOut);
+            Debug.Log("I'm already shaking !");
         }
-
-        StartCoroutine(Reset(basePos));
     }
 
-    private IEnumerator Reset(Vector3 resetPos)
+    private IEnumerator IReset(Vector3 resetPos)
     {
         Debug.Log("start reset");
+        isShaking = true;
         yield return new WaitForSeconds(shakeDur);
+
         Debug.Log("end reset");
+        isShaking = false;
         transform.position = resetPos;
-        StopCoroutine(Reset(resetPos));
+
+        StopCoroutine(IReset(resetPos));
     }
 
     #if UNITY_EDITOR
@@ -74,12 +83,7 @@ public class CameraShake : MonoBehaviour
 
         SerializedProperty shakeRandomnessProp;
 
-        SerializedProperty shakeFadeOutProp;
-
         CameraShake camShake;
-
-        GameManager gm;
-
         private void OnEnable()
         {
             shakeDurProp = serializedObject.FindProperty("shakeDur");
@@ -92,11 +96,7 @@ public class CameraShake : MonoBehaviour
 
             shakeRandomnessProp = serializedObject.FindProperty("shakeRandomness");
 
-            shakeFadeOutProp = serializedObject.FindProperty("shakeFadeOut");
-
             camShake = (CameraShake)target;
-
-            gm = GameManager.GetInstance(); 
         }
 
         #endregion
@@ -132,18 +132,19 @@ public class CameraShake : MonoBehaviour
             EditorGUILayout.HelpBox("How much the shake will be random. Setting it to 0 will shake along a single direction.", MessageType.None);
             EditorGUILayout.Space(15);
 
-            //FadeOut
-            EditorGUILayout.PropertyField(shakeFadeOutProp);
-            EditorGUILayout.HelpBox("If TRUE the shake will automatically fadeOut smoothly within the tween's duration, otherwise it will not.", MessageType.None);
-            EditorGUILayout.Space(15);
-
             serializedObject.ApplyModifiedProperties();
 
             //Button
-            if (GUILayout.Button("SHAKE !"))
+            if (Application.isPlaying)
             {
-                camShake.Shake();
-                gm.Shake();
+                if (GUILayout.Button("SHAKE !"))
+                {
+                    camShake.Shake();
+                }
+            }
+            else
+            {
+                EditorGUILayout.HelpBox("Start Play Mode to test.", MessageType.Warning);
             }
         }
     }

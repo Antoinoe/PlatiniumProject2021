@@ -8,16 +8,23 @@ using System;
 public class Attack : MonoBehaviour
 {
     #region Variables
-
     //Kill target aquisition
     /*[HideInInspector] public List<GameObject> targets;*/
     //private GameObject focusedTarget;
+
+    //Player Controller
+    private PlayerController playerController;
+    private Controller controller;
 
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown;
 
-    //Score
+    //Target detection
+    [SerializeField] private float attackRange;
+    [SerializeField] private Vector2 targetDetectionBoxSize;
+
+    /*//Score
     private int nbOfKills = 0;
     private float actualScore = 0;
     public int bounty = 0;
@@ -26,17 +33,19 @@ public class Attack : MonoBehaviour
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
-    private PlayerController playerController;
-
-    public Text t_score, t_kills, t_bounty;
+    public Text t_score, t_kills, t_bounty;*/
     #endregion
 
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
-        AttackZone zone = GetComponentInChildren<AttackZone>();
-        zone.playerAttack = this;
-        zone.playerScript = playerController;
+        controller = GetComponent<Controller>();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector*attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
     }
 
     public void OnAttack()
@@ -44,13 +53,24 @@ public class Attack : MonoBehaviour
         #region Targets aquisition
         List<GameObject> targets = new List<GameObject>();
 
-        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(1, 1), 0f);
+        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector*attackRange, targetDetectionBoxSize, 0);
         foreach(Collider2D c in collidersInRange)
         {
             GameObject collidingObject = c.gameObject;
-            if (collidingObject && (collidingObject.CompareTag("Player") && collidingObject.GetComponent<PlayerController>().teamNb != playerController.teamNb) | collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
+
+            if (collidingObject && collidingObject != gameObject)
             {
-                targets.Add(collidingObject);
+                if (collidingObject.CompareTag("Player"))
+                {
+                    if (collidingObject.GetComponent<PlayerController>().teamNb != playerController.teamNb)
+                    {
+                        targets.Add(collidingObject);
+                    }
+                } else if (collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
+                {
+                    targets.Add(collidingObject);                  
+                }
+                
             }
         }
         #endregion
@@ -85,7 +105,8 @@ public class Attack : MonoBehaviour
 
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
-                //playerController.gameManager.Shake();
+                playerController.gameManager.Shake();
+                playerController.gameManager.SpawnSmoke(transform.position);
 
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
@@ -101,8 +122,9 @@ public class Attack : MonoBehaviour
             {
                 //Kill NPC
                 Debug.Log("NPC killed by Team " + playerController.teamNb);
+                target.GetComponent<AIController>().OnKilled();
 
-                //playerController.gameManager.Shake();
+                playerController.gameManager.Shake();
             }
 
             killOnCD = true;

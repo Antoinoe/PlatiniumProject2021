@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
+  - SecondGoal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
@@ -41,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Entity
+    uniqueID: 608592159
+    locked: 0
+  - name: SFX
+    uniqueID: 4081272293
     locked: 0

@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-
 public class AIController : MonoBehaviour
 {
 
@@ -16,10 +15,9 @@ public class AIController : MonoBehaviour
 
     private Vector2 previousPoint = Vector2.zero;
 
-    [Range(0.1f, 1)]
-    public float rangePoint = 0.25f;
+    [Range(0.1f, 1)] public float rangePoint = 0.25f;
 
-    [SerializeField]private int areaIndex = 0;
+    [SerializeField] private int areaIndex = 0;
     [SerializeField] private List<AreaCollider> currentArea;
 
     public float delayMin = 1;
@@ -39,13 +37,17 @@ public class AIController : MonoBehaviour
 
     public CircleOrientation.Orientation currentOrientation;
 
+    EntityMoveFeel feel;
+
+    bool isDead;
+
     //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
     //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
     //Déclaration Variable
     private SpriteRenderer sprite;
 
 
-    #region  UnityFunction
+    #region UnityFunction
 
     private void Start()
     {
@@ -55,15 +57,20 @@ public class AIController : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
-        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, 
-            currentOrientation,GetCurrentAreaCollider().zonesColliders);
+        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+            currentOrientation, GetCurrentAreaCollider().zonesColliders);
         currentEntity.SetDestination(zonePoint);
+        feel = GetComponent<EntityMoveFeel>();
     }
 
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        //sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        if (isDead)
+            sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        else
+            sprite.sortingOrder = -99999999;
+        if (feel.IsMoving != canMove) feel.IsMoving = canMove;
         UpdateNav();
     }
 
@@ -96,6 +103,30 @@ public class AIController : MonoBehaviour
 
     #endregion
 
+    #region Kill
+
+    public void OnKilled()
+    {
+        isDead = true;
+        GetComponent<BoxCollider2D>().enabled = false;
+        StartCoroutine(Revive());
+    }
+
+    IEnumerator Revive()
+    {
+        yield return new WaitForSeconds(3.0f);
+        OnRevive();
+        yield return null;
+    }
+
+    void OnRevive()
+    {
+        isDead = false;
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    #endregion
+
     #region Function Movement
 
     //Vérifie si L'IA atteint le point demandé
@@ -106,7 +137,7 @@ public class AIController : MonoBehaviour
         {
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation, 
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation,
                 GetCurrentAreaCollider().zonesColliders);
 
             if (!isWating)
@@ -142,7 +173,8 @@ public class AIController : MonoBehaviour
 
     // Definit un temps d'arret ou l'IA ne bouge pas
 
-    #region  Function Delay
+    #region Function Delay
+
     public IEnumerator Delay()
     {
         canMove = false;
@@ -186,9 +218,13 @@ public class AIController : MonoBehaviour
                     break;
             }
         }
+
         public enum Orientation
         {
-            UpLeft, UpRight, DownLeft, DownRight
+            UpLeft,
+            UpRight,
+            DownLeft,
+            DownRight
         }
 
         public float angleMin;
