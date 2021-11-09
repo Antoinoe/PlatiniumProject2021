@@ -8,16 +8,23 @@ using System;
 public class Attack : MonoBehaviour
 {
     #region Variables
-
     //Kill target aquisition
     /*[HideInInspector] public List<GameObject> targets;*/
     //private GameObject focusedTarget;
+
+    //Player Controller
+    private PlayerController playerController;
+    private Controller controller;
 
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown;
 
-    //Score
+    //Target detection
+    [SerializeField] private float attackRange;
+    [SerializeField] private Vector2 targetDetectionBoxSize;
+
+    /*//Score
     private int nbOfKills = 0;
     private float actualScore = 0;
     public int bounty = 0;
@@ -26,14 +33,23 @@ public class Attack : MonoBehaviour
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
-    private PlayerController playerController;
-
-    public Text t_score, t_kills, t_bounty;
+    public Text t_score, t_kills, t_bounty;*/
     #endregion
 
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
+        controller = GetComponent<Controller>();
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        if (Application.isPlaying)
+        {
+            Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+        }
     }
 
     public void OnAttack()
@@ -41,7 +57,7 @@ public class Attack : MonoBehaviour
         #region Targets aquisition
         List<GameObject> targets = new List<GameObject>();
 
-        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll(transform.position, new Vector2(5, 5), 0f);
+        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector*attackRange, targetDetectionBoxSize, 0);
         foreach(Collider2D c in collidersInRange)
         {
             GameObject collidingObject = c.gameObject;
@@ -94,6 +110,7 @@ public class Attack : MonoBehaviour
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
                 playerController.gameManager.Shake();
+                playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
 
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 

@@ -46,3 +46,6 @@ TagManager:
   - name: Entity
     uniqueID: 608592159
     locked: 0
+  - name: SFX
+    uniqueID: 4081272293
+    locked: 0

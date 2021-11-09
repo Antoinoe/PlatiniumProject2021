@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-
 public class AIController : MonoBehaviour
 {
 
@@ -16,8 +15,10 @@ public class AIController : MonoBehaviour
 
     private Vector2 previousPoint = Vector2.zero;
 
-    [Range(0.1f, 1)]
-    public float rangePoint = 0.25f;
+    [Range(0.1f, 1)] public float rangePoint = 0.25f;
+
+    [SerializeField] private int areaIndex = 0;
+    [SerializeField] private List<AreaCollider> currentArea;
 
     public float delayMin = 1;
     private float delay = 0;
@@ -45,7 +46,65 @@ public class AIController : MonoBehaviour
     //Déclaration Variable
     private SpriteRenderer sprite;
 
+
+    #region UnityFunction
+
+    private void Start()
+    {
+        currentEntity = GetComponent<NavMeshAgent>();
+        currentEntity.updateRotation = false;
+        currentEntity.updateUpAxis = false;
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        zonePoint = transform.position;
+        randomRange = GetRandomRange();
+        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+            currentOrientation, GetCurrentAreaCollider().zonesColliders);
+        currentEntity.SetDestination(zonePoint);
+        feel = GetComponent<EntityMoveFeel>();
+    }
+
+    private void Update()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        if (isDead)
+            sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        else
+            sprite.sortingOrder = -99999999;
+        if (feel.IsMoving != canMove) feel.IsMoving = canMove;
+        UpdateNav();
+    }
+
+    //Debug
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(previousPoint, 0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(zonePoint, rangePoint);
+    }
+
+    //Debug
+
+    private void OnGUI()
+    {
+        if (showDebug)
+        {
+            GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
+            GUILayout.Label("Is waiting : " + isWating);
+            GUILayout.Label("Delay : " + delay);
+            GUILayout.Label("Random Range : " + randomRange);
+        }
+    }
+
+    #endregion
+
     #region Kill
+
     public void OnKilled()
     {
         isDead = true;
@@ -65,60 +124,6 @@ public class AIController : MonoBehaviour
         isDead = false;
         GetComponent<BoxCollider2D>().enabled = true;
     }
-    #endregion
-
-    #region  UnityFunction
-
-    private void Start()
-    {
-        currentEntity = GetComponent<NavMeshAgent>();
-        currentEntity.updateRotation = false;
-        currentEntity.updateUpAxis = false;
-        sprite = GetComponentInChildren<SpriteRenderer>();
-        zonePoint = transform.position;
-        randomRange = GetRandomRange();
-        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
-        currentEntity.SetDestination(zonePoint);
-        feel = GetComponent<EntityMoveFeel>();
-    }
-
-    private void Update()
-    {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        if (isDead)
-            sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
-        else
-            sprite.sortingOrder = -99999999;
-        if (feel.IsMoving != canMove) feel.IsMoving = canMove;
-        UpdateNav();
-    }
-
-    //Debug
-
-    /*void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(previousPoint, 0.1f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(zonePoint, rangePoint);
-    }*/
-
-    //Debug
-
-    private void OnGUI()
-    {
-        if (showDebug)
-        {
-            GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
-            GUILayout.Label("Is waiting : " + isWating);
-            GUILayout.Label("Delay : " + delay);
-            GUILayout.Label("Random Range : " + randomRange);
-        }
-    }
 
     #endregion
 
@@ -132,7 +137,8 @@ public class AIController : MonoBehaviour
         {
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation,
+                GetCurrentAreaCollider().zonesColliders);
 
             if (!isWating)
             {
@@ -140,6 +146,11 @@ public class AIController : MonoBehaviour
             }
         }
 
+    }
+
+    public void SetIndexArea(int newIndex)
+    {
+        areaIndex = newIndex;
     }
 
     //Retourne un nombre aléatoire entre localMaxMoveRange et localMinMoveRange
@@ -151,9 +162,19 @@ public class AIController : MonoBehaviour
 
     #endregion
 
+    #region Zone Area Function
+
+    public AreaCollider GetCurrentAreaCollider()
+    {
+        return currentArea[areaIndex];
+    }
+
+    #endregion
+
     // Definit un temps d'arret ou l'IA ne bouge pas
 
-    #region  Coroutine
+    #region Function Delay
+
     public IEnumerator Delay()
     {
         canMove = false;
@@ -164,6 +185,11 @@ public class AIController : MonoBehaviour
         canMove = true;
         isWating = false;
         yield return null;
+    }
+
+    public float GetDelay()
+    {
+        return delay;
     }
 
     #endregion
@@ -192,12 +218,22 @@ public class AIController : MonoBehaviour
                     break;
             }
         }
+
         public enum Orientation
         {
-            UpLeft, UpRight, DownLeft, DownRight
+            UpLeft,
+            UpRight,
+            DownLeft,
+            DownRight
         }
 
         public float angleMin;
         public float angleMax;
+    }
+
+    [System.Serializable]
+    public class AreaCollider
+    {
+        public List<Collider2D> zonesColliders;
     }
 }

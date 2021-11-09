@@ -52,12 +52,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnDieReset()
     {
-        GetComponent<Attack>().bounty = 0;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere((Vector2)transform.position + GetComponent<Controller>().MovementVector, 1);
+        //GetComponent<Attack>().bounty = 0;
     }
 }
