@@ -532,10 +532,10 @@ MonoBehaviour:
   players:
   - playerNb: 0
     playerSprite: {fileID: 21300000, guid: 5994dc3c1b1d01a4aa83c9deb54787aa, type: 3}
-    smokeSystem: {fileID: 0}
+    smokeSystem: {fileID: 182276930420136351, guid: ae84676ade02afa42b7ba685266e66ff, type: 3}
   - playerNb: 1
     playerSprite: {fileID: 21300000, guid: 4757f226230b51e46b9e41111b8186a6, type: 3}
-    smokeSystem: {fileID: 0}
+    smokeSystem: {fileID: 182276930420136351, guid: ae8abd0cc39520746b62f919a2d9f9a3, type: 3}
   playerNbrs: 0
   iAPerPlayer: 6
   playerPrefab: {fileID: 8550446936934499501, guid: 835470d1a2d516742ba510e55fada03e, type: 3}

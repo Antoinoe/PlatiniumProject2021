@@ -42,10 +42,14 @@ public class Attack : MonoBehaviour
         controller = GetComponent<Controller>();
     }
 
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector*attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+        if (Application.isPlaying)
+        {
+            Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+        }
     }
 
     public void OnAttack()
@@ -106,7 +110,7 @@ public class Attack : MonoBehaviour
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
 
                 playerController.gameManager.Shake();
-                playerController.gameManager.SpawnSmoke(transform.position);
+                playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
 
                 /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
