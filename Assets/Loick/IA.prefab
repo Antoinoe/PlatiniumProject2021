@@ -72,10 +72,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangePoint: 0.25
+  areaIndex: 0
+  currentArea: []
   delayMin: 1
   delayMax: 2
-  localMinMoveRange: 1
-  localMaxMoveRange: 5
+  localMinMoveRange: 1.1348897
+  localMaxMoveRange: 2.3138757
   showDebug: 1
   currentOrientation: 0
 --- !u!114 &7552138741966933271

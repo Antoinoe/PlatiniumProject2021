@@ -10,6 +10,26 @@ public class PlayerController : MonoBehaviour
     //Teams
     public int teamNb = 0;
     public int playerNb = 0;
+    float killCooldown = 0.0f;
+    float killIAaddCooldown = 0.0f;
+    float currKillCooldown = 0.0f;
+
+    public float KillCooldown
+    {
+        get { return killCooldown; }
+        set { killCooldown = value; }
+    }
+
+    public float KillIAaddCooldown
+    {
+        get { return killIAaddCooldown; }
+        set { killIAaddCooldown = value; }
+    }
+
+    public float CurrKillCooldown
+    {
+        get { return currKillCooldown; }
+    }
 
     public GameManager gameManager;
 
@@ -27,6 +47,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         spriteRend.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+    }
+
+    public void OnKill(GameObject target)
+    {
+        if (target.CompareTag("NPC"))
+            currKillCooldown = killCooldown + killIAaddCooldown;
+        else
+            currKillCooldown = killCooldown;
+    }
+
+    void SetCooldown()
+    {
+
     }
 
     public void ChangeTeam(int nb)

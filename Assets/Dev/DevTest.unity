@@ -536,8 +536,8 @@ MonoBehaviour:
   - playerNb: 1
     playerSprite: {fileID: 21300000, guid: 4757f226230b51e46b9e41111b8186a6, type: 3}
     smokeSystem: {fileID: 182276930420136351, guid: ae8abd0cc39520746b62f919a2d9f9a3, type: 3}
-  playerNbrs: 0
-  iAPerPlayer: 6
+  playerNbrs: 3
+  iAPerPlayer: 10
   playerPrefab: {fileID: 8550446936934499501, guid: 835470d1a2d516742ba510e55fada03e, type: 3}
   iAPrefab: {fileID: 7552138741966933269, guid: 6e6c94d238cf79941810353c2ae1fc7b, type: 3}
   protoSmoke: {fileID: 182276930420136351, guid: f49df0b9b8369b04c84decdac46ea4eb, type: 3}
@@ -580,7 +580,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.5176471, g: 0.49803925, b: 0.54901963, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -861,10 +861,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangePoint: 0.25
+  areaIndex: 0
+  currentArea: []
   delayMin: 1
   delayMax: 2
-  localMinMoveRange: 1
-  localMaxMoveRange: 5
+  localMinMoveRange: 1.1348897
+  localMaxMoveRange: 2.3138757
   showDebug: 1
   currentOrientation: 0
 --- !u!195 &389960239

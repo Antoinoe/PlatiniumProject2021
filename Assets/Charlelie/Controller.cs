@@ -8,29 +8,55 @@ public class Controller : MonoBehaviour
     int playerNum;
     public float speed = 4;
     public Rewired.Player player;
-    float slowingRate = 0.0f;
-    float speedingRate = 0.0f;
     Vector2 _movementVec;
-
+    InputBehavior ib;
     bool isPhyGUIShown = false;
+    PlayerController playerController;
+    Attack attack;
+    bool showGizmos = true;
+
+    public bool ShowGizmos
+    {
+        get { return showGizmos; }
+        set { showGizmos = value; }
+    }
+
+    public float Speed
+    {
+        get { return speed; }
+        set { speed = value; }
+    }
 
     public Vector2 MovementVector
     {
         get { return _movementVec; }
     }
 
+    public float Acceleration
+    {
+        get { return ib.digitalAxisSensitivity; }
+        set { ib.digitalAxisSensitivity = value; }
+    }
+
+    public float Decceleration
+    {
+        get { return ib.digitalAxisGravity; }
+        set { ib.digitalAxisGravity = value; }
+    }
+
     void Start()
     {
-        
+        playerController = GetComponent<PlayerController>();
+        attack = GetComponent<Attack>();
     }
 
     public void SetNum(int val)
     {
         playerNum = val;
         player = ReInput.players.GetPlayer(playerNum);
-        InputBehavior ib = player.controllers.maps.GetInputBehavior(0);
-        slowingRate = ib.digitalAxisGravity;
-        speedingRate = ib.digitalAxisSensitivity;
+        ib = player.controllers.maps.GetInputBehavior(0);
+        Decceleration = ib.digitalAxisGravity;
+        Acceleration = ib.digitalAxisSensitivity;
     }
 
     void Update()
@@ -57,6 +83,21 @@ public class Controller : MonoBehaviour
         } 
     }
 
+    public void OnValuesChanged
+    (bool _showGizmo, float _speed, 
+    float _accel, float _deccel,
+    float _kCool, float _kCoolAI,
+    Vector2 _boxLength)
+    {
+        ShowGizmos = _showGizmo;
+        Speed = _speed;
+        Acceleration = _accel;
+        Decceleration = _deccel;
+        GetComponent<PlayerController>().KillCooldown = _kCool;
+        GetComponent<PlayerController>().KillIAaddCooldown = _kCoolAI;
+        GetComponent<Attack>().BoxLength = _boxLength;
+    }
+
 
     private void OnGUI()
     {
@@ -74,12 +115,12 @@ public class Controller : MonoBehaviour
             GUI.Label(new Rect(Screen.width - 20, Screen.height - 85, 250, 20), speed.ToString());
 
             GUI.Label(new Rect(Screen.width - 400, Screen.height - 60, 250, 20), "Slowing Rate");
-            slowingRate = GUI.HorizontalSlider(new Rect(Screen.width - 280, Screen.height - 60, 250, 20), slowingRate, 0.0F, 10.0F);
-            GUI.Label(new Rect(Screen.width - 20, Screen.height - 65, 250, 20), slowingRate.ToString());
+            Decceleration = GUI.HorizontalSlider(new Rect(Screen.width - 280, Screen.height - 60, 250, 20), Decceleration, 0.0F, 10.0F);
+            GUI.Label(new Rect(Screen.width - 20, Screen.height - 65, 250, 20), Decceleration.ToString());
 
             GUI.Label(new Rect(Screen.width - 400, Screen.height - 40, 250, 20), "Speeding Rate");
-            speedingRate = GUI.HorizontalSlider(new Rect(Screen.width - 280, Screen.height - 40, 250, 20), speedingRate, 0.0F, 10.0F);
-            GUI.Label(new Rect(Screen.width - 20, Screen.height - 45, 250, 20), speedingRate.ToString());
+            Acceleration = GUI.HorizontalSlider(new Rect(Screen.width - 280, Screen.height - 40, 250, 20), Acceleration, 0.0F, 10.0F);
+            GUI.Label(new Rect(Screen.width - 20, Screen.height - 45, 250, 20), Acceleration.ToString());
 
             if (GUI.Button(new Rect(Screen.width - 80, Screen.height - 20, 80, 20), "Close X"))
                 isPhyGUIShown = false;
