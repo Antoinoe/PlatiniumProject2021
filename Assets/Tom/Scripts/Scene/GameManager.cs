@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 using DG.Tweening;
+using MiscUtil.Xml.Linq.Extensions;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
@@ -113,9 +114,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Team " + teamNb + " win !");
     }
 
-    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation)
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
     {
-        List<int> allOrientations = new List<int>() { 0, 1, 2, 3 };
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
         List<int> tempList = allOrientations;
         for (int i = 0; i < allOrientations.Count; i++)
         {
@@ -125,12 +126,36 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+
         int randomIndex = Random.Range(0, allOrientations.Count);
         navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
-        float angle = UnityEngine.Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+        float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
         Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
         randomPosition += origin;
+        bool inArea = false;
+        for (int i = 0; i < areaColliders.Count; i++)
+        {
+            if (areaColliders[i].bounds.Contains(randomPosition))
+            {
+                inArea = true;
+                break;
+            }
+        }
+
+        if (!inArea)
+        {
+            Debug.Log("Random Point Reset");
+            int randomArea = Random.Range(0, areaColliders.Count);
+            if (areaColliders.Count > 0)
+            {
+            randomPosition = areaColliders[randomArea].ClosestPoint(randomPosition);
+            }
+            else
+            {
+                Debug.LogError("Liste de collider vide");
+            }
+        }
         NavMeshHit hit;
         Vector2 finalPosition = Vector2.zero;
         if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))

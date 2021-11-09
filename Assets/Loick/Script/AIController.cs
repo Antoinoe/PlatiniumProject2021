@@ -19,6 +19,9 @@ public class AIController : MonoBehaviour
     [Range(0.1f, 1)]
     public float rangePoint = 0.25f;
 
+    [SerializeField]private int areaIndex = 0;
+    [SerializeField] private List<AreaCollider> currentArea;
+
     public float delayMin = 1;
     private float delay = 0;
     public float delayMax = 2;
@@ -52,7 +55,8 @@ public class AIController : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
-        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, 
+            currentOrientation,GetCurrentAreaCollider().zonesColliders);
         currentEntity.SetDestination(zonePoint);
     }
 
@@ -102,7 +106,8 @@ public class AIController : MonoBehaviour
         {
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation, 
+                GetCurrentAreaCollider().zonesColliders);
 
             if (!isWating)
             {
@@ -110,6 +115,11 @@ public class AIController : MonoBehaviour
             }
         }
 
+    }
+
+    public void SetIndexArea(int newIndex)
+    {
+        areaIndex = newIndex;
     }
 
     //Retourne un nombre aléatoire entre localMaxMoveRange et localMinMoveRange
@@ -121,9 +131,18 @@ public class AIController : MonoBehaviour
 
     #endregion
 
+    #region Zone Area Function
+
+    public AreaCollider GetCurrentAreaCollider()
+    {
+        return currentArea[areaIndex];
+    }
+
+    #endregion
+
     // Definit un temps d'arret ou l'IA ne bouge pas
 
-    #region  Coroutine
+    #region  Function Delay
     public IEnumerator Delay()
     {
         canMove = false;
@@ -134,6 +153,11 @@ public class AIController : MonoBehaviour
         canMove = true;
         isWating = false;
         yield return null;
+    }
+
+    public float GetDelay()
+    {
+        return delay;
     }
 
     #endregion
@@ -169,5 +193,11 @@ public class AIController : MonoBehaviour
 
         public float angleMin;
         public float angleMax;
+    }
+
+    [System.Serializable]
+    public class AreaCollider
+    {
+        public List<Collider2D> zonesColliders;
     }
 }
