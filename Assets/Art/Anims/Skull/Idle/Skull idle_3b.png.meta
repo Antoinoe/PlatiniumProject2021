@@ -1,0 +1,720 @@
+fileFormatVersion: 2
+guid: 60af5af6b50add140bf8e95b321b47db
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3012254341512317956
+    second: Skull idle_3b_0
+  - first:
+      213: 4341119217119024304
+    second: Skull idle_3b_1
+  - first:
+      213: -5312520671577588674
+    second: Skull idle_3b_2
+  - first:
+      213: 779771163714038762
+    second: Skull idle_3b_3
+  - first:
+      213: 4027047244274384409
+    second: Skull idle_3b_4
+  - first:
+      213: 7292472706716329379
+    second: Skull idle_3b_5
+  - first:
+      213: -7330810025891631482
+    second: Skull idle_3b_6
+  - first:
+      213: 2434399313697543183
+    second: Skull idle_3b_7
+  - first:
+      213: 2126281220385040627
+    second: Skull idle_3b_8
+  - first:
+      213: -5873219296387124405
+    second: Skull idle_3b_9
+  - first:
+      213: -6250559978584983721
+    second: Skull idle_3b_10
+  - first:
+      213: -4265204113985974363
+    second: Skull idle_3b_11
+  - first:
+      213: 8594849792617216124
+    second: Skull idle_3b_12
+  - first:
+      213: -8355243551606229460
+    second: Skull idle_3b_13
+  - first:
+      213: 5668664784504877184
+    second: Skull idle_3b_14
+  - first:
+      213: 2926521966187934952
+    second: Skull idle_3b_15
+  - first:
+      213: 513944891179666334
+    second: Skull idle_3b_16
+  - first:
+      213: 3386307164317078711
+    second: Skull idle_3b_17
+  - first:
+      213: 3892528655692765096
+    second: Skull idle_3b_18
+  - first:
+      213: 3646343984926457055
+    second: Skull idle_3b_19
+  - first:
+      213: -8603142682019031631
+    second: Skull idle_3b_20
+  - first:
+      213: -1826411486149613231
+    second: Skull idle_3b_21
+  - first:
+      213: -7287397716273943556
+    second: Skull idle_3b_22
+  - first:
+      213: 3544925687287630218
+    second: Skull idle_3b_23
+  - first:
+      213: -2901501081977097764
+    second: Skull idle_3b_24
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skull idle_3b_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40c48fe2d5dadc920800000000000000
+      internalID: 3012254341512317956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_1
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b450008de0ce3c30800000000000000
+      internalID: 4341119217119024304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_2
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3cb2bc98922646b0800000000000000
+      internalID: -5312520671577588674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_3
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeba443fdbd42da00800000000000000
+      internalID: 779771163714038762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_4
+      rect:
+        serializedVersion: 2
+        x: 3536
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91eb0b8e122f2e730800000000000000
+      internalID: 4027047244274384409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_5
+      rect:
+        serializedVersion: 2
+        x: 4396
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a5ee022a41143560800000000000000
+      internalID: 7292472706716329379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_6
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68e6bda2f1bb34a90800000000000000
+      internalID: -7330810025891631482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_7
+      rect:
+        serializedVersion: 2
+        x: 6112
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04956e1749b8c120800000000000000
+      internalID: 2434399313697543183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_8
+      rect:
+        serializedVersion: 2
+        x: 6972
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f862a12181128d10800000000000000
+      internalID: 2126281220385040627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4330e6ea222e7ea0800000000000000
+      internalID: -5873219296387124405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_10
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7573b2df0dc8149a0800000000000000
+      internalID: -6250559978584983721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_11
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5afc453d473fec4c0800000000000000
+      internalID: -4265204113985974363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_12
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c78f9c2595a074770800000000000000
+      internalID: 8594849792617216124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_13
+      rect:
+        serializedVersion: 2
+        x: 3536
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2633aef1463c0c80800000000000000
+      internalID: -8355243551606229460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_14
+      rect:
+        serializedVersion: 2
+        x: 4396
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080fd2f66942bae40800000000000000
+      internalID: 5668664784504877184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_15
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e4720e09381d9820800000000000000
+      internalID: 2926521966187934952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_16
+      rect:
+        serializedVersion: 2
+        x: 6112
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9b04e0d726e12700800000000000000
+      internalID: 513944891179666334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_17
+      rect:
+        serializedVersion: 2
+        x: 6972
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b4da7dac649efe20800000000000000
+      internalID: 3386307164317078711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_18
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a79898503a050630800000000000000
+      internalID: 3892528655692765096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_19
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdc7c6ef88a6a9230800000000000000
+      internalID: 3646343984926457055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_20
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 836
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b51146ef4f7b9880800000000000000
+      internalID: -8603142682019031631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_21
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 836
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 159eb5a1e6847a6e0800000000000000
+      internalID: -1826411486149613231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_22
+      rect:
+        serializedVersion: 2
+        x: 3536
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbaf782366fdda90800000000000000
+      internalID: -7287397716273943556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_23
+      rect:
+        serializedVersion: 2
+        x: 4396
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a89cfe9712b123130800000000000000
+      internalID: 3544925687287630218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_3b_24
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 836
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd1f755832ccbb7d0800000000000000
+      internalID: -2901501081977097764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
