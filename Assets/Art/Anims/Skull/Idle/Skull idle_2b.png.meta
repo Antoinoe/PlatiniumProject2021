@@ -1,0 +1,768 @@
+fileFormatVersion: 2
+guid: 23da3d8e0990e2e4b9509298147c780a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7317123355111666795
+    second: Skull idle_2b_0
+  - first:
+      213: 359570212240769937
+    second: Skull idle_2b_1
+  - first:
+      213: 37319601797408529
+    second: Skull idle_2b_2
+  - first:
+      213: -6917184683254552571
+    second: Skull idle_2b_3
+  - first:
+      213: -8952555985596017023
+    second: Skull idle_2b_4
+  - first:
+      213: -6204757181007979240
+    second: Skull idle_2b_5
+  - first:
+      213: 2793882793941256056
+    second: Skull idle_2b_6
+  - first:
+      213: -7319063238356122384
+    second: Skull idle_2b_7
+  - first:
+      213: 3596523927528342758
+    second: Skull idle_2b_8
+  - first:
+      213: 1486768472153511899
+    second: Skull idle_2b_9
+  - first:
+      213: -5206545201505715388
+    second: Skull idle_2b_10
+  - first:
+      213: -8108748633312331666
+    second: Skull idle_2b_11
+  - first:
+      213: 4236752423329247350
+    second: Skull idle_2b_12
+  - first:
+      213: 5936557912300141622
+    second: Skull idle_2b_13
+  - first:
+      213: -3756264127355964900
+    second: Skull idle_2b_14
+  - first:
+      213: 6973509864868294061
+    second: Skull idle_2b_15
+  - first:
+      213: -4285848015320177959
+    second: Skull idle_2b_16
+  - first:
+      213: 7668712579108177326
+    second: Skull idle_2b_17
+  - first:
+      213: -3592259849327410752
+    second: Skull idle_2b_18
+  - first:
+      213: 2996790064227428131
+    second: Skull idle_2b_19
+  - first:
+      213: 7506875280818511785
+    second: Skull idle_2b_20
+  - first:
+      213: -6176843601167644998
+    second: Skull idle_2b_21
+  - first:
+      213: 8299312793901837395
+    second: Skull idle_2b_22
+  - first:
+      213: -8914747386824177448
+    second: Skull idle_2b_23
+  - first:
+      213: 2185436604167446665
+    second: Skull idle_2b_24
+  - first:
+      213: 7610490362008560852
+    second: Skull idle_2b_25
+  - first:
+      213: 937260719145804573
+    second: Skull idle_2b_26
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skull idle_2b_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6435277ce4ab8560800000000000000
+      internalID: 7317123355111666795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_1
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1934c64f3337df400800000000000000
+      internalID: 359570212240769937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_2
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1172b48eaf5948000800000000000000
+      internalID: 37319601797408529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_3
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 508e6dced293100a0800000000000000
+      internalID: -6917184683254552571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_4
+      rect:
+        serializedVersion: 2
+        x: 3536
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18690c683c122c380800000000000000
+      internalID: -8952555985596017023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_5
+      rect:
+        serializedVersion: 2
+        x: 4396
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81d1774d73644e9a0800000000000000
+      internalID: -6204757181007979240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_6
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 877c1f4399dd5c620800000000000000
+      internalID: 2793882793941256056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_7
+      rect:
+        serializedVersion: 2
+        x: 6112
+        y: 3012
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f4c92543c67d6a90800000000000000
+      internalID: -7319063238356122384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_8
+      rect:
+        serializedVersion: 2
+        x: 6972
+        y: 3012
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e40586f47b69e130800000000000000
+      internalID: 3596523927528342758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd7d5f55c0012a410800000000000000
+      internalID: 1486768472153511899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_10
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44bbc3589b2aeb7b0800000000000000
+      internalID: -5206545201505715388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_11
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e68fb7a7410f77f80800000000000000
+      internalID: -8108748633312331666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_12
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 670b0d9b1e7fbca30800000000000000
+      internalID: 4236752423329247350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_13
+      rect:
+        serializedVersion: 2
+        x: 3536
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c3f2fc7f3e26250800000000000000
+      internalID: 5936557912300141622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_14
+      rect:
+        serializedVersion: 2
+        x: 4396
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c12b76e7da11fdbc0800000000000000
+      internalID: -3756264127355964900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_15
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dad282d5642e6c060800000000000000
+      internalID: 6973509864868294061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_16
+      rect:
+        serializedVersion: 2
+        x: 6112
+        y: 1924
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d2278dffeb9584c0800000000000000
+      internalID: -4285848015320177959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_17
+      rect:
+        serializedVersion: 2
+        x: 6972
+        y: 1924
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea5005ac57dbc6a60800000000000000
+      internalID: 7668712579108177326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_18
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c101fb13bab52ec0800000000000000
+      internalID: -3592259849327410752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_19
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32722bc8facb69920800000000000000
+      internalID: 2996790064227428131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_20
+      rect:
+        serializedVersion: 2
+        x: 1816
+        y: 836
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9af19567b47cd2860800000000000000
+      internalID: 7506875280818511785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_21
+      rect:
+        serializedVersion: 2
+        x: 2676
+        y: 836
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab602479871774aa0800000000000000
+      internalID: -6176843601167644998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_22
+      rect:
+        serializedVersion: 2
+        x: 3536
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35caf50b3051d2370800000000000000
+      internalID: 8299312793901837395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_23
+      rect:
+        serializedVersion: 2
+        x: 4396
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8c00aeb74784480800000000000000
+      internalID: -8914747386824177448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_24
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 836
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9806986330b345e10800000000000000
+      internalID: 2185436604167446665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_25
+      rect:
+        serializedVersion: 2
+        x: 6112
+        y: 836
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d4ed0289a4ed9960800000000000000
+      internalID: 7610490362008560852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_2b_26
+      rect:
+        serializedVersion: 2
+        x: 6972
+        y: 836
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d13ec9288a1d10d00800000000000000
+      internalID: 937260719145804573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
