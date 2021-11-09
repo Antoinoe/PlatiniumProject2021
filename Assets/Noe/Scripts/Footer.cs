@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Footer : MonoBehaviour
 {
@@ -34,7 +35,14 @@ public class Footer : MonoBehaviour
                 MenuManager.Instance.OpenMenuFromFooter(Menu.MAP);
                 break;
             case Menu.MAP:
-                //MenuManager.Instance.OpenMenuFromFooter(Menu.GAME);
+                try
+                {
+                    SceneManager.LoadScene(MenuManager.Instance.map.transform.GetChild(1).GetComponent<Selector>().SelectMap());
+                }
+                catch
+                {
+                    Debug.LogError("Could not load map : scene was not found. Verify name of the scene & the name of the map GameObject");
+                }
                 break;
         }
         yield return new WaitForSeconds(MenuManager.Instance.switchMenuDuration);

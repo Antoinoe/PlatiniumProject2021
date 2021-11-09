@@ -24,18 +24,10 @@ public class MenuManager : MonoBehaviour
     }
     public bool canSwitchMenu = true;
     public GameObject main, charac, map, options, credits, tuto, playButton, generalSlider;
-    public float Xoffset, Yoffset;
     public Menu actualMenuOn, lastMenu;
     public EventSystem eventsys;
     [Range(0.1f, 2)]
     public float switchMenuDuration;
-    [SerializeField]
-    private Vector3 cameraPos = new Vector3(0, 0 , -10);
-
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 
     private void Start()
     {
@@ -44,7 +36,6 @@ public class MenuManager : MonoBehaviour
 
         GameObject canvas = GameObject.Find("Canvas");
         GameObject groupMenu = canvas.transform.Find("MenuGroup").gameObject;
-        eventsys = EventSystem.current;
 
         main = groupMenu.transform.Find("MainMenu").gameObject;
         charac = groupMenu.transform.Find("ChooseCharacterMenu").gameObject;
@@ -67,22 +58,27 @@ public class MenuManager : MonoBehaviour
                     OpenMainMenu();                    
                     break;
                 case Menu.CHARACTER:
+                    eventsys.SetSelectedGameObject(null);
                     Camera.main.transform.DOMove((Vector2)charac.transform.position , switchMenuDuration);
                     break;
                 case Menu.MAP:
-                    if(actualMenuOn == Menu.CHARACTER)
-                        Camera.main.transform.DOMove((Vector2)map.transform.position , switchMenuDuration);
+                    eventsys.SetSelectedGameObject(null);
+                    Camera.main.transform.DOMove((Vector2)map.transform.position , switchMenuDuration);
                     break;
                 case Menu.OPTIONS:
                     OpenOptions();
                     break;
                 case Menu.CREDITS:
-                    //Camera.main.transform.DOMove(credits.transform.position, switchMenuDuration);
+                    eventsys.SetSelectedGameObject(null);
+                    SceneManager.LoadScene(1);
+                    //Camera.main.transform.DOMove((Vector2)credits.transform.position, switchMenuDuration);
                     break;
                 case Menu.TUTO:
+                    eventsys.SetSelectedGameObject(null);
                     Camera.main.transform.DOMove((Vector2)tuto.transform.position, switchMenuDuration);
                     break;
                 case Menu.QUIT:
+                    //anim de quit?
                     Application.Quit();
                     break;
                 default:
@@ -113,7 +109,7 @@ public class MenuManager : MonoBehaviour
                     OpenOptions();
                     break;
                 case Menu.CREDITS:
-                    //Camera.main.transform.DOMove(credits.transform.position, switchMenuDuration);
+                    SceneManager.LoadScene("Credits");
                     break;
                 case Menu.TUTO:
                     Camera.main.transform.DOMove((Vector2)tuto.transform.position, switchMenuDuration);

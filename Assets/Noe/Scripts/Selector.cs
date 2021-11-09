@@ -4,43 +4,45 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Selector : MonoBehaviour
 {
-    /*[HideInInspector]*/
-    private GameObject[] items;
-    
-    private float tweenDuration = 0.25f;
-    private bool canSwap = true;
-    Vector3 distToGo;
-    /*[SerializeField]*/ private float XdistToGo;
-    [SerializeField] private int it = 0;
-    [SerializeField] public Menu thisMenu;
+    [HideInInspector]
+    public GameObject[] items;
+    private bool haveToWait = true;
+    [SerializeField] public float swapDuration;
+    [SerializeField] [Range(0.5f,1.5f)] private float mapScaleMin, mapScaleMax;
+    private bool canSwitch = true;
+    private float XdistToGo;
+    [HideInInspector]public int it;
+    public Menu thisMenu;
+    public GameObject NavTuto;
     void Start()
     {
         Array.Resize(ref items, transform.childCount);
         for(int i = 0; i< transform.childCount; i++)
         {
             items[i] = transform.GetChild(i).gameObject;
-            //print(gameObject.name + items[i].GetComponent<RectTransform>().localPosition.x);
         }
         XdistToGo = items[1].GetComponent<RectTransform>().localPosition.x - items[0].GetComponent<RectTransform>().localPosition.x;
-
-        ScaleItems();
-        //print(gameObject.name + XdistToGo);
+        //reset the scale of the maps in the map menu
+        if (thisMenu == Menu.MAP)
+            ScaleItems();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (canSwap && MenuManager.Instance.actualMenuOn == thisMenu)
+        //inputs
+        if (MenuManager.Instance.actualMenuOn == thisMenu)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) && canSwitch) //right
             {
                 print("next");
                 StartCoroutine(Change(false));
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKey(KeyCode.Q) && canSwitch) //left
             {
                 print("prev");
                 StartCoroutine(Change(true));
@@ -50,40 +52,60 @@ public class Selector : MonoBehaviour
 
     IEnumerator Change(bool input)
     {
-        canSwap = false;
+        haveToWait = true;
+        canSwitch = false;
         print("int ienum");
+        #region move items
         if (input)
         {
-            if(it > 0)
+            if (it > 0)
             {
                 it--;
-                transform.DOLocalMoveX(transform.localPosition.x + XdistToGo, tweenDuration);
-            } 
+                transform.DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
         }
         else
         {
             if (it < items.Length - 1)
             {
                 it++;
-                transform.DOLocalMoveX(transform.localPosition.x - XdistToGo, tweenDuration);
+                transform.DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
             }
-                
+            else
+                haveToWait = false;
         }
-        
-        if(thisMenu == Menu.MAP)
+        #endregion
+
+        if (thisMenu == Menu.MAP)
             ScaleItems();
-        yield return new WaitForSeconds(tweenDuration);
-        canSwap = true;
+        if (thisMenu == Menu.TUTO)
+            UpdateNav();
+
+        if(haveToWait)
+            yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
+        canSwitch = true;
     }
 
-    public void ScaleItems()
+    void ScaleItems()
     {
         for (int i = 0; i < items.Length; i++)
         {
             if (it == i)
-                items[i].GetComponent<RectTransform>().DOScale(new Vector2(1.3f, 1.3f), tweenDuration);
+                items[i].GetComponent<RectTransform>().DOScale(new Vector2(1.3f, 1.3f), swapDuration);
             else
-                items[i].GetComponent<RectTransform>().DOScale(new Vector2(1f, 1f), tweenDuration);
+                items[i].GetComponent<RectTransform>().DOScale(new Vector2(1f, 1f), swapDuration);
         }
+    }
+
+    void UpdateNav()
+    {
+        NavTuto.GetComponent<DisplayNavTuto>().UpdateStateOfSquares();
+    }
+
+    public string SelectMap()
+    {
+       return items[it].name;
     }
 }

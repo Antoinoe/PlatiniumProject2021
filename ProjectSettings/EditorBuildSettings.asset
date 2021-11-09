@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Noe/Scenes/Main.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Noe/Scenes/Credits.unity
+    guid: 6eb60fd360f7f1f43aa0863583291f4a
+  - enabled: 1
+    path: Assets/Noe/Scenes/Game.unity
+    guid: fa6af463f48186b4580a36cc189a0216
   m_configObjects: {}
