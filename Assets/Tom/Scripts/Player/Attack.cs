@@ -24,6 +24,12 @@ public class Attack : MonoBehaviour
     [SerializeField] private float attackRange;
     [SerializeField] private Vector2 targetDetectionBoxSize;
 
+    public Vector2 BoxLength
+    {
+        get { return targetDetectionBoxSize; }
+        set { targetDetectionBoxSize = value; }
+    }
+
     /*//Score
     private int nbOfKills = 0;
     private float actualScore = 0;
@@ -45,10 +51,13 @@ public class Attack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        if (Application.isPlaying)
+        if (controller.ShowGizmos)
         {
-            Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            Gizmos.color = Color.red;
+            if (Application.isPlaying)
+            {
+                Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            }
         }
     }
 
@@ -131,8 +140,9 @@ public class Attack : MonoBehaviour
                 playerController.gameManager.Shake();
             }
 
+            playerController.OnKill(target);
             killOnCD = true;
-            StartCoroutine(KillCooldown(killCooldown));
+            StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
         }
         else if (killOnCD)
         {

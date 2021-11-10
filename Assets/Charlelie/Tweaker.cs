@@ -83,7 +83,7 @@ public class Tweaker : EditorWindow
         { "Decceleration", new float() },
         { "KillCooldown", new float() },
         { "KillCooldownOnAI", new float() },
-        { "BoxLength", new float() },
+        { "BoxLength", new Vector2() },
 
     });
     static TweakPart ia = new TweakPart("IA", ok, "Tooltip", new Dictionary<string, object>()
@@ -264,7 +264,7 @@ public class Tweaker : EditorWindow
             EditorGUILayout.PrefixLabel("Attack Cooldown when kill AI");
             player.variables["KillCooldownOnAI"] = EditorGUILayout.Slider((float)player.variables["KillCooldownOnAI"], 0, 10);
             EditorGUILayout.PrefixLabel("Attack Range");
-            player.variables["BoxLength"] = EditorGUILayout.Slider((float)player.variables["BoxLength"], 0, 10);
+            player.variables["BoxLength"] = EditorGUILayout.Vector2Field("BoxLength", (Vector2)player.variables["BoxLength"]);
 
             EditorGUI.indentLevel--;
 

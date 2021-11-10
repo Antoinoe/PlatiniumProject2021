@@ -76,8 +76,8 @@ MonoBehaviour:
   currentArea: []
   delayMin: 1
   delayMax: 2
-  localMinMoveRange: 1
-  localMaxMoveRange: 5
+  localMinMoveRange: 1.1348897
+  localMaxMoveRange: 2.3138757
   showDebug: 1
   areaColliderIsOn: 0
   currentOrientation: 0
