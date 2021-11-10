@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangePoint: 0.25
   areaIndex: 0
-  currentArea: []
+  currentArea: {fileID: 0}
   delayMin: 1
   delayMax: 2
   localMinMoveRange: 2.189435
