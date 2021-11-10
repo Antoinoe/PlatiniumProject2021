@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
 
     //Camera Shake
     public event Action OnCameraShake;
+
+    public int IAPerPlayer
+    {
+        get { return iAPerPlayer; }
+        set { iAPerPlayer = value; }
+    }
+
     #endregion
 
     private void Awake()
@@ -127,6 +134,12 @@ public class GameManager : MonoBehaviour
         {
             SpawnSmoke(Vector2.zero);
         }
+    }
+
+    public void OnValuesChanged(int _pNbr, int _iaPerPlayer)
+    {
+        playerNbrs = _pNbr;
+        iAPerPlayer = _iaPerPlayer;
     }
 
     #region Win

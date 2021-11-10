@@ -13,9 +13,9 @@ public static class MonoExtent
         trans.localScale = new Vector3(1, 1, 1);
     }
 
-    public static void OnValuesChanged(this MonoBehaviour mono)
+    /*public static void OnValuesChanged(this MonoBehaviour mono)
     {
         buttonClickDelegate(5);
-    }
+    }*/
 
 }

@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
 {
+    NavMeshAgent agent;
 
     private Vector2 zonePoint = Vector2.zero;
 
@@ -32,6 +33,19 @@ public class AIController : MonoBehaviour
     private bool hasArriveToLocalPoint = false;
     private bool isWating = false;
     private bool canMove = true;
+    bool showGizmos = true;
+
+    public bool ShowGizmos
+    {
+        get { return showGizmos; }
+        set { showGizmos = value; }
+    }
+
+    public float Speed
+    {
+        get { return GetComponent<NavMeshAgent>().speed; }
+        set { GetComponent<NavMeshAgent>().speed = value; }
+    }
 
     private NavMeshAgent currentEntity = null;
 
@@ -46,20 +60,35 @@ public class AIController : MonoBehaviour
     //Déclaration Variable
     private SpriteRenderer sprite;
 
+    #region ChangeVariables
+    public void OnValuesChanged
+    (bool _showGizmo,float _speed, 
+    Vector2 _moveRange, Vector2 _moveTime)
+    {
+        ShowGizmos = _showGizmo;
+        Speed = _speed;
+        localMinMoveRange = _moveRange.x;
+        localMaxMoveRange = _moveRange.y;
+        delayMin = _moveTime.x;
+        delayMax = _moveTime.y;
+    }
+
+    #endregion
 
     #region UnityFunction
 
     private void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
-        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-            currentOrientation, GetCurrentAreaCollider().zonesColliders);
-        currentEntity.SetDestination(zonePoint);
+        /*zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+            currentOrientation, GetCurrentAreaCollider().zonesColliders);*/
+        //currentEntity.SetDestination(zonePoint);
         feel = GetComponent<EntityMoveFeel>();
     }
 
@@ -71,21 +100,24 @@ public class AIController : MonoBehaviour
         else
             sprite.sortingOrder = -99999999;
         if (feel.IsMoving != canMove) feel.IsMoving = canMove;
-        UpdateNav();
+        //UpdateNav();
     }
 
     //Debug
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(previousPoint, 0.1f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(zonePoint, rangePoint);
+        if (showGizmos)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(previousPoint, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(zonePoint, rangePoint);
+        }
     }
 
     //Debug
