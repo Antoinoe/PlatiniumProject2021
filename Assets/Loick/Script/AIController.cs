@@ -18,7 +18,7 @@ public class AIController : MonoBehaviour
     [Range(0.1f, 1)] public float rangePoint = 0.25f;
 
     [SerializeField] private int areaIndex = 0;
-    [SerializeField] private List<AreaCollider> currentArea;
+    [SerializeField] private AreaManager currentArea;
 
     public float delayMin = 1;
     private float delay = 0;
@@ -32,6 +32,7 @@ public class AIController : MonoBehaviour
     private bool hasArriveToLocalPoint = false;
     private bool isWating = false;
     private bool canMove = true;
+    public bool areaColliderIsOn = false;
 
     private NavMeshAgent currentEntity = null;
 
@@ -51,14 +52,23 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
+        areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
-        zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+        if (areaColliderIsOn)
+        { 
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
             currentOrientation, GetCurrentAreaCollider().zonesColliders);
+        }
+        else
+        {
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+        }
         currentEntity.SetDestination(zonePoint);
         feel = GetComponent<EntityMoveFeel>();
     }
@@ -137,9 +147,15 @@ public class AIController : MonoBehaviour
         {
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation,
-                GetCurrentAreaCollider().zonesColliders);
-
+            if (areaColliderIsOn)
+            {
+                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+                    currentOrientation, GetCurrentAreaCollider().zonesColliders);
+            }
+            else
+            {
+                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+            }
             if (!isWating)
             {
                 StartCoroutine(Delay());
@@ -166,7 +182,7 @@ public class AIController : MonoBehaviour
 
     public AreaCollider GetCurrentAreaCollider()
     {
-        return currentArea[areaIndex];
+        return currentArea.areaColliders[areaIndex];
     }
 
     #endregion
