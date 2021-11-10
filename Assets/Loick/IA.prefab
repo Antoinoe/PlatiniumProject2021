@@ -79,6 +79,7 @@ MonoBehaviour:
   localMinMoveRange: 2.189435
   localMaxMoveRange: 3.3684201
   showDebug: 1
+  areaColliderIsOn: 0
   currentOrientation: 0
 --- !u!114 &7552138741966933271
 MonoBehaviour:

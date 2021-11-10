@@ -10,7 +10,6 @@ using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
 {
-    NavMeshAgent agent;
 
     private Vector2 zonePoint = Vector2.zero;
 
@@ -19,7 +18,7 @@ public class AIController : MonoBehaviour
     [Range(0.1f, 1)] public float rangePoint = 0.25f;
 
     [SerializeField] private int areaIndex = 0;
-    [SerializeField] private List<AreaCollider> currentArea;
+    [SerializeField] private AreaManager currentArea;
 
     public float delayMin = 1;
     private float delay = 0;
@@ -33,19 +32,7 @@ public class AIController : MonoBehaviour
     private bool hasArriveToLocalPoint = false;
     private bool isWating = false;
     private bool canMove = true;
-    bool showGizmos = true;
-
-    public bool ShowGizmos
-    {
-        get { return showGizmos; }
-        set { showGizmos = value; }
-    }
-
-    public float Speed
-    {
-        get { return GetComponent<NavMeshAgent>().speed; }
-        set { GetComponent<NavMeshAgent>().speed = value; }
-    }
+    public bool areaColliderIsOn = false;
 
     private NavMeshAgent currentEntity = null;
 
@@ -60,9 +47,23 @@ public class AIController : MonoBehaviour
     //Déclaration Variable
     private SpriteRenderer sprite;
 
+    bool showGizmos = true;
+
+    public bool ShowGizmos
+    {
+        get { return showGizmos; }
+        set { showGizmos = value; }
+    }
+
+    public float Speed
+    {
+        get { return GetComponent<NavMeshAgent>().speed; }
+        set { GetComponent<NavMeshAgent>().speed = value; }
+    }
+
     #region ChangeVariables
     public void OnValuesChanged
-    (bool _showGizmo,float _speed, 
+    (bool _showGizmo, float _speed,
     Vector2 _moveRange, Vector2 _moveTime)
     {
         ShowGizmos = _showGizmo;
@@ -79,16 +80,24 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
+        areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
-        /*zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-            currentOrientation, GetCurrentAreaCollider().zonesColliders);*/
-        //currentEntity.SetDestination(zonePoint);
+        if (areaColliderIsOn)
+        { 
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+            currentOrientation, GetCurrentAreaCollider().zonesColliders);
+        }
+        else
+        {
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+        }
+        currentEntity.SetDestination(zonePoint);
         feel = GetComponent<EntityMoveFeel>();
     }
 
@@ -100,24 +109,21 @@ public class AIController : MonoBehaviour
         else
             sprite.sortingOrder = -99999999;
         if (feel.IsMoving != canMove) feel.IsMoving = canMove;
-        //UpdateNav();
+        UpdateNav();
     }
 
     //Debug
 
     void OnDrawGizmos()
     {
-        if (showGizmos)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawSphere(previousPoint, 0.1f);
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(zonePoint, rangePoint);
-        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawSphere(previousPoint, 0.1f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(zonePoint, rangePoint);
     }
 
     //Debug
@@ -169,9 +175,15 @@ public class AIController : MonoBehaviour
         {
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation,
-                GetCurrentAreaCollider().zonesColliders);
-
+            if (areaColliderIsOn)
+            {
+                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+                    currentOrientation, GetCurrentAreaCollider().zonesColliders);
+            }
+            else
+            {
+                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+            }
             if (!isWating)
             {
                 StartCoroutine(Delay());
@@ -198,7 +210,7 @@ public class AIController : MonoBehaviour
 
     public AreaCollider GetCurrentAreaCollider()
     {
-        return currentArea[areaIndex];
+        return currentArea.areaColliders[areaIndex];
     }
 
     #endregion

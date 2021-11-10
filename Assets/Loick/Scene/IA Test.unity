@@ -3036,7 +3036,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1344071061}
   - component: {fileID: 1344071063}
-  - component: {fileID: 1344071065}
   - component: {fileID: 1344071062}
   m_Layer: 0
   m_Name: Square (1)
@@ -3069,9 +3068,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1344071060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0f172d41d2a334a9f42c01d7a0ca91, type: 3}
+  m_Script: {fileID: 11500000, guid: b47b2217313fb3e40a2861f7bc4609ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangePoint: 0.25
+  areaIndex: 0
+  currentArea: []
+  delayMin: 1
+  delayMax: 2
+  localMinMoveRange: 1
+  localMaxMoveRange: 1.81
+  showDebug: 0
+  currentOrientation: 0
 --- !u!195 &1344071063
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3094,33 +3102,6 @@ NavMeshAgent:
   m_BaseOffset: 0.24
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1344071065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1344071060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47b2217313fb3e40a2861f7bc4609ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rangePoint: 0.216
-  areaIndex: 0
-  currentArea:
-  - zonesColliders:
-    - {fileID: 876397640}
-    - {fileID: 1569561515}
-  - zonesColliders:
-    - {fileID: 1707410589}
-    - {fileID: 721785586}
-  delayMin: 1
-  delayMax: 2
-  localMinMoveRange: 0.5
-  localMaxMoveRange: 1
-  showDebug: 1
-  currentOrientation: 0
 --- !u!1 &1359627917
 GameObject:
   m_ObjectHideFlags: 0
@@ -3523,7 +3504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757136560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1712183, y: 7.0271006, z: -4.345448}
+  m_LocalPosition: {x: 0.1712183, y: 5.65, z: -4.345448}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1707410591}
