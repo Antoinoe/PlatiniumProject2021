@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NPC
   - SecondGoal
+  - Area
   layers:
   - Default
   - TransparentFX
