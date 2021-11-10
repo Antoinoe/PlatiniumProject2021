@@ -107,6 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamNb: 0
   spriteRend: {fileID: 7552138742574040254}
+  isInvisible: 0
 --- !u!114 &5240712458190938917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7552138741966933269}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80116ceeefc9bda4b94791e3643ae09d, type: 3}
   m_Name: 
@@ -155,6 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7552138742574040255}
   - component: {fileID: 7552138742574040254}
+  - component: {fileID: 3583617765562608759}
   m_Layer: 0
   m_Name: Visuel
   m_TagString: Untagged
@@ -228,3 +230,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &3583617765562608759
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7552138742574040252}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e336387adbe0a14095177db0db11e8c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

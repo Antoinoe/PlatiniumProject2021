@@ -54,10 +54,7 @@ public class Attack : MonoBehaviour
         if (controller.ShowGizmos)
         {
             Gizmos.color = Color.red;
-            if (Application.isPlaying)
-            {
-                Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
-            }
+            Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
         }
     }
 

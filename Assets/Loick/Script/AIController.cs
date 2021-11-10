@@ -46,6 +46,11 @@ public class AIController : MonoBehaviour
 
     bool isDead;
 
+    Animator anim;
+
+    Vector3 previous;
+    Vector3 velocity;
+
     //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
     //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
     //Déclaration Variable
@@ -84,6 +89,7 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         color = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         deadColor = new Color(color.r, color.g, color.b, 0);
         aliveColor = new Color(color.r, color.g, color.b, 1);
@@ -120,18 +126,35 @@ public class AIController : MonoBehaviour
         UpdateNav();
     }
 
+    private void FixedUpdate()
+    {
+        velocity = (transform.position - previous) / Time.deltaTime;
+        previous = transform.position;
+
+        if (anim)
+        {
+            if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
+                anim.SetBool("isWalking", true);
+            else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
+                anim.SetBool("isWalking", false);
+        }
+    }
+
     //Debug
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawSphere(previousPoint, 0.1f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(zonePoint, rangePoint);
+        if (showGizmos)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(previousPoint, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(zonePoint, rangePoint);
+        }
     }
 
     //Debug
