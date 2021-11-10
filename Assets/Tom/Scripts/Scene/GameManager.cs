@@ -78,12 +78,6 @@ public class GameManager : MonoBehaviour
 
             //skin
             newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = player.playerSprite;
-
-            //effects
-            if (player.smokeSystem)
-            {
-                GameObject.Instantiate(player.smokeSystem, newPlayer.transform);
-            }
             #endregion
 
             #region IA
