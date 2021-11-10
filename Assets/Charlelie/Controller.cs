@@ -8,12 +8,15 @@ public class Controller : MonoBehaviour
     int playerNum;
     public float speed = 4;
     public Rewired.Player player;
+    Animator anim;
     Vector2 _movementVec;
     InputBehavior ib;
     bool isPhyGUIShown = false;
     PlayerController playerController;
     Attack attack;
     bool showGizmos = true;
+    Vector3 previous;
+    Vector3 velocity;
 
     public bool ShowGizmos
     {
@@ -48,6 +51,7 @@ public class Controller : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         attack = GetComponent<Attack>();
+        anim = transform.GetChild(0).GetComponent<Animator>();
     }
 
     public void SetNum(int val)
@@ -68,10 +72,21 @@ public class Controller : MonoBehaviour
         }
     }
 
+
+    
     private void FixedUpdate()
     {
         Move();
+
+        velocity = (transform.position - previous) / Time.deltaTime;
+        previous = transform.position;
+
+        if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
+            anim.SetBool("isWalking", true);
+        else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
+            anim.SetBool("isWalking", false);
     }
+
 
 
     private void Move()

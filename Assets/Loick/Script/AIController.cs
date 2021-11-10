@@ -34,6 +34,10 @@ public class AIController : MonoBehaviour
     private bool canMove = true;
     public bool areaColliderIsOn = false;
 
+    Color color;
+    Color deadColor;
+    Color aliveColor;
+
     private NavMeshAgent currentEntity = null;
 
     public CircleOrientation.Orientation currentOrientation;
@@ -80,6 +84,9 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        color = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+        deadColor = new Color(color.r, color.g, color.b, 0);
+        aliveColor = new Color(color.r, color.g, color.b, 1);
         currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
         areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
@@ -104,10 +111,11 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        //sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
         if (isDead)
-            sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+            color = deadColor;
         else
-            sprite.sortingOrder = -99999999;
+            color = aliveColor;
         if (feel.IsMoving != canMove) feel.IsMoving = canMove;
         UpdateNav();
     }

@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
             newPlayerController.playerNb = i + 1;
             newPlayerController.teamNb = i + 1;
-            teams[i + 1] = 1;
+            teams[i] = i;
 
             //skin
             newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = players[i].playerSprite;
@@ -260,7 +260,7 @@ public class GameManager : MonoBehaviour
 
         if (!inArea)
         {
-            Debug.Log("Random Point Reset");
+            //Debug.Log("Random Point Reset");
             int randomArea = Random.Range(0, areaColliders.Count);
             if (areaColliders.Count > 0)
             {
