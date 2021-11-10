@@ -61,6 +61,7 @@ public class Controller : MonoBehaviour
         ib = player.controllers.maps.GetInputBehavior(0);
         Decceleration = ib.digitalAxisGravity;
         Acceleration = ib.digitalAxisSensitivity;
+        anim.SetFloat("playerNbr", playerNum);
     }
 
     void Update()

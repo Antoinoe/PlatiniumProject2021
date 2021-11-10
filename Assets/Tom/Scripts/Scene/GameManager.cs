@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
-            newPlayerController.playerNb = i + 1;
+            newPlayerController.playerNb = i;
             newPlayerController.teamNb = i + 1;
             teams[i] = i;
 
