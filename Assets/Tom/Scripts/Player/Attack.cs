@@ -117,7 +117,7 @@ public class Attack : MonoBehaviour
                 PlayerController killedPlayerScript = target.GetComponent<PlayerController>();
 
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
-
+                
                 playerController.gameManager.Shake();
                 playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
 

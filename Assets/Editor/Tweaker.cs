@@ -75,7 +75,7 @@ public class Tweaker : EditorWindow
         { "IAPerPlayer", new int() },
 
     });
-    static TweakPart player = new TweakPart("Player", ok, "Tooltip", new Dictionary<string, object>() 
+    static TweakPart player = new TweakPart("Player", ok, "Tooltip", new Dictionary<string, object>()
     {
         { "ShowGizmos", new bool() },
         { "Speed", new float() },
@@ -83,7 +83,7 @@ public class Tweaker : EditorWindow
         { "Decceleration", new float() },
         { "KillCooldown", new float() },
         { "KillCooldownOnAI", new float() },
-        { "BoxLength", new float() },
+        { "BoxLength", new Vector2() },
 
     });
     static TweakPart ia = new TweakPart("IA", ok, "Tooltip", new Dictionary<string, object>()
@@ -127,7 +127,7 @@ public class Tweaker : EditorWindow
     void OnEnable()
     {
         oldColor = GUI.backgroundColor;
-        
+
         gameManagerGo = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Charlelie/Prefabs/GameManager.prefab", typeof(GameObject));
         playerGo = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Charlelie/Prefabs/Player.prefab", typeof(GameObject));
         iaGo = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Loick/IA.prefab", typeof(GameObject));
@@ -136,7 +136,7 @@ public class Tweaker : EditorWindow
         playerController = playerGo.GetComponent<PlayerController>();
         controller = playerGo.GetComponent<Controller>();
         attack = playerGo.GetComponent<Attack>();
-
+        Debug.Log(gameManager);
         aiController = iaGo.GetComponent<AIController>();
         navAgent = iaGo.GetComponent<NavMeshAgent>();
 
@@ -145,7 +145,7 @@ public class Tweaker : EditorWindow
 
     void InitVariables()
     {
-        //Debug.Log(gameManager.playerNbrs + "  " + gameManager.IAPerPlayer);
+        Debug.Log(gameManager.playerNbrs + "  " + gameManager.IAPerPlayer);
         switch (gameManager.playerNbrs)
         {
             case 1:
@@ -221,7 +221,7 @@ public class Tweaker : EditorWindow
             game.variables["NbrOfPlayers"] = (NbrOfPlayers)EditorGUILayout.EnumPopup((NbrOfPlayers)game.variables["NbrOfPlayers"]);
             EditorGUILayout.PrefixLabel("IA per players");
             game.variables["IAPerPlayer"] = EditorGUILayout.IntField((int)game.variables["IAPerPlayer"]);
-           
+
             EditorGUI.indentLevel--;
 
             if (EditorGUI.EndChangeCheck())
@@ -264,14 +264,14 @@ public class Tweaker : EditorWindow
             EditorGUILayout.PrefixLabel("Attack Cooldown when kill AI");
             player.variables["KillCooldownOnAI"] = EditorGUILayout.Slider((float)player.variables["KillCooldownOnAI"], 0, 10);
             EditorGUILayout.PrefixLabel("Attack Range");
-            player.variables["BoxLength"] = EditorGUILayout.Slider((float)player.variables["BoxLength"], 0, 10);
+            player.variables["BoxLength"] = EditorGUILayout.Vector2Field("BoxLength", (Vector2)player.variables["BoxLength"]);
 
             EditorGUI.indentLevel--;
 
             if (Application.isPlaying)
-                foreach(Controller cont in FindObjectsOfType<Controller>())
-                    cont.OnValuesChanged((bool)player.variables["ShowGizmos"], (float)player.variables["Speed"], (float)player.variables["Acceleration"], (float)player.variables["Decceleration"], 
-                        (float)player.variables["KillCooldown"], (float)player.variables["KillCooldownOnAI"], 
+                foreach (Controller cont in FindObjectsOfType<Controller>())
+                    cont.OnValuesChanged((bool)player.variables["ShowGizmos"], (float)player.variables["Speed"], (float)player.variables["Acceleration"], (float)player.variables["Decceleration"],
+                        (float)player.variables["KillCooldown"], (float)player.variables["KillCooldownOnAI"],
                         (Vector2)player.variables["BoxLength"]);
 
             if (EditorGUI.EndChangeCheck())
@@ -303,7 +303,7 @@ public class Tweaker : EditorWindow
             EditorGUILayout.PrefixLabel("Speed");
             ia.variables["Speed"] = EditorGUILayout.Slider((float)ia.variables["Speed"], 0, 10);
             Vector2 vecSlider = new Vector2(((Vector2)ia.variables["MoveRange"]).x, ((Vector2)ia.variables["MoveRange"]).y);
-            EditorGUILayout.PrefixLabel("Move Range");           
+            EditorGUILayout.PrefixLabel("Move Range");
             EditorGUILayout.MinMaxSlider(ref vecSlider.x, ref vecSlider.y, 0, 10);
             EditorGUILayout.Vector2Field("Range: ", new Vector2(vecSlider.x, vecSlider.y));
             ia.variables["MoveRange"] = vecSlider;
@@ -439,7 +439,7 @@ public class Tweaker : EditorWindow
         if (GUILayout.Button("Save"))
             SaveChanges();
 
-        
+
     }
 
     public override void SaveChanges()
@@ -460,25 +460,25 @@ public class Tweaker : EditorWindow
 
         switch (game.variables["NbrOfPlayers"])
         {
-                case NbrOfPlayers.ONE:
-                    pNbr = 1;
-                    break;
+            case NbrOfPlayers.ONE:
+                pNbr = 1;
+                break;
 
-                case NbrOfPlayers.TWO:
-                    pNbr = 2;
-                    break;
+            case NbrOfPlayers.TWO:
+                pNbr = 2;
+                break;
 
-                case NbrOfPlayers.THREE:
-                    pNbr = 3;
-                    break;
+            case NbrOfPlayers.THREE:
+                pNbr = 3;
+                break;
 
-                case NbrOfPlayers.FOUR:
-                    pNbr = 4;
-                    break;
+            case NbrOfPlayers.FOUR:
+                pNbr = 4;
+                break;
 
-                default:
-                    pNbr = 2;
-                    break;
+            default:
+                pNbr = 2;
+                break;
         }
 
         FindObjectOfType<GameManager>().OnValuesChanged(pNbr, (int)game.variables["IAPerPlayer"]);
