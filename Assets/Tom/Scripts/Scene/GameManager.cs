@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         iATeams = new List<IAIdentity[]>();
 
         Instantiate(inputManager);
-        foreach (Player player in players)
+        for (int i = 0; i < playerNbrs; i++)
         {
             #region Player
             //instancie joueur
@@ -72,12 +72,12 @@ public class GameManager : MonoBehaviour
 
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
-            newPlayerController.playerNb = player.playerNb;
-            newPlayerController.teamNb = player.playerNb;
-            teams[player.playerNb] = 1;
+            newPlayerController.playerNb = i + 1;
+            newPlayerController.teamNb = i + 1;
+            teams[i + 1] = 1;
 
             //skin
-            newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = player.playerSprite;
+            newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = players[i].playerSprite;
             #endregion
 
             #region IA
@@ -85,14 +85,14 @@ public class GameManager : MonoBehaviour
             IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
 
             //Create each AIs
-            for (int i = 0; i < iAPerPlayer; i++)
+            for (int j = 0; j < iAPerPlayer; j++)
             {
                 Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);
                 GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), iAPrefab.transform.rotation);
 
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
-                iAIdentity.teamNb = player.playerNb;
-                iAIdentity.spriteRend.sprite = player.playerSprite;
+                iAIdentity.teamNb = i +1;
+                iAIdentity.spriteRend.sprite = players[i].playerSprite;
 
                 iATeam[i] = iAIdentity;
             }
