@@ -35,6 +35,11 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer spriteRend;
 
+    [SerializeField] private Sprite invisibleSprite;
+
+    //bushes
+    private bool invisible = false;
+
     void Start()
     {
         controller = GetComponent<Controller>();
@@ -68,7 +73,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Team " + nb + " assimilated player " + playerNb);
 
         Sprite newSprite = gameManager.players[nb].playerSprite;
-        spriteRend.sprite = newSprite;
+
+        if (!invisible)
+        {
+            spriteRend.sprite = newSprite;
+        }
         gameManager.WinCheck(teamNb, nb);
 
         teamNb = nb;
@@ -79,6 +88,36 @@ public class PlayerController : MonoBehaviour
         {
             iA.teamNb = teamNb;
             iA.spriteRend.sprite = newSprite; 
+        }
+        #endregion
+    }
+
+    public void SetInvisibility(bool state)
+    {
+        #region Go invisible
+        if (state)
+        {
+            spriteRend.sprite = invisibleSprite;
+            //debug
+            Color spriteColor = spriteRend.color;
+            spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0.25f);
+            spriteRend.color = spriteColor;
+            //end debug
+            invisible = true;
+        }
+        #endregion
+
+        #region Become Visible again
+        else
+        {
+            Sprite newSprite = gameManager.players[teamNb].playerSprite;
+            spriteRend.sprite = newSprite;
+            //debug
+            Color spriteColor = spriteRend.color;
+            spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 1f);
+            spriteRend.color = spriteColor;
+            //end debug
+            invisible = false;
         }
         #endregion
     }
