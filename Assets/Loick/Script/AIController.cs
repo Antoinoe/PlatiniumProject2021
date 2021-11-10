@@ -47,6 +47,34 @@ public class AIController : MonoBehaviour
     //Déclaration Variable
     private SpriteRenderer sprite;
 
+    bool showGizmos = true;
+
+    public bool ShowGizmos
+    {
+        get { return showGizmos; }
+        set { showGizmos = value; }
+    }
+
+    public float Speed
+    {
+        get { return GetComponent<NavMeshAgent>().speed; }
+        set { GetComponent<NavMeshAgent>().speed = value; }
+    }
+
+    #region ChangeVariables
+    public void OnValuesChanged
+    (bool _showGizmo, float _speed,
+    Vector2 _moveRange, Vector2 _moveTime)
+    {
+        ShowGizmos = _showGizmo;
+        Speed = _speed;
+        localMinMoveRange = _moveRange.x;
+        localMaxMoveRange = _moveRange.y;
+        delayMin = _moveTime.x;
+        delayMax = _moveTime.y;
+    }
+
+    #endregion
 
     #region UnityFunction
 

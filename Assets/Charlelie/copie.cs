@@ -1,0 +1,265 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class copie : MonoBehaviour
+{
+    NavMeshAgent agent;
+
+    private Vector2 zonePoint = Vector2.zero;
+
+    private Vector2 previousPoint = Vector2.zero;
+
+    [Range(0.1f, 1)] public float rangePoint = 0.25f;
+
+    [SerializeField] private int areaIndex = 0;
+    [SerializeField] private List<AreaCollider> currentArea;
+
+    public float delayMin = 1;
+    private float delay = 0;
+    public float delayMax = 2;
+
+    public float localMinMoveRange = 1;
+    private float randomRange = 0;
+    public float localMaxMoveRange = 5;
+
+    public bool showDebug = false;
+    private bool hasArriveToLocalPoint = false;
+    private bool isWating = false;
+    private bool canMove = true;
+    bool showGizmos = true;
+
+    public bool ShowGizmos
+    {
+        get { return showGizmos; }
+        set { showGizmos = value; }
+    }
+
+    public float Speed
+    {
+        get { return GetComponent<NavMeshAgent>().speed; }
+        set { GetComponent<NavMeshAgent>().speed = value; }
+    }
+
+    private NavMeshAgent currentEntity = null;
+
+    public CircleOrientation.Orientation currentOrientation;
+
+    EntityMoveFeel feel;
+
+    bool isDead;
+
+    //Code pour que les sprites passent deriere les autres éléments en fonction de leurs hauteur Y
+    //Il faut le metrre dans les joueurs et les IA et crée un autre Sorting layer puis ajouter IA et Player dans le nouveau sorting layer
+    //Déclaration Variable
+    private SpriteRenderer sprite;
+
+    #region ChangeVariables
+    public void OnValuesChanged
+    (bool _showGizmo, float _speed,
+    Vector2 _moveRange, Vector2 _moveTime)
+    {
+        ShowGizmos = _showGizmo;
+        Speed = _speed;
+        localMinMoveRange = _moveRange.x;
+        localMaxMoveRange = _moveRange.y;
+        delayMin = _moveTime.x;
+        delayMax = _moveTime.y;
+    }
+
+    #endregion
+
+    #region UnityFunction
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        currentEntity = GetComponent<NavMeshAgent>();
+        currentEntity.updateRotation = false;
+        currentEntity.updateUpAxis = false;
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        zonePoint = transform.position;
+        randomRange = GetRandomRange();
+        /*zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+            currentOrientation, GetCurrentAreaCollider().zonesColliders);*/
+        //currentEntity.SetDestination(zonePoint);
+        feel = GetComponent<EntityMoveFeel>();
+    }
+
+    private void Update()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        if (isDead)
+            sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        else
+            sprite.sortingOrder = -99999999;
+        if (feel.IsMoving != canMove) feel.IsMoving = canMove;
+        //UpdateNav();
+    }
+
+    //Debug
+
+    void OnDrawGizmos()
+    {
+        if (showGizmos)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(previousPoint, localMaxMoveRange);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(previousPoint, localMinMoveRange);
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawSphere(previousPoint, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(zonePoint, rangePoint);
+        }
+    }
+
+    //Debug
+
+    private void OnGUI()
+    {
+        if (showDebug)
+        {
+            GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
+            GUILayout.Label("Is waiting : " + isWating);
+            GUILayout.Label("Delay : " + delay);
+            GUILayout.Label("Random Range : " + randomRange);
+        }
+    }
+
+    #endregion
+
+    #region Kill
+
+    public void OnKilled()
+    {
+        isDead = true;
+        GetComponent<BoxCollider2D>().enabled = false;
+        StartCoroutine(Revive());
+    }
+
+    IEnumerator Revive()
+    {
+        yield return new WaitForSeconds(3.0f);
+        OnRevive();
+        yield return null;
+    }
+
+    void OnRevive()
+    {
+        isDead = false;
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    #endregion
+
+    #region Function Movement
+
+    //Vérifie si L'IA atteint le point demandé
+
+    public void UpdateNav()
+    {
+        if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
+        {
+            previousPoint = transform.position;
+            randomRange = GetRandomRange();
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation,
+                GetCurrentAreaCollider().zonesColliders);
+
+            if (!isWating)
+            {
+                StartCoroutine(Delay());
+            }
+        }
+
+    }
+
+    public void SetIndexArea(int newIndex)
+    {
+        areaIndex = newIndex;
+    }
+
+    //Retourne un nombre aléatoire entre localMaxMoveRange et localMinMoveRange
+
+    private float GetRandomRange()
+    {
+        return Random.Range(localMinMoveRange, localMaxMoveRange);
+    }
+
+    #endregion
+
+    #region Zone Area Function
+
+    public AreaCollider GetCurrentAreaCollider()
+    {
+        return currentArea[areaIndex];
+    }
+
+    #endregion
+
+    // Definit un temps d'arret ou l'IA ne bouge pas
+
+    #region Function Delay
+
+    public IEnumerator Delay()
+    {
+        canMove = false;
+        isWating = true;
+        delay = Random.Range(delayMin, delayMax);
+        yield return new WaitForSeconds(delay);
+        currentEntity.SetDestination(zonePoint);
+        canMove = true;
+        isWating = false;
+        yield return null;
+    }
+
+    public float GetDelay()
+    {
+        return delay;
+    }
+
+    #endregion
+
+    public class CircleOrientation
+    {
+        public CircleOrientation(Orientation currentOrientation)
+        {
+            switch (currentOrientation)
+            {
+                case Orientation.UpRight:
+                    angleMin = 0;
+                    angleMax = Mathf.PI / 2;
+                    break;
+                case Orientation.UpLeft:
+                    angleMin = Mathf.PI / 2;
+                    angleMax = Mathf.PI;
+                    break;
+                case Orientation.DownLeft:
+                    angleMin = Mathf.PI;
+                    angleMax = 3 * Mathf.PI / 2;
+                    break;
+                case Orientation.DownRight:
+                    angleMin = 3 * Mathf.PI / 2;
+                    angleMax = Mathf.PI * 2;
+                    break;
+            }
+        }
+
+        public enum Orientation
+        {
+            UpLeft,
+            UpRight,
+            DownLeft,
+            DownRight
+        }
+
+        public float angleMin;
+        public float angleMax;
+    }
+
+    [System.Serializable]
+    public class AreaCollider
+    {
+        public List<Collider2D> zonesColliders;
+    }
+}
