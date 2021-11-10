@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
     //Camera Shake
     public event Action OnCameraShake;
 
+    [Header("Bushes")]
+    public Sprite invisibleSprite;
+
     public int IAPerPlayer
     {
         get { return iAPerPlayer; }

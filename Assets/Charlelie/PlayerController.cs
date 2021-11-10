@@ -35,8 +35,6 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer spriteRend;
 
-    [SerializeField] private Sprite invisibleSprite;
-
     //bushes
     private bool invisible = false;
 
@@ -87,7 +85,10 @@ public class PlayerController : MonoBehaviour
         foreach (IAIdentity iA in gameManager.iATeams[playerNb])
         {
             iA.teamNb = teamNb;
-            iA.spriteRend.sprite = newSprite; 
+            if (!iA.isInvisible)
+            {
+                iA.spriteRend.sprite = newSprite;
+            }
         }
         #endregion
     }
@@ -97,7 +98,7 @@ public class PlayerController : MonoBehaviour
         #region Go invisible
         if (state)
         {
-            spriteRend.sprite = invisibleSprite;
+            spriteRend.sprite = gameManager.invisibleSprite;
             //debug
             Color spriteColor = spriteRend.color;
             spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0.25f);
