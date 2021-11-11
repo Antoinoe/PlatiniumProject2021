@@ -144,7 +144,7 @@ public class Tweaker : EditorWindow
 
     void InitVariables()
     {
-        Debug.Log(gameManager.playerNbrs + "  " + gameManager.IAPerPlayer);
+        //Debug.Log(gameManager.playerNbrs + "  " + gameManager.IAPerPlayer);
         switch (gameManager.playerNbrs)
         {
             case 1:

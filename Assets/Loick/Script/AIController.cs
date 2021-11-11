@@ -11,6 +11,11 @@ using Random = UnityEngine.Random;
 public class AIController : MonoBehaviour
 {
     IAIdentity iAIdentity;
+    NavMeshAgent agent;
+
+    float speed;
+
+    float reviveTime = 3.0f;
 
     private Vector2 zonePoint = Vector2.zero;
 
@@ -67,8 +72,14 @@ public class AIController : MonoBehaviour
 
     public float Speed
     {
-        get { return GetComponent<NavMeshAgent>().speed; }
-        set { GetComponent<NavMeshAgent>().speed = value; }
+        get { return speed;/*GetComponent<NavMeshAgent>().speed;*/ }
+        set { speed = value; /*GetComponent<NavMeshAgent>().speed = value;*/ }
+    }
+
+    public float ReviveTime
+    {
+        get { return reviveTime; }
+        set { reviveTime = value; }
     }
 
     #region ChangeVariables
@@ -82,6 +93,8 @@ public class AIController : MonoBehaviour
         localMaxMoveRange = _moveRange.y;
         delayMin = _moveTime.x;
         delayMax = _moveTime.y;
+
+        agent.speed = Speed;
     }
 
     #endregion
@@ -91,11 +104,12 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         iAIdentity = GetComponent<IAIdentity>();
+        agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("playerNbr", iAIdentity.teamNb);
-        color = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
-        deadColor = new Color(color.r, color.g, color.b, 0);
-        aliveColor = new Color(color.r, color.g, color.b, 1);
+        color = GetComponentInChildren<SpriteRenderer>().color;
+        deadColor = new Color(1, 1, 1, 0);
+        aliveColor = new Color(1, 1, 1, 1);
         currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
         areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
@@ -119,12 +133,7 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        //sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
-        if (isDead)
-            color = deadColor;
-        else
-            color = aliveColor;
+        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
         if (feel.IsMoving != canMove) feel.IsMoving = canMove;
         UpdateNav();
     }
@@ -171,6 +180,9 @@ public class AIController : MonoBehaviour
 
     public void OnKilled()
     {
+        //Debug.Log("Dead");
+        agent.speed = 0;
+        GetComponentInChildren<SpriteRenderer>().color = deadColor;
         isDead = true;
         GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(Revive());
@@ -178,13 +190,16 @@ public class AIController : MonoBehaviour
 
     IEnumerator Revive()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(reviveTime);
         OnRevive();
         yield return null;
     }
 
     void OnRevive()
     {
+        //Debug.Log("Revive");
+        agent.speed = Speed;
+        GetComponentInChildren<SpriteRenderer>().color = aliveColor;
         isDead = false;
         GetComponent<BoxCollider2D>().enabled = true;
     }
