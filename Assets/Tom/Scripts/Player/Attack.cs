@@ -51,7 +51,7 @@ public class Attack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (controller.ShowGizmos)
+        if (Application.isPlaying && controller.ShowGizmos)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));

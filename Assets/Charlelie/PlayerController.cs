@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRend;
 
     //bushes
-    private bool invisible = false;
+    private int invisible = 0;
 
     void Start()
     {
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
         Sprite newSprite = gameManager.players[nb].playerSprite;
 
-        if (!invisible)
+        if (invisible == 0)
         {
             spriteRend.sprite = newSprite;
         }
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         foreach (IAIdentity iA in gameManager.iATeams[playerNb])
         {
             iA.teamNb = teamNb;
-            if (!iA.isInvisible)
+            if (iA.isInvisible == 0)
             {
                 iA.spriteRend.sprite = newSprite;
             }
@@ -98,27 +98,33 @@ public class PlayerController : MonoBehaviour
         #region Go invisible
         if (state)
         {
-            spriteRend.sprite = gameManager.invisibleSprite;
-            //debug
-            Color spriteColor = spriteRend.color;
-            spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0.25f);
-            spriteRend.color = spriteColor;
-            //end debug
-            invisible = true;
+            invisible += 1;
+            if(invisible == 1)
+            {
+                spriteRend.sprite = gameManager.invisibleSprite;
+                //debug
+                Color spriteColor = spriteRend.color;
+                spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0.25f);
+                spriteRend.color = spriteColor;
+                //end debug
+            }
         }
         #endregion
 
         #region Become Visible again
         else
         {
-            Sprite newSprite = gameManager.players[teamNb].playerSprite;
-            spriteRend.sprite = newSprite;
-            //debug
-            Color spriteColor = spriteRend.color;
-            spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 1f);
-            spriteRend.color = spriteColor;
-            //end debug
-            invisible = false;
+            invisible += -1;
+            if(invisible == 0)
+            {
+                Sprite newSprite = gameManager.players[teamNb].playerSprite;
+                spriteRend.sprite = newSprite;
+                //debug
+                Color spriteColor = spriteRend.color;
+                spriteColor = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 1f);
+                spriteRend.color = spriteColor;
+                //end debug
+            }
         }
         #endregion
     }
