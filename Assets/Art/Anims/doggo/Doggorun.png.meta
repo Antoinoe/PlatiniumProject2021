@@ -1,0 +1,816 @@
+fileFormatVersion: 2
+guid: 2a27b136bdbd22644a2d79497cfe7377
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1158215180390253371
+    second: Doggorun_0
+  - first:
+      213: 6200043856029482732
+    second: Doggorun_1
+  - first:
+      213: 6849176520893841766
+    second: Doggorun_2
+  - first:
+      213: -441139177134839349
+    second: Doggorun_3
+  - first:
+      213: 1465798515238284481
+    second: Doggorun_4
+  - first:
+      213: -166159719127409802
+    second: Doggorun_5
+  - first:
+      213: 3643347463772558493
+    second: Doggorun_6
+  - first:
+      213: -1565262500081905409
+    second: Doggorun_7
+  - first:
+      213: -1818931219841012974
+    second: Doggorun_8
+  - first:
+      213: -3537038446716199142
+    second: Doggorun_9
+  - first:
+      213: 7243230263903999624
+    second: Doggorun_10
+  - first:
+      213: 642357113164591329
+    second: Doggorun_11
+  - first:
+      213: 5698057624556670914
+    second: Doggorun_12
+  - first:
+      213: 6210057149994109607
+    second: Doggorun_13
+  - first:
+      213: -6370628126782090233
+    second: Doggorun_14
+  - first:
+      213: -8634330743656723534
+    second: Doggorun_15
+  - first:
+      213: 3207050222289000202
+    second: Doggorun_16
+  - first:
+      213: 1805528059164625705
+    second: Doggorun_17
+  - first:
+      213: -8783815157386423690
+    second: Doggorun_18
+  - first:
+      213: 3698549219486640161
+    second: Doggorun_19
+  - first:
+      213: -1690753607346603241
+    second: Doggorun_20
+  - first:
+      213: 3210213003180221851
+    second: Doggorun_21
+  - first:
+      213: -1874863922804356114
+    second: Doggorun_22
+  - first:
+      213: 6953761495058100145
+    second: Doggorun_23
+  - first:
+      213: -8492212136109442823
+    second: Doggorun_24
+  - first:
+      213: -6875895736599182890
+    second: Doggorun_25
+  - first:
+      213: -3994779355429246247
+    second: Doggorun_26
+  - first:
+      213: 4495210615843281493
+    second: Doggorun_27
+  - first:
+      213: -5063568651510371115
+    second: Doggorun_28
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 300
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Doggorun_0
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 4447
+        width: 612
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ccbf5f0e613defe0800000000000000
+      internalID: -1158215180390253371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_1
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 4443
+        width: 612
+        height: 552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceefa7ea90bfa0650800000000000000
+      internalID: 6200043856029482732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_2
+      rect:
+        serializedVersion: 2
+        x: 2702
+        y: 4443
+        width: 628
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 661c2dbd1c92d0f50800000000000000
+      internalID: 6849176520893841766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_3
+      rect:
+        serializedVersion: 2
+        x: 3862
+        y: 4447
+        width: 644
+        height: 552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9ae527142c0e9f0800000000000000
+      internalID: -441139177134839349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_4
+      rect:
+        serializedVersion: 2
+        x: 5026
+        y: 4447
+        width: 672
+        height: 552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cca215cbff875410800000000000000
+      internalID: 1465798515238284481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_5
+      rect:
+        serializedVersion: 2
+        x: 6194
+        y: 4447
+        width: 700
+        height: 551
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67b9e65ad9ea1bdf0800000000000000
+      internalID: -166159719127409802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_6
+      rect:
+        serializedVersion: 2
+        x: 7366
+        y: 4447
+        width: 724
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d94db7b0735cf8230800000000000000
+      internalID: 3643347463772558493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_7
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 3377
+        width: 720
+        height: 546
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0d06e9c02174ae0800000000000000
+      internalID: -1565262500081905409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_8
+      rect:
+        serializedVersion: 2
+        x: 1570
+        y: 3372
+        width: 720
+        height: 547
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21b228251bbd1c6e0800000000000000
+      internalID: -1818931219841012974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_9
+      rect:
+        serializedVersion: 2
+        x: 2738
+        y: 3367
+        width: 695
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1fd492d54ae9eec0800000000000000
+      internalID: -3537038446716199142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_10
+      rect:
+        serializedVersion: 2
+        x: 3906
+        y: 3367
+        width: 664
+        height: 544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8865b5a7c8f158460800000000000000
+      internalID: 7243230263903999624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_11
+      rect:
+        serializedVersion: 2
+        x: 5070
+        y: 3367
+        width: 636
+        height: 544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e0fe1d146c1ae800800000000000000
+      internalID: 642357113164591329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_12
+      rect:
+        serializedVersion: 2
+        x: 6230
+        y: 3367
+        width: 624
+        height: 548
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf086d4831931f40800000000000000
+      internalID: 5698057624556670914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_13
+      rect:
+        serializedVersion: 2
+        x: 7386
+        y: 3367
+        width: 612
+        height: 552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aa064c531e8e2650800000000000000
+      internalID: 6210057149994109607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_14
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 2303
+        width: 604
+        height: 547
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7049a03c87bf697a0800000000000000
+      internalID: -6370628126782090233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_15
+      rect:
+        serializedVersion: 2
+        x: 1550
+        y: 2306
+        width: 611
+        height: 544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bb4b1f6fe1bc2880800000000000000
+      internalID: -8634330743656723534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_16
+      rect:
+        serializedVersion: 2
+        x: 2710
+        y: 2302
+        width: 619
+        height: 536
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a079f5c7f2bb18c20800000000000000
+      internalID: 3207050222289000202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_17
+      rect:
+        serializedVersion: 2
+        x: 3870
+        y: 2299
+        width: 628
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92b028624368e0910800000000000000
+      internalID: 1805528059164625705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_18
+      rect:
+        serializedVersion: 2
+        x: 5034
+        y: 2299
+        width: 648
+        height: 515
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6725a4b27ae991680800000000000000
+      internalID: -8783815157386423690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_19
+      rect:
+        serializedVersion: 2
+        x: 6195
+        y: 2302
+        width: 667
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 128accb5be2e35330800000000000000
+      internalID: 3698549219486640161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_20
+      rect:
+        serializedVersion: 2
+        x: 7356
+        y: 2302
+        width: 681
+        height: 488
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71b35675d8c3988e0800000000000000
+      internalID: -1690753607346603241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_21
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 1226
+        width: 703
+        height: 496
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b95a5ebc7b7fc8c20800000000000000
+      internalID: 3210213003180221851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_22
+      rect:
+        serializedVersion: 2
+        x: 1582
+        y: 1226
+        width: 720
+        height: 504
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeb0d0712352bf5e0800000000000000
+      internalID: -1874863922804356114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_23
+      rect:
+        serializedVersion: 2
+        x: 2743
+        y: 1226
+        width: 703
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf2ab5bc39b08060800000000000000
+      internalID: 6953761495058100145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_24
+      rect:
+        serializedVersion: 2
+        x: 3898
+        y: 1230
+        width: 688
+        height: 516
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f87fed4e0a952a80800000000000000
+      internalID: -8492212136109442823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_25
+      rect:
+        serializedVersion: 2
+        x: 5050
+        y: 1230
+        width: 676
+        height: 524
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d10263f149e390a0800000000000000
+      internalID: -6875895736599182890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_26
+      rect:
+        serializedVersion: 2
+        x: 6202
+        y: 1234
+        width: 660
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9da639b6751bf88c0800000000000000
+      internalID: -3994779355429246247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_27
+      rect:
+        serializedVersion: 2
+        x: 7352
+        y: 1234
+        width: 638
+        height: 540
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55a57eb0d32326e30800000000000000
+      internalID: 4495210615843281493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doggorun_28
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 162
+        width: 627
+        height: 544
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dcabeea3279ab9b0800000000000000
+      internalID: -5063568651510371115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -131,7 +131,7 @@ public class Attack : MonoBehaviour
             else if (target.CompareTag("NPC"))
             {
                 //Kill NPC
-                Debug.Log("NPC killed by Team " + playerController.teamNb);
+                //Debug.Log("NPC killed by Team " + playerController.teamNb);
                 target.GetComponent<AIController>().OnKilled();
 
                 playerController.gameManager.Shake();

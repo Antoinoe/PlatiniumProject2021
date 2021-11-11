@@ -32,7 +32,7 @@ public class CameraShake : MonoBehaviour
 
     public void Shake()
     {
-        Debug.Log("shake !");
+        //Debug.Log("shake !");
 
         if (!isShaking)
         {
@@ -57,11 +57,11 @@ public class CameraShake : MonoBehaviour
 
     private IEnumerator IReset(Vector3 resetPos)
     {
-        Debug.Log("start reset");
+        //Debug.Log("start reset");
         isShaking = true;
         yield return new WaitForSeconds(shakeDur);
 
-        Debug.Log("end reset");
+        //Debug.Log("end reset");
         isShaking = false;
         transform.position = resetPos;
 

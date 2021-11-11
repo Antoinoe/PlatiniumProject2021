@@ -128,7 +128,7 @@ public class Tweaker : EditorWindow
     {
         oldColor = GUI.backgroundColor;
 
-        gameManagerGo = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Charlelie/Prefabs/GameManager.prefab", typeof(GameObject));
+        gameManagerGo = /*(GameObject)AssetDatabase.LoadAssetAtPath("Assets/Charlelie/Prefabs/GameManager.prefab", typeof(GameObject))*/FindObjectOfType<GameManager>().gameObject;
         playerGo = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Charlelie/Prefabs/Player.prefab", typeof(GameObject));
         iaGo = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/Loick/IA.prefab", typeof(GameObject));
 
@@ -136,7 +136,6 @@ public class Tweaker : EditorWindow
         playerController = playerGo.GetComponent<PlayerController>();
         controller = playerGo.GetComponent<Controller>();
         attack = playerGo.GetComponent<Attack>();
-        Debug.Log(gameManager);
         aiController = iaGo.GetComponent<AIController>();
         navAgent = iaGo.GetComponent<NavMeshAgent>();
 

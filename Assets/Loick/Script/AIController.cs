@@ -130,14 +130,6 @@ public class AIController : MonoBehaviour
     {
         velocity = (transform.position - previous) / Time.deltaTime;
         previous = transform.position;
-
-        if (anim)
-        {
-            if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
-                anim.SetBool("isWalking", true);
-            else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
-                anim.SetBool("isWalking", false);
-        }
     }
 
     //Debug
@@ -204,6 +196,7 @@ public class AIController : MonoBehaviour
     {
         if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
         {
+            if (anim) anim.SetBool("isWalking", false);
             previousPoint = transform.position;
             randomRange = GetRandomRange();
             if (areaColliderIsOn)
@@ -259,6 +252,7 @@ public class AIController : MonoBehaviour
         currentEntity.SetDestination(zonePoint);
         canMove = true;
         isWating = false;
+        if (anim) anim.SetBool("isWalking", true);
         yield return null;
     }
 
