@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
             newPlayerController.playerNb = i;
-            newPlayerController.teamNb = i + 1;
+            newPlayerController.teamNb = i;
             teams[i] = i;
 
             //skin

@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
 {
+    IAIdentity iAIdentity;
 
     private Vector2 zonePoint = Vector2.zero;
 
@@ -89,7 +90,9 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        iAIdentity = GetComponent<IAIdentity>();
         anim = GetComponentInChildren<Animator>();
+        anim.SetFloat("playerNbr", iAIdentity.teamNb);
         color = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         deadColor = new Color(color.r, color.g, color.b, 0);
         aliveColor = new Color(color.r, color.g, color.b, 1);
