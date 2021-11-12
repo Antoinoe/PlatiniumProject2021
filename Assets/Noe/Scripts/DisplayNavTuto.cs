@@ -12,6 +12,7 @@ public class DisplayNavTuto : MonoBehaviour
     void Start()
     {
         InitializeNav();
+        UpdateStateOfSquares();
     }
 
     // Update is called once per frame
@@ -24,15 +25,15 @@ public class DisplayNavTuto : MonoBehaviour
     {
         for(int i = 0; i < squares.Length; i++)
         {
-            if (i <= selector.GetComponent<Selector>().it)
+            if (i != selector.GetComponent<Selector>().it)
             {
-                //ON
-                squares[i].transform.GetChild(0).GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1), selector.GetComponent<Selector>().swapDuration);
+                squares[i].gameObject.GetComponent<RectTransform>().DOScale(new Vector3(0.8f,0.8f,0.8f), selector.GetComponent<Selector>().swapDuration);
+                squares[i].transform.GetChild(0).GetComponent<RectTransform>().DOScale(new Vector3(0, 0, 0), selector.GetComponent<Selector>().swapDuration);
             }
             else
             {
-                //OF
-                squares[i].transform.GetChild(0).GetComponent<RectTransform>().DOScale(new Vector3(0,0,0), selector.GetComponent<Selector>().swapDuration);
+                squares[i].gameObject.GetComponent<RectTransform>().DOScale(new Vector3(1,1,1), selector.GetComponent<Selector>().swapDuration);
+                squares[i].transform.GetChild(0).GetComponent<RectTransform>().DOScale(new Vector3(1, 1, 1), selector.GetComponent<Selector>().swapDuration);
             }
         }
     }

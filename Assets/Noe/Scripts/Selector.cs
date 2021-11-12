@@ -11,6 +11,7 @@ public class Selector : MonoBehaviour
     [HideInInspector]
     public GameObject[] items;
     private bool haveToWait = true;
+    public Animator lArrowAnim, rArrowAnim;
     [SerializeField] public float swapDuration;
     [SerializeField] [Range(0.5f,1.5f)] private float mapScaleMin, mapScaleMax;
     private bool canSwitch = true;
@@ -28,7 +29,7 @@ public class Selector : MonoBehaviour
         XdistToGo = items[1].GetComponent<RectTransform>().localPosition.x - items[0].GetComponent<RectTransform>().localPosition.x;
         //reset the scale of the maps in the map menu
         if (thisMenu == Menu.MAP)
-            ScaleItems();
+            ScaleItems(); 
     }
 
     // Update is called once per frame
@@ -38,15 +39,23 @@ public class Selector : MonoBehaviour
         if (MenuManager.Instance.actualMenuOn == thisMenu)
         {
             if (Input.GetKey(KeyCode.D) && canSwitch) //right
-            {
-                print("next");
                 StartCoroutine(Change(false));
-            }
             if (Input.GetKey(KeyCode.Q) && canSwitch) //left
-            {
-                print("prev");
                 StartCoroutine(Change(true));
+
+            if(thisMenu == Menu.MAP)
+            {
+                if (Input.GetKeyDown(KeyCode.D))
+                    rArrowAnim.SetBool("isActivate", true);
+                if (Input.GetKeyUp(KeyCode.D))
+                    rArrowAnim.SetBool("isActivate", false);
+                if (Input.GetKeyDown(KeyCode.Q))
+                    lArrowAnim.SetBool("isActivate", true);
+                if (Input.GetKeyUp(KeyCode.Q))
+                    lArrowAnim.SetBool("isActivate", false);
             }
+
+
         }
     }
 
@@ -54,7 +63,6 @@ public class Selector : MonoBehaviour
     {
         haveToWait = true;
         canSwitch = false;
-        print("int ienum");
         #region move items
         if (input)
         {
@@ -93,9 +101,9 @@ public class Selector : MonoBehaviour
         for (int i = 0; i < items.Length; i++)
         {
             if (it == i)
-                items[i].GetComponent<RectTransform>().DOScale(new Vector2(1.3f, 1.3f), swapDuration);
+                items[i].GetComponent<RectTransform>().DOScale(mapScaleMax, swapDuration);
             else
-                items[i].GetComponent<RectTransform>().DOScale(new Vector2(1f, 1f), swapDuration);
+                items[i].GetComponent<RectTransform>().DOScale(mapScaleMin, swapDuration);
         }
     }
 

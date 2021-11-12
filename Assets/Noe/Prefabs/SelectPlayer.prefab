@@ -80,9 +80,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0829df4be3315c543b8783131d36f113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swapDuration: 1
+  items: []
+  swapDuration: 0.5
+  mapScaleMin: 0
+  mapScaleMax: 0
   it: 0
   thisMenu: 0
+  NavTuto: {fileID: 0}
 --- !u!114 &584595102896035051
 MonoBehaviour:
   m_ObjectHideFlags: 0
