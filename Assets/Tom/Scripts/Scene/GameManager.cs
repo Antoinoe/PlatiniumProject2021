@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation)
     {
-        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3, 0, 2 };
         List<int> tempList = allOrientations;
         for (int i = 0; i < allOrientations.Count; i++)
         {
@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
         int randomIndex = Random.Range(0, allOrientations.Count);
         navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
-        float angle = UnityEngine.Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+        float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
         Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
         randomPosition += origin;
         NavMeshHit hit;
