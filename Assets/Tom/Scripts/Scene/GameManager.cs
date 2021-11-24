@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
             newPlayerController.playerNb = i;
-            newPlayerController.teamNb = i + 1;
+            newPlayerController.teamNb = i;
             teams[i] = i;
 
             //skin
@@ -94,10 +94,10 @@ public class GameManager : MonoBehaviour
                 GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), iAPrefab.transform.rotation);
 
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
-                iAIdentity.teamNb = i + 1;
+                iAIdentity.teamNb = i;
                 iAIdentity.spriteRend.sprite = players[i].playerSprite;
 
-                iATeam[i] = iAIdentity;
+                iATeam[j] = iAIdentity;
             }
 
             //Allocate team to player

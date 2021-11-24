@@ -68,7 +68,7 @@ public class Controller : MonoBehaviour
     {
         if (player.GetButtonDown("Attack"))
         {
-            Debug.Log("Attack");
+            //Debug.Log("Attack");
             GetComponent<Attack>().OnAttack();
         }
     }
