@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5230329473712952025}
   - component: {fileID: 5240712458190938917}
   - component: {fileID: 6344474970933275840}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IA
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 7552138742574040255}
   - component: {fileID: 7552138742574040254}
   - component: {fileID: 3583617765562608759}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visuel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
