@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         gameManager.WinCheck(teamNb, nb);
 
         teamNb = nb;
+        controller.anim.SetFloat("playerNbr", teamNb);
         #endregion
 
         #region Change AIs team

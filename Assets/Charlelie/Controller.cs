@@ -9,7 +9,8 @@ public class Controller : MonoBehaviour
     public float speed = 4;
     public Rewired.Player player;
     SpriteRenderer sR;
-    Animator anim;
+    [HideInInspector]
+    public Animator anim;
     Vector2 _movementVec;
     InputBehavior ib;
     bool isPhyGUIShown = false;
