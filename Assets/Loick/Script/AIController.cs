@@ -89,20 +89,20 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        currentEntity = GetComponent<NavMeshAgent>();
+        currentEntity.updateRotation = false;
+        currentEntity.updateUpAxis = false;
         anim = GetComponentInChildren<Animator>();
         color = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
         deadColor = new Color(color.r, color.g, color.b, 0);
         aliveColor = new Color(color.r, color.g, color.b, 1);
         currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
         areaColliderIsOn = (currentArea != null);
-        currentEntity = GetComponent<NavMeshAgent>();
-        currentEntity.updateRotation = false;
-        currentEntity.updateUpAxis = false;
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
         if (areaColliderIsOn)
-        { 
+        {
             zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
             currentOrientation, GetCurrentAreaCollider().zonesColliders);
         }
@@ -310,5 +310,18 @@ public class AIController : MonoBehaviour
     public class AreaCollider
     {
         public List<Collider2D> zonesColliders;
+
+        public bool CheckPointIsInZonescollider(Vector2 point)
+        {
+            for (int i = 0; i < zonesColliders.Count; i++)
+            {
+                Bounds areaBounds = zonesColliders[i].bounds; 
+                if (point.x > areaBounds.max.x || point.y > areaBounds.max.y || point.y < areaBounds.min.y || point.x < areaBounds.min.x)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
