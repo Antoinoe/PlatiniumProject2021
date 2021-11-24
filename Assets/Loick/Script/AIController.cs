@@ -251,6 +251,7 @@ public class AIController : MonoBehaviour
     {
         if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
         {
+            currentArea.ChangeCurrentAreaCollider(this);
             if (anim) anim.SetBool("isWalking", false);
             previousPoint = transform.position;
             randomRange = GetRandomRange();
@@ -293,6 +294,16 @@ public class AIController : MonoBehaviour
     #endregion
 
     #region Zone Area Function
+
+    public int GetAreaIndex()
+    {
+        return areaIndex;
+    }
+
+    public void SetAreaIndex(int newIndex)
+    {
+        areaIndex = newIndex;
+    }
 
     public AreaCollider GetCurrentAreaCollider()
     {
@@ -362,9 +373,22 @@ public class AIController : MonoBehaviour
         public float angleMax;
     }
 
-    [System.Serializable]
+    [System.Serializable] 
     public class AreaCollider
     {
         public List<Collider2D> zonesColliders;
+
+        public bool CheckPointIsInZonescollider(Vector2 point)
+        {
+            for (int i = 0; i < zonesColliders.Count; i++)
+            {
+                Bounds areaBounds = zonesColliders[i].bounds;
+                if (point.x > areaBounds.max.x || point.y > areaBounds.max.y || point.y < areaBounds.min.y || point.x < areaBounds.min.x)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

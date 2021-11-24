@@ -10,8 +10,16 @@ using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
 {
+    IAIdentity iAIdentity;
+    NavMeshAgent agent;
+
+    float speed;
+
+    float reviveTime = 3.0f;
 
     private Vector2 zonePoint = Vector2.zero;
+
+    private Vector2 nextZonePoint = Vector2.zero;
 
     private Vector2 previousPoint = Vector2.zero;
 
@@ -19,6 +27,8 @@ public class AIController : MonoBehaviour
 
     [SerializeField] private int areaIndex = 0;
     [SerializeField] private AreaManager currentArea;
+    private CircleCollider2D dogArea;
+    private BoxCollider2D dogCollider;
 
     public float delayMin = 1;
     private float delay = 0;
@@ -32,6 +42,8 @@ public class AIController : MonoBehaviour
     private bool hasArriveToLocalPoint = false;
     private bool isWating = false;
     private bool canMove = true;
+    public bool dogTargetIsOn = false;
+    private bool isBones = false;
     public bool areaColliderIsOn = false;
 
     Color color;
@@ -66,8 +78,14 @@ public class AIController : MonoBehaviour
 
     public float Speed
     {
-        get { return GetComponent<NavMeshAgent>().speed; }
-        set { GetComponent<NavMeshAgent>().speed = value; }
+        get { return speed;/*GetComponent<NavMeshAgent>().speed;*/ }
+        set { speed = value; /*GetComponent<NavMeshAgent>().speed = value;*/ }
+    }
+
+    public float ReviveTime
+    {
+        get { return reviveTime; }
+        set { reviveTime = value; }
     }
 
     #region ChangeVariables
@@ -81,6 +99,8 @@ public class AIController : MonoBehaviour
         localMaxMoveRange = _moveRange.y;
         delayMin = _moveTime.x;
         delayMax = _moveTime.y;
+
+        agent.speed = Speed;
     }
 
     #endregion
@@ -89,15 +109,20 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        iAIdentity = GetComponent<IAIdentity>();
+        agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
+        anim.SetFloat("playerNbr", iAIdentity.teamNb);
+        color = GetComponentInChildren<SpriteRenderer>().color;
+        deadColor = new Color(1, 1, 1, 0);
+        aliveColor = new Color(1, 1, 1, 1);
+        currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
+        dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<CircleCollider2D>();
+        dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
+        areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
-        anim = GetComponentInChildren<Animator>();
-        color = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
-        deadColor = new Color(color.r, color.g, color.b, 0);
-        aliveColor = new Color(color.r, color.g, color.b, 1);
-        currentArea = currentArea.instance;
-        areaColliderIsOn = (currentArea != null);
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
@@ -116,12 +141,7 @@ public class AIController : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-        //sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
-        if (isDead)
-            color = deadColor;
-        else
-            color = aliveColor;
+        sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
         if (feel.IsMoving != canMove) feel.IsMoving = canMove;
         UpdateNav();
     }
@@ -130,14 +150,6 @@ public class AIController : MonoBehaviour
     {
         velocity = (transform.position - previous) / Time.deltaTime;
         previous = transform.position;
-
-        if (anim)
-        {
-            if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
-                anim.SetBool("isWalking", true);
-            else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
-                anim.SetBool("isWalking", false);
-        }
     }
 
     //Debug
@@ -176,20 +188,55 @@ public class AIController : MonoBehaviour
 
     public void OnKilled()
     {
+        //Debug.Log("Dead");
+        agent.speed = 0;
+        GetComponentInChildren<SpriteRenderer>().color = deadColor;
         isDead = true;
         GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(Revive());
     }
+    public void OnBone()
+    {
+        if (Physics2D.Distance(dogArea, GetComponent<Collider2D>()).isOverlapped)
+        {
+            dogArea.enabled = false;
+            Debug.Log("Bones");
+            agent.speed = 0;
+            GetComponentInChildren<SpriteRenderer>().color = Color.red;
+            isDead = true;
+            isBones = true;
+            GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().DogTarget(this.transform.position);
+            StartCoroutine(OnEaten());
+        }
+    }
+
+    private IEnumerator OnEaten()
+    {
+        while (!Physics2D.Distance(dogCollider, GetComponent<Collider2D>()).isOverlapped)
+        {
+            yield return null;
+        }
+        Debug.Log("eat");
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponentInChildren<SpriteRenderer>().color = Color.black;
+        //DogEat();
+        GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false; 
+        dogArea.enabled = true;
+        yield break;
+    }
 
     IEnumerator Revive()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(reviveTime);
         OnRevive();
         yield return null;
     }
 
     void OnRevive()
     {
+        //Debug.Log("Revive");
+        agent.speed = Speed;
+        GetComponentInChildren<SpriteRenderer>().color = aliveColor;
         isDead = false;
         GetComponent<BoxCollider2D>().enabled = true;
     }
@@ -204,9 +251,13 @@ public class AIController : MonoBehaviour
     {
         if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
         {
+            currentArea.ChangeCurrentAreaCollider(this);
+            if (anim) anim.SetBool("isWalking", false);
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            if (areaColliderIsOn)
+
+            if (CompareTag("SecondGoal") && dogTargetIsOn) { zonePoint = nextZonePoint; }
+            else if (areaColliderIsOn)
             {
                 zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
                     currentOrientation, GetCurrentAreaCollider().zonesColliders);
@@ -220,7 +271,12 @@ public class AIController : MonoBehaviour
                 StartCoroutine(Delay());
             }
         }
+    }
 
+    public void DogTarget(Vector2 vector2)
+    {
+        dogTargetIsOn = true;
+        nextZonePoint = vector2;
     }
 
     public void SetIndexArea(int newIndex)
@@ -238,6 +294,16 @@ public class AIController : MonoBehaviour
     #endregion
 
     #region Zone Area Function
+
+    public int GetAreaIndex()
+    {
+        return areaIndex;
+    }
+
+    public void SetAreaIndex(int newIndex)
+    {
+        areaIndex = newIndex;
+    }
 
     public AreaCollider GetCurrentAreaCollider()
     {
@@ -259,6 +325,7 @@ public class AIController : MonoBehaviour
         currentEntity.SetDestination(zonePoint);
         canMove = true;
         isWating = false;
+        if (anim) anim.SetBool("isWalking", true);
         yield return null;
     }
 
@@ -306,7 +373,7 @@ public class AIController : MonoBehaviour
         public float angleMax;
     }
 
-    [System.Serializable]
+    [System.Serializable] 
     public class AreaCollider
     {
         public List<Collider2D> zonesColliders;
@@ -315,7 +382,7 @@ public class AIController : MonoBehaviour
         {
             for (int i = 0; i < zonesColliders.Count; i++)
             {
-                Bounds areaBounds = zonesColliders[i].bounds; 
+                Bounds areaBounds = zonesColliders[i].bounds;
                 if (point.x > areaBounds.max.x || point.y > areaBounds.max.y || point.y < areaBounds.min.y || point.x < areaBounds.min.x)
                 {
                     return true;
