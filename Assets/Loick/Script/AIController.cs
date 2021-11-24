@@ -6,6 +6,7 @@ using MiscUtil.Xml.Linq.Extensions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class AIController : MonoBehaviour
@@ -389,6 +390,22 @@ public class AIController : MonoBehaviour
                     angleMin = 3 * Mathf.PI / 2;
                     angleMax = Mathf.PI * 2;
                     break;
+                case Orientation.Right:
+                    angleMin = 0;
+                    angleMin = 0;
+                    break;
+                case Orientation.Left:
+                    angleMax = 180;
+                    angleMin = 180;
+                    break;
+                case Orientation.Up:
+                    angleMin = 90;
+                    angleMax = 90;
+                    break;
+                case Orientation.Down:
+                    angleMin = 270;
+                    angleMax = 270;
+                    break;
             }
         }
 
@@ -397,7 +414,9 @@ public class AIController : MonoBehaviour
             UpLeft,
             UpRight,
             DownLeft,
-            DownRight
+            DownRight,Up,Down,
+            Left,Right
+            
         }
 
         public float angleMin;

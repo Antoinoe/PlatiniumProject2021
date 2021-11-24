@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, AIController.CircleOrientation.Orientation navmeshOrientation)
     {
-        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3, 0, 2 };
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 4, 5,6,7, 0, 1, 2, 4, 5, 6, 7,0 };
         List<int> tempList = allOrientations;
         for (int i = 0; i < allOrientations.Count; i++)
         {
