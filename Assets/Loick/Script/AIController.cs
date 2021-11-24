@@ -121,7 +121,6 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         isDog = gameObject.CompareTag("SecondGoal");
-        Debug.Log(isDog);
         iAIdentity = GetComponent<IAIdentity>();  
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("playerNbr", iAIdentity.teamNb);
