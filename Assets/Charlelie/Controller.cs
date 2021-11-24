@@ -8,6 +8,7 @@ public class Controller : MonoBehaviour
     int playerNum;
     public float speed = 4;
     public Rewired.Player player;
+    SpriteRenderer sR;
     Animator anim;
     Vector2 _movementVec;
     InputBehavior ib;
@@ -52,6 +53,7 @@ public class Controller : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         attack = GetComponent<Attack>();
         anim = transform.GetChild(0).GetComponent<Animator>();
+        sR = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
     public void SetNum(int val)
@@ -83,9 +85,18 @@ public class Controller : MonoBehaviour
         previous = transform.position;
 
         if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
+        {
             anim.SetBool("isWalking", true);
+            if (velocity.x < 0)
+                sR.flipX = true;
+            else
+                sR.flipX = false;
+        }
         else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
+        {
             anim.SetBool("isWalking", false);
+            sR.flipX = false;
+        }
     }
 
 

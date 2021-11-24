@@ -13,6 +13,9 @@ public class AIController : MonoBehaviour
     IAIdentity iAIdentity;
     NavMeshAgent agent;
 
+    bool isDog;
+
+    [SerializeField]
     float speed;
 
     float reviveTime = 3.0f;
@@ -99,18 +102,27 @@ public class AIController : MonoBehaviour
         localMaxMoveRange = _moveRange.y;
         delayMin = _moveTime.x;
         delayMax = _moveTime.y;
-
-        agent.speed = Speed;
+        GetComponent<NavMeshAgent>().speed = Speed;
+        /*if (agent != null)
+            agent.speed = Speed;
+        else
+            GetComponent<NavMeshAgent>().speed = Speed;*/
     }
 
     #endregion
 
     #region UnityFunction
 
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
+
     private void Start()
     {
-        iAIdentity = GetComponent<IAIdentity>();
-        agent = GetComponent<NavMeshAgent>();
+        isDog = gameObject.CompareTag("SecondGoal");
+        Debug.Log(isDog);
+        iAIdentity = GetComponent<IAIdentity>();  
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("playerNbr", iAIdentity.teamNb);
         color = GetComponentInChildren<SpriteRenderer>().color;
@@ -142,7 +154,6 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
-        if (feel.IsMoving != canMove) feel.IsMoving = canMove;
         UpdateNav();
     }
 
@@ -150,6 +161,21 @@ public class AIController : MonoBehaviour
     {
         velocity = (transform.position - previous) / Time.deltaTime;
         previous = transform.position;
+
+        if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
+        {
+            anim.SetBool("isWalking", true);
+            if (velocity.x < 0)
+                sprite.flipX = !isDog;
+            else
+                sprite.flipX = isDog;
+        }
+        else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
+        {
+            anim.SetBool("isWalking", false);
+            if(!isDog)
+                sprite.flipX = false;
+        }
     }
 
     //Debug
@@ -195,6 +221,12 @@ public class AIController : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(Revive());
     }
+
+    public void ChangeTeam()
+    {
+        anim.SetFloat("playerNbr", iAIdentity.teamNb);
+    }
+
     public void OnBone()
     {
         if (Physics2D.Distance(dogArea, GetComponent<Collider2D>()).isOverlapped)
