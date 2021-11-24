@@ -220,7 +220,8 @@ public class AIController : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().color = Color.black;
         //DogEat();
-        GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false;
+        GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false; 
+        dogArea.enabled = true;
         yield break;
     }
 
