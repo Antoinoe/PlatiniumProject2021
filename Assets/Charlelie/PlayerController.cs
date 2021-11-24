@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         foreach (IAIdentity iA in gameManager.iATeams[playerNb])
         {
             iA.teamNb = teamNb;
+            iA.gameObject.GetComponent<AIController>().ChangeTeam();
             if (iA.isInvisible == 0)
             {
                 iA.spriteRend.sprite = newSprite;
