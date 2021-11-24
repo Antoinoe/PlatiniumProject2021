@@ -63,8 +63,8 @@ public class Attack : MonoBehaviour
         #region Targets aquisition
         List<GameObject> targets = new List<GameObject>();
 
-        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector*attackRange, targetDetectionBoxSize, 0);
-        foreach(Collider2D c in collidersInRange)
+        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector * attackRange, targetDetectionBoxSize, 0);
+        foreach (Collider2D c in collidersInRange)
         {
             GameObject collidingObject = c.gameObject;
 
@@ -76,11 +76,12 @@ public class Attack : MonoBehaviour
                     {
                         targets.Add(collidingObject);
                     }
-                } else if (collidingObject.CompareTag("NPC") && collidingObject.GetComponent<IAIdentity>().teamNb != playerController.teamNb)
-                {
-                    targets.Add(collidingObject);                  
                 }
-                
+                else if (collidingObject.CompareTag("NPC"))
+                {
+                    targets.Add(collidingObject);
+                }
+
             }
         }
         #endregion
@@ -114,7 +115,7 @@ public class Attack : MonoBehaviour
                 PlayerController killedPlayerScript = target.GetComponent<PlayerController>();
 
                 killedPlayerScript.ChangeTeam(playerController.teamNb);
-                
+
                 playerController.gameManager.Shake();
                 playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
 
@@ -132,10 +133,12 @@ public class Attack : MonoBehaviour
             {
                 //Kill NPC
                 //Debug.Log("NPC killed by Team " + playerController.teamNb);
-                target.GetComponent<AIController>().OnKilled();
+                if (target.GetComponent<IAIdentity>().teamNb != playerController.teamNb) { target.GetComponent<AIController>().OnKilled(); playerController.gameManager.Shake(); }
+                else { target.GetComponent<AIController>().OnBone(); }
 
-                playerController.gameManager.Shake();
+                
             }
+
 
             playerController.OnKill(target);
             killOnCD = true;
@@ -268,7 +271,7 @@ public class Attack : MonoBehaviour
         //t_kills.text = "kills : " + nbOfKills.ToString();*/
         #endregion
     }
-    
+
     private IEnumerator KillCooldown(float time)
     {
         yield return new WaitForSeconds(time);
@@ -277,5 +280,5 @@ public class Attack : MonoBehaviour
         StopCoroutine(KillCooldown(1));
     }
 
-    
+
 }

@@ -20,17 +20,6 @@ public class CameraController : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float delay = .35f;
 
-    [Space]
-    [Header("Shake Camera")]
-    [Range(0f, 5f)]
-    [SerializeField] private float shakeDur;
-    [Range(0f, 1f)]
-    [SerializeField] private float shakeStrenght;
-    [Range(0, 10)]
-    [SerializeField] private int shakeVibration;
-    [Range(0, 20)]
-    [SerializeField] private int shakeRandomness;
-
 #endregion
 
     // Start is called before the first frame update
@@ -80,11 +69,6 @@ public class CameraController : MonoBehaviour
         yield break;
     }
 
-    public void Shake()
-    {
-        Camera.main.DOShakePosition(shakeDur, shakeStrenght, shakeVibration, shakeRandomness);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -92,13 +76,6 @@ public class CameraController : MonoBehaviour
         {
             transform.position = vect3;
             cam.orthographicSize = size;
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Shake();
-            }
         }
     }
 }
