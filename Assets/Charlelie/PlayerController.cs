@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public float CurrKillCooldown
     {
         get { return currKillCooldown; }
+        set { currKillCooldown = value; }
     }
 
     public GameManager gameManager;
@@ -55,9 +56,9 @@ public class PlayerController : MonoBehaviour
     public void OnKill(GameObject target)
     {
         if (target.CompareTag("NPC"))
-            currKillCooldown = killCooldown + killIAaddCooldown;
+            currKillCooldown = /*killCooldown + killIAaddCooldown*/ 3;
         else
-            currKillCooldown = killCooldown;
+            currKillCooldown = /*killCooldown*/ 2;
     }
 
     void SetCooldown()
