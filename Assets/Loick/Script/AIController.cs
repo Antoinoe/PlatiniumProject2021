@@ -141,11 +141,11 @@ public class AIController : MonoBehaviour
         if (areaColliderIsOn)
         {
             zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-            currentOrientation, GetCurrentAreaCollider().zonesColliders);
+            ref currentOrientation, GetCurrentAreaCollider().zonesColliders);
         }
         else
         {
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,ref currentOrientation);
         }
         currentEntity.SetDestination(zonePoint);
         feel = GetComponent<EntityMoveFeel>();
@@ -208,6 +208,7 @@ public class AIController : MonoBehaviour
             GUILayout.Label("Is waiting : " + isWating);
             GUILayout.Label("Delay : " + delay);
             GUILayout.Label("Random Range : " + randomRange);
+            GUILayout.Label("Direction : " + currentOrientation);
         }
     }
 
@@ -298,11 +299,11 @@ public class AIController : MonoBehaviour
             else if (areaColliderIsOn)
             {
                 zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-                    currentOrientation, GetCurrentAreaCollider().zonesColliders);
+                    ref currentOrientation, GetCurrentAreaCollider().zonesColliders);
             }
             else
             {
-                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, currentOrientation);
+                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
             }
             if (!isWating)
             {
@@ -316,6 +317,7 @@ public class AIController : MonoBehaviour
         dogTargetIsOn = true;
         nextZonePoint = vector2;
     }
+
 
     public void SetIndexArea(int newIndex)
     {
@@ -396,22 +398,6 @@ public class AIController : MonoBehaviour
                     angleMin = 3 * Mathf.PI / 2;
                     angleMax = Mathf.PI * 2;
                     break;
-                case Orientation.Right:
-                    angleMin = 0;
-                    angleMin = 0;
-                    break;
-                case Orientation.Left:
-                    angleMax = 180;
-                    angleMin = 180;
-                    break;
-                case Orientation.Up:
-                    angleMin = 90;
-                    angleMax = 90;
-                    break;
-                case Orientation.Down:
-                    angleMin = 270;
-                    angleMax = 270;
-                    break;
             }
         }
 
@@ -420,11 +406,8 @@ public class AIController : MonoBehaviour
             UpLeft,
             UpRight,
             DownLeft,
-            DownRight,Up,Down,
-            Left,Right
-            
+            DownRight,
         }
-
         public float angleMin;
         public float angleMax;
     }

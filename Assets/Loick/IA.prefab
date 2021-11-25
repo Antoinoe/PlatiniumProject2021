@@ -82,7 +82,7 @@ MonoBehaviour:
   showDebug: 1
   dogTargetIsOn: 0
   areaColliderIsOn: 0
-  currentOrientation: 0
+  currentOrientation: 4
 --- !u!114 &7552138741966933271
 MonoBehaviour:
   m_ObjectHideFlags: 0
