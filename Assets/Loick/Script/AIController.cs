@@ -160,6 +160,8 @@ public class AIController : MonoBehaviour
     {
         velocity = (transform.position - previous) / Time.deltaTime;
         previous = transform.position;
+        anim.SetFloat("X", velocity.x);
+        anim.SetFloat("Y", velocity.y);
 
         if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
         {
@@ -214,8 +216,10 @@ public class AIController : MonoBehaviour
     public void OnKilled()
     {
         //Debug.Log("Dead");
+        anim.SetTrigger("Death");
+        anim.SetBool("IsDead", true);
         agent.speed = 0;
-        GetComponentInChildren<SpriteRenderer>().color = deadColor;
+        //GetComponentInChildren<SpriteRenderer>().color = deadColor;
         isDead = true;
         GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(Revive());
@@ -267,7 +271,8 @@ public class AIController : MonoBehaviour
     {
         //Debug.Log("Revive");
         agent.speed = Speed;
-        GetComponentInChildren<SpriteRenderer>().color = aliveColor;
+        anim.SetBool("IsDead", false);
+        //GetComponentInChildren<SpriteRenderer>().color = aliveColor;
         isDead = false;
         GetComponent<BoxCollider2D>().enabled = true;
     }

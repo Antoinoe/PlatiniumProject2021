@@ -1,7 +1,46 @@
 fileFormatVersion: 2
 guid: 89ed1fbbbac093242a3eb90aa0b70a98
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 803893870149269433
+    second: Skull Death_4pivot_0
+  - first:
+      213: 9205847905107127116
+    second: Skull Death_4pivot_1
+  - first:
+      213: 8209407515388802656
+    second: Skull Death_4pivot_2
+  - first:
+      213: 4931993607911174518
+    second: Skull Death_4pivot_3
+  - first:
+      213: 7310792478795747884
+    second: Skull Death_4pivot_4
+  - first:
+      213: 4869761122573368411
+    second: Skull Death_4pivot_5
+  - first:
+      213: 4227577269396895380
+    second: Skull Death_4pivot_6
+  - first:
+      213: -8303417451280969088
+    second: Skull Death_4pivot_7
+  - first:
+      213: -1166253223859935025
+    second: Skull Death_4pivot_8
+  - first:
+      213: -6033040377342239676
+    second: Skull Death_4pivot_9
+  - first:
+      213: -9042503502739589836
+    second: Skull Death_4pivot_10
+  - first:
+      213: 1390787255461239459
+    second: Skull Death_4pivot_11
+  - first:
+      213: 5181902992320679984
+    second: Skull Death_4pivot_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,12 +80,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 500
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,9 +114,306 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Skull Death_4pivot_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2016
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b77c573731082b00800000000000000
+      internalID: 803893870149269433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 2016
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4b2f2025edb1cf70800000000000000
+      internalID: 9205847905107127116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_2
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 2016
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 066fb23d3acade170800000000000000
+      internalID: 8209407515388802656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_3
+      rect:
+        serializedVersion: 2
+        x: 2568
+        y: 2016
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671fa0a3e06f17440800000000000000
+      internalID: 4931993607911174518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_4
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 2016
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c22d7357607257560800000000000000
+      internalID: 7310792478795747884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_5
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 2016
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5c3efb90fdd49340800000000000000
+      internalID: 4869761122573368411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_6
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 2016
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 496faeab02f5baa30800000000000000
+      internalID: 4227577269396895380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_7
+      rect:
+        serializedVersion: 2
+        x: 5996
+        y: 2016
+        width: 760
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0825e9a42d554cc80800000000000000
+      internalID: -8303417451280969088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_8
+      rect:
+        serializedVersion: 2
+        x: 6856
+        y: 2016
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc8aca93fd2a0dfe0800000000000000
+      internalID: -1166253223859935025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 932
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44c5de0cdb5564ca0800000000000000
+      internalID: -6033040377342239676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_10
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 932
+        width: 774
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4353bf639f2928280800000000000000
+      internalID: -9042503502739589836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_11
+      rect:
+        serializedVersion: 2
+        x: 1780
+        y: 932
+        width: 840
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aa58efd3a11d4310800000000000000
+      internalID: 1390787255461239459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull Death_4pivot_12
+      rect:
+        serializedVersion: 2
+        x: 2818
+        y: 932
+        width: 898
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 030decd0151d9e740800000000000000
+      internalID: 5181902992320679984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
