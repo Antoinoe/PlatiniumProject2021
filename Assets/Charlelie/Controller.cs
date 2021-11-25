@@ -64,7 +64,10 @@ public class Controller : MonoBehaviour
         ib = player.controllers.maps.GetInputBehavior(0);
         Decceleration = ib.digitalAxisGravity;
         Acceleration = ib.digitalAxisSensitivity;
-        anim.SetFloat("playerNbr", playerNum);
+        if (anim)
+            anim.SetFloat("playerNbr", playerNum);
+        else
+            transform.GetChild(0).GetComponent<Animator>().SetFloat("playerNbr", playerNum);
     }
 
     void Update()
@@ -73,6 +76,12 @@ public class Controller : MonoBehaviour
         {
             //Debug.Log("Attack");
             attack.OnAttack();
+        }
+
+        if (player.GetButtonDown("ReloadMap"))
+        {
+            Debug.Log("Reload");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
         }
     }
 
