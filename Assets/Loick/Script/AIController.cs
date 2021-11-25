@@ -31,7 +31,8 @@ public class AIController : MonoBehaviour
 
     [SerializeField] private int areaIndex = 0;
     [SerializeField] private AreaManager currentArea;
-    private CircleCollider2D dogArea;
+    private /*Circle*/BoxCollider2D dogArea;
+    GameObject dog;
     private BoxCollider2D dogCollider;
 
     public float delayMin = 1;
@@ -129,7 +130,8 @@ public class AIController : MonoBehaviour
         deadColor = new Color(1, 1, 1, 0);
         aliveColor = new Color(1, 1, 1, 1);
         currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
-        dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<CircleCollider2D>();
+        dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
+        dog = GameObject.FindGameObjectWithTag("SecondGoal");
         dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
         areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
@@ -234,7 +236,8 @@ public class AIController : MonoBehaviour
 
     public void OnBone()
     {
-        if (Physics2D.Distance(dogArea, GetComponent<Collider2D>()).isOverlapped)
+        float dist = Vector2.Distance(transform.position, dog.transform.position);
+        if (dist < /*localMaxMoveRange*/2000)
         {
             dogArea.enabled = false;
             Debug.Log("Bones");
@@ -249,8 +252,10 @@ public class AIController : MonoBehaviour
 
     private IEnumerator OnEaten()
     {
-        while (!Physics2D.Distance(dogCollider, GetComponent<Collider2D>()).isOverlapped)
+        float dist = Vector2.Distance(transform.position, dog.transform.position);
+        while (!IAMovement.NavmeshReachedDestination(dog.GetComponent<NavMeshAgent>(), transform.position, 1))
         {
+            Debug.Log("too far");
             yield return null;
         }
         Debug.Log("eat");
@@ -259,6 +264,10 @@ public class AIController : MonoBehaviour
         //DogEat();
         GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false; 
         dogArea.enabled = true;
+
+        //TODO: Update point
+
+        Destroy(gameObject);
         yield break;
     }
 
