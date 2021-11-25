@@ -91,8 +91,8 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < iAPerPlayer; j++)
             {
                 Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);
-                GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), iAPrefab.transform.rotation);
-
+                GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), Quaternion.identity);
+                //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
                 iAIdentity.teamNb = i;
                 iAIdentity.spriteRend.sprite = players[i].playerSprite;

@@ -149,6 +149,7 @@ public class AIController : MonoBehaviour
         }
         currentEntity.SetDestination(zonePoint);
         feel = GetComponent<EntityMoveFeel>();
+        transform.rotation = new Quaternion(0, 0, 0, 0);
     }
 
     private void Update()
@@ -175,7 +176,7 @@ public class AIController : MonoBehaviour
         else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
         {
             anim.SetBool("isWalking", false);
-            if(!isDog)
+            if (!isDog)
                 sprite.flipX = false;
         }
     }
