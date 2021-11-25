@@ -19,6 +19,7 @@ public class Attack : MonoBehaviour
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown;
+    /*[HideInInspector]*/ public float passedTime = 0f;
 
     //Target detection
     [SerializeField] private float attackRange;
@@ -142,7 +143,6 @@ public class Attack : MonoBehaviour
 
             playerController.OnKill(target);
             killOnCD = true;
-            StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
         }
         else if (killOnCD)
         {
@@ -272,13 +272,25 @@ public class Attack : MonoBehaviour
         #endregion
     }
 
-    private IEnumerator KillCooldown(float time)
+    private IEnumerator KillCooldown(float moveTime)
     {
-        yield return new WaitForSeconds(time);
+        Debug.Log(controller.MovementVector);
+        if(controller.MovementVector != Vector2.zero)
+        {
+            passedTime += Time.deltaTime;
+        }
 
-        killOnCD = false;
-        StopCoroutine(KillCooldown(1));
+        if(passedTime < moveTime)
+        {
+            Debug.Log("aurevoir");
+            yield return new WaitForSeconds(Time.deltaTime);
+        }
+        else
+        {
+            Debug.Log("bonjour");
+            passedTime = 0f;
+            killOnCD = false;
+            StopCoroutine(KillCooldown(moveTime));
+        }
     }
-
-
 }

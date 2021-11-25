@@ -75,7 +75,7 @@ public class Controller : MonoBehaviour
         if (player.GetButtonDown("Attack"))
         {
             //Debug.Log("Attack");
-            GetComponent<Attack>().OnAttack();
+            attack.OnAttack();
         }
 
         if (player.GetButtonDown("ReloadMap"))
@@ -119,6 +119,16 @@ public class Controller : MonoBehaviour
             anim.SetFloat("X", _movementVec.x);
             anim.SetFloat("Y", _movementVec.y);
             transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
+
+            if (attack.killOnCD && playerController.CurrKillCooldown > 0 && _movementVec != Vector2.zero)
+            {
+                playerController.CurrKillCooldown -= Time.deltaTime;
+
+                if(playerController.CurrKillCooldown <= 0)
+                {
+                    attack.killOnCD = false;
+                }
+            }
         } 
     }
 
