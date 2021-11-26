@@ -223,9 +223,8 @@ public class GameManager : MonoBehaviour
             int randomArea = Random.Range(0, areaColliders.Count);
             if (areaColliders.Count > 0)
             {
-                float distanceToZero = Vector2.Distance(origin,areaColliders[randomArea].offset);
-                distanceToZero /= 2;
-                Vector2 newPos = new Vector2(Mathf.Cos(distanceToZero), Mathf.Sin(distanceToZero));
+                float distanceToZero = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                Vector2 newPos = new Vector2(Mathf.Cos(distanceToZero), Mathf.Sin(distanceToZero)) * radius;
                 randomPosition = newPos;/*areaColliders[randomArea].ClosestPoint(randomPosition)*/;
             }
             else
