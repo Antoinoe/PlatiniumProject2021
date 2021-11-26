@@ -240,10 +240,12 @@ public class AIController : MonoBehaviour
         float dist = Vector2.Distance(transform.position, dog.transform.position);
         if (dist < /*localMaxMoveRange*/2000)
         {
+            anim.SetTrigger("Death");
+            anim.SetBool("IsDead", true);
             dogArea.enabled = false;
-            Debug.Log("Bones");
+            //Debug.Log("Bones");
             agent.speed = 0;
-            GetComponentInChildren<SpriteRenderer>().color = Color.red;
+            //GetComponentInChildren<SpriteRenderer>().color = Color.red;
             isDead = true;
             isBones = true;
             GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().DogTarget(this.transform.position);

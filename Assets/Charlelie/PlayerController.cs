@@ -56,9 +56,9 @@ public class PlayerController : MonoBehaviour
     public void OnKill(GameObject target)
     {
         if (target.CompareTag("NPC"))
-            currKillCooldown = /*killCooldown + killIAaddCooldown*/ 3;
+            currKillCooldown = /*killCooldown + killIAaddCooldown*/ 0;
         else
-            currKillCooldown = /*killCooldown*/ 2;
+            currKillCooldown = /*killCooldown*/ 0;
     }
 
     void SetCooldown()

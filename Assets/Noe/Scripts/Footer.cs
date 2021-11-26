@@ -4,17 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Rewired;
 
 public class Footer : MonoBehaviour
 {
-    // Update is called once per frame
+
+    public Rewired.Player player;
+
+    private void Start()
+    {
+        player = ReInput.players.GetPlayer(0);
+    }
     void Update()
     {
         if (MenuManager.Instance.canSwitchMenu && MenuManager.Instance.actualMenuOn != Menu.MAIN)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (player.GetButtonDown("Attack"))
                 StartCoroutine(Continue());
-            if (Input.GetKeyDown(KeyCode.B))
+            if (player.GetButtonDown("MenuCan"))
                 StartCoroutine(Return());
         }
       

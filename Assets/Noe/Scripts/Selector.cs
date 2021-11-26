@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using UnityEngine.SceneManagement;
+using Rewired;
+using UnityEngine.EventSystems;
 
 public class Selector : MonoBehaviour
 {
@@ -19,8 +21,13 @@ public class Selector : MonoBehaviour
     [HideInInspector]public int it;
     public Menu thisMenu;
     public GameObject NavTuto;
+    public Rewired.Player player;
+    public EventSystem eventSys;
+    bool navLock = false;
+
     void Start()
     {
+        player = ReInput.players.GetPlayer(0);
         Array.Resize(ref items, transform.childCount);
         for(int i = 0; i< transform.childCount; i++)
         {
@@ -36,24 +43,26 @@ public class Selector : MonoBehaviour
     void Update()
     {
         //inputs
+        float nav = player.GetAxisRaw("MoveHorizontal");
         if (MenuManager.Instance.actualMenuOn == thisMenu)
         {
-            if (Input.GetKey(KeyCode.D) && canSwitch) //right
+            if (nav > 0 && canSwitch) //right
                 StartCoroutine(Change(false));
-            if (Input.GetKey(KeyCode.Q) && canSwitch) //left
+            if (nav < 0 && canSwitch) //left
                 StartCoroutine(Change(true));
 
             if(thisMenu == Menu.MAP)
             {
-                if (Input.GetKeyDown(KeyCode.D))
+                if (nav > 0)
                     rArrowAnim.SetBool("isActivate", true);
-                if (Input.GetKeyUp(KeyCode.D))
+                if (nav > 0)
                     rArrowAnim.SetBool("isActivate", false);
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (nav < 0)
                     lArrowAnim.SetBool("isActivate", true);
-                if (Input.GetKeyUp(KeyCode.Q))
+                if (nav < 0)
                     lArrowAnim.SetBool("isActivate", false);
             }
+            
 
 
         }
