@@ -70,7 +70,8 @@ public class GameManager : MonoBehaviour
         {
             #region Player
             //instancie joueur
-            Vector2 newLocation = RandomNavmeshLocation(10, transform.position);
+            /*Vector2 newLocation = RandomNavmeshLocation(10, transform.position);*/
+            Vector2 newLocation = RandomRectangleLocation();
             GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(newLocation.x, newLocation.y, 0), playerPrefab.transform.rotation);
 
             //team
@@ -90,7 +91,8 @@ public class GameManager : MonoBehaviour
             //Create each AIs
             for (int j = 0; j < iAPerPlayer; j++)
             {
-                Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);
+                /*Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);*/
+                Vector2 initPos2 = RandomRectangleLocation();
                 GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), Quaternion.identity);
                 //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
@@ -301,6 +303,21 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(timer);
         GameObject.Destroy(smoke);
         StopCoroutine(DespawnSmoke(smoke, timer));
+    }
+    #endregion
+
+    #region Random Rectangle Location
+    public Vector2 RandomRectangleLocation()
+    {
+        Bounds rectangleBounds = gameObject.GetComponent<BoxCollider2D>().bounds;
+        Vector2 rectangleSize = rectangleBounds.size;
+        float xSize = 0.5f * rectangleSize.x;
+        float ySize = 0.5f * rectangleSize.y;
+
+        Vector2 newLocation = new Vector2(Random.Range(-xSize, xSize), Random.Range(-ySize, ySize));
+        newLocation += (Vector2)rectangleBounds.center;
+
+        return newLocation;
     }
     #endregion
 }
