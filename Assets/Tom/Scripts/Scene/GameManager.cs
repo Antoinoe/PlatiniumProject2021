@@ -187,20 +187,6 @@ public class GameManager : MonoBehaviour
         return finalPosition;
     }
 
-    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin)
-    {
-        float angle = Random.Range(-180, Mathf.PI);
-        Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-        randomPosition += origin;
-        NavMeshHit hit;
-        Vector2 finalPosition = Vector2.zero;
-        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
-        {
-            finalPosition = hit.position;
-        }
-        return finalPosition;
-    }
-
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
     {
         List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
@@ -235,7 +221,10 @@ public class GameManager : MonoBehaviour
             int randomArea = Random.Range(0, areaColliders.Count);
             if (areaColliders.Count > 0)
             {
-                randomPosition = Vector2.zero;/*areaColliders[randomArea].ClosestPoint(randomPosition)*/;
+                float distanceToZero = Vector2.Distance(origin,areaColliders[randomArea].offset);
+                distanceToZero /= 2;
+                Vector2 newPos = new Vector2(Mathf.Cos(distanceToZero), Mathf.Sin(distanceToZero));
+                randomPosition = newPos;/*areaColliders[randomArea].ClosestPoint(randomPosition)*/;
             }
             else
             {
