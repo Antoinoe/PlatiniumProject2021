@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3965627825969236467}
   - component: {fileID: 6651928796525818351}
   m_Layer: 0
-  m_Name: Smoke 1
+  m_Name: SmokeV2 (Red)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34254,8 +34254,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.83137256, g: 0, b: 0, a: 1}
-      maxColor: {r: 0.6784314, g: 0, b: 0, a: 1}
+      minColor: {r: 0.6886792, g: 0.2946219, b: 0.029236369, a: 1}
+      maxColor: {r: 0.3254902, g: 0.13333334, b: 0.003921569, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -39163,8 +39163,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.62352943, g: 0, b: 0, a: 1}
-      maxColor: {r: 0.49019608, g: 0, b: 0, a: 1}
+      minColor: {r: 0.3254902, g: 0.13333334, b: 0.003921569, a: 1}
+      maxColor: {r: 0.1764706, g: 0.07450981, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
