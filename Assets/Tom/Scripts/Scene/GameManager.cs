@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
             int randomArea = Random.Range(0, areaColliders.Count);
             if (areaColliders.Count > 0)
             {
-                randomPosition = areaColliders[randomArea].ClosestPoint(randomPosition);
+                randomPosition = Vector2.zero;/*areaColliders[randomArea].ClosestPoint(randomPosition)*/;
             }
             else
             {
