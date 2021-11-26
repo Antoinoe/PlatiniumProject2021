@@ -13,15 +13,9 @@ public class Footer : MonoBehaviour
         if (MenuManager.Instance.canSwitchMenu && MenuManager.Instance.actualMenuOn != Menu.MAIN)
         {
             if (Input.GetKeyDown(KeyCode.A))
-            {
-                print("continue");
                 StartCoroutine(Continue());
-            }
             if (Input.GetKeyDown(KeyCode.B))
-            {
-                print("back");
                 StartCoroutine(Return());
-            }
         }
       
     }

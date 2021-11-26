@@ -104,7 +104,7 @@ public class Selector : MonoBehaviour
                 items[i].GetComponent<RectTransform>().DOScale(mapScaleMax, swapDuration);
             else
                 items[i].GetComponent<RectTransform>().DOScale(mapScaleMin, swapDuration);
-        }
+        } 
     }
 
     void UpdateNav()
