@@ -38,7 +38,7 @@ public class Footer : MonoBehaviour
             case Menu.MAP:
                 try
                 {
-                    SceneManager.LoadScene(MenuManager.Instance.map.transform.GetChild(1).GetComponent<Selector>().SelectMap());
+                    SceneManager.LoadScene(MenuManager.Instance.map.transform.GetChild(2).GetComponent<Selector>().SelectMap());
                 }
                 catch
                 {

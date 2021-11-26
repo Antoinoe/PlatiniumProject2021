@@ -123,6 +123,6 @@ public class Selector : MonoBehaviour
 
     public string SelectMap()
     {
-       return items[it].name;
+       return items[it].GetComponent<MapName>().mapName;
     }
 }
