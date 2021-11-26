@@ -47,11 +47,10 @@ public class Selector : MonoBehaviour
         if (MenuManager.Instance.actualMenuOn == thisMenu)
         {
             if (nav > 0 && canSwitch) //right
-                StartCoroutine(Change(false));
+                StartCoroutine(Change(false, false, 0));
             if (nav < 0 && canSwitch) //left
-                StartCoroutine(Change(true));
-
-            if(thisMenu == Menu.MAP)
+                StartCoroutine(Change(true, false, 0));
+            if (thisMenu == Menu.MAP)
             {
                 if (nav > 0)
                     rArrowAnim.SetBool("isActivate", true);
@@ -62,14 +61,34 @@ public class Selector : MonoBehaviour
                 if (nav < 0)
                     lArrowAnim.SetBool("isActivate", false);
             }
-            
+            /*else if (thisMenu == Menu.CHARACTER)
+            {
+                for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
+                {
+                    float nave = ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal");
+                    if (nave > 0 && canSwitch) //right
+                        StartCoroutine(Change(false, true, i));
+                    if (nave < 0 && canSwitch) //left
+                        StartCoroutine(Change(true, true, i));
+                }
+                
+            }
+            else
+            {
+                if (nav > 0 && canSwitch) //right
+                    StartCoroutine(Change(false, false, 0));
+                if (nav < 0 && canSwitch) //left
+                    StartCoroutine(Change(true, false, 0));
+            }*/
+
 
 
         }
     }
 
-    IEnumerator Change(bool input)
+    IEnumerator Change(bool input, bool isPlayer, int playerId)
     {
+        GameObject root = GameObject.Find("Background");
         haveToWait = true;
         canSwitch = false;
         #region move items
@@ -78,7 +97,10 @@ public class Selector : MonoBehaviour
             if (it > 0)
             {
                 it--;
-                transform.DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
+                if (isPlayer)
+                    root.transform.GetChild(1).transform.GetChild(playerId).transform.GetChild(0).DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
+                else
+                    transform.DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
             }
             else
                 haveToWait = false;
@@ -88,7 +110,11 @@ public class Selector : MonoBehaviour
             if (it < items.Length - 1)
             {
                 it++;
-                transform.DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
+                if (isPlayer)
+                    transform.GetChild(playerId).DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
+                else
+                    transform.DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
+
             }
             else
                 haveToWait = false;

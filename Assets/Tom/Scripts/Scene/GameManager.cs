@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [Header("Players")]
     public Player[] players;
     public int playerNbrs = 1;
+    GameObject[] playersOnBoard;
 
     [SerializeField] private int iAPerPlayer;
 
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         teams = new int[players.Length];
         iATeams = new List<IAIdentity[]>();
-
+        playersOnBoard = new GameObject[playerNbrs];
         Instantiate(inputManager);
         for (int i = 0; i < playerNbrs; i++)
         {
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
             /*Vector2 newLocation = RandomNavmeshLocation(10, transform.position);*/
             Vector2 newLocation = RandomRectangleLocation();
             GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(newLocation.x, newLocation.y, 0), playerPrefab.transform.rotation);
-
+            playersOnBoard[i] = newPlayer;
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
             newPlayerController.playerNb = i;
@@ -146,8 +147,7 @@ public class GameManager : MonoBehaviour
     {
         teams[curTeam] += -1;
         teams[targetTeam] += 1;
-
-        if (targetTeam == players.Length)
+        if (teams[targetTeam] == playerNbrs - 1)
         {
             Win(targetTeam);
         }
@@ -156,6 +156,8 @@ public class GameManager : MonoBehaviour
     public void Win(int teamNb)
     {
         Debug.Log("Team " + teamNb + " win !");
+        //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
+        //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
     }
     #endregion
 

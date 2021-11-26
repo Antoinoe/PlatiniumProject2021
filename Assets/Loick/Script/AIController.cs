@@ -204,6 +204,7 @@ public class AIController : MonoBehaviour
 
     private void OnGUI()
     {
+        /*
         if (showDebug)
         {
             GUILayout.Label("hasArriveToLocalPoint : " + hasArriveToLocalPoint);
@@ -212,6 +213,7 @@ public class AIController : MonoBehaviour
             GUILayout.Label("Random Range : " + randomRange);
             GUILayout.Label("Direction : " + currentOrientation);
         }
+        */
     }
 
     #endregion

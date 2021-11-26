@@ -10,6 +10,7 @@ public class Footer : MonoBehaviour
 {
 
     public Rewired.Player player;
+    bool lockSel = true;
 
     private void Start()
     {
@@ -17,7 +18,8 @@ public class Footer : MonoBehaviour
     }
     void Update()
     {
-        if (MenuManager.Instance.canSwitchMenu && MenuManager.Instance.actualMenuOn != Menu.MAIN)
+        if (player.GetButtonUp("Attack")) lockSel = false;
+        if (MenuManager.Instance.canSwitchMenu && MenuManager.Instance.actualMenuOn != Menu.MAIN && !lockSel)
         {
             if (player.GetButtonDown("Attack"))
                 StartCoroutine(Continue());

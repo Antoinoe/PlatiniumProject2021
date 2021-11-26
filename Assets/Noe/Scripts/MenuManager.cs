@@ -37,6 +37,10 @@ public class MenuManager : MonoBehaviour
         actualMenuOn = Menu.MAIN;
         lastMenu = Menu.MAIN;
         player = ReInput.players.GetPlayer(0);
+        for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
+        {
+            Debug.Log(ReInput.players.GetPlayer(i).id);
+        }
         GameObject canvas = GameObject.Find("Canvas");
         GameObject groupMenu = canvas.transform.Find("MenuGroup").gameObject;
 
