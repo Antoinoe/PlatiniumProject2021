@@ -580,18 +580,18 @@ MonoBehaviour:
   players:
   - playerNb: 0
     playerSprite: {fileID: 21300000, guid: 5994dc3c1b1d01a4aa83c9deb54787aa, type: 3}
-    smokeSystem: {fileID: 182276930420136351, guid: ae84676ade02afa42b7ba685266e66ff, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: f86572b8254b59646a78aa65702e4bb5, type: 3}
   - playerNb: 1
     playerSprite: {fileID: 21300000, guid: 4757f226230b51e46b9e41111b8186a6, type: 3}
-    smokeSystem: {fileID: 182276930420136351, guid: ae8abd0cc39520746b62f919a2d9f9a3, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: 04235893d882325468ff94a5790788f8, type: 3}
   - playerNb: 2
     playerSprite: {fileID: 21300000, guid: fe18a9a91f50a6f4e82e5be2816c2ced, type: 3}
-    smokeSystem: {fileID: 182276930420136351, guid: d46df09544315bf4ebb5e9c8df93e9de, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: df787eb918fe97a448d6a3ef7bb68190, type: 3}
   - playerNb: 3
     playerSprite: {fileID: 21300000, guid: a615869a866baa24daca95f87ce25ba2, type: 3}
-    smokeSystem: {fileID: 182276930420136351, guid: 3d324a894623805419c07f3cb73e0b33, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: 7750044957b967840ad759d818291883, type: 3}
   playerNbrs: 2
-  iAPerPlayer: 15
+  iAPerPlayer: 1
   playerPrefab: {fileID: 8550446936934499501, guid: 835470d1a2d516742ba510e55fada03e, type: 3}
   iAPrefab: {fileID: 7552138741966933269, guid: 6e6c94d238cf79941810353c2ae1fc7b, type: 3}
   protoSmoke: {fileID: 182276930420136351, guid: f49df0b9b8369b04c84decdac46ea4eb, type: 3}
