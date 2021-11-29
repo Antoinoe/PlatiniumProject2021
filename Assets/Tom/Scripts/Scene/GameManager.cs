@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
     {
-        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3};
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
         List<int> tempList = allOrientations;
         for (int i = 0; i < allOrientations.Count; i++)
         {
@@ -202,7 +202,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        int randomIndex = Random.Range(0, allOrientations.Count);
+        AIController.CircleOrientation.Orientation oldOrientation = navmeshOrientation;
+        int randomIndex = Random.Range(0, tempList.Count);
         navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
         float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
@@ -220,12 +221,30 @@ public class GameManager : MonoBehaviour
         if (!inArea)
         {
             //Debug.Log("Random Point Reset");
-            int randomArea = Random.Range(0, areaColliders.Count);
             if (areaColliders.Count > 0)
             {
-                float distanceToZero = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-                Vector2 newPos = new Vector2(Mathf.Cos(distanceToZero), Mathf.Sin(distanceToZero)) * radius;
-                randomPosition = newPos;/*areaColliders[randomArea].ClosestPoint(randomPosition)*/;
+                int randomValueReturn = Random.Range(0, 1);
+                bool returnToTheMiddle = randomValueReturn > 0;
+                Vector2 newPos;
+                if (returnToTheMiddle)
+                {
+                    float distanceToZero = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                    newPos = new Vector2(Mathf.Cos(distanceToZero), Mathf.Sin(distanceToZero)) * radius;
+                }
+                else
+                {
+                    Debug.Log("ReturnToTheMiddle is false");
+                    //tempList.Remove(randomIndex);
+                    //randomIndex = Random.Range(0, tempList.Count);
+                    //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
+                    
+                    //iAOrientation = new AIController.CircleOrientation(oldOrientation);
+                    //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                    //int randomArea = Random.Range(0, areaColliders.Count);
+                    //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
+                    newPos = -randomPosition;
+                }
+                randomPosition = newPos;
             }
             else
             {
