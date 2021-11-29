@@ -1,0 +1,768 @@
+fileFormatVersion: 2
+guid: f730ba091fce24e46a7aec46fd047028
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1756619127550934769
+    second: Walkback_2_0
+  - first:
+      213: -4007751708792477141
+    second: Walkback_2_1
+  - first:
+      213: -8536038722965791852
+    second: Walkback_2_2
+  - first:
+      213: -3970593093009843139
+    second: Walkback_2_3
+  - first:
+      213: -1163738493847280868
+    second: Walkback_2_4
+  - first:
+      213: -1913851656907397861
+    second: Walkback_2_5
+  - first:
+      213: 2884902192738386717
+    second: Walkback_2_6
+  - first:
+      213: 3005804716736562223
+    second: Walkback_2_7
+  - first:
+      213: 6467761653572975176
+    second: Walkback_2_8
+  - first:
+      213: 6169269016634828391
+    second: Walkback_2_9
+  - first:
+      213: -506217206238043427
+    second: Walkback_2_10
+  - first:
+      213: -8189360709627986274
+    second: Walkback_2_11
+  - first:
+      213: -3050839337965258415
+    second: Walkback_2_12
+  - first:
+      213: 5142277423725229797
+    second: Walkback_2_13
+  - first:
+      213: -4844783265105149507
+    second: Walkback_2_14
+  - first:
+      213: -5354520288656120706
+    second: Walkback_2_15
+  - first:
+      213: 1639137797422837201
+    second: Walkback_2_16
+  - first:
+      213: 2573384400334021464
+    second: Walkback_2_17
+  - first:
+      213: -221410994449324762
+    second: Walkback_2_18
+  - first:
+      213: 7833277501782472576
+    second: Walkback_2_19
+  - first:
+      213: -6119204200856151453
+    second: Walkback_2_20
+  - first:
+      213: -6388358111608310604
+    second: Walkback_2_21
+  - first:
+      213: 2058163261786711076
+    second: Walkback_2_22
+  - first:
+      213: -8209101674969967204
+    second: Walkback_2_23
+  - first:
+      213: 6367088072183058633
+    second: Walkback_2_24
+  - first:
+      213: 7329373154149267839
+    second: Walkback_2_25
+  - first:
+      213: -3066136545212882615
+    second: Walkback_2_26
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Walkback_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3028
+        width: 756
+        height: 1050
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe745f1ac3c06810800000000000000
+      internalID: 1756619127550934769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 3008
+        width: 756
+        height: 1070
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2aa5790e0b9168c0800000000000000
+      internalID: -4007751708792477141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_2
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 2988
+        width: 760
+        height: 1090
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49b15a0e106e98980800000000000000
+      internalID: -8536038722965791852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_3
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 2972
+        width: 756
+        height: 1106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3c57877e9e95e8c0800000000000000
+      internalID: -3970593093009843139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_4
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 2952
+        width: 756
+        height: 1126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c13e8ce610299dfe0800000000000000
+      internalID: -1163738493847280868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_5
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 2980
+        width: 756
+        height: 1098
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b15ed3dde02a075e0800000000000000
+      internalID: -1913851656907397861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_6
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 3004
+        width: 760
+        height: 1074
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d13cae9624b390820800000000000000
+      internalID: 2884902192738386717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_7
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 3012
+        width: 756
+        height: 1070
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24c645e673c6b920800000000000000
+      internalID: 3005804716736562223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_8
+      rect:
+        serializedVersion: 2
+        x: 6856
+        y: 3020
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84a3c1dc4fa12c950800000000000000
+      internalID: 6467761653572975176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1776
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766a7540c75ad9550800000000000000
+      internalID: 6169269016634828391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_10
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1776
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd2adfa022e89f8f0800000000000000
+      internalID: -506217206238043427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_11
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 1776
+        width: 760
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9e351dd2db895e80800000000000000
+      internalID: -8189360709627986274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_12
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 1772
+        width: 756
+        height: 1066
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 159fac149cd39a5d0800000000000000
+      internalID: -3050839337965258415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_13
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 1772
+        width: 756
+        height: 1066
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e637a9621a0d5740800000000000000
+      internalID: 5142277423725229797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_14
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 1776
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db186a50a4fd3ccb0800000000000000
+      internalID: -4844783265105149507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_15
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 1776
+        width: 760
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e74a70cba2ce0b5b0800000000000000
+      internalID: -5354520288656120706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_16
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 1776
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dded4964236fb610800000000000000
+      internalID: 1639137797422837201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_17
+      rect:
+        serializedVersion: 2
+        x: 6856
+        y: 1776
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853e07c4a7f76b320800000000000000
+      internalID: 2573384400334021464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 596
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6256b76afd36decf0800000000000000
+      internalID: -221410994449324762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_19
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 596
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 087bdc8a26465bc60800000000000000
+      internalID: 7833277501782472576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_20
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 596
+        width: 760
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36a14e34338341ba0800000000000000
+      internalID: -6119204200856151453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_21
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 596
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b4f99bf42ef757a0800000000000000
+      internalID: -6388358111608310604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_22
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 596
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4246e8cf490109c10800000000000000
+      internalID: 2058163261786711076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_23
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 596
+        width: 756
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95d9523589631e80800000000000000
+      internalID: -8209101674969967204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_24
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 596
+        width: 760
+        height: 1062
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0191c0ed07c5850800000000000000
+      internalID: 6367088072183058633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_25
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 584
+        width: 756
+        height: 1074
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f79f95f0d0a27b560800000000000000
+      internalID: 7329373154149267839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_2_26
+      rect:
+        serializedVersion: 2
+        x: 6856
+        y: 572
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9412eb5ae05e275d0800000000000000
+      internalID: -3066136545212882615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

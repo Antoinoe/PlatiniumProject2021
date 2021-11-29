@@ -4,17 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using Rewired;
 
 public class Footer : MonoBehaviour
 {
-    // Update is called once per frame
+
+    public Rewired.Player player;
+    bool lockSel = true;
+
+    private void Start()
+    {
+        player = ReInput.players.GetPlayer(0);
+    }
     void Update()
     {
-        if (MenuManager.Instance.canSwitchMenu && MenuManager.Instance.actualMenuOn != Menu.MAIN)
+        if (player.GetButtonUp("Attack")) lockSel = false;
+        if (MenuManager.Instance.canSwitchMenu && MenuManager.Instance.actualMenuOn != Menu.MAIN && !lockSel)
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (player.GetButtonDown("Attack"))
                 StartCoroutine(Continue());
-            if (Input.GetKeyDown(KeyCode.B))
+            if (player.GetButtonDown("MenuCan"))
                 StartCoroutine(Return());
         }
       
@@ -31,7 +40,7 @@ public class Footer : MonoBehaviour
             case Menu.MAP:
                 try
                 {
-                    SceneManager.LoadScene(MenuManager.Instance.map.transform.GetChild(1).GetComponent<Selector>().SelectMap());
+                    SceneManager.LoadScene(MenuManager.Instance.map.transform.GetChild(2).GetComponent<Selector>().SelectMap());
                 }
                 catch
                 {

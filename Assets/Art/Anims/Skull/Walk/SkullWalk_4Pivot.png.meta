@@ -1,0 +1,696 @@
+fileFormatVersion: 2
+guid: 12214abe4b52b4e40b2a3b192f1a0c41
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5839591804841027512
+    second: SkullWalk_4Pivot_0
+  - first:
+      213: -826044083348845849
+    second: SkullWalk_4Pivot_1
+  - first:
+      213: 8161495300973398156
+    second: SkullWalk_4Pivot_2
+  - first:
+      213: 3329310757635064530
+    second: SkullWalk_4Pivot_3
+  - first:
+      213: 1681262683256702908
+    second: SkullWalk_4Pivot_4
+  - first:
+      213: 4330094958310105563
+    second: SkullWalk_4Pivot_5
+  - first:
+      213: -6300918026299379885
+    second: SkullWalk_4Pivot_6
+  - first:
+      213: 5205028299451397222
+    second: SkullWalk_4Pivot_7
+  - first:
+      213: -8454290567793784829
+    second: SkullWalk_4Pivot_8
+  - first:
+      213: -2168883467225662213
+    second: SkullWalk_4Pivot_9
+  - first:
+      213: -7643013062138124974
+    second: SkullWalk_4Pivot_10
+  - first:
+      213: -1381399515800473936
+    second: SkullWalk_4Pivot_11
+  - first:
+      213: -1857931551363627633
+    second: SkullWalk_4Pivot_12
+  - first:
+      213: -4083272229135963848
+    second: SkullWalk_4Pivot_13
+  - first:
+      213: -5497748294617005250
+    second: SkullWalk_4Pivot_14
+  - first:
+      213: -4471996759925710975
+    second: SkullWalk_4Pivot_15
+  - first:
+      213: 3473800503126390081
+    second: SkullWalk_4Pivot_16
+  - first:
+      213: 9164735583095927477
+    second: SkullWalk_4Pivot_17
+  - first:
+      213: 7081240842122822999
+    second: SkullWalk_4Pivot_18
+  - first:
+      213: 6001792076976917084
+    second: SkullWalk_4Pivot_19
+  - first:
+      213: 1878429076367238203
+    second: SkullWalk_4Pivot_20
+  - first:
+      213: -1211619115282561285
+    second: SkullWalk_4Pivot_21
+  - first:
+      213: 2797966535675492463
+    second: SkullWalk_4Pivot_22
+  - first:
+      213: -8763287986129419132
+    second: SkullWalk_4Pivot_23
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3056
+        width: 928
+        height: 1040
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8481b27613a95fea0800000000000000
+      internalID: -5839591804841027512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_1
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 3028
+        width: 928
+        height: 1068
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7eacd23684d4984f0800000000000000
+      internalID: -826044083348845849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_2
+      rect:
+        serializedVersion: 2
+        x: 2056
+        y: 3004
+        width: 928
+        height: 1092
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c880a8a1cb4734170800000000000000
+      internalID: 8161495300973398156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_3
+      rect:
+        serializedVersion: 2
+        x: 3084
+        y: 2980
+        width: 928
+        height: 1116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d289bf9e76143e20800000000000000
+      internalID: 3329310757635064530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_4
+      rect:
+        serializedVersion: 2
+        x: 4112
+        y: 2952
+        width: 928
+        height: 1144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb7c2a1b08b055710800000000000000
+      internalID: 1681262683256702908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_5
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 2952
+        width: 928
+        height: 1144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd1a8c93c66971c30800000000000000
+      internalID: 4330094958310105563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_6
+      rect:
+        serializedVersion: 2
+        x: 6168
+        y: 2952
+        width: 928
+        height: 1144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35fe1935074ae88a0800000000000000
+      internalID: -6300918026299379885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_7
+      rect:
+        serializedVersion: 2
+        x: 7196
+        y: 2952
+        width: 928
+        height: 1144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 664f7a239a9fb3840800000000000000
+      internalID: 5205028299451397222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1712
+        width: 928
+        height: 1146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30847b675835caa80800000000000000
+      internalID: -8454290567793784829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_9
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 1712
+        width: 928
+        height: 1146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfcfbc05af396e1e0800000000000000
+      internalID: -2168883467225662213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_10
+      rect:
+        serializedVersion: 2
+        x: 2056
+        y: 1712
+        width: 928
+        height: 1146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25526994d109ee590800000000000000
+      internalID: -7643013062138124974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_11
+      rect:
+        serializedVersion: 2
+        x: 3084
+        y: 1712
+        width: 928
+        height: 1146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bee0d7957844dce0800000000000000
+      internalID: -1381399515800473936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_12
+      rect:
+        serializedVersion: 2
+        x: 4112
+        y: 1712
+        width: 928
+        height: 1146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f850bf7091d4736e0800000000000000
+      internalID: -1857931551363627633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_13
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 1712
+        width: 928
+        height: 1146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 839222daa8d4557c0800000000000000
+      internalID: -4083272229135963848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_14
+      rect:
+        serializedVersion: 2
+        x: 6168
+        y: 1712
+        width: 928
+        height: 1146
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3308daed0314b3b0800000000000000
+      internalID: -5497748294617005250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_15
+      rect:
+        serializedVersion: 2
+        x: 7196
+        y: 1716
+        width: 928
+        height: 1142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18f1ee7f3a640f1c0800000000000000
+      internalID: -4471996759925710975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 145fb61172b653030800000000000000
+      internalID: 3473800503126390081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_17
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b2b0dab47eaf2f70800000000000000
+      internalID: 9164735583095927477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_18
+      rect:
+        serializedVersion: 2
+        x: 2056
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75508b3270f954260800000000000000
+      internalID: 7081240842122822999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_19
+      rect:
+        serializedVersion: 2
+        x: 3084
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a86fb5816aa4350800000000000000
+      internalID: 6001792076976917084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_20
+      rect:
+        serializedVersion: 2
+        x: 4112
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3462a8ea45811a10800000000000000
+      internalID: 1878429076367238203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_21
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf6828685d67f2fe0800000000000000
+      internalID: -1211619115282561285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_22
+      rect:
+        serializedVersion: 2
+        x: 6168
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f683e5c6dbf54d620800000000000000
+      internalID: 2797966535675492463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullWalk_4Pivot_23
+      rect:
+        serializedVersion: 2
+        x: 7196
+        y: 655
+        width: 928
+        height: 959
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484ce4aa10c826680800000000000000
+      internalID: -8763287986129419132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

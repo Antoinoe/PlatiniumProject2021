@@ -1,0 +1,768 @@
+fileFormatVersion: 2
+guid: 4f0517a0c481e114586280f52b81d827
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5873546333874548372
+    second: Walkback_3_0
+  - first:
+      213: -1092312274268807099
+    second: Walkback_3_1
+  - first:
+      213: 2502897529417157298
+    second: Walkback_3_2
+  - first:
+      213: -7888765692043080009
+    second: Walkback_3_3
+  - first:
+      213: 3436087894070350648
+    second: Walkback_3_4
+  - first:
+      213: 6120102425029763865
+    second: Walkback_3_5
+  - first:
+      213: -615210445043030190
+    second: Walkback_3_6
+  - first:
+      213: 2525456581240553847
+    second: Walkback_3_7
+  - first:
+      213: -7399381495509283296
+    second: Walkback_3_8
+  - first:
+      213: 5112430699120606197
+    second: Walkback_3_9
+  - first:
+      213: -4089898087356009320
+    second: Walkback_3_10
+  - first:
+      213: -7829508155065981613
+    second: Walkback_3_11
+  - first:
+      213: -6270246158558907211
+    second: Walkback_3_12
+  - first:
+      213: -4482466518602873136
+    second: Walkback_3_13
+  - first:
+      213: -4578173799542926468
+    second: Walkback_3_14
+  - first:
+      213: -5551095848401590900
+    second: Walkback_3_15
+  - first:
+      213: -8567268658233457206
+    second: Walkback_3_16
+  - first:
+      213: -3118736071341335923
+    second: Walkback_3_17
+  - first:
+      213: -6753755450569156219
+    second: Walkback_3_18
+  - first:
+      213: 1257724266085519068
+    second: Walkback_3_19
+  - first:
+      213: -1174044914267355733
+    second: Walkback_3_20
+  - first:
+      213: -3256125916949890432
+    second: Walkback_3_21
+  - first:
+      213: 9084393017820269184
+    second: Walkback_3_22
+  - first:
+      213: 3289391769917127247
+    second: Walkback_3_23
+  - first:
+      213: -3931524467303750550
+    second: Walkback_3_24
+  - first:
+      213: 7510175936422452546
+    second: Walkback_3_25
+  - first:
+      213: 8784165003059322055
+    second: Walkback_3_26
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Walkback_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3028
+        width: 756
+        height: 1068
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49ee3627547038150800000000000000
+      internalID: 5873546333874548372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 3008
+        width: 756
+        height: 1088
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540a86c16c357d0f0800000000000000
+      internalID: -1092312274268807099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_2
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 2988
+        width: 760
+        height: 1108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bacc16ca041cb220800000000000000
+      internalID: 2502897529417157298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_3
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 2972
+        width: 756
+        height: 1124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7becb794669758290800000000000000
+      internalID: -7888765692043080009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_4
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 2952
+        width: 756
+        height: 1144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83355170cbf6faf20800000000000000
+      internalID: 3436087894070350648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_5
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 2980
+        width: 756
+        height: 1116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 913e7e8dab8fee450800000000000000
+      internalID: 6120102425029763865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_6
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 3004
+        width: 760
+        height: 1092
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257a9191c555677f0800000000000000
+      internalID: -615210445043030190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_7
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 3012
+        width: 756
+        height: 1084
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 771048451693c0320800000000000000
+      internalID: 2525456581240553847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_8
+      rect:
+        serializedVersion: 2
+        x: 6856
+        y: 3020
+        width: 756
+        height: 1076
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02e0292cbbd105990800000000000000
+      internalID: -7399381495509283296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1776
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fbb2ef42a003f640800000000000000
+      internalID: 5112430699120606197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_10
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1776
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8947897db53cd37c0800000000000000
+      internalID: -4089898087356009320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_11
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 1776
+        width: 760
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355a443c0dff75390800000000000000
+      internalID: -7829508155065981613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_12
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 1772
+        width: 756
+        height: 1086
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b4b6d8075c9bf8a0800000000000000
+      internalID: -6270246158558907211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_13
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 1772
+        width: 756
+        height: 1086
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6081153741bc1c0800000000000000
+      internalID: -4482466518602873136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_14
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 1776
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c735e3e7f2f0770c0800000000000000
+      internalID: -4578173799542926468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_15
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 1776
+        width: 760
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c85a0e1acbb86f2b0800000000000000
+      internalID: -5551095848401590900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_16
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 1776
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac548a2fb82fa1980800000000000000
+      internalID: -8567268658233457206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_17
+      rect:
+        serializedVersion: 2
+        x: 6856
+        y: 1776
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a908f111608b4d0800000000000000
+      internalID: -3118736071341335923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 596
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58997fc5337d542a0800000000000000
+      internalID: -6753755450569156219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_19
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 596
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cde8a696e85547110800000000000000
+      internalID: 1257724266085519068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_20
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 596
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba58dbeee54f4bfe0800000000000000
+      internalID: -1174044914267355733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_21
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 596
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a3240fabaefc2d0800000000000000
+      internalID: -3256125916949890432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_22
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 596
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08a473b815f321e70800000000000000
+      internalID: 9084393017820269184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_23
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 596
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4af005036446ad20800000000000000
+      internalID: 3289391769917127247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_24
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 596
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a646a9cb35b6079c0800000000000000
+      internalID: -3931524467303750550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_25
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 584
+        width: 756
+        height: 1094
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24d952b3931893860800000000000000
+      internalID: 7510175936422452546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_3_26
+      rect:
+        serializedVersion: 2
+        x: 6847
+        y: 584
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ccd4cf978f97e970800000000000000
+      internalID: 8784165003059322055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

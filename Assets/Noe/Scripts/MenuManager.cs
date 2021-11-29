@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using Rewired;
 
 public class MenuManager : MonoBehaviour
 {
@@ -28,12 +29,18 @@ public class MenuManager : MonoBehaviour
     public EventSystem eventsys;
     [Range(0.1f, 2)]
     public float switchMenuDuration;
+    public Rewired.Player player;
+    bool navLock = false;
 
     private void Start()
     {
         actualMenuOn = Menu.MAIN;
         lastMenu = Menu.MAIN;
-
+        player = ReInput.players.GetPlayer(0);
+        for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
+        {
+            Debug.Log(ReInput.players.GetPlayer(i).id);
+        }
         GameObject canvas = GameObject.Find("Canvas");
         GameObject groupMenu = canvas.transform.Find("MenuGroup").gameObject;
 
@@ -44,6 +51,32 @@ public class MenuManager : MonoBehaviour
         tuto = groupMenu.transform.Find("TutorialMenu").gameObject;
         //credits = groupMenu.transform.Find("CreditsMenu").gameObject;
     }
+
+    private void Update()
+    {
+        float nav = player.GetAxisRaw("MoveHorizontal");
+        if (navLock && nav == 0) navLock = false;
+        if (actualMenuOn == Menu.MAIN && !navLock)
+        {
+            if (nav > 0)
+            {
+                if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight())
+                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().gameObject);
+                navLock = true;
+            }
+            else if (nav < 0)
+            {
+                if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft())
+                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft().gameObject);
+                navLock = true;
+            }
+
+            if (player.GetButtonDown("Attack"))
+                eventsys.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+
+        }
+    }
+
 
     public void OpenMenu()
     {

@@ -1,0 +1,768 @@
+fileFormatVersion: 2
+guid: 6a853f748349c9346ae9dca59b5a551e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5932666700129810059
+    second: Walkfront_3_0
+  - first:
+      213: 4828589856631645553
+    second: Walkfront_3_1
+  - first:
+      213: -9051186812345353307
+    second: Walkfront_3_2
+  - first:
+      213: -1325578650184338823
+    second: Walkfront_3_3
+  - first:
+      213: 2688663855496276594
+    second: Walkfront_3_4
+  - first:
+      213: 7819024036773761503
+    second: Walkfront_3_5
+  - first:
+      213: 6919871567198756226
+    second: Walkfront_3_6
+  - first:
+      213: -2143513308636074850
+    second: Walkfront_3_7
+  - first:
+      213: -6257523180394921611
+    second: Walkfront_3_8
+  - first:
+      213: -9207079090002829253
+    second: Walkfront_3_9
+  - first:
+      213: -5764417526042458642
+    second: Walkfront_3_10
+  - first:
+      213: 1020254512796185001
+    second: Walkfront_3_11
+  - first:
+      213: -2855858321959323039
+    second: Walkfront_3_12
+  - first:
+      213: -3456822865607744495
+    second: Walkfront_3_13
+  - first:
+      213: -2426195843116201814
+    second: Walkfront_3_14
+  - first:
+      213: 3797837229487719949
+    second: Walkfront_3_15
+  - first:
+      213: 952023919590820429
+    second: Walkfront_3_16
+  - first:
+      213: -2880427863565665981
+    second: Walkfront_3_17
+  - first:
+      213: 9046487634187856170
+    second: Walkfront_3_18
+  - first:
+      213: 2773743772169687344
+    second: Walkfront_3_19
+  - first:
+      213: -5743802785873126575
+    second: Walkfront_3_20
+  - first:
+      213: 4485462838332394603
+    second: Walkfront_3_21
+  - first:
+      213: -7494720286706049101
+    second: Walkfront_3_22
+  - first:
+      213: 3441863254819706398
+    second: Walkfront_3_23
+  - first:
+      213: 8615259898902415340
+    second: Walkfront_3_24
+  - first:
+      213: -8997834857441034143
+    second: Walkfront_3_25
+  - first:
+      213: -24209490099737506
+    second: Walkfront_3_26
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 500
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Walkfront_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3068
+        width: 756
+        height: 1028
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86b6006ee0155250800000000000000
+      internalID: 5932666700129810059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 3044
+        width: 760
+        height: 1052
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 175659244e8920340800000000000000
+      internalID: 4828589856631645553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_2
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 3020
+        width: 756
+        height: 1076
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ab7476ac89b36280800000000000000
+      internalID: -9051186812345353307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_3
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 3000
+        width: 760
+        height: 1096
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972bbe9ad399a9de0800000000000000
+      internalID: -1325578650184338823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_4
+      rect:
+        serializedVersion: 2
+        x: 3432
+        y: 2976
+        width: 756
+        height: 1120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27aa94b088d005520800000000000000
+      internalID: 2688663855496276594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_5
+      rect:
+        serializedVersion: 2
+        x: 4288
+        y: 2980
+        width: 760
+        height: 1116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd1142a3fe0c28c60800000000000000
+      internalID: 7819024036773761503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_6
+      rect:
+        serializedVersion: 2
+        x: 5148
+        y: 2984
+        width: 756
+        height: 1112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d153ef682580060800000000000000
+      internalID: 6919871567198756226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_7
+      rect:
+        serializedVersion: 2
+        x: 6004
+        y: 2988
+        width: 760
+        height: 1108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cac6ba006b042e0800000000000000
+      internalID: -2143513308636074850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_8
+      rect:
+        serializedVersion: 2
+        x: 6864
+        y: 2992
+        width: 756
+        height: 1104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571c9ca32dfc829a0800000000000000
+      internalID: -6257523180394921611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1772
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b30647d4952e93080800000000000000
+      internalID: -9207079090002829253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_10
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1772
+        width: 760
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee5043f1dcca000b0800000000000000
+      internalID: -5764417526042458642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_11
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 1772
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a1b4b7e21ca82e00800000000000000
+      internalID: 1020254512796185001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_12
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 1772
+        width: 760
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16a75c6bcf3fd58d0800000000000000
+      internalID: -2855858321959323039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_13
+      rect:
+        serializedVersion: 2
+        x: 3432
+        y: 1772
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 114a0043be5e600d0800000000000000
+      internalID: -3456822865607744495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_14
+      rect:
+        serializedVersion: 2
+        x: 4288
+        y: 1772
+        width: 760
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa887873cbb645ed0800000000000000
+      internalID: -2426195843116201814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_15
+      rect:
+        serializedVersion: 2
+        x: 5148
+        y: 1772
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d068e52a6d0a4b430800000000000000
+      internalID: 3797837229487719949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_16
+      rect:
+        serializedVersion: 2
+        x: 6004
+        y: 1772
+        width: 760
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4ac2e8f5b4463d00800000000000000
+      internalID: 952023919590820429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_17
+      rect:
+        serializedVersion: 2
+        x: 6864
+        y: 1772
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 349f7078e1aa608d0800000000000000
+      internalID: -2880427863565665981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 564
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a292bbca2949b8d70800000000000000
+      internalID: 9046487634187856170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_19
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 564
+        width: 760
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 031502ec3415e7620800000000000000
+      internalID: 2773743772169687344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_20
+      rect:
+        serializedVersion: 2
+        x: 1716
+        y: 564
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b12285cc9e940b0800000000000000
+      internalID: -5743802785873126575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_21
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 564
+        width: 760
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6c840cbfa09f3e30800000000000000
+      internalID: 4485462838332394603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_22
+      rect:
+        serializedVersion: 2
+        x: 3432
+        y: 564
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bfd8f3ab976df790800000000000000
+      internalID: -7494720286706049101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_23
+      rect:
+        serializedVersion: 2
+        x: 4288
+        y: 564
+        width: 760
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e169ffcf464f3cf20800000000000000
+      internalID: 3441863254819706398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_24
+      rect:
+        serializedVersion: 2
+        x: 5148
+        y: 564
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce70fb18b3d8f8770800000000000000
+      internalID: 8615259898902415340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_25
+      rect:
+        serializedVersion: 2
+        x: 6004
+        y: 560
+        width: 760
+        height: 1114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1608996aed4412380800000000000000
+      internalID: -8997834857441034143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkfront_3_26
+      rect:
+        serializedVersion: 2
+        x: 6864
+        y: 564
+        width: 756
+        height: 1110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5c6966d89df9aff0800000000000000
+      internalID: -24209490099737506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
