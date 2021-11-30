@@ -75,6 +75,7 @@ public class MenuManager : MonoBehaviour
                 eventsys.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
 
         }
+        
     }
 
 
@@ -85,6 +86,7 @@ public class MenuManager : MonoBehaviour
             lastMenu = actualMenuOn;
             Menu menu = EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<MenuSelector>().destination;
             actualMenuOn = menu;
+            print("going to " + menu);
             switch (menu)
             {
                 case Menu.MAIN:
@@ -103,15 +105,13 @@ public class MenuManager : MonoBehaviour
                     break;
                 case Menu.CREDITS:
                     eventsys.SetSelectedGameObject(null);
-                    SceneManager.LoadScene(1);
-                    //Camera.main.transform.DOMove((Vector2)credits.transform.position, switchMenuDuration);
+                    SceneManager.LoadScene("Credits");
                     break;
                 case Menu.TUTO:
                     eventsys.SetSelectedGameObject(null);
                     Camera.main.transform.DOMove((Vector2)tuto.transform.position, switchMenuDuration);
                     break;
                 case Menu.QUIT:
-                    //anim de quit?
                     Application.Quit();
                     break;
                 default:
@@ -161,11 +161,15 @@ public class MenuManager : MonoBehaviour
     {
         Camera.main.transform.DOMove((Vector2)main.transform.position, switchMenuDuration);
         eventsys.SetSelectedGameObject(playButton);
+        lastMenu = actualMenuOn;
+        actualMenuOn = Menu.MAIN;
     }
 
     public void OpenOptions()
     {
         Camera.main.transform.DOMove((Vector2)options.transform.position, switchMenuDuration);
         eventsys.SetSelectedGameObject(generalSlider);
+        lastMenu = actualMenuOn;
+        actualMenuOn = Menu.OPTIONS;
     }
 }
