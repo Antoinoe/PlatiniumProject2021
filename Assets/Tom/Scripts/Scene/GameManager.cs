@@ -223,17 +223,8 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Random Point Reset");
             if (areaColliders.Count > 0)
             {
-                int randomValueReturn = Random.Range(0, 1);
-                bool returnToTheMiddle = randomValueReturn > 0;
                 Vector2 newPos;
-                if (returnToTheMiddle)
-                {
-                    float distanceToZero = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-                    newPos = new Vector2(Mathf.Cos(distanceToZero), Mathf.Sin(distanceToZero)) * radius;
-                }
-                else
-                {
-                    Debug.Log("ReturnToTheMiddle is false");
+                Debug.Log("ReturnToTheMiddle is false");
                     //tempList.Remove(randomIndex);
                     //randomIndex = Random.Range(0, tempList.Count);
                     //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
@@ -242,9 +233,9 @@ public class GameManager : MonoBehaviour
                     //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
                     //int randomArea = Random.Range(0, areaColliders.Count);
                     //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
-                    newPos = -randomPosition;
-                }
-                randomPosition = newPos;
+
+                    newPos = origin - randomPosition;
+                    randomPosition = -newPos;
             }
             else
             {
