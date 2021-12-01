@@ -31,6 +31,7 @@ public class AIController : MonoBehaviour
 
     [SerializeField] private int areaIndex = 0;
     [SerializeField] private AreaManager currentArea;
+
     private /*Circle*/BoxCollider2D dogArea;
     GameObject dog;
     private BoxCollider2D dogCollider;
@@ -123,7 +124,7 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         isDog = gameObject.CompareTag("SecondGoal");
-        iAIdentity = GetComponent<IAIdentity>();  
+        iAIdentity = GetComponent<IAIdentity>();
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("playerNbr", iAIdentity.teamNb);
         color = GetComponentInChildren<SpriteRenderer>().color;
@@ -147,7 +148,7 @@ public class AIController : MonoBehaviour
         }
         else
         {
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,ref currentOrientation);
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
         }
         currentEntity.SetDestination(zonePoint);
         feel = GetComponent<EntityMoveFeel>();
@@ -157,7 +158,8 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
-        UpdateNav();
+        if (canMove)
+            UpdateNav();
     }
 
     private void FixedUpdate()
@@ -268,7 +270,7 @@ public class AIController : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().color = Color.black;
         //DogEat();
-        GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false; 
+        GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false;
         dogArea.enabled = true;
 
         //TODO: Update point
@@ -304,7 +306,6 @@ public class AIController : MonoBehaviour
     {
         if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
         {
-            currentArea.ChangeCurrentAreaCollider(this);
             if (anim) anim.SetBool("isWalking", false);
             previousPoint = transform.position;
             randomRange = GetRandomRange();
@@ -332,12 +333,6 @@ public class AIController : MonoBehaviour
         nextZonePoint = vector2;
     }
 
-
-    public void SetIndexArea(int newIndex)
-    {
-        areaIndex = newIndex;
-    }
-
     //Retourne un nombre aléatoire entre localMaxMoveRange et localMinMoveRange
 
     private float GetRandomRange()
@@ -354,9 +349,9 @@ public class AIController : MonoBehaviour
         return areaIndex;
     }
 
-    public void SetAreaIndex(int newIndex)
+    public void GoToEvent(Collider2D newCollider)
     {
-        areaIndex = newIndex;
+        currentArea.GetCurrentCollider() = newCollider;
     }
 
     public AreaCollider GetCurrentAreaCollider()
@@ -426,10 +421,16 @@ public class AIController : MonoBehaviour
         public float angleMax;
     }
 
-    [System.Serializable] 
+    [System.Serializable]
     public class AreaCollider
     {
         public List<Collider2D> zonesColliders;
+
+        private Collider2D currentCollider;
+        public ref Collider2D GetCurrentCollider()
+        {
+            return ref currentCollider;
+        }
 
         public bool CheckPointIsInZonescollider(Vector2 point)
         {

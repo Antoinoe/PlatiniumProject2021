@@ -27,8 +27,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject iAPrefab;
 
+
     private int[] teams;
     [HideInInspector] public List<IAIdentity[]> iATeams;
+   
+    [Header("Area Event")]
+    public bool eventActived = false;
+    public AreaManager eventArea;
+    private int eventIndex;
 
     [Header("Smoke")]
     [SerializeField] private GameObject protoSmoke;
@@ -97,6 +103,7 @@ public class GameManager : MonoBehaviour
                 GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), Quaternion.identity);
                 //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
+                iAIdentity.controllerIdentity = newIA.GetComponent<AIController>();
                 iAIdentity.teamNb = i;
                 iAIdentity.spriteRend.sprite = players[i].playerSprite;
 
@@ -189,6 +196,22 @@ public class GameManager : MonoBehaviour
         return finalPosition;
     }
 
+    public void MoveAllAIinZone()
+    {
+        if (eventActived)
+        {
+            Collider2D area = eventArea.areaColliders[eventIndex].GetCurrentCollider();
+            for (int i = 0; i < iATeams.Count; i++)
+            {
+                IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
+                for (int j = 0; j < iATeam.Length; j++)
+                {
+                    iATeam[j].controllerIdentity.GoToEvent(area);
+                }
+            }
+        }
+    }
+
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
     {
         List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
@@ -201,8 +224,6 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-
-        AIController.CircleOrientation.Orientation oldOrientation = navmeshOrientation;
         int randomIndex = Random.Range(0, tempList.Count);
         navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
@@ -225,17 +246,17 @@ public class GameManager : MonoBehaviour
             {
                 Vector2 newPos;
                 Debug.Log("ReturnToTheMiddle is false");
-                    //tempList.Remove(randomIndex);
-                    //randomIndex = Random.Range(0, tempList.Count);
-                    //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
-                    
-                    //iAOrientation = new AIController.CircleOrientation(oldOrientation);
-                    //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-                    //int randomArea = Random.Range(0, areaColliders.Count);
-                    //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
+                //tempList.Remove(randomIndex);
+                //randomIndex = Random.Range(0, tempList.Count);
+                //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
 
-                    newPos = origin - randomPosition;
-                    randomPosition = -newPos;
+                //iAOrientation = new AIController.CircleOrientation(oldOrientation);
+                //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                //int randomArea = Random.Range(0, areaColliders.Count);
+                //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
+
+                newPos = origin - randomPosition;
+                randomPosition = -newPos;
             }
             else
             {
