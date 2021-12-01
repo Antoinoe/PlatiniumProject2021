@@ -147,7 +147,7 @@ public class Attack : MonoBehaviour
         else if (killOnCD)
         {
             Debug.Log("onCooldown");
-            Debug.Log(playerController.CurrKillCooldown);
+            //Debug.Log(playerController.CurrKillCooldown);
         }
         else
         {
