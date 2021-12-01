@@ -6,11 +6,14 @@ using Rewired;
 using DG.Tweening;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     #region Variables
     static GameManager _instance;
+
+    public GameObject winPanel;
 
     [Header("Managers")]
     public Rewired.InputManager inputManager;
@@ -20,7 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("Players")]
     public Player[] players;
     public int playerNbrs = 1;
-    GameObject[] playersOnBoard;
+    public GameObject[] playersOnBoard;
 
     [SerializeField] private int iAPerPlayer;
 
@@ -69,6 +72,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
+        {
+            //Debug.Log(ReInput.players.GetPlayer(i).id);
+        }
         teams = new int[players.Length];
         iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
@@ -128,6 +135,7 @@ public class GameManager : MonoBehaviour
                 newIA.GetComponent<IAIdentity>().teamNb = i;
             }
         }*/
+        Debug.Log("EndGM");
     }
 
     private void Update()
@@ -162,11 +170,18 @@ public class GameManager : MonoBehaviour
 
     public void Win(int teamNb)
     {
+        //winPanel.transform.GetChild(0).GetComponent<Text>().text = "Player " + (teamNb + 1) + " win!";
+        //winPanel.SetActive(true);
         Debug.Log("Team " + teamNb + " win !");
         //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
         //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
     }
     #endregion
+
+    public void LoadScene(string sceneName)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+    }
 
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
