@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GardenManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
+
     public float incrementValue;
     public float valueToWin;
     public Slider[] uiSliders;
@@ -40,3 +41,6 @@ public class GardenManager : MonoBehaviour
         return uiSliders[playerNbr];
     }
 }
+
+
+

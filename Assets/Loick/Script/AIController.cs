@@ -130,9 +130,12 @@ public class AIController : MonoBehaviour
         deadColor = new Color(1, 1, 1, 0);
         aliveColor = new Color(1, 1, 1, 1);
         currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
-        dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
-        dog = GameObject.FindGameObjectWithTag("SecondGoal");
-        dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
+        if (GameObject.FindGameObjectWithTag("SecondGoal"))
+        {
+            dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
+            dog = GameObject.FindGameObjectWithTag("SecondGoal");
+            dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
+        }
         areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;

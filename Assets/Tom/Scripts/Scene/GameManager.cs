@@ -128,7 +128,6 @@ public class GameManager : MonoBehaviour
                 newIA.GetComponent<IAIdentity>().teamNb = i;
             }
         }*/
-        Debug.Log("EndGM");
     }
 
     private void Update()
