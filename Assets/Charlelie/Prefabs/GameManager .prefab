@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1372656406282575742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1372656406282575743}
+  - component: {fileID: 1372656406282575740}
+  - component: {fileID: 1372656406282575741}
+  m_Layer: 0
+  m_Name: 'GameManager '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1372656406282575743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372656406282575742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1372656406282575740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372656406282575742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01f325fc92891f4ebc2c4c55cd6e1d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winPanel: {fileID: 0}
+  inputManager: {fileID: 7960896861204157401, guid: 17e7fb81c4a3d524bbcfe123e273a8f9, type: 3}
+  audioManager: {fileID: 0}
+  players:
+  - playerNb: 0
+    playerSprite: {fileID: 21300000, guid: 5994dc3c1b1d01a4aa83c9deb54787aa, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: 3e4a22a0a456d4b4a945d88e89ea9e40, type: 3}
+  - playerNb: 1
+    playerSprite: {fileID: 21300000, guid: 4757f226230b51e46b9e41111b8186a6, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: 91c64a66923bdb34187d07adaf342b04, type: 3}
+  - playerNb: 2
+    playerSprite: {fileID: 21300000, guid: fe18a9a91f50a6f4e82e5be2816c2ced, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: 66ecfe79108775244a5271eb3e3da5e2, type: 3}
+  - playerNb: 3
+    playerSprite: {fileID: 21300000, guid: a615869a866baa24daca95f87ce25ba2, type: 3}
+    smokeSystem: {fileID: 182276930420136351, guid: 512fe6595a52a2d4fb81e05af9e0feb2, type: 3}
+  playerNbrs: 4
+  playersOnBoard: []
+  iAPerPlayer: 7
+  playerPrefab: {fileID: 8550446936934499501, guid: 835470d1a2d516742ba510e55fada03e, type: 3}
+  iAPrefab: {fileID: 7552138741966933269, guid: 6e6c94d238cf79941810353c2ae1fc7b, type: 3}
+  protoSmoke: {fileID: 182276930420136351, guid: f49df0b9b8369b04c84decdac46ea4eb, type: 3}
+  smokeDuration: 3
+  invisibleSprite: {fileID: 21300000, guid: 530baef8779b9e84fa7d3fa4e03b38b4, type: 3}
+--- !u!61 &1372656406282575741
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372656406282575742}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.89246225, y: -0.49977875}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.817523, y: 7.3186293}
+  m_EdgeRadius: 0
