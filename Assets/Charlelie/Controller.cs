@@ -135,6 +135,7 @@ public class Controller : MonoBehaviour
         if (player != null)
         {
             _movementVec = new Vector2(player.GetAxisRaw("MoveHorizontal"), player.GetAxisRaw("MoveVertical"));
+            _movementVec.Normalize();
             //anim.SetFloat("X", _movementVec.x);
             //anim.SetFloat("Y", _movementVec.y);
             transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
