@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
-using MiscUtil.Xml.Linq.Extensions;
+//using MiscUtil.Xml.Linq.Extensions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -61,7 +61,7 @@ public class AIController : MonoBehaviour
 
     EntityMoveFeel feel;
 
-    bool isDead;
+    bool isDead = false;
 
     Animator anim;
 
@@ -130,9 +130,12 @@ public class AIController : MonoBehaviour
         deadColor = new Color(1, 1, 1, 0);
         aliveColor = new Color(1, 1, 1, 1);
         currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
-        dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
-        dog = GameObject.FindGameObjectWithTag("SecondGoal");
-        dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
+        if (GameObject.FindGameObjectWithTag("SecondGoal"))
+        {
+            dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
+            dog = GameObject.FindGameObjectWithTag("SecondGoal");
+            dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
+        }
         areaColliderIsOn = (currentArea != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
@@ -222,7 +225,7 @@ public class AIController : MonoBehaviour
 
     public void OnKilled()
     {
-        //Debug.Log("Dead");
+        //Debug.Log("DIE");
         anim.SetTrigger("Death");
         anim.SetBool("IsDead", true);
         agent.speed = 0;
@@ -242,6 +245,7 @@ public class AIController : MonoBehaviour
         float dist = Vector2.Distance(transform.position, dog.transform.position);
         if (dist < /*localMaxMoveRange*/2000)
         {
+            if (isDead) return;
             anim.SetTrigger("Death");
             anim.SetBool("IsDead", true);
             dogArea.enabled = false;

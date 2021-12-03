@@ -97,15 +97,34 @@ public class Controller : MonoBehaviour
         if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
         {
             anim.SetBool("isWalking", true);
+            anim.SetFloat("X", velocity.x);
+            anim.SetFloat("Y", velocity.y);
             if (velocity.x < 0)
+            {
                 sR.flipX = true;
+                //anim.SetFloat("X", -1);
+            }
             else
+            {
                 sR.flipX = false;
+                //anim.SetFloat("X", 1);
+            }
+
+            if (velocity.y < 0)
+            {
+                //anim.SetFloat("Y", -1);
+            }
+            else if(velocity.y > 0)
+            {
+                //anim.SetFloat("Y", 1);
+            }
         }
         else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
         {
             anim.SetBool("isWalking", false);
             sR.flipX = false;
+            anim.SetFloat("X", 0);
+            anim.SetFloat("Y", 0);
         }
     }
 
@@ -115,9 +134,9 @@ public class Controller : MonoBehaviour
     {
         if (player != null)
         {
-            _movementVec = new Vector2(player.GetAxis("MoveHorizontal"), player.GetAxis("MoveVertical"));
-            anim.SetFloat("X", _movementVec.x);
-            anim.SetFloat("Y", _movementVec.y);
+            _movementVec = new Vector2(player.GetAxisRaw("MoveHorizontal"), player.GetAxisRaw("MoveVertical"));
+            //anim.SetFloat("X", _movementVec.x);
+            //anim.SetFloat("Y", _movementVec.y);
             transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
 
             if (attack.killOnCD && _movementVec != Vector2.zero)
