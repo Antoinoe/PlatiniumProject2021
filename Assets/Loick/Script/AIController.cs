@@ -43,6 +43,8 @@ public class AIController : MonoBehaviour
     private float delay = 0;
     public float delayMax = 2;
 
+    bool onDelay = false;
+
     public float localMinMoveRange = 1;
     private float randomRange = 0;
     public float localMaxMoveRange = 5;
@@ -130,6 +132,7 @@ public class AIController : MonoBehaviour
         iAIdentity = GetComponent<IAIdentity>();
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("playerNbr", iAIdentity.teamNb);
+        anim.SetBool("isWalking", false);
         color = GetComponentInChildren<SpriteRenderer>().color;
         deadColor = new Color(1, 1, 1, 0);
         aliveColor = new Color(1, 1, 1, 1);
@@ -157,7 +160,7 @@ public class AIController : MonoBehaviour
         {
             zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
         }
-        currentEntity.SetDestination(zonePoint);
+        StartCoroutine(Delay());
         feel = GetComponent<EntityMoveFeel>();
         transform.rotation = new Quaternion(0, 0, 0, 0);
     }
@@ -177,11 +180,13 @@ public class AIController : MonoBehaviour
 
         if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
         {
-            anim.SetBool("isWalking", true);
+            Debug.Log("WALKING");
+            if (canMove) anim.SetBool("isWalking", true);
             if (velocity.x < 0)
                 sprite.flipX = !isDog;
             else
                 sprite.flipX = isDog;
+            //sprite.flipX = velocity.x < 0;
         }
         else /*if ((velocity.x == 0 || velocity.y == 0) && anim.GetBool("isWalking"))*/
         {
@@ -392,7 +397,7 @@ public class AIController : MonoBehaviour
         currentEntity.SetDestination(zonePoint);
         canMove = true;
         isWating = false;
-        if (anim) anim.SetBool("isWalking", true);
+        if (anim && canMove) anim.SetBool("isWalking", true);
         yield return null;
     }
 

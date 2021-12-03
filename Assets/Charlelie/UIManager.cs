@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
         {
             if (i < GameManager.GetInstance().playerNbrs)
             {
-                Debug.Log(GameManager.GetInstance().playersOnBoard[i].name);
+                //Debug.Log(GameManager.GetInstance().playersOnBoard[i].name);
                 uiSliders[i].gameObject.SetActive(true);
                 GameManager.GetInstance().playersOnBoard[i].AddComponent<DogProximity>();
             }
