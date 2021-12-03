@@ -8,6 +8,13 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct Accelerator
+{
+    public int delayBeforeAccel;
+    public Vector2 minMax;
+}
+
 public class GameManager : MonoBehaviour
 {
     #region Variables
@@ -26,9 +33,10 @@ public class GameManager : MonoBehaviour
     public GameObject[] playersOnBoard;
 
     [Header("Time")]
-    AIController aiController;
-    public int delayBeforeAccel;
-    public float accelRate;
+    public List<Accelerator> accelerations = new List<Accelerator>();
+    Accelerator currAccel;
+    int currAccelIndex = 0;
+    float currTimer;
 
     [SerializeField] private int iAPerPlayer;
 
@@ -145,6 +153,21 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             SpawnSmoke(Vector2.zero);
+        }
+
+        currTimer -= Time.deltaTime;
+        if (currTimer < 0)
+        {
+            foreach(AIController ai in FindObjectsOfType<AIController>())
+            {
+                ai.delayMin = accelerations[currAccelIndex].minMax.x;
+                ai.delayMax = accelerations[currAccelIndex].minMax.y;
+            }
+            if (currAccelIndex + 1 < accelerations.Count)
+            {
+                currAccelIndex++;
+                currTimer = accelerations[currAccelIndex].delayBeforeAccel;
+            }
         }
     }
 

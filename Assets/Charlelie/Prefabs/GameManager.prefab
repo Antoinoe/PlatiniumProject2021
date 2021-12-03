@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1372656406282575740}
   - component: {fileID: 1372656406282575741}
   m_Layer: 0
-  m_Name: 'GameManager '
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,6 +62,11 @@ MonoBehaviour:
     smokeSystem: {fileID: 182276930420136351, guid: 512fe6595a52a2d4fb81e05af9e0feb2, type: 3}
   playerNbrs: 4
   playersOnBoard: []
+  accelerations:
+  - delayBeforeAccel: 1
+    minMax: {x: 0, y: 0}
+  - delayBeforeAccel: 5
+    minMax: {x: 3, y: 6}
   iAPerPlayer: 7
   playerPrefab: {fileID: 8550446936934499501, guid: 835470d1a2d516742ba510e55fada03e, type: 3}
   iAPrefab: {fileID: 7552138741966933269, guid: 6e6c94d238cf79941810353c2ae1fc7b, type: 3}
