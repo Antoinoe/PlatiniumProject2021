@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using JetBrains.Annotations;
 //using MiscUtil.Xml.Linq.Extensions;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,7 +31,10 @@ public class AIController : MonoBehaviour
     [Range(0.1f, 1)] public float rangePoint = 0.25f;
 
     [SerializeField] private int areaIndex = 0;
-    [SerializeField] private AreaManager currentArea;
+    [SerializeField] private AreaManager areaManager;
+    private bool eventAreaIsActive = false;
+    private List<Collider2D> currentArea;
+
     private /*Circle*/BoxCollider2D dogArea;
     GameObject dog;
     private BoxCollider2D dogCollider;
@@ -125,21 +129,22 @@ public class AIController : MonoBehaviour
     private void Start()
     {
         isDog = gameObject.CompareTag("SecondGoal");
-        iAIdentity = GetComponent<IAIdentity>();  
+        iAIdentity = GetComponent<IAIdentity>();
         anim = GetComponentInChildren<Animator>();
         anim.SetFloat("playerNbr", iAIdentity.teamNb);
         anim.SetBool("isWalking", false);
         color = GetComponentInChildren<SpriteRenderer>().color;
         deadColor = new Color(1, 1, 1, 0);
         aliveColor = new Color(1, 1, 1, 1);
-        currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
+        areaManager = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
+        SetDefaultArea();
         if (GameObject.FindGameObjectWithTag("SecondGoal"))
         {
             dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
             dog = GameObject.FindGameObjectWithTag("SecondGoal");
             dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
         }
-        areaColliderIsOn = (currentArea != null);
+        areaColliderIsOn = (areaManager != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
@@ -149,11 +154,11 @@ public class AIController : MonoBehaviour
         if (areaColliderIsOn)
         {
             zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-            ref currentOrientation, GetCurrentAreaCollider().zonesColliders);
+            ref currentOrientation, currentArea);
         }
         else
         {
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,ref currentOrientation);
+            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
         }
         StartCoroutine(Delay());
         feel = GetComponent<EntityMoveFeel>();
@@ -276,7 +281,7 @@ public class AIController : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponentInChildren<SpriteRenderer>().color = Color.black;
         //DogEat();
-        GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false; 
+        GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<AIController>().dogTargetIsOn = false;
         dogArea.enabled = true;
 
         //TODO: Update point
@@ -312,7 +317,6 @@ public class AIController : MonoBehaviour
     {
         if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
         {
-            currentArea.ChangeCurrentAreaCollider(this);
             if (anim) anim.SetBool("isWalking", false);
             previousPoint = transform.position;
             randomRange = GetRandomRange();
@@ -320,8 +324,18 @@ public class AIController : MonoBehaviour
             if (CompareTag("SecondGoal") && dogTargetIsOn) { zonePoint = nextZonePoint; }
             else if (areaColliderIsOn)
             {
-                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-                    ref currentOrientation, GetCurrentAreaCollider().zonesColliders);
+                if (!eventAreaIsActive)
+                {
+                    zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+                        ref currentOrientation, currentArea);
+                }
+                else
+                {
+                   int colliderIndex =  Random.Range(0, currentArea.Count);
+                   float x = Random.Range(currentArea[colliderIndex].bounds.min.x,currentArea[colliderIndex].bounds.max.x);
+                   float y = Random.Range(currentArea[colliderIndex].bounds.min.y,currentArea[colliderIndex].bounds.max.y);
+                   zonePoint = new Vector2(x, y);
+                }
             }
             else
             {
@@ -340,12 +354,6 @@ public class AIController : MonoBehaviour
         nextZonePoint = vector2;
     }
 
-
-    public void SetIndexArea(int newIndex)
-    {
-        areaIndex = newIndex;
-    }
-
     //Retourne un nombre aléatoire entre localMaxMoveRange et localMinMoveRange
 
     private float GetRandomRange()
@@ -357,19 +365,21 @@ public class AIController : MonoBehaviour
 
     #region Zone Area Function
 
-    public int GetAreaIndex()
+    public void GoToEvent(List<Collider2D> newCollider)
     {
-        return areaIndex;
+        currentArea = newCollider;
+        eventAreaIsActive = true;
     }
 
-    public void SetAreaIndex(int newIndex)
+    public void SetDefaultArea()
     {
-        areaIndex = newIndex;
+        currentArea = areaManager.areaColliders[areaIndex].zonesColliders;
+        eventAreaIsActive = false;
     }
 
-    public AreaCollider GetCurrentAreaCollider()
+    public void SetAreaIndex(int index)
     {
-        return currentArea.areaColliders[areaIndex];
+        areaIndex = index;
     }
 
     #endregion
@@ -434,11 +444,10 @@ public class AIController : MonoBehaviour
         public float angleMax;
     }
 
-    [System.Serializable] 
+    [System.Serializable]
     public class AreaCollider
     {
         public List<Collider2D> zonesColliders;
-
         public bool CheckPointIsInZonescollider(Vector2 point)
         {
             for (int i = 0; i < zonesColliders.Count; i++)
