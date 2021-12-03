@@ -30,7 +30,8 @@ public class AIController : MonoBehaviour
     [Range(0.1f, 1)] public float rangePoint = 0.25f;
 
     [SerializeField] private int areaIndex = 0;
-    [SerializeField] private AreaManager currentArea;
+    [SerializeField] private AreaManager areaManager;
+    private List<Collider2D> currentArea;
 
     private /*Circle*/BoxCollider2D dogArea;
     GameObject dog;
@@ -130,11 +131,12 @@ public class AIController : MonoBehaviour
         color = GetComponentInChildren<SpriteRenderer>().color;
         deadColor = new Color(1, 1, 1, 0);
         aliveColor = new Color(1, 1, 1, 1);
-        currentArea = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
+        areaManager = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
+        SetDefaultArea();
         dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
         dog = GameObject.FindGameObjectWithTag("SecondGoal");
         dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
-        areaColliderIsOn = (currentArea != null);
+        areaColliderIsOn = (areaManager != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
         currentEntity.updateUpAxis = false;
@@ -144,7 +146,7 @@ public class AIController : MonoBehaviour
         if (areaColliderIsOn)
         {
             zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-            ref currentOrientation, GetCurrentAreaCollider().zonesColliders);
+            ref currentOrientation,currentArea);
         }
         else
         {
@@ -158,8 +160,7 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
-        if (canMove)
-            UpdateNav();
+        UpdateNav();
     }
 
     private void FixedUpdate()
@@ -314,7 +315,7 @@ public class AIController : MonoBehaviour
             else if (areaColliderIsOn)
             {
                 zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-                    ref currentOrientation, GetCurrentAreaCollider().zonesColliders);
+                    ref currentOrientation,currentArea);
             }
             else
             {
@@ -344,19 +345,19 @@ public class AIController : MonoBehaviour
 
     #region Zone Area Function
 
-    public int GetAreaIndex()
+    public void GoToEvent(List<Collider2D> newCollider)
     {
-        return areaIndex;
+        currentArea = newCollider;
     }
 
-    public void GoToEvent(Collider2D newCollider)
+    public void SetDefaultArea()
     {
-        currentArea.GetCurrentCollider() = newCollider;
+        currentArea = areaManager.areaColliders[areaIndex].zonesColliders;
     }
 
-    public AreaCollider GetCurrentAreaCollider()
+    public void SetAreaIndex(int index)
     {
-        return currentArea.areaColliders[areaIndex];
+        areaIndex = index;
     }
 
     #endregion
@@ -425,13 +426,6 @@ public class AIController : MonoBehaviour
     public class AreaCollider
     {
         public List<Collider2D> zonesColliders;
-
-        private Collider2D currentCollider;
-        public ref Collider2D GetCurrentCollider()
-        {
-            return ref currentCollider;
-        }
-
         public bool CheckPointIsInZonescollider(Vector2 point)
         {
             for (int i = 0; i < zonesColliders.Count; i++)

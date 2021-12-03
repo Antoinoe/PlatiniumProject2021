@@ -33,9 +33,8 @@ public class GameManager : MonoBehaviour
 
     private int[] teams;
     [HideInInspector] public List<IAIdentity[]> iATeams;
-   
+
     [Header("Area Event")]
-    public bool eventActived = false;
     public AreaManager eventArea;
     private int eventIndex;
 
@@ -72,10 +71,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
-        {
-            //Debug.Log(ReInput.players.GetPlayer(i).id);
-        }
         teams = new int[players.Length];
         iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
@@ -211,20 +206,31 @@ public class GameManager : MonoBehaviour
         return finalPosition;
     }
 
-    public void MoveAllAIinZone()
+    public IEnumerator MoveAllAItoZone(float cooldown)
     {
-        if (eventActived)
+        List<Collider2D> area = eventArea.areaColliders[eventIndex].zonesColliders;
+        for (int i = 0; i < iATeams.Count; i++)
         {
-            Collider2D area = eventArea.areaColliders[eventIndex].GetCurrentCollider();
-            for (int i = 0; i < iATeams.Count; i++)
+            IAIdentity[] iATeam =  iATeams[i];
+            for (int j = 0; j < iATeam.Length; j++)
             {
-                IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
-                for (int j = 0; j < iATeam.Length; j++)
-                {
-                    iATeam[j].controllerIdentity.GoToEvent(area);
-                }
+                iATeam[j].controllerIdentity.GoToEvent(area);
             }
         }
+        yield return new WaitForSeconds(cooldown);
+        for (int i = 0; i < iATeams.Count; i++)
+        {
+            IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
+            for (int j = 0; j < iATeam.Length; j++)
+            {
+                iATeam[j].controllerIdentity.SetDefaultArea();
+            }
+        }
+    }
+
+    public void ExecuteMoveAllAItoZone(float cooldown)
+    {
+        StartCoroutine(MoveAllAItoZone(cooldown));
     }
 
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
