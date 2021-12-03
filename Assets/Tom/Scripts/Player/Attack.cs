@@ -146,8 +146,10 @@ public class Attack : MonoBehaviour
         }
         else if (killOnCD)
         {
-            Debug.Log("onCooldown");
-            //Debug.Log(playerController.CurrKillCooldown);
+            Debug.LogError("onCooldown : " + playerController.teamNb);
+            RectTransform slider = GameObject.Find("Slider0" + (playerController.teamNb + 1)).GetComponent<RectTransform>();
+            StartCoroutine(ShakeIt(slider));
+            //Debug.LogError(playerController.CurrKillCooldown);
         }
         else
         {
@@ -155,7 +157,15 @@ public class Attack : MonoBehaviour
         }
         #endregion
     }
-
+    private IEnumerator ShakeIt(RectTransform transform)
+    {
+        for(int i = 0; i < 20; i++)
+        {
+            transform.anchoredPosition = UnityEngine.Random.insideUnitCircle * 5f;
+            yield return new WaitForFixedUpdate();
+        }
+        yield break;
+    }
     void Update()
     {
         if (Time.deltaTime == 0)
