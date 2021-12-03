@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
     }
     public bool canSwitchMenu = true;
     public GameObject main, charac, map, options, credits, tuto, playButton, generalSlider;
-    public Menu actualMenuOn, lastMenu;
+    public Menu actualMenuOn;
     public EventSystem eventsys;
     [Range(0.1f, 2)]
     public float switchMenuDuration;
@@ -35,7 +35,6 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         actualMenuOn = Menu.MAIN;
-        lastMenu = Menu.MAIN;
         player = ReInput.players.GetPlayer(0);
         for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
         {
@@ -83,7 +82,6 @@ public class MenuManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Main")
         {
-            lastMenu = actualMenuOn;
             Menu menu = EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<MenuSelector>().destination;
             actualMenuOn = menu;
             print("going to " + menu);
@@ -124,7 +122,7 @@ public class MenuManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Main")
         {
-            lastMenu = actualMenuOn;
+
             actualMenuOn = menu;
             switch (menu)
             {
@@ -135,9 +133,10 @@ public class MenuManager : MonoBehaviour
                     Camera.main.transform.DOMove((Vector2)charac.transform.position , switchMenuDuration);
                     break;
                 case Menu.MAP:
-                    if (lastMenu == Menu.CHARACTER)
                         Camera.main.transform.DOMove((Vector2)map.transform.position, switchMenuDuration);
+
                     break;
+
                 case Menu.OPTIONS:
                     OpenOptions();
                     break;
@@ -161,7 +160,6 @@ public class MenuManager : MonoBehaviour
     {
         Camera.main.transform.DOMove((Vector2)main.transform.position, switchMenuDuration);
         eventsys.SetSelectedGameObject(playButton);
-        lastMenu = actualMenuOn;
         actualMenuOn = Menu.MAIN;
     }
 
@@ -169,7 +167,6 @@ public class MenuManager : MonoBehaviour
     {
         Camera.main.transform.DOMove((Vector2)options.transform.position, switchMenuDuration);
         eventsys.SetSelectedGameObject(generalSlider);
-        lastMenu = actualMenuOn;
         actualMenuOn = Menu.OPTIONS;
     }
 }
