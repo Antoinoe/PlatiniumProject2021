@@ -217,9 +217,10 @@ public class GameManager : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(cooldown);
+        Debug.Log("Sortie de zone");
         for (int i = 0; i < iATeams.Count; i++)
         {
-            IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
+            IAIdentity[] iATeam = iATeams[i];
             for (int j = 0; j < iATeam.Length; j++)
             {
                 iATeam[j].controllerIdentity.SetDefaultArea();
@@ -265,7 +266,6 @@ public class GameManager : MonoBehaviour
             if (areaColliders.Count > 0)
             {
                 Vector2 newPos;
-                Debug.Log("ReturnToTheMiddle is false");
                 //tempList.Remove(randomIndex);
                 //randomIndex = Random.Range(0, tempList.Count);
                 //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];

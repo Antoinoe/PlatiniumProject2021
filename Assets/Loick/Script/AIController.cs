@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using JetBrains.Annotations;
 //using MiscUtil.Xml.Linq.Extensions;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class AIController : MonoBehaviour
 
     [SerializeField] private int areaIndex = 0;
     [SerializeField] private AreaManager areaManager;
+    private bool eventAreaIsActive = false;
     private List<Collider2D> currentArea;
 
     private /*Circle*/BoxCollider2D dogArea;
@@ -133,9 +135,12 @@ public class AIController : MonoBehaviour
         aliveColor = new Color(1, 1, 1, 1);
         areaManager = GameObject.FindGameObjectWithTag("Area").GetComponent<AreaManager>();
         SetDefaultArea();
-        dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
-        dog = GameObject.FindGameObjectWithTag("SecondGoal");
-        dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
+        if (GameObject.FindGameObjectWithTag("SecondGoal"))
+        {
+            dogArea = GameObject.FindGameObjectWithTag("SecondGoal").GetComponentInChildren<BoxCollider2D>();
+            dog = GameObject.FindGameObjectWithTag("SecondGoal");
+            dogCollider = GameObject.FindGameObjectWithTag("SecondGoal").GetComponent<BoxCollider2D>();
+        }
         areaColliderIsOn = (areaManager != null);
         currentEntity = GetComponent<NavMeshAgent>();
         currentEntity.updateRotation = false;
@@ -146,7 +151,7 @@ public class AIController : MonoBehaviour
         if (areaColliderIsOn)
         {
             zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-            ref currentOrientation,currentArea);
+            ref currentOrientation, currentArea);
         }
         else
         {
@@ -314,8 +319,18 @@ public class AIController : MonoBehaviour
             if (CompareTag("SecondGoal") && dogTargetIsOn) { zonePoint = nextZonePoint; }
             else if (areaColliderIsOn)
             {
-                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-                    ref currentOrientation,currentArea);
+                if (!eventAreaIsActive)
+                {
+                    zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+                        ref currentOrientation, currentArea);
+                }
+                else
+                {
+                   int colliderIndex =  Random.Range(0, currentArea.Count);
+                   float x = Random.Range(currentArea[colliderIndex].bounds.min.x,currentArea[colliderIndex].bounds.max.x);
+                   float y = Random.Range(currentArea[colliderIndex].bounds.min.y,currentArea[colliderIndex].bounds.max.y);
+                   zonePoint = new Vector2(x, y);
+                }
             }
             else
             {
@@ -348,11 +363,13 @@ public class AIController : MonoBehaviour
     public void GoToEvent(List<Collider2D> newCollider)
     {
         currentArea = newCollider;
+        eventAreaIsActive = true;
     }
 
     public void SetDefaultArea()
     {
         currentArea = areaManager.areaColliders[areaIndex].zonesColliders;
+        eventAreaIsActive = false;
     }
 
     public void SetAreaIndex(int index)
