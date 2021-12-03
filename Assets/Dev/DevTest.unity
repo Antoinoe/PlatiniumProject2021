@@ -1783,7 +1783,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   incrementValue: 0
   valueToWin: 0
-  uiSliders: []
+  uiSliders:
+  - {fileID: 1285683443}
+  - {fileID: 1790701480}
+  - {fileID: 1773657659}
+  - {fileID: 376695258}
 --- !u!4 &1133034161
 Transform:
   m_ObjectHideFlags: 0
@@ -3266,6 +3270,10 @@ PrefabInstance:
     - target: {fileID: 7756447080556599995, guid: 127385656cf918a4b85466077a0c4b6c, type: 3}
       propertyPath: m_Name
       value: "Pong_c\xF4t\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7756447080556599995, guid: 127385656cf918a4b85466077a0c4b6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7756447080556599996, guid: 127385656cf918a4b85466077a0c4b6c, type: 3}
       propertyPath: m_RootOrder

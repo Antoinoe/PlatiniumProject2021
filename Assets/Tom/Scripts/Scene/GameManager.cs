@@ -25,6 +25,11 @@ public class GameManager : MonoBehaviour
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
 
+    [Header("Time")]
+    AIController aiController;
+    public int delayBeforeAccel;
+    public float accelRate;
+
     [SerializeField] private int iAPerPlayer;
 
     [SerializeField] private GameObject playerPrefab;
