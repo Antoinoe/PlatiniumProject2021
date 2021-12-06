@@ -1,46 +1,46 @@
 fileFormatVersion: 2
-guid: de3aa6e9346b786438069922afde6be0
+guid: a9448d3db75d40d488e03b0ad167fe95
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -17957157799732782
-    second: SkullPunch_3_0
+      213: 5249936281410286567
+    second: SkullPunch_4_0
   - first:
-      213: -5798786849914758669
-    second: SkullPunch_3_1
+      213: -4699986594157820992
+    second: SkullPunch_4_1
   - first:
-      213: 99951081279319342
-    second: SkullPunch_3_2
+      213: 9159330802216479518
+    second: SkullPunch_4_2
   - first:
-      213: -8038809941704965876
-    second: SkullPunch_3_3
+      213: 6329059404797679700
+    second: SkullPunch_4_3
   - first:
-      213: 8200727259121185126
-    second: SkullPunch_3_4
+      213: 6076676717799147131
+    second: SkullPunch_4_4
   - first:
-      213: 7115062773554527477
-    second: SkullPunch_3_5
+      213: -5185693351441193309
+    second: SkullPunch_4_5
   - first:
-      213: -4807233276265603360
-    second: SkullPunch_3_6
+      213: 7356603563110757617
+    second: SkullPunch_4_6
   - first:
-      213: 7326404729985217054
-    second: SkullPunch_3_7
+      213: -1290555898045210598
+    second: SkullPunch_4_7
   - first:
-      213: -8296729078143926176
-    second: SkullPunch_3_8
+      213: 793943113903844009
+    second: SkullPunch_4_8
   - first:
-      213: -2042137776020820085
-    second: SkullPunch_3_9
+      213: -7702994811942826610
+    second: SkullPunch_4_9
   - first:
-      213: -5799237778661693937
-    second: SkullPunch_3_10
+      213: -771960411190249228
+    second: SkullPunch_4_10
   - first:
-      213: -1408856700202346867
-    second: SkullPunch_3_11
+      213: -704775057450541195
+    second: SkullPunch_4_11
   - first:
-      213: -8949300014545470838
-    second: SkullPunch_3_12
+      213: 6431287981727339752
+    second: SkullPunch_4_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,7 +130,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SkullPunch_3_0
+      name: SkullPunch_4_0
       rect:
         serializedVersion: 2
         x: 0
@@ -144,14 +144,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d9db246f0430cff0800000000000000
-      internalID: -17957157799732782
+      spriteID: 7e335ea8b358bd840800000000000000
+      internalID: 5249936281410286567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_1
+      name: SkullPunch_4_1
       rect:
         serializedVersion: 2
         x: 1028
@@ -165,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f9df925512968fa0800000000000000
-      internalID: -5798786849914758669
+      spriteID: 0c3002e181b46ceb0800000000000000
+      internalID: -4699986594157820992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_2
+      name: SkullPunch_4_2
       rect:
         serializedVersion: 2
         x: 2056
@@ -186,14 +186,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2de1969af8136100800000000000000
-      internalID: 99951081279319342
+      spriteID: e1b286e16da7c1f70800000000000000
+      internalID: 9159330802216479518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_3
+      name: SkullPunch_4_3
       rect:
         serializedVersion: 2
         x: 3084
@@ -207,14 +207,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c010ccf03f8607090800000000000000
-      internalID: -8038809941704965876
+      spriteID: 4589f41fef555d750800000000000000
+      internalID: 6329059404797679700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_4
+      name: SkullPunch_4_4
       rect:
         serializedVersion: 2
         x: 4112
@@ -228,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 661f7cb2ef5dec170800000000000000
-      internalID: 8200727259121185126
+      spriteID: b760e4b7741b45450800000000000000
+      internalID: 6076676717799147131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_5
+      name: SkullPunch_4_5
       rect:
         serializedVersion: 2
         x: 5140
@@ -249,14 +249,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fcb25435e7cdb260800000000000000
-      internalID: 7115062773554527477
+      spriteID: 3a62e313f57b808b0800000000000000
+      internalID: -5185693351441193309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_6
+      name: SkullPunch_4_6
       rect:
         serializedVersion: 2
         x: 6168
@@ -270,14 +270,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ee50c71ec6494db0800000000000000
-      internalID: -4807233276265603360
+      spriteID: 1f4f694b6f7e71660800000000000000
+      internalID: 7356603563110757617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_7
+      name: SkullPunch_4_7
       rect:
         serializedVersion: 2
         x: 7196
@@ -291,14 +291,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e12b283f84e9ca560800000000000000
-      internalID: 7326404729985217054
+      spriteID: a10ea369f36071ee0800000000000000
+      internalID: -1290555898045210598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_8
+      name: SkullPunch_4_8
       rect:
         serializedVersion: 2
         x: 0
@@ -312,14 +312,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060c3938cd81cdc80800000000000000
-      internalID: -8296729078143926176
+      spriteID: 9aa2b1c3e07a40b00800000000000000
+      internalID: 793943113903844009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_9
+      name: SkullPunch_4_9
       rect:
         serializedVersion: 2
         x: 1028
@@ -333,14 +333,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8f6fdd238ed8a3e0800000000000000
-      internalID: -2042137776020820085
+      spriteID: e8d887fd707791590800000000000000
+      internalID: -7702994811942826610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_10
+      name: SkullPunch_4_10
       rect:
         serializedVersion: 2
         x: 2056
@@ -354,14 +354,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0628da47f7f48fa0800000000000000
-      internalID: -5799237778661693937
+      spriteID: 4f8375698127945f0800000000000000
+      internalID: -771960411190249228
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_11
+      name: SkullPunch_4_11
       rect:
         serializedVersion: 2
         x: 3084
@@ -375,14 +375,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d86920dab4cb27ce0800000000000000
-      internalID: -1408856700202346867
+      spriteID: 57fda1eb1d22836f0800000000000000
+      internalID: -704775057450541195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_12
+      name: SkullPunch_4_12
       rect:
         serializedVersion: 2
         x: 4112
@@ -396,8 +396,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8a7e9c5d03bdc380800000000000000
-      internalID: -8949300014545470838
+      spriteID: 8e4d81f4856804950800000000000000
+      internalID: 6431287981727339752
       vertices: []
       indices: 
       edges: []

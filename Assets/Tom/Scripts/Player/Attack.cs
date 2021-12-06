@@ -85,6 +85,7 @@ public class Attack : MonoBehaviour
                     }
                     else if (collidingObject.CompareTag("NPC"))
                     {
+
                         targets.Add(collidingObject);
                     }
                 }
@@ -126,6 +127,10 @@ public class Attack : MonoBehaviour
 
                     playerController.OnKill(false);
 
+                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    spawnFX(controller.MovementVector * attackRange);
+                    killOnCD = true;
+
                     /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
 
                     //PLAYER A FAIT UN KILL
@@ -144,11 +149,11 @@ public class Attack : MonoBehaviour
                     //else { target.GetComponent<AIController>().OnBone(); }
 
                     playerController.OnKill(true);
-                }
 
-                StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
-                spawnFX(controller.MovementVector * attackRange);
-                killOnCD = true;
+                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    spawnFX(controller.MovementVector * attackRange);
+                    killOnCD = true;
+                }
             }
             else
             {

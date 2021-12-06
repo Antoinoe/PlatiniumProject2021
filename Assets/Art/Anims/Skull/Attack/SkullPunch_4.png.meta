@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9448d3db75d40d488e03b0ad167fe95
+guid: cca66dca16055a54c95f5f4f3d2f6bd9
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -38,9 +38,6 @@ TextureImporter:
   - first:
       213: -704775057450541195
     second: SkullPunch_4_11
-  - first:
-      213: 6431287981727339752
-    second: SkullPunch_4_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -260,9 +257,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6168
-        y: 1292
+        y: 1288
         width: 928
-        height: 1129
+        height: 1130
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,9 +278,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 7196
-        y: 1292
+        y: 1352
         width: 928
-        height: 1129
+        height: 1138
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,7 +301,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 928
-        height: 1182
+        height: 1146
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,7 +322,7 @@ TextureImporter:
         x: 1028
         y: 0
         width: 928
-        height: 1150
+        height: 1162
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,7 +343,7 @@ TextureImporter:
         x: 2056
         y: 0
         width: 928
-        height: 1165
+        height: 1174
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -366,8 +363,8 @@ TextureImporter:
         serializedVersion: 2
         x: 3084
         y: 0
-        width: 928
-        height: 1178
+        width: 1541
+        height: 1190
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -377,27 +374,6 @@ TextureImporter:
       bones: []
       spriteID: 57fda1eb1d22836f0800000000000000
       internalID: -704775057450541195
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SkullPunch_4_12
-      rect:
-        serializedVersion: 2
-        x: 4112
-        y: 0
-        width: 928
-        height: 1194
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e4d81f4856804950800000000000000
-      internalID: 6431287981727339752
       vertices: []
       indices: 
       edges: []

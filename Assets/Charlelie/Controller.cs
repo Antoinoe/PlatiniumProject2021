@@ -19,6 +19,8 @@ public class Controller : MonoBehaviour
     bool showGizmos = true;
     Vector3 previous;
     Vector3 velocity;
+    float acceleration;
+    float decceleration;
 
     public bool ShowGizmos
     {
@@ -39,14 +41,14 @@ public class Controller : MonoBehaviour
 
     public float Acceleration
     {
-        get { return ib.digitalAxisSensitivity; }
-        set { ib.digitalAxisSensitivity = value; }
+        get { return acceleration; }
+        set { acceleration = value; }
     }
 
     public float Decceleration
     {
-        get { return ib.digitalAxisGravity; }
-        set { ib.digitalAxisGravity = value; }
+        get { return decceleration; }
+        set { decceleration = value; }
     }
 
     void Start()
@@ -62,8 +64,8 @@ public class Controller : MonoBehaviour
         playerNum = val;
         player = ReInput.players.GetPlayer(playerNum);
         ib = player.controllers.maps.GetInputBehavior(0);
-        Decceleration = ib.digitalAxisGravity;
-        Acceleration = ib.digitalAxisSensitivity;
+        ib.digitalAxisGravity = Decceleration;
+        ib.digitalAxisSensitivity = Acceleration; 
         if (anim)
             anim.SetFloat("playerNbr", playerNum);
         else
