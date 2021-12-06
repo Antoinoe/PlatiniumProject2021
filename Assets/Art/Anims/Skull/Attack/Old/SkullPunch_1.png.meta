@@ -1,46 +1,58 @@
 fileFormatVersion: 2
-guid: de3aa6e9346b786438069922afde6be0
+guid: 27b820f3f2bcae74085aa84d3993ed09
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -17957157799732782
-    second: SkullPunch_3_0
+      213: 5024651291810168062
+    second: SkullPunch_1_0
   - first:
-      213: -5798786849914758669
-    second: SkullPunch_3_1
+      213: -7674571962952389669
+    second: SkullPunch_1_1
   - first:
-      213: 99951081279319342
-    second: SkullPunch_3_2
+      213: 7601896533889766384
+    second: SkullPunch_1_2
   - first:
-      213: -8038809941704965876
-    second: SkullPunch_3_3
+      213: 8133973935860229949
+    second: SkullPunch_1_3
   - first:
-      213: 8200727259121185126
-    second: SkullPunch_3_4
+      213: 4969337217179063197
+    second: SkullPunch_1_4
   - first:
-      213: 7115062773554527477
-    second: SkullPunch_3_5
+      213: -8622398664390924515
+    second: SkullPunch_1_5
   - first:
-      213: -4807233276265603360
-    second: SkullPunch_3_6
+      213: 6865738231246190527
+    second: SkullPunch_1_6
   - first:
-      213: 7326404729985217054
-    second: SkullPunch_3_7
+      213: 4694462235804860168
+    second: SkullPunch_1_7
   - first:
-      213: -8296729078143926176
-    second: SkullPunch_3_8
+      213: 625348132708501190
+    second: SkullPunch_1_8
   - first:
-      213: -2042137776020820085
-    second: SkullPunch_3_9
+      213: -1795512273941941485
+    second: SkullPunch_1_9
   - first:
-      213: -5799237778661693937
-    second: SkullPunch_3_10
+      213: -5353246547928408059
+    second: SkullPunch_1_10
   - first:
-      213: -1408856700202346867
-    second: SkullPunch_3_11
+      213: 1890484602468963319
+    second: SkullPunch_1_11
   - first:
-      213: -8949300014545470838
-    second: SkullPunch_3_12
+      213: -1153338087763752111
+    second: SkullPunch_1_12
+  - first:
+      213: -3935262709296820903
+    second: SkullPunch_1_13
+  - first:
+      213: 1941899856844273009
+    second: SkullPunch_1_14
+  - first:
+      213: -7509804658614146180
+    second: SkullPunch_1_15
+  - first:
+      213: 7463129376700964797
+    second: SkullPunch_1_16
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -130,274 +142,358 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SkullPunch_3_0
+      name: SkullPunch_1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1356
+        y: 2880
         width: 928
-        height: 1144
+        height: 1120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d9db246f0430cff0800000000000000
-      internalID: -17957157799732782
+      spriteID: efc7d886ab52bb540800000000000000
+      internalID: 5024651291810168062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_1
+      name: SkullPunch_1_1
       rect:
         serializedVersion: 2
         x: 1028
-        y: 1356
+        y: 2880
         width: 928
-        height: 1144
+        height: 1120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f9df925512968fa0800000000000000
-      internalID: -5798786849914758669
+      spriteID: bdbec0916717e7590800000000000000
+      internalID: -7674571962952389669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_2
+      name: SkullPunch_1_2
       rect:
         serializedVersion: 2
         x: 2056
-        y: 1356
+        y: 2880
         width: 928
-        height: 1144
+        height: 1120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2de1969af8136100800000000000000
-      internalID: 99951081279319342
+      spriteID: 0f3d5c9fe9c5f7960800000000000000
+      internalID: 7601896533889766384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_3
+      name: SkullPunch_1_3
       rect:
         serializedVersion: 2
         x: 3084
-        y: 1356
+        y: 2880
         width: 928
-        height: 1144
+        height: 1120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c010ccf03f8607090800000000000000
-      internalID: -8038809941704965876
+      spriteID: d372c33f23ea1e070800000000000000
+      internalID: 8133973935860229949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_4
+      name: SkullPunch_1_4
       rect:
         serializedVersion: 2
         x: 4112
-        y: 1356
+        y: 2880
         width: 928
-        height: 1144
+        height: 1120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 661f7cb2ef5dec170800000000000000
-      internalID: 8200727259121185126
+      spriteID: d93161fced1a6f440800000000000000
+      internalID: 4969337217179063197
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_5
+      name: SkullPunch_1_5
       rect:
         serializedVersion: 2
         x: 5140
-        y: 1320
+        y: 2844
         width: 928
-        height: 1142
+        height: 1118
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fcb25435e7cdb260800000000000000
-      internalID: 7115062773554527477
+      spriteID: d172d212916175880800000000000000
+      internalID: -8622398664390924515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_6
+      name: SkullPunch_1_6
       rect:
         serializedVersion: 2
         x: 6168
-        y: 1292
+        y: 2812
         width: 928
-        height: 1129
+        height: 1106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ee50c71ec6494db0800000000000000
-      internalID: -4807233276265603360
+      spriteID: fb77f3a8b80084f50800000000000000
+      internalID: 6865738231246190527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_7
+      name: SkullPunch_1_7
       rect:
         serializedVersion: 2
         x: 7196
-        y: 1292
+        y: 2812
         width: 928
-        height: 1129
+        height: 1106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e12b283f84e9ca560800000000000000
-      internalID: 7326404729985217054
+      spriteID: 80f72a8f784162140800000000000000
+      internalID: 4694462235804860168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_8
+      name: SkullPunch_1_8
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1524
         width: 928
-        height: 1182
+        height: 1106
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060c3938cd81cdc80800000000000000
-      internalID: -8296729078143926176
+      spriteID: 6c64b0f30deada800800000000000000
+      internalID: 625348132708501190
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_9
+      name: SkullPunch_1_9
       rect:
         serializedVersion: 2
         x: 1028
-        y: 0
+        y: 1588
         width: 928
-        height: 1150
+        height: 1114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8f6fdd238ed8a3e0800000000000000
-      internalID: -2042137776020820085
+      spriteID: 31336d1991f0517e0800000000000000
+      internalID: -1795512273941941485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_10
+      name: SkullPunch_1_10
       rect:
         serializedVersion: 2
         x: 2056
-        y: 0
+        y: 1544
         width: 928
-        height: 1165
+        height: 1114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0628da47f7f48fa0800000000000000
-      internalID: -5799237778661693937
+      spriteID: 50024ab90a275b5b0800000000000000
+      internalID: -5353246547928408059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_11
+      name: SkullPunch_1_11
       rect:
         serializedVersion: 2
-        x: 3084
-        y: 0
+        x: 4115
+        y: 1544
         width: 928
-        height: 1178
+        height: 1114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d86920dab4cb27ce0800000000000000
-      internalID: -1408856700202346867
+      spriteID: 7f3128fcab95c3a10800000000000000
+      internalID: 1890484602468963319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SkullPunch_3_12
+      name: SkullPunch_1_12
       rect:
         serializedVersion: 2
-        x: 4112
-        y: 0
+        x: 3089
+        y: 1544
         width: 928
-        height: 1194
+        height: 1114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8a7e9c5d03bdc380800000000000000
-      internalID: -8949300014545470838
+      spriteID: 15bc9ecae158effe0800000000000000
+      internalID: -1153338087763752111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullPunch_1_13
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 1556
+        width: 928
+        height: 1117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d85827a632369c0800000000000000
+      internalID: -3935262709296820903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullPunch_1_14
+      rect:
+        serializedVersion: 2
+        x: 6168
+        y: 1568
+        width: 928
+        height: 1118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 175b59491a303fa10800000000000000
+      internalID: 1941899856844273009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullPunch_1_15
+      rect:
+        serializedVersion: 2
+        x: 7196
+        y: 1580
+        width: 928
+        height: 1122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7beabe9370d7c790800000000000000
+      internalID: -7509804658614146180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkullPunch_1_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 311
+        width: 928
+        height: 1114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbf1b0370ac529760800000000000000
+      internalID: 7463129376700964797
       vertices: []
       indices: 
       edges: []
