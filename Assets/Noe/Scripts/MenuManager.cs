@@ -27,6 +27,7 @@ public class MenuManager : MonoBehaviour
     public GameObject main, charac, map, options, credits, tuto, playButton, generalSlider;
     public Menu actualMenuOn;
     public EventSystem eventsys;
+    public GameObject selectedObject; 
     [Range(0.1f, 2)]
     public float switchMenuDuration;
     public Rewired.Player player;
