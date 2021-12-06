@@ -53,12 +53,12 @@ public class PlayerController : MonoBehaviour
         spriteRend.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
     }
 
-    public void OnKill(GameObject target)
+    public void OnKill(bool isNPC)
     {
-        if (target.CompareTag("NPC"))
-            currKillCooldown = /*killCooldown + killIAaddCooldown*/ 1;
+        if (isNPC)
+            currKillCooldown = killCooldown + killIAaddCooldown;
         else
-            currKillCooldown = /*killCooldown*/1;
+            currKillCooldown = killCooldown;
     }
 
     void SetCooldown()

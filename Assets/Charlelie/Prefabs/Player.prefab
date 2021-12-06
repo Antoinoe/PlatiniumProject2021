@@ -182,8 +182,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   killOnCD: 0
   killCooldown: 0
+  passedTime: 0
   attackRange: 1
   targetDetectionBoxSize: {x: 2, y: 2}
+  attackFX: {fileID: 7756447080556599995, guid: 127385656cf918a4b85466077a0c4b6c, type: 3}
 --- !u!70 &4937062595718465698
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

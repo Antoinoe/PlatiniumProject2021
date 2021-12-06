@@ -8,6 +8,13 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct Accelerator
+{
+    public int delayBeforeAccel;
+    public Vector2 minMax;
+}
+
 public class GameManager : MonoBehaviour
 {
     #region Variables
@@ -25,13 +32,24 @@ public class GameManager : MonoBehaviour
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
 
+    [Header("Time")]
+    public List<Accelerator> accelerations = new List<Accelerator>();
+    Accelerator currAccel;
+    int currAccelIndex = 0;
+    float currTimer;
+
     [SerializeField] private int iAPerPlayer;
 
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject iAPrefab;
 
+
     private int[] teams;
     [HideInInspector] public List<IAIdentity[]> iATeams;
+
+    [Header("Area Event")]
+    public AreaManager eventArea;
+    private int eventIndex;
 
     [Header("Smoke")]
     [SerializeField] private GameObject protoSmoke;
@@ -66,10 +84,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
-        {
-            //Debug.Log(ReInput.players.GetPlayer(i).id);
-        }
         teams = new int[players.Length];
         iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
@@ -104,6 +118,7 @@ public class GameManager : MonoBehaviour
                 GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), Quaternion.identity);
                 //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
+                iAIdentity.controllerIdentity = newIA.GetComponent<AIController>();
                 iAIdentity.teamNb = i;
                 iAIdentity.spriteRend.sprite = players[i].playerSprite;
 
@@ -140,6 +155,21 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             SpawnSmoke(Vector2.zero);
+        }
+
+        currTimer -= Time.deltaTime;
+        if (currTimer < 0)
+        {
+            foreach(AIController ai in FindObjectsOfType<AIController>())
+            {
+                ai.delayMin = accelerations[currAccelIndex].minMax.x;
+                ai.delayMax = accelerations[currAccelIndex].minMax.y;
+            }
+            if (currAccelIndex + 1 < accelerations.Count)
+            {
+                currAccelIndex++;
+                currTimer = accelerations[currAccelIndex].delayBeforeAccel;
+            }
         }
     }
 
@@ -203,6 +233,34 @@ public class GameManager : MonoBehaviour
         return finalPosition;
     }
 
+    public IEnumerator MoveAllAItoZone(float cooldown)
+    {
+        List<Collider2D> area = eventArea.areaColliders[eventIndex].zonesColliders;
+        for (int i = 0; i < iATeams.Count; i++)
+        {
+            IAIdentity[] iATeam =  iATeams[i];
+            for (int j = 0; j < iATeam.Length; j++)
+            {
+                iATeam[j].controllerIdentity.GoToEvent(area);
+            }
+        }
+        yield return new WaitForSeconds(cooldown);
+        Debug.Log("Sortie de zone");
+        for (int i = 0; i < iATeams.Count; i++)
+        {
+            IAIdentity[] iATeam = iATeams[i];
+            for (int j = 0; j < iATeam.Length; j++)
+            {
+                iATeam[j].controllerIdentity.SetDefaultArea();
+            }
+        }
+    }
+
+    public void ExecuteMoveAllAItoZone(float cooldown)
+    {
+        StartCoroutine(MoveAllAItoZone(cooldown));
+    }
+
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
     {
         List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
@@ -215,8 +273,6 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
-
-        AIController.CircleOrientation.Orientation oldOrientation = navmeshOrientation;
         int randomIndex = Random.Range(0, tempList.Count);
         navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
@@ -238,18 +294,17 @@ public class GameManager : MonoBehaviour
             if (areaColliders.Count > 0)
             {
                 Vector2 newPos;
-                Debug.Log("ReturnToTheMiddle is false");
-                    //tempList.Remove(randomIndex);
-                    //randomIndex = Random.Range(0, tempList.Count);
-                    //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
-                    
-                    //iAOrientation = new AIController.CircleOrientation(oldOrientation);
-                    //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-                    //int randomArea = Random.Range(0, areaColliders.Count);
-                    //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
+                //tempList.Remove(randomIndex);
+                //randomIndex = Random.Range(0, tempList.Count);
+                //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
 
-                    newPos = origin - randomPosition;
-                    randomPosition = -newPos;
+                //iAOrientation = new AIController.CircleOrientation(oldOrientation);
+                //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                //int randomArea = Random.Range(0, areaColliders.Count);
+                //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
+
+                newPos = origin - randomPosition;
+                randomPosition = -newPos;
             }
             else
             {
