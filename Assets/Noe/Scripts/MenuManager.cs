@@ -10,7 +10,7 @@ using Rewired;
 public class MenuManager : MonoBehaviour
 {
     private static MenuManager _instance;
-    
+
     public static MenuManager Instance
     {
         get
@@ -36,11 +36,15 @@ public class MenuManager : MonoBehaviour
     {
         actualMenuOn = Menu.MAIN;
         lastMenu = Menu.MAIN;
-        player = ReInput.players.GetPlayer(0);
-        for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
+        Debug.Log(ReInput.controllers.joystickCount);
+        for (int i = 0; i < ReInput.controllers.joystickCount; i++)
         {
-            Debug.Log(ReInput.players.GetPlayer(i).id);
+            //Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));
+            ReInput.players.Players[i].controllers.AddController(ReInput.controllers.Joysticks[i], true);
+            Debug.Log(ReInput.players.GetPlayer(i).controllers.GetController(ControllerType.Joystick, i).hardwareName);
         }
+        player = ReInput.players.GetPlayer(0);
+        Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
         GameObject canvas = GameObject.Find("Canvas");
         GameObject groupMenu = canvas.transform.Find("MenuGroup").gameObject;
 
@@ -50,6 +54,7 @@ public class MenuManager : MonoBehaviour
         options = groupMenu.transform.Find("OptionMenu").gameObject;
         tuto = groupMenu.transform.Find("TutorialMenu").gameObject;
         //credits = groupMenu.transform.Find("CreditsMenu").gameObject;
+        ReInput.ControllerConnectedEvent += OnControllerConnected;
     }
 
     private void Update()
@@ -75,7 +80,16 @@ public class MenuManager : MonoBehaviour
                 eventsys.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
 
         }
+
+
     }
+
+    private static void OnControllerConnected(ControllerStatusChangedEventArgs args)
+    {
+        ReInput.players.Players[ReInput.controllers.joystickCount - 1].controllers.AddController(ReInput.controllers.Joysticks[ReInput.controllers.joystickCount - 1], true);
+        Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));
+    }
+
 
 
     public void OpenMenu()
@@ -88,15 +102,15 @@ public class MenuManager : MonoBehaviour
             switch (menu)
             {
                 case Menu.MAIN:
-                    OpenMainMenu();                    
+                    OpenMainMenu();
                     break;
                 case Menu.CHARACTER:
                     eventsys.SetSelectedGameObject(null);
-                    Camera.main.transform.DOMove((Vector2)charac.transform.position , switchMenuDuration);
+                    Camera.main.transform.DOMove((Vector2)charac.transform.position, switchMenuDuration);
                     break;
                 case Menu.MAP:
                     eventsys.SetSelectedGameObject(null);
-                    Camera.main.transform.DOMove((Vector2)map.transform.position , switchMenuDuration);
+                    Camera.main.transform.DOMove((Vector2)map.transform.position, switchMenuDuration);
                     break;
                 case Menu.OPTIONS:
                     OpenOptions();
@@ -132,7 +146,7 @@ public class MenuManager : MonoBehaviour
                     OpenMainMenu();
                     break;
                 case Menu.CHARACTER:
-                    Camera.main.transform.DOMove((Vector2)charac.transform.position , switchMenuDuration);
+                    Camera.main.transform.DOMove((Vector2)charac.transform.position, switchMenuDuration);
                     break;
                 case Menu.MAP:
                     if (lastMenu == Menu.CHARACTER)

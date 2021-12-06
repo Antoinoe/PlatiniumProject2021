@@ -15,10 +15,10 @@ public class Selector : MonoBehaviour
     private bool haveToWait = true;
     public Animator lArrowAnim, rArrowAnim;
     [SerializeField] public float swapDuration;
-    [SerializeField] [Range(0.5f,1.5f)] private float mapScaleMin, mapScaleMax;
+    [SerializeField] [Range(0.5f, 1.5f)] private float mapScaleMin, mapScaleMax;
     private bool canSwitch = true;
     private float XdistToGo;
-    [HideInInspector]public int it;
+    [HideInInspector] public int it;
     public Menu thisMenu;
     public GameObject NavTuto;
     public Rewired.Player player;
@@ -29,14 +29,14 @@ public class Selector : MonoBehaviour
     {
         player = ReInput.players.GetPlayer(0);
         Array.Resize(ref items, transform.childCount);
-        for(int i = 0; i< transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             items[i] = transform.GetChild(i).gameObject;
         }
         XdistToGo = items[1].GetComponent<RectTransform>().localPosition.x - items[0].GetComponent<RectTransform>().localPosition.x;
         //reset the scale of the maps in the map menu
         if (thisMenu == Menu.MAP)
-            ScaleItems(); 
+            ScaleItems();
     }
 
     // Update is called once per frame
@@ -46,10 +46,6 @@ public class Selector : MonoBehaviour
         float nav = player.GetAxisRaw("MoveHorizontal");
         if (MenuManager.Instance.actualMenuOn == thisMenu)
         {
-            if (nav > 0 && canSwitch) //right
-                StartCoroutine(Change(false, false, 0));
-            if (nav < 0 && canSwitch) //left
-                StartCoroutine(Change(true, false, 0));
             if (thisMenu == Menu.MAP)
             {
                 if (nav > 0)
@@ -61,17 +57,17 @@ public class Selector : MonoBehaviour
                 if (nav < 0)
                     lArrowAnim.SetBool("isActivate", false);
             }
-            /*else if (thisMenu == Menu.CHARACTER)
+            else if (thisMenu == Menu.CHARACTER)
             {
-                for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
+                for (int i = 0; i < ReInput.controllers.joystickCount; i++)
                 {
                     float nave = ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal");
                     if (nave > 0 && canSwitch) //right
-                        StartCoroutine(Change(false, true, i));
+                        StartCoroutine(Change(false, true, 2));
                     if (nave < 0 && canSwitch) //left
-                        StartCoroutine(Change(true, true, i));
+                        StartCoroutine(Change(true, true, 2));
                 }
-                
+
             }
             else
             {
@@ -79,7 +75,7 @@ public class Selector : MonoBehaviour
                     StartCoroutine(Change(false, false, 0));
                 if (nav < 0 && canSwitch) //left
                     StartCoroutine(Change(true, false, 0));
-            }*/
+            }
 
 
 
@@ -88,17 +84,18 @@ public class Selector : MonoBehaviour
 
     IEnumerator Change(bool input, bool isPlayer, int playerId)
     {
-        GameObject root = GameObject.Find("Background");
+        GameObject root = GameObject.Find("PlayersGrid");
         haveToWait = true;
         canSwitch = false;
         #region move items
         if (input)
         {
+            Debug.Log(it + "  " + items.Length);
             if (it > 0)
             {
                 it--;
                 if (isPlayer)
-                    root.transform.GetChild(1).transform.GetChild(playerId).transform.GetChild(0).DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
+                    root.transform.GetChild(playerId).GetChild(0).DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
                 else
                     transform.DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
             }
@@ -107,11 +104,12 @@ public class Selector : MonoBehaviour
         }
         else
         {
+            Debug.Log(it + "  " + items.Length);
             if (it < items.Length - 1)
             {
                 it++;
                 if (isPlayer)
-                    transform.GetChild(playerId).DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
+                    root.transform.GetChild(playerId).GetChild(0).DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
                 else
                     transform.DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
 
@@ -126,7 +124,7 @@ public class Selector : MonoBehaviour
         if (thisMenu == Menu.TUTO)
             UpdateNav();
 
-        if(haveToWait)
+        if (haveToWait)
             yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
         canSwitch = true;
     }
@@ -139,7 +137,7 @@ public class Selector : MonoBehaviour
                 items[i].GetComponent<RectTransform>().DOScale(mapScaleMax, swapDuration);
             else
                 items[i].GetComponent<RectTransform>().DOScale(mapScaleMin, swapDuration);
-        } 
+        }
     }
 
     void UpdateNav()
@@ -149,6 +147,6 @@ public class Selector : MonoBehaviour
 
     public string SelectMap()
     {
-       return items[it].GetComponent<MapName>().mapName;
+        return items[it].GetComponent<MapName>().mapName;
     }
 }
