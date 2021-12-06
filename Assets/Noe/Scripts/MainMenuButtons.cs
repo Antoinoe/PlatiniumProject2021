@@ -20,7 +20,7 @@ public class MainMenuButtons : MonoBehaviour
             buttons[i] = transform.GetChild(i).gameObject;
         }
         sys = EventSystem.current;
-        print(sys);
+        //print(sys);
         ResetSelectedObject();
         actualScale = buttons[1].GetComponent<RectTransform>().sizeDelta;
     }
@@ -28,6 +28,7 @@ public class MainMenuButtons : MonoBehaviour
     {
         if (sys.currentSelectedGameObject != selectedItem)
             UpdateNav();
+        //print(selectedItem);
     }
 
     public void ResetSelectedObject()
@@ -38,14 +39,21 @@ public class MainMenuButtons : MonoBehaviour
 
     private void UpdateNav()
     {
-        selectedItem = sys.currentSelectedGameObject;
-        for(int i = 0; i<buttons.Length; i++)
+        if(MenuManager.Instance.actualMenuOn == Menu.MAIN)
         {
-            if (selectedItem == buttons[i])
-                selectedItem.GetComponent<RectTransform>().DOSizeDelta(actualScale + plusScale, duration);
-            else
-                selectedItem.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
+            selectedItem = sys.currentSelectedGameObject;
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                if (selectedItem == buttons[i])
+                {
+                    selectedItem.GetComponent<RectTransform>().DOSizeDelta(actualScale + plusScale, duration);
+                }
+                else
+                {
+                    buttons[i].GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
+                }
+            }
         }
-        print("nav updated");
+
     }
 }

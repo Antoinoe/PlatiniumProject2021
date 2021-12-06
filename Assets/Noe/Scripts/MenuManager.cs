@@ -39,7 +39,7 @@ public class MenuManager : MonoBehaviour
         player = ReInput.players.GetPlayer(0);
         for (int i = 0; i < ReInput.players.allPlayerCount - 1; i++)
         {
-            Debug.Log(ReInput.players.GetPlayer(i).id);
+            //Debug.Log(ReInput.players.GetPlayer(i).id);
         }
         GameObject canvas = GameObject.Find("Canvas");
         GameObject groupMenu = canvas.transform.Find("MenuGroup").gameObject;
