@@ -83,6 +83,33 @@ TextureImporter:
   - first:
       213: -2960924428990710208
     second: Walkback_4_26
+  - first:
+      213: 4032006023895122837
+    second: Walkback_4_27
+  - first:
+      213: -4224941195602314663
+    second: Walkback_4_28
+  - first:
+      213: -8984994891868062340
+    second: Walkback_4_29
+  - first:
+      213: -2582531848133458825
+    second: Walkback_4_30
+  - first:
+      213: -3210533950198625999
+    second: Walkback_4_31
+  - first:
+      213: 7495845816075741898
+    second: Walkback_4_32
+  - first:
+      213: -8930600191787058018
+    second: Walkback_4_33
+  - first:
+      213: 1538906631743385849
+    second: Walkback_4_34
+  - first:
+      213: -9174814372008450393
+    second: Walkback_4_35
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -188,9 +215,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3028
+        y: 5929
         width: 756
-        height: 1068
+        height: 1071
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,7 +236,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 856
-        y: 3008
+        y: 5912
         width: 756
         height: 1088
       alignment: 0
@@ -230,9 +257,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1712
-        y: 2988
+        y: 5896
         width: 760
-        height: 1108
+        height: 1104
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,7 +278,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2572
-        y: 2972
+        y: 5876
         width: 756
         height: 1124
       alignment: 0
@@ -272,9 +299,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3428
-        y: 2952
+        y: 5860
         width: 756
-        height: 1144
+        height: 1140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -293,7 +320,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4284
-        y: 2980
+        y: 5884
         width: 756
         height: 1116
       alignment: 0
@@ -314,7 +341,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5140
-        y: 3004
+        y: 5908
         width: 760
         height: 1092
       alignment: 0
@@ -335,9 +362,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6000
-        y: 3012
+        y: 5913
         width: 756
-        height: 1084
+        height: 1087
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,7 +383,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6856
-        y: 3020
+        y: 5924
         width: 756
         height: 1076
       alignment: 0
@@ -377,7 +404,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1776
+        y: 4680
         width: 756
         height: 1082
       alignment: 0
@@ -398,7 +425,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 856
-        y: 1776
+        y: 4680
         width: 756
         height: 1082
       alignment: 0
@@ -419,9 +446,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1712
-        y: 1776
+        y: 4677
         width: 760
-        height: 1082
+        height: 1085
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -440,7 +467,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2572
-        y: 1772
+        y: 4676
         width: 756
         height: 1086
       alignment: 0
@@ -461,9 +488,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3428
-        y: 1772
+        y: 4677
         width: 756
-        height: 1086
+        height: 1085
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -482,9 +509,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4284
-        y: 1776
+        y: 4677
         width: 756
-        height: 1082
+        height: 1085
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -503,7 +530,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5140
-        y: 1776
+        y: 4680
         width: 760
         height: 1082
       alignment: 0
@@ -524,7 +551,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6000
-        y: 1776
+        y: 4680
         width: 756
         height: 1082
       alignment: 0
@@ -545,7 +572,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6856
-        y: 1776
+        y: 4680
         width: 756
         height: 1082
       alignment: 0
@@ -566,7 +593,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 596
+        y: 3500
         width: 756
         height: 1082
       alignment: 0
@@ -587,7 +614,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 856
-        y: 596
+        y: 3500
         width: 756
         height: 1082
       alignment: 0
@@ -608,8 +635,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1712
-        y: 596
-        width: 756
+        y: 3500
+        width: 760
         height: 1082
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -629,7 +656,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2572
-        y: 596
+        y: 3500
         width: 756
         height: 1082
       alignment: 0
@@ -650,7 +677,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3428
-        y: 596
+        y: 3500
         width: 756
         height: 1082
       alignment: 0
@@ -671,7 +698,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4284
-        y: 596
+        y: 3500
         width: 756
         height: 1082
       alignment: 0
@@ -692,8 +719,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5140
-        y: 596
-        width: 756
+        y: 3500
+        width: 760
         height: 1082
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -713,9 +740,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6000
-        y: 584
+        y: 3500
         width: 756
-        height: 1094
+        height: 1082
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -733,10 +760,10 @@ TextureImporter:
       name: Walkback_4_26
       rect:
         serializedVersion: 2
-        x: 6838
-        y: 596
+        x: 6856
+        y: 3488
         width: 756
-        height: 1082
+        height: 1094
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -746,6 +773,195 @@ TextureImporter:
       bones: []
       spriteID: 04e7b336beea8e6d0800000000000000
       internalID: -2960924428990710208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2284
+        width: 756
+        height: 1106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5930182cd1094f730800000000000000
+      internalID: 4032006023895122837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_28
+      rect:
+        serializedVersion: 2
+        x: 6856
+        y: 2308
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ab5370e5efd55c0800000000000000
+      internalID: -4224941195602314663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_29
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 2272
+        width: 756
+        height: 1118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d318910c2ee4380800000000000000
+      internalID: -8984994891868062340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_30
+      rect:
+        serializedVersion: 2
+        x: 1712
+        y: 2260
+        width: 760
+        height: 1130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7744fda87f0092cd0800000000000000
+      internalID: -2582531848133458825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_31
+      rect:
+        serializedVersion: 2
+        x: 2572
+        y: 2272
+        width: 756
+        height: 1118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1394417e164e173d0800000000000000
+      internalID: -3210533950198625999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_32
+      rect:
+        serializedVersion: 2
+        x: 3428
+        y: 2288
+        width: 756
+        height: 1102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acaea461e08960860800000000000000
+      internalID: 7495845816075741898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_33
+      rect:
+        serializedVersion: 2
+        x: 4284
+        y: 2300
+        width: 756
+        height: 1090
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c3f712172201480800000000000000
+      internalID: -8930600191787058018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_34
+      rect:
+        serializedVersion: 2
+        x: 5140
+        y: 2304
+        width: 760
+        height: 1086
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0be879d6b4b5510800000000000000
+      internalID: 1538906631743385849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Walkback_4_35
+      rect:
+        serializedVersion: 2
+        x: 6000
+        y: 2308
+        width: 756
+        height: 1082
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a6a94c50f28ca080800000000000000
+      internalID: -9174814372008450393
       vertices: []
       indices: 
       edges: []

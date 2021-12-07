@@ -180,7 +180,7 @@ public class AIController : MonoBehaviour
 
         if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
         {
-            Debug.Log("WALKING");
+            //Debug.Log("WALKING");
             if (canMove) anim.SetBool("isWalking", true);
             if (velocity.x < 0)
                 sprite.flipX = !isDog;
@@ -320,21 +320,20 @@ public class AIController : MonoBehaviour
             if (anim) anim.SetBool("isWalking", false);
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-
             if (CompareTag("SecondGoal") && dogTargetIsOn) { zonePoint = nextZonePoint; }
             else if (areaColliderIsOn)
             {
-                if (!eventAreaIsActive)
-                {
-                    zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
-                        ref currentOrientation, currentArea);
-                }
-                else
+                if (eventAreaIsActive)
                 {
                    int colliderIndex =  Random.Range(0, currentArea.Count);
                    float x = Random.Range(currentArea[colliderIndex].bounds.min.x,currentArea[colliderIndex].bounds.max.x);
                    float y = Random.Range(currentArea[colliderIndex].bounds.min.y,currentArea[colliderIndex].bounds.max.y);
                    zonePoint = new Vector2(x, y);
+                }
+                else
+                {
+                    zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+                        ref currentOrientation, currentArea);
                 }
             }
             else

@@ -146,7 +146,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2016
+        y: 1516
         width: 756
         height: 984
       alignment: 0
@@ -167,7 +167,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 856
-        y: 2016
+        y: 1516
         width: 756
         height: 984
       alignment: 0
@@ -188,7 +188,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1712
-        y: 2016
+        y: 1516
         width: 760
         height: 984
       alignment: 0
@@ -209,7 +209,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2568
-        y: 2016
+        y: 1516
         width: 760
         height: 984
       alignment: 0
@@ -230,7 +230,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3428
-        y: 2016
+        y: 1516
         width: 756
         height: 984
       alignment: 0
@@ -251,7 +251,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4284
-        y: 2016
+        y: 1516
         width: 756
         height: 984
       alignment: 0
@@ -272,7 +272,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5140
-        y: 2016
+        y: 1516
         width: 760
         height: 984
       alignment: 0
@@ -293,7 +293,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5996
-        y: 2016
+        y: 1516
         width: 760
         height: 984
       alignment: 0
@@ -314,7 +314,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6856
-        y: 2016
+        y: 1516
         width: 756
         height: 984
       alignment: 0
@@ -335,7 +335,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 932
+        y: 432
         width: 756
         height: 984
       alignment: 0
@@ -356,8 +356,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 854
-        y: 932
-        width: 774
+        y: 432
+        width: 778
         height: 984
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -376,9 +376,9 @@ TextureImporter:
       name: Skull Death_1pivot_11
       rect:
         serializedVersion: 2
-        x: 1778
-        y: 932
-        width: 842
+        x: 1779
+        y: 432
+        width: 845
         height: 984
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -397,9 +397,9 @@ TextureImporter:
       name: Skull Death_1pivot_12
       rect:
         serializedVersion: 2
-        x: 2821
-        y: 932
-        width: 895
+        x: 2819
+        y: 432
+        width: 901
         height: 984
       alignment: 0
       pivot: {x: 0, y: 0}
