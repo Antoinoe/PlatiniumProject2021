@@ -9,11 +9,11 @@ using Random = UnityEngine.Random;
 using UnityEngine.UI;
 
 [System.Serializable]
-//public struct Accelerator
-//{
-//    public int delayBeforeAccel;
-//    public Vector2 minMax;
-//}
+public struct Accelerator
+{
+    public int delayBeforeAccel;
+    public Vector2 minMax;
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
 
-    //[Header("Time")]
-    //public List<Accelerator> accelerations = new List<Accelerator>();
-    //Accelerator currAccel;
-    //int currAccelIndex = 0;
-    //float currTimer;
+    [Header("Time")]
+    public List<Accelerator> accelerations = new List<Accelerator>();
+    Accelerator currAccel;
+    int currAccelIndex = 0;
+    float currTimer;
 
     [SerializeField] private int iAPerPlayer;
 
@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Area Event")]
     public AreaManager eventArea;
+    private bool eventCooldownistrue = false;
+    public float eventCooldown = 1f;
+    public float timeToEvent = 10f;
     private int eventIndex;
 
     [Header("Smoke")]
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
 
         _instance = this;
+        StartCoroutine(CooldownForEvent());
     }
 
     public static GameManager GetInstance()
@@ -156,20 +160,26 @@ public class GameManager : MonoBehaviour
         {
             SpawnSmoke(Vector2.zero);
         }
-        //currTimer -= Time.deltaTime;
-        //if (currTimer < 0)
-        //{
-        //    foreach (AIController ai in FindObjectsOfType<AIController>())
-        //    {
-        //        ai.delayMin = accelerations[currAccelIndex].minMax.x;
-        //        ai.delayMax = accelerations[currAccelIndex].minMax.y;
-        //    }
-        //    if (currAccelIndex + 1 < accelerations.Count)
-        //    {
-        //        currAccelIndex++;
-        //        currTimer = accelerations[currAccelIndex].delayBeforeAccel;
-        //    }
-        //}
+        currTimer -= Time.deltaTime;
+        if (currTimer < 0)
+        {
+            foreach (AIController ai in FindObjectsOfType<AIController>())
+            {
+                ai.delayMin = accelerations[currAccelIndex].minMax.x;
+                ai.delayMax = accelerations[currAccelIndex].minMax.y;
+            }
+            if (currAccelIndex + 1 < accelerations.Count)
+            {
+                currAccelIndex++;
+                currTimer = accelerations[currAccelIndex].delayBeforeAccel;
+            }
+        }
+
+        if (eventCooldownistrue)
+        {
+            StartCoroutine(MoveAllAItoZone());
+        }
+
     }
 
     public void OnValuesChanged(int _pNbr, int _iaPerPlayer)
@@ -232,18 +242,19 @@ public class GameManager : MonoBehaviour
         return finalPosition;
     }
 
-    public IEnumerator MoveAllAItoZone(float cooldown)
+    public IEnumerator MoveAllAItoZone()
     {
+        eventCooldownistrue = false;
         List<Collider2D> area = eventArea.areaColliders[eventIndex].zonesColliders;
         for (int i = 0; i < iATeams.Count; i++)
         {
-            IAIdentity[] iATeam =  iATeams[i];
+            IAIdentity[] iATeam = iATeams[i];
             for (int j = 0; j < iATeam.Length; j++)
             {
                 iATeam[j].controllerIdentity.GoToEvent(area);
             }
         }
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(timeToEvent);
         Debug.Log("Sortie de zone");
         for (int i = 0; i < iATeams.Count; i++)
         {
@@ -255,9 +266,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ExecuteMoveAllAItoZone(float cooldown)
+    private IEnumerator CooldownForEvent()
     {
-        StartCoroutine(MoveAllAItoZone(cooldown));
+        while (true)
+        {
+            eventCooldownistrue = false;
+            if (eventCooldown > timeToEvent)
+            {
+                yield return new WaitForSeconds(eventCooldown);
+            }
+            else
+            {
+                yield return new WaitForSeconds(eventCooldown + timeToEvent);
+            }
+            Debug.Log("fin du cooldown");
+        }
     }
 
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
@@ -289,7 +312,7 @@ public class GameManager : MonoBehaviour
         }
         if (!inArea)
         {
-            //Debug.Log("Random Point Reset");
+            Debug.Log("Random Point Reset");
             if (areaColliders.Count > 0)
             {
                 Vector2 newPos;

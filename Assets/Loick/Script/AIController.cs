@@ -315,12 +315,12 @@ public class AIController : MonoBehaviour
 
     public void UpdateNav()
     {
-        if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint))
+        if (IAMovement.NavmeshReachedDestination(currentEntity, zonePoint, rangePoint)|| eventAreaIsActive)
         {
             if (anim) anim.SetBool("isWalking", false);
             previousPoint = transform.position;
             randomRange = GetRandomRange();
-            if (CompareTag("SecondGoal") && dogTargetIsOn) { zonePoint = nextZonePoint; }
+            if (CompareTag("SecondGoal") && dogTargetIsOn) { zonePoint = nextZonePoint; return;}
             else if (areaColliderIsOn)
             {
                 if (eventAreaIsActive)
