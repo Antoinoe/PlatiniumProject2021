@@ -18,9 +18,9 @@ public class Attack : MonoBehaviour
 
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
-    [SerializeField] private float killCooldown;
+    [SerializeField] private float killCooldown; //TO UI
     /*[HideInInspector]*/
-    public float passedTime = 0f;
+    public float passedTime = 0f; //TO UI
 
     //Target detection
     [SerializeField] private float attackRange;
