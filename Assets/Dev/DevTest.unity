@@ -3521,6 +3521,22 @@ PrefabInstance:
       propertyPath: eventCooldown
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: accelerations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: accelerations.Array.data[0].minMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: accelerations.Array.data[0].minMax.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: accelerations.Array.data[0].delayBeforeAccel
+      value: 99999
+      objectReference: {fileID: 0}
     - target: {fileID: 1372656406282575741, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
       propertyPath: m_Size.x
       value: 10.796609
