@@ -135,6 +135,9 @@ public class Attack : MonoBehaviour
                         bounty++; 
 
                     nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
+                    FindObjectOfType<AudioManager>().Play("Attack");
+                    spawnFX(controller.MovementVector * attackRange);
+                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                 }
                 else if (target.CompareTag("NPC"))
                 {
@@ -144,13 +147,16 @@ public class Attack : MonoBehaviour
                     //else { target.GetComponent<AIController>().OnBone(); }
 
                     playerController.OnKill(true);
+                    FindObjectOfType<AudioManager>().Play("Attack");
+                    spawnFX(controller.MovementVector * attackRange);
+                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                 }
 
-                StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
-                spawnFX(controller.MovementVector * attackRange);
+                
+                
                 killOnCD = true;
 
-                FindObjectOfType<AudioManager>().Play("Attack");
+                
             }
             else
             {
