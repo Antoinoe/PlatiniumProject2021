@@ -37,7 +37,6 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         actualMenuOn = Menu.MAIN;
-        lastMenu = Menu.MAIN;
         Debug.Log(ReInput.controllers.joystickCount);
         for (int i = 0; i < ReInput.controllers.joystickCount; i++)
         {
