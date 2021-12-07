@@ -78,6 +78,7 @@ public class Controller : MonoBehaviour
         {
             //Debug.Log("Attack");
             attack.OnAttack();
+            //Vibrate();
         }
 
         if (player.GetButtonDown("ReloadMap"))
@@ -91,7 +92,15 @@ public class Controller : MonoBehaviour
             GameManager.GetInstance().Pause();
         }
     }
+    /*When you punch and get punch, when stamina is good, when dog near*/
+    void Vibrate()
+    {
+        int motorIndex = 0; // the first motor
+        float motorLevel = 1.0f; // full motor speed
+        float duration = 2.0f; // 2 seconds
 
+        player.SetVibration(motorIndex, motorLevel, duration);
+    }
 
     
     private void FixedUpdate()
