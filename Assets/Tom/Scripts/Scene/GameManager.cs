@@ -9,11 +9,11 @@ using Random = UnityEngine.Random;
 using UnityEngine.UI;
 
 [System.Serializable]
-//public struct Accelerator
-//{
-//    public int delayBeforeAccel;
-//    public Vector2 minMax;
-//}
+public struct Accelerator
+{
+    public int delayBeforeAccel;
+    public Vector2 minMax;
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
 
-    //[Header("Time")]
-    //public List<Accelerator> accelerations = new List<Accelerator>();
-    //Accelerator currAccel;
-    //int currAccelIndex = 0;
-    //float currTimer;
+    [Header("Time")]
+    public List<Accelerator> accelerations = new List<Accelerator>();
+    Accelerator currAccel;
+    int currAccelIndex = 0;
+    float currTimer;
 
     [SerializeField] private int iAPerPlayer;
 
@@ -159,20 +159,20 @@ public class GameManager : MonoBehaviour
         {
             SpawnSmoke(Vector2.zero);
         }
-        //currTimer -= Time.deltaTime;
-        //if (currTimer < 0)
-        //{
-        //    foreach (AIController ai in FindObjectsOfType<AIController>())
-        //    {
-        //        ai.delayMin = accelerations[currAccelIndex].minMax.x;
-        //        ai.delayMax = accelerations[currAccelIndex].minMax.y;
-        //    }
-        //    if (currAccelIndex + 1 < accelerations.Count)
-        //    {
-        //        currAccelIndex++;
-        //        currTimer = accelerations[currAccelIndex].delayBeforeAccel;
-        //    }
-        //}
+        currTimer -= Time.deltaTime;
+        if (currTimer < 0)
+        {
+            foreach (AIController ai in FindObjectsOfType<AIController>())
+            {
+                ai.delayMin = accelerations[currAccelIndex].minMax.x;
+                ai.delayMax = accelerations[currAccelIndex].minMax.y;
+            }
+            if (currAccelIndex + 1 < accelerations.Count)
+            {
+                currAccelIndex++;
+                currTimer = accelerations[currAccelIndex].delayBeforeAccel;
+            }
+        }
     }
 
     public void Pause()
