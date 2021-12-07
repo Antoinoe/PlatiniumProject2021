@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateCooldownOnUI();
     }
 
     public Slider GetPlayerSlider(int playerNbr)
@@ -47,6 +47,20 @@ public class UIManager : MonoBehaviour
     public Image getPlayerImage(int playerNbr)
     {
         return uiImages[playerNbr];
+    }
+
+    void UpdateCooldownOnUI()
+    {
+        for(int i = 0; i< GameManager.GetInstance().playerNbrs; i++)
+        {
+            uiImages[i].transform.GetChild(0).GetComponent<Image>().fillAmount += Mathf.Clamp(Time.deltaTime,0,1);
+            
+        }
+    }
+
+    public void EmptyBar(int index)
+    {
+        uiImages[index].transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
     }
 }
 

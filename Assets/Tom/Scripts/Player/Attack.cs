@@ -114,6 +114,7 @@ public class Attack : MonoBehaviour
             #region Attack !
             if (target)
             {
+
                 if (target.CompareTag("Player"))
                 {
                     //Kill Player
@@ -138,6 +139,7 @@ public class Attack : MonoBehaviour
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
                     StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }
                 else if (target.CompareTag("NPC"))
                 {
@@ -150,6 +152,7 @@ public class Attack : MonoBehaviour
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
                     StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().playerNb);
                 }
 
                 
