@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         isDebug = Data.isDebug;
+
         if (!isDebug)
             playerNbrs = Data.playerNbr;
         teams = new int[players.Length];
