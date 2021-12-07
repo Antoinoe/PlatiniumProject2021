@@ -34,10 +34,22 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string name)
     {
-        Audio s = Array.Find(sounds, sound => sound.name == name);
+        //Audio s = Array.Find(sounds, sound => sound.name == name);
+        Audio s = null;
+        foreach(Audio audio in sounds)
+        {
+            if (audio.name == name)
+            {
+                s = audio;
+                break;
+            }
+        }
 
         if (s == null)
+        {
+            Debug.LogError("Cannot find audio in list!");
             return;
+        }
 
         if (s.hasMultipleClips)
         {
