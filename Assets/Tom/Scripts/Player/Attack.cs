@@ -138,6 +138,8 @@ public class Attack : MonoBehaviour
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
                     StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    controller.anim.SetTrigger("doAttack");
+                    killOnCD = true;
                 }
                 else if (target.CompareTag("NPC"))
                 {
@@ -150,13 +152,9 @@ public class Attack : MonoBehaviour
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
                     StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
-                }
-
-                
-                
-                killOnCD = true;
-
-                
+                    controller.anim.SetTrigger("doAttack");
+                    killOnCD = true;
+                }                       
             }
             else
             {
