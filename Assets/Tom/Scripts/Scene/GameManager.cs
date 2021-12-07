@@ -20,7 +20,16 @@ public class GameManager : MonoBehaviour
     #region Variables
     static GameManager _instance;
 
+    [Header("___DEBUG___")]
+    public bool isDebug;
+
+    [Space]
+    [Space]
+    [Space]
+
     public GameObject winPanel;
+    [HideInInspector]
+    public List<int> playerList;
     public GameObject pause;
     public bool isPause = false;
 
@@ -33,8 +42,9 @@ public class GameManager : MonoBehaviour
     public Player[] players;
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
+    [HideInInspector]
+    public int[] pSprite;
 
-    [Header("Time")]
     public List<Accelerator> accelerations = new List<Accelerator>();
     Accelerator currAccel;
     int currAccelIndex = 0;
@@ -51,6 +61,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Area Event")]
     public AreaManager eventArea;
+    public float eventCooldown = 1f;
+    public float timeToEvent = 10f;
     private int eventIndex;
 
     [Header("Smoke")]
@@ -77,6 +89,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
 
         _instance = this;
+        StartCoroutine(CooldownForEvent());
     }
 
     public static GameManager GetInstance()
@@ -86,10 +99,20 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isDebug = Data.isDebug;
+
+        if (!isDebug)
+            playerNbrs = Data.playerNbr;
         teams = new int[players.Length];
         iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
         Instantiate(inputManager);
+        Debug.Log(playerNbrs);
+        playerList = new List<int>();
+        for (int i = 0; i < playerNbrs; i++)
+        {
+            playerList.Add(i);
+        }
         for (int i = 0; i < playerNbrs; i++)
         {
             #region Player
@@ -100,12 +123,18 @@ public class GameManager : MonoBehaviour
             playersOnBoard[i] = newPlayer;
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
-            newPlayerController.playerNb = i;
-            newPlayerController.teamNb = i;
+            if (!isDebug)
+            {
+                newPlayerController.playerNb = Data.pSprite[i];
+                newPlayerController.teamNb = Data.pSprite[i];
+            }
+            else
+            {
+                newPlayerController.playerNb = i;
+                newPlayerController.teamNb = i;
+            }
+            newPlayerController.contNbr = i;
             teams[i] = i;
-
-            //skin
-            newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = players[i].playerSprite;
             #endregion
 
             #region IA
@@ -121,7 +150,15 @@ public class GameManager : MonoBehaviour
                 //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
                 iAIdentity.controllerIdentity = newIA.GetComponent<AIController>();
-                iAIdentity.teamNb = i;
+                if (!isDebug)
+                {
+                    iAIdentity.teamNb = Data.pSprite[i];
+                }
+                else
+                {
+                    iAIdentity.teamNb = i;
+                }
+
                 iAIdentity.spriteRend.sprite = players[i].playerSprite;
 
                 iATeam[j] = iAIdentity;
@@ -131,8 +168,7 @@ public class GameManager : MonoBehaviour
             iATeams.Add(iATeam);
             #endregion
         }
-        currTimer = accelerations[currAccelIndex].delayBeforeAccel;
-        FindObjectOfType<AudioManager>().Play("Music");
+
         /*for (int i = 0; i < playerNbrs; i++)
         {
             Vector2 initPos = RandomNavmeshLocation(10, transform.position);
@@ -174,7 +210,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     public void Pause()
     {
         isPause = !isPause;
@@ -209,17 +244,15 @@ public class GameManager : MonoBehaviour
     {
         playerNbrs = _pNbr;
         iAPerPlayer = _iaPerPlayer;
+        Data.playerNbr = _pNbr;
     }
 
     #region Win
     public void WinCheck(int curTeam, int targetTeam)
     {
-        teams[curTeam] += -1;
-        teams[targetTeam] += 1;
-        if (teams[targetTeam] == playerNbrs - 1)
-        {
-            Win(targetTeam);
-        }
+        playerList.Remove(curTeam);
+        if (playerList.Count == 1)
+            Win(playerList[0]);
     }
 
     public void Win(int teamNb)
@@ -265,18 +298,19 @@ public class GameManager : MonoBehaviour
         return finalPosition;
     }
 
-    public IEnumerator MoveAllAItoZone(float cooldown)
+    public IEnumerator MoveAllAItoZone()
     {
+        Debug.Log("Entrer dans la zone");
         List<Collider2D> area = eventArea.areaColliders[eventIndex].zonesColliders;
         for (int i = 0; i < iATeams.Count; i++)
         {
-            IAIdentity[] iATeam =  iATeams[i];
+            IAIdentity[] iATeam = iATeams[i];
             for (int j = 0; j < iATeam.Length; j++)
             {
                 iATeam[j].controllerIdentity.GoToEvent(area);
             }
         }
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(timeToEvent);
         Debug.Log("Sortie de zone");
         for (int i = 0; i < iATeams.Count; i++)
         {
@@ -288,9 +322,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ExecuteMoveAllAItoZone(float cooldown)
+    private IEnumerator CooldownForEvent()
     {
-        StartCoroutine(MoveAllAItoZone(cooldown));
+        while (true)
+        {
+            if (eventCooldown > timeToEvent)
+            {
+                yield return new WaitForSeconds(eventCooldown);
+            }
+            else
+            {
+                yield return new WaitForSeconds(eventCooldown + timeToEvent);
+            }
+            Debug.Log("fin du cooldown");
+            StartCoroutine(MoveAllAItoZone());
+        }
     }
 
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
