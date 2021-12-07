@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     static GameManager _instance;
 
     public GameObject winPanel;
+    public GameObject pause;
+    public bool isPause = false;
 
     [Header("Managers")]
     public Rewired.InputManager inputManager;
@@ -32,7 +34,6 @@ public class GameManager : MonoBehaviour
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
 
-    [Header("Time")]
     public List<Accelerator> accelerations = new List<Accelerator>();
     Accelerator currAccel;
     int currAccelIndex = 0;
@@ -179,7 +180,35 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(MoveAllAItoZone());
         }
+    }
+    public void Pause()
+    {
+        isPause = !isPause;
+        pause.SetActive(isPause);
+        if (isPause)
+        {
+            //foreach (GameObject player in playersOnBoard)
+            //{
 
+            //}
+
+            /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
+            foreach (NavMeshAgent ia in ias)
+                ia.enabled = false;*/
+            Time.timeScale = 0;
+
+        }
+        else
+        {
+            /*AIController[] ias = FindObjectsOfType<AIController>();
+            foreach (AIController ia in ias)
+                ia.gameObject.GetComponent<NavMeshAgent>().speed = ia.Speed;*/
+
+            /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
+            foreach (NavMeshAgent ia in ias)
+                ia.enabled = true;*/
+            Time.timeScale = 1;
+        }
     }
 
     public void OnValuesChanged(int _pNbr, int _iaPerPlayer)
