@@ -20,7 +20,16 @@ public class GameManager : MonoBehaviour
     #region Variables
     static GameManager _instance;
 
+    [Header("___DEBUG___")]
+    public bool isDebug;
+
+    [Space]
+    [Space]
+    [Space]
+
     public GameObject winPanel;
+    [HideInInspector]
+    public List<int> playerList;
     public GameObject pause;
     public bool isPause = false;
 
@@ -33,6 +42,8 @@ public class GameManager : MonoBehaviour
     public Player[] players;
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
+    [HideInInspector]
+    public int[] pSprite;
 
     public List<Accelerator> accelerations = new List<Accelerator>();
     Accelerator currAccel;
@@ -88,10 +99,20 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isDebug = Data.isDebug;
+
+        if (!isDebug)
+            playerNbrs = Data.playerNbr;
         teams = new int[players.Length];
         iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
         Instantiate(inputManager);
+        Debug.Log(playerNbrs);
+        playerList = new List<int>();
+        for (int i = 0; i < playerNbrs; i++)
+        {
+            playerList.Add(i);
+        }
         for (int i = 0; i < playerNbrs; i++)
         {
             #region Player
@@ -102,12 +123,18 @@ public class GameManager : MonoBehaviour
             playersOnBoard[i] = newPlayer;
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
-            newPlayerController.playerNb = i;
-            newPlayerController.teamNb = i;
+            if (!isDebug)
+            {
+                newPlayerController.playerNb = Data.pSprite[i];
+                newPlayerController.teamNb = Data.pSprite[i];
+            }
+            else
+            {
+                newPlayerController.playerNb = i;
+                newPlayerController.teamNb = i;
+            }
+            newPlayerController.contNbr = i;
             teams[i] = i;
-
-            //skin
-            newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = players[i].playerSprite;
             #endregion
 
             #region IA
@@ -123,7 +150,15 @@ public class GameManager : MonoBehaviour
                 //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
                 iAIdentity.controllerIdentity = newIA.GetComponent<AIController>();
-                iAIdentity.teamNb = i;
+                if (!isDebug)
+                {
+                    iAIdentity.teamNb = Data.pSprite[i];
+                }
+                else
+                {
+                    iAIdentity.teamNb = i;
+                }
+
                 iAIdentity.spriteRend.sprite = players[i].playerSprite;
 
                 iATeam[j] = iAIdentity;
@@ -209,17 +244,15 @@ public class GameManager : MonoBehaviour
     {
         playerNbrs = _pNbr;
         iAPerPlayer = _iaPerPlayer;
+        Data.playerNbr = _pNbr;
     }
 
     #region Win
     public void WinCheck(int curTeam, int targetTeam)
     {
-        teams[curTeam] += -1;
-        teams[targetTeam] += 1;
-        if (teams[targetTeam] == playerNbrs - 1)
-        {
-            Win(targetTeam);
-        }
+        playerList.Remove(curTeam);
+        if (playerList.Count == 1)
+            Win(playerList[0]);
     }
 
     public void Win(int teamNb)
