@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public float incrementValue;
     public float valueToWin;
     public Slider[] uiSliders;
+    public Image[] uiImages;
     void Start()
     {
         Init();
@@ -26,7 +27,10 @@ public class UIManager : MonoBehaviour
                 GameManager.GetInstance().playersOnBoard[i].AddComponent<DogProximity>();
             }
             else
+            {
                 uiSliders[i].gameObject.SetActive(false);
+                uiImages[i].gameObject.SetActive(true);
+            }
         }
     }
 
@@ -39,6 +43,10 @@ public class UIManager : MonoBehaviour
     public Slider GetPlayerSlider(int playerNbr)
     {
         return uiSliders[playerNbr];
+    }
+    public Image getPlayerImage(int playerNbr)
+    {
+        return uiImages[playerNbr];
     }
 }
 
