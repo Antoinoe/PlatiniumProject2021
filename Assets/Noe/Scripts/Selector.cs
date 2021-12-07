@@ -65,9 +65,9 @@ public class Selector : MonoBehaviour
                 {
                     float nave = ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal");
                     if (nave > 0 && canSwitch) //right
-                        ChangePlayer(1, false);
+                        ChangePlayer(i, false);
                     if (nave < 0 && canSwitch) //left
-                        ChangePlayer(1, true);
+                        ChangePlayer(i, true);
                 }
 
             }

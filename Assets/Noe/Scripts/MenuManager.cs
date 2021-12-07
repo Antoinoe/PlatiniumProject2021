@@ -31,6 +31,7 @@ public class MenuManager : MonoBehaviour
     public float switchMenuDuration;
     public Rewired.Player player;
     bool navLock = false;
+    public GameObject[] charaArr;
 
     private void Start()
     {
@@ -42,9 +43,13 @@ public class MenuManager : MonoBehaviour
             //Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));
             ReInput.players.Players[i].controllers.AddController(ReInput.controllers.Joysticks[i], true);
             Debug.Log(ReInput.players.GetPlayer(i).controllers.GetController(ControllerType.Joystick, i).hardwareName);
+            charaArr[i].SetActive(true);
         }
-        player = ReInput.players.GetPlayer(0);
-        Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
+        if(ReInput.controllers.joystickCount > 0)
+        {
+            player = ReInput.players.GetPlayer(0);
+            Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
+        }
         GameObject canvas = GameObject.Find("Canvas");
         GameObject groupMenu = canvas.transform.Find("MenuGroup").gameObject;
 
@@ -59,6 +64,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
+        if (player == null) return;
         float nav = player.GetAxisRaw("MoveHorizontal");
         if (navLock && nav == 0) navLock = false;
         if (actualMenuOn == Menu.MAIN && !navLock)
@@ -86,11 +92,26 @@ public class MenuManager : MonoBehaviour
 
     private static void OnControllerConnected(ControllerStatusChangedEventArgs args)
     {
-        ReInput.players.Players[ReInput.controllers.joystickCount - 1].controllers.AddController(ReInput.controllers.Joysticks[ReInput.controllers.joystickCount - 1], true);
+        FindObjectOfType<MenuManager>().AddController();
         Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));
+        FindObjectOfType<MenuManager>().UnlockChara(ReInput.controllers.joystickCount - 1);
     }
 
+    void AddController()
+    {
+        ReInput.players.Players[ReInput.controllers.joystickCount - 1].controllers.AddController(ReInput.controllers.Joysticks[ReInput.controllers.joystickCount - 1], true);
+        Debug.Log(ReInput.controllers.joystickCount);
+        if (ReInput.controllers.joystickCount == 1)
+        {
+            player = ReInput.players.GetPlayer(0);
+            Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
+        }
+    }
 
+    void UnlockChara(int i)
+    {
+        charaArr[i].SetActive(true);
+    }
 
     public void OpenMenu()
     {
