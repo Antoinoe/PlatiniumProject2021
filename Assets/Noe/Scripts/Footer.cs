@@ -55,7 +55,6 @@ public class Footer : MonoBehaviour
     IEnumerator Return()
     {
         MenuManager.Instance.canSwitchMenu = false;
-        MenuManager.Instance.lastMenu = MenuManager.Instance.actualMenuOn;
 
         switch (MenuManager.Instance.actualMenuOn)
         {

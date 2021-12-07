@@ -29,6 +29,7 @@ public class Selector : MonoBehaviour
 
     void Start()
     {
+        
         player = ReInput.players.GetPlayer(0);
         Array.Resize(ref items, transform.childCount);
         for (int i = 0; i < transform.childCount; i++)
