@@ -24,6 +24,8 @@ public class Selector : MonoBehaviour
     public Rewired.Player player;
     public EventSystem eventSys;
     bool navLock = false;
+    bool[] playersWait = { false, false, false, false };
+    int[] pIt = { 0, 0, 0, 0 };
 
     void Start()
     {
@@ -63,9 +65,9 @@ public class Selector : MonoBehaviour
                 {
                     float nave = ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal");
                     if (nave > 0 && canSwitch) //right
-                        StartCoroutine(Change(false, true, 2));
+                        ChangePlayer(1, false);
                     if (nave < 0 && canSwitch) //left
-                        StartCoroutine(Change(true, true, 2));
+                        ChangePlayer(1, true);
                 }
 
             }
@@ -82,6 +84,34 @@ public class Selector : MonoBehaviour
         }
     }
 
+
+    //C'est du big caca je sais dsl mais je m'en bas les c*** à molette
+    void ChangePlayer(int pId, bool input)
+    {
+        switch (pId)
+        {
+            case 0:
+                if (!playersWait[0])
+                    StartCoroutine(ChangePlayer1(input));
+                break;
+
+            case 1:
+                if (!playersWait[1])
+                    StartCoroutine(ChangePlayer2(input));
+                break;
+
+            case 2:
+                if (!playersWait[2])
+                    StartCoroutine(ChangePlayer3(input));
+                break;
+
+            case 3:
+                if (!playersWait[3])
+                    StartCoroutine(ChangePlayer4(input));
+                break;
+        }
+    }
+
     IEnumerator Change(bool input, bool isPlayer, int playerId)
     {
         GameObject root = GameObject.Find("PlayersGrid");
@@ -95,7 +125,7 @@ public class Selector : MonoBehaviour
             {
                 it--;
                 if (isPlayer)
-                    root.transform.GetChild(playerId).GetChild(0).DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
+                    root.transform.GetChild(playerId).GetChild(0).DOLocalMoveX(root.transform.GetChild(playerId).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 else
                     transform.DOLocalMoveX(transform.localPosition.x + XdistToGo, swapDuration);
             }
@@ -109,7 +139,7 @@ public class Selector : MonoBehaviour
             {
                 it++;
                 if (isPlayer)
-                    root.transform.GetChild(playerId).GetChild(0).DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
+                    root.transform.GetChild(playerId).GetChild(0).DOLocalMoveX(root.transform.GetChild(playerId).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 else
                     transform.DOLocalMoveX(transform.localPosition.x - XdistToGo, swapDuration);
 
@@ -127,6 +157,138 @@ public class Selector : MonoBehaviour
         if (haveToWait)
             yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
         canSwitch = true;
+    }
+
+    IEnumerator ChangePlayer1(bool input)
+    {
+        GameObject root = GameObject.Find("PlayersGrid");
+        playersWait[0] = true;
+        #region move items
+        if (input)
+        {
+            Debug.Log(pIt[0] + "  " + items.Length);
+            if (pIt[0] > 0)
+            {
+                pIt[0]--;
+                root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        else
+        {
+            Debug.Log(pIt[0] + "  " + items.Length);
+            if (pIt[0] < items.Length - 1)
+            {
+                pIt[0]++;
+                root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        #endregion
+
+        yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
+        playersWait[0] = false;
+    }
+
+    IEnumerator ChangePlayer2(bool input)
+    {
+        GameObject root = GameObject.Find("PlayersGrid");
+        playersWait[1] = true;
+        #region move items
+        if (input)
+        {
+            Debug.Log(pIt[1] + "  " + items.Length);
+            if (pIt[1] > 0)
+            {
+                pIt[1]--;
+                root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        else
+        {
+            Debug.Log(pIt[1] + "  " + items.Length);
+            if (pIt[1] < items.Length - 1)
+            {
+                pIt[1]++;
+                root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        #endregion
+
+        yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
+        playersWait[1] = false;
+    }
+
+    IEnumerator ChangePlayer3(bool input)
+    {
+        GameObject root = GameObject.Find("PlayersGrid");
+        playersWait[2] = true;
+        #region move items
+        if (input)
+        {
+            Debug.Log(pIt[2] + "  " + items.Length);
+            if (pIt[2] > 0)
+            {
+                pIt[2]--;
+                root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        else
+        {
+            Debug.Log(pIt[2] + "  " + items.Length);
+            if (pIt[2] < items.Length - 1)
+            {
+                pIt[2]++;
+                root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        #endregion
+
+        yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
+        playersWait[2] = false;
+    }
+
+    IEnumerator ChangePlayer4(bool input)
+    {
+        GameObject root = GameObject.Find("PlayersGrid");
+        playersWait[3] = true;
+        #region move items
+        if (input)
+        {
+            Debug.Log(pIt[3] + "  " + items.Length);
+            if (pIt[3] > 0)
+            {
+                pIt[3]--;
+                root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        else
+        {
+            Debug.Log(pIt[3] + "  " + items.Length);
+            if (pIt[3] < items.Length - 1)
+            {
+                pIt[3]++;
+                root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
+            }
+            else
+                haveToWait = false;
+        }
+        #endregion
+
+        yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
+        playersWait[3] = false;
     }
 
     void ScaleItems()

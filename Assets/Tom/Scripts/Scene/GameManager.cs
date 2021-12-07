@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     static GameManager _instance;
 
     public GameObject winPanel;
+    public GameObject pause;
+    public bool isPause = false;
 
     [Header("Managers")]
     public Rewired.InputManager inputManager;
@@ -129,7 +131,8 @@ public class GameManager : MonoBehaviour
             iATeams.Add(iATeam);
             #endregion
         }
-
+        currTimer = accelerations[currAccelIndex].delayBeforeAccel;
+        FindObjectOfType<AudioManager>().Play("Music");
         /*for (int i = 0; i < playerNbrs; i++)
         {
             Vector2 initPos = RandomNavmeshLocation(10, transform.position);
@@ -170,6 +173,36 @@ public class GameManager : MonoBehaviour
                 currAccelIndex++;
                 currTimer = accelerations[currAccelIndex].delayBeforeAccel;
             }
+        }
+    }
+
+    public void Pause()
+    {
+        isPause = !isPause;
+        pause.SetActive(isPause);
+        if (isPause)
+        {
+            //foreach (GameObject player in playersOnBoard)
+            //{
+
+            //}
+
+            /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
+            foreach (NavMeshAgent ia in ias)
+                ia.enabled = false;*/
+            Time.timeScale = 0;
+
+        }
+        else
+        {
+            /*AIController[] ias = FindObjectsOfType<AIController>();
+            foreach (AIController ia in ias)
+                ia.gameObject.GetComponent<NavMeshAgent>().speed = ia.Speed;*/
+
+            /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
+            foreach (NavMeshAgent ia in ias)
+                ia.enabled = true;*/
+            Time.timeScale = 1;
         }
     }
 

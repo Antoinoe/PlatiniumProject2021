@@ -85,6 +85,11 @@ public class Controller : MonoBehaviour
             Debug.Log("Reload");
             UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
         }
+
+        if (player.GetButtonDown("Pause"))
+        {
+            GameManager.GetInstance().Pause();
+        }
     }
 
 

@@ -74,7 +74,7 @@ MonoBehaviour:
   speed: 5
   rangePoint: 0.25
   areaIndex: 0
-  currentArea: {fileID: 0}
+  areaManager: {fileID: 0}
   delayMin: 1
   delayMax: 2
   localMinMoveRange: 2.189435
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamNb: 0
   spriteRend: {fileID: 7552138742574040254}
+  controllerIdentity: {fileID: 0}
   isInvisible: 0
 --- !u!114 &5240712458190938917
 MonoBehaviour:

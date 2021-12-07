@@ -180,7 +180,7 @@ public class AIController : MonoBehaviour
 
         if ((velocity.x != 0 || velocity.y != 0)/* && !anim.GetBool("isWalking")*/)
         {
-            Debug.Log("WALKING");
+            //Debug.Log("WALKING");
             if (canMove) anim.SetBool("isWalking", true);
             if (velocity.x < 0)
                 sprite.flipX = !isDog;

@@ -149,6 +149,8 @@ public class Attack : MonoBehaviour
                 StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                 spawnFX(controller.MovementVector * attackRange);
                 killOnCD = true;
+
+                FindObjectOfType<AudioManager>().Play("Attack");
             }
             else
             {
