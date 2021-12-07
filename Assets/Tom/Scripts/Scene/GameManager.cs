@@ -50,7 +50,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Area Event")]
     public AreaManager eventArea;
-    private bool eventCooldownistrue = false;
     public float eventCooldown = 1f;
     public float timeToEvent = 10f;
     private int eventIndex;
@@ -175,11 +174,6 @@ public class GameManager : MonoBehaviour
                 currTimer = accelerations[currAccelIndex].delayBeforeAccel;
             }
         }
-
-        if (eventCooldownistrue)
-        {
-            StartCoroutine(MoveAllAItoZone());
-        }
     }
     public void Pause()
     {
@@ -273,7 +267,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator MoveAllAItoZone()
     {
-        eventCooldownistrue = false;
+        Debug.Log("Entrer dans la zone");
         List<Collider2D> area = eventArea.areaColliders[eventIndex].zonesColliders;
         for (int i = 0; i < iATeams.Count; i++)
         {
@@ -299,7 +293,6 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            eventCooldownistrue = false;
             if (eventCooldown > timeToEvent)
             {
                 yield return new WaitForSeconds(eventCooldown);
@@ -309,6 +302,7 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(eventCooldown + timeToEvent);
             }
             Debug.Log("fin du cooldown");
+            StartCoroutine(MoveAllAItoZone());
         }
     }
 
