@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     //Teams
     public int teamNb = 0;
     public int playerNb = 0;
+    public int contNbr = 0;
     float killCooldown = 0.0f;
     float killIAaddCooldown = 0.0f;
     float currKillCooldown = 0.0f;
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Controller>();
-        controller.SetNum(playerNb);
+        controller.SetNum(playerNb, contNbr);
         gameManager = GameManager.GetInstance();
         spriteRend = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }

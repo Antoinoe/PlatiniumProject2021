@@ -34,8 +34,10 @@ public class MenuManager : MonoBehaviour
     bool navLock = false;
     public GameObject[] charaArr;
 
+
     private void Start()
     {
+        Data.isDebug = false;
         actualMenuOn = Menu.MAIN;
         Debug.Log(ReInput.controllers.joystickCount);
         for (int i = 0; i < ReInput.controllers.joystickCount; i++)
@@ -43,9 +45,11 @@ public class MenuManager : MonoBehaviour
             //Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));
             ReInput.players.Players[i].controllers.AddController(ReInput.controllers.Joysticks[i], true);
             Debug.Log(ReInput.players.GetPlayer(i).controllers.GetController(ControllerType.Joystick, i).hardwareName);
-            charaArr[i].SetActive(true);
+            charaArr[i].SetActive(true);   
         }
-        if(ReInput.controllers.joystickCount > 0)
+        Data.playerNbr = ReInput.controllers.joystickCount;
+        Data.SetSprites(ReInput.controllers.joystickCount);
+        if (ReInput.controllers.joystickCount > 0)
         {
             player = ReInput.players.GetPlayer(0);
             Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
@@ -105,6 +109,8 @@ public class MenuManager : MonoBehaviour
             player = ReInput.players.GetPlayer(0);
             Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
         }
+        Data.playerNbr++;
+        Data.SetSprites(Data.playerNbr);
     }
 
     void UnlockChara(int i)
