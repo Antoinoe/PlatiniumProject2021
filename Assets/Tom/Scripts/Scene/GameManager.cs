@@ -335,7 +335,7 @@ public class GameManager : MonoBehaviour
         }
         if (!inArea)
         {
-            Debug.Log("Random Point Reset");
+            //Debug.Log("Random Point Reset");
             if (areaColliders.Count > 0)
             {
                 Vector2 newPos;

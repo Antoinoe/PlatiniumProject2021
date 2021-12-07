@@ -1535,7 +1535,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.726022, y: -2.7501974}
+  m_Offset: {x: 2.9367929, y: -2.0874684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1546,7 +1546,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.452044, y: 4.4962378}
+  m_Size: {x: 6.8735857, y: 3.1707797}
   m_EdgeRadius: 0
 --- !u!4 &890778866
 Transform:
@@ -3506,6 +3506,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: pause
+      value: 
+      objectReference: {fileID: 7654610418438519463, guid: 5d8dea1746269314bbf5d1662539a726, type: 3}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
       propertyPath: eventArea
       value: 
       objectReference: {fileID: 487522686}
@@ -3516,6 +3520,14 @@ PrefabInstance:
     - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
       propertyPath: eventCooldown
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575741, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: m_Size.x
+      value: 10.796609
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575741, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.4029193
       objectReference: {fileID: 0}
     - target: {fileID: 1372656406282575742, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
       propertyPath: m_Name
