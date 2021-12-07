@@ -20,6 +20,13 @@ public class GameManager : MonoBehaviour
     #region Variables
     static GameManager _instance;
 
+    [Header("___DEBUG___")]
+    public bool isDebug;
+
+    [Space]
+    [Space]
+    [Space]
+
     public GameObject winPanel;
     public GameObject pause;
     public bool isPause = false;
@@ -33,6 +40,8 @@ public class GameManager : MonoBehaviour
     public Player[] players;
     public int playerNbrs = 1;
     public GameObject[] playersOnBoard;
+    [HideInInspector]
+    public int[] pSprite;
 
     [Header("Time")]
     public List<Accelerator> accelerations = new List<Accelerator>();
@@ -86,10 +95,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isDebug = Data.isDebug;
+        if (!isDebug)
+            playerNbrs = Data.playerNbr;
         teams = new int[players.Length];
         iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
         Instantiate(inputManager);
+        Debug.Log(Data.playerNbr);
         for (int i = 0; i < playerNbrs; i++)
         {
             #region Player
@@ -100,12 +113,21 @@ public class GameManager : MonoBehaviour
             playersOnBoard[i] = newPlayer;
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
-            newPlayerController.playerNb = i;
-            newPlayerController.teamNb = i;
+            if (!isDebug)
+            {
+                newPlayerController.playerNb = Data.pSprite[i];
+                newPlayerController.teamNb = Data.pSprite[i];
+            }
+            else
+            {
+                newPlayerController.playerNb = i;
+                newPlayerController.teamNb = i;
+            }
+            newPlayerController.contNbr = i;
             teams[i] = i;
 
             //skin
-            newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = players[i].playerSprite;
+            //newPlayer.GetComponentInChildren<SpriteRenderer>().sprite = players[Data.pSprite[i]].playerSprite;
             #endregion
 
             #region IA
@@ -121,7 +143,15 @@ public class GameManager : MonoBehaviour
                 //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
                 IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
                 iAIdentity.controllerIdentity = newIA.GetComponent<AIController>();
-                iAIdentity.teamNb = i;
+                if (!isDebug)
+                {
+                    iAIdentity.teamNb = Data.pSprite[i];
+                }
+                else
+                {
+                    iAIdentity.teamNb = i;
+                }
+                
                 iAIdentity.spriteRend.sprite = players[i].playerSprite;
 
                 iATeam[j] = iAIdentity;
@@ -133,19 +163,6 @@ public class GameManager : MonoBehaviour
         }
         currTimer = accelerations[currAccelIndex].delayBeforeAccel;
         FindObjectOfType<AudioManager>().Play("Music");
-        /*for (int i = 0; i < playerNbrs; i++)
-        {
-            Vector2 initPos = RandomNavmeshLocation(10, transform.position);
-            GameObject newPlayer = GameObject.Instantiate(playerPrefab, new Vector3(initPos.x, initPos.y, 0), playerPrefab.transform.rotation);
-            newPlayer.GetComponent<PlayerController>().teamNb = i;
-
-            for (int i2 = 0; i2 < iAPerPlayer; i2++)
-            {
-                Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);
-                GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), iAPrefab.transform.rotation);
-                newIA.GetComponent<IAIdentity>().teamNb = i;
-            }
-        }*/
     }
 
     private void Update()
@@ -209,6 +226,7 @@ public class GameManager : MonoBehaviour
     {
         playerNbrs = _pNbr;
         iAPerPlayer = _iaPerPlayer;
+        Data.playerNbr = _pNbr;
     }
 
     #region Win

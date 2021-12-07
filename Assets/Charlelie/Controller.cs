@@ -59,10 +59,10 @@ public class Controller : MonoBehaviour
         sR = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
-    public void SetNum(int val)
+    public void SetNum(int val, int cont)
     {
         playerNum = val;
-        player = ReInput.players.GetPlayer(playerNum);
+        player = ReInput.players.GetPlayer(cont);
         ib = player.controllers.maps.GetInputBehavior(0);
         ib.digitalAxisGravity = Decceleration;
         ib.digitalAxisSensitivity = Acceleration; 

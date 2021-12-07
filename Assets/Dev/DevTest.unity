@@ -3242,7 +3242,8 @@ MonoBehaviour:
     source: {fileID: 0}
     hasMultipleClips: 0
   - name: OnBone
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: d8e6fd402d061c740a5aff4f9c391636, type: 3}
     maxInstNb: 0
     curInstNb: 0
     volume: 0.043
@@ -3509,6 +3510,10 @@ PrefabInstance:
       propertyPath: pause
       value: 
       objectReference: {fileID: 1411706615}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: isDebug
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
       propertyPath: accelerations.Array.size
       value: 1
