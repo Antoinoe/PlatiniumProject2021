@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         #endregion
 
         #region Change AIs team
-        foreach (IAIdentity iA in gameManager.iATeams[playerNb])
+        foreach (IAIdentity iA in gameManager.iATeams[contNbr])
         {
             iA.teamNb = teamNb;
             iA.gameObject.GetComponent<AIController>().ChangeTeam();
