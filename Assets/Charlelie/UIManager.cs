@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
             else
             {
                 uiSliders[i].gameObject.SetActive(false);
-                uiImages[i].gameObject.SetActive(true);
+                uiImages[i].gameObject.SetActive(false);
             }
         }
     }
