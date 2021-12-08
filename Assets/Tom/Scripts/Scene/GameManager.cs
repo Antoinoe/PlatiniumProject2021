@@ -368,10 +368,13 @@ public class GameManager : MonoBehaviour
         }
         if (!inArea)
         {
-            //Debug.Log("Random Point Reset");
+                Vector3 oldRandomPosition = randomPosition;
+            Debug.DrawLine(origin, randomPosition, Color.cyan, 5f);
+            Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition + "\n" + "radius :" + radius);
+            Debug.Log(Vector2.Distance(origin, randomPosition));
             if (areaColliders.Count > 0)
             {
-                Vector2 newPos;
+                Vector3 newPos;
                 //tempList.Remove(randomIndex);
                 //randomIndex = Random.Range(0, tempList.Count);
                 //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
@@ -381,8 +384,13 @@ public class GameManager : MonoBehaviour
                 //int randomArea = Random.Range(0, areaColliders.Count);
                 //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
 
-                newPos = origin - randomPosition;
-                randomPosition = -newPos;
+                //newPos = randomPosition - origin;
+                //randomPosition = newPos/radius;
+                randomPosition = new Vector2(Mathf.Cos(-angle), Mathf.Sin(-angle)) / radius;
+                Debug.Log("Random Point Reset, New pos :" + randomPosition + "\n" + "radius :" + radius);
+                Debug.Log(Vector2.Distance(origin, randomPosition));
+                Debug.DrawLine(origin, randomPosition, Color.yellow, 5f);
+                Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
             }
             else
             {
