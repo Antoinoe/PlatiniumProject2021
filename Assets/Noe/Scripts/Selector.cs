@@ -52,12 +52,22 @@ public class Selector : MonoBehaviour
             if (thisMenu == Menu.MAP)
             {
                 if (nav > 0)
+                {
                     rArrowAnim.SetBool("isActivate", true);
-                if (nav > 0)
+                    if (canSwitch)
+                        StartCoroutine(Change(true,false,0));
+                }
+                    
+                if (nav == 0)
                     rArrowAnim.SetBool("isActivate", false);
                 if (nav < 0)
+                {
                     lArrowAnim.SetBool("isActivate", true);
-                if (nav < 0)
+                    if (canSwitch)
+                        StartCoroutine(Change(false, false, 0));
+                }
+                    
+                if (nav == 0)
                     lArrowAnim.SetBool("isActivate", false);
             }
             else if (thisMenu == Menu.CHARACTER)
