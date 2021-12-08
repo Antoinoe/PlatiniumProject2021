@@ -209,6 +209,6 @@ public class Attack : MonoBehaviour
             fist.transform.localScale = new Vector3(scale.x, -scale.y, scale.z);
         }
 
-        GameObject.Destroy(fist, 1f);
+        GameObject.Destroy(fist, 0.35f);
     }
 }
