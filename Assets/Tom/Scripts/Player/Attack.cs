@@ -44,6 +44,7 @@ public class Attack : MonoBehaviour
     public Text t_score, t_kills, t_bounty;*/
 
     [SerializeField] private GameObject attackFX;
+    [SerializeField] private Sprite attackYSprite;
     #endregion
 
     private void Start()
@@ -207,6 +208,10 @@ public class Attack : MonoBehaviour
         {
             Vector3 scale = fist.transform.localScale;
             fist.transform.localScale = new Vector3(scale.x, -scale.y, scale.z);
+        }
+        if(dir.y < -0.5 || dir.y > 0.5)
+        {
+            fist.GetComponentInChildren<SpriteRenderer>().sprite = attackYSprite;
         }
 
         GameObject.Destroy(fist, 0.35f);
