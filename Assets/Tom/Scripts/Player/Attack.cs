@@ -18,9 +18,9 @@ public class Attack : MonoBehaviour
 
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
-    [SerializeField] private float killCooldown;
+    [SerializeField] private float killCooldown; //TO UI
     /*[HideInInspector]*/
-    public float passedTime = 0f;
+    public float passedTime = 0f; //TO UI
 
     //Target detection
     [SerializeField] private float attackRange;
@@ -37,7 +37,7 @@ public class Attack : MonoBehaviour
     private float actualScore = 0;
     public int bounty = 0;
 
-    //Mettez ça dans le GM Svp
+    //Mettez ï¿½a dans le GM Svp
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
@@ -115,6 +115,7 @@ public class Attack : MonoBehaviour
             #region Attack !
             if (target)
             {
+
                 if (target.CompareTag("Player"))
                 {
                     //Kill Player
@@ -127,10 +128,10 @@ public class Attack : MonoBehaviour
 
                     playerController.OnKill(false);
 
-                    /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
+                    /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tuï¿½ 
 
                     //PLAYER A FAIT UN KILL
-                    actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = x²+10
+                    actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = xï¿½+10
 
                     if (bounty < maxBounty) //augmente bounty si pas au max
                         bounty++; 
