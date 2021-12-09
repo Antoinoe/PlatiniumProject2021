@@ -22,7 +22,7 @@ public class DogProximity : MonoBehaviour
         manager = FindObjectOfType<UIManager>();
         incrementValue = /*(manager as Test)*/manager.incrementValue;
         valueToWin = /*(manager as Test)*/manager.valueToWin;
-        slider = manager.GetPlayerSlider(gameObject.GetComponent<PlayerController>().playerNb);
+        slider = manager.GetPlayerSlider(gameObject.GetComponent<PlayerController>().contNbr);
         slider.value = 0;
         slider.maxValue = valueToWin;
     }
