@@ -35,6 +35,13 @@ public class Footer : MonoBehaviour
         switch (MenuManager.Instance.actualMenuOn)
         {
             case Menu.CHARACTER:
+                bool ok = true;
+                for (int i = 0; i < MenuManager.Instance.selectedChara.Length; i++)
+                {
+                    if (!MenuManager.Instance.selectedChara[i])
+                        ok = false;
+                }
+                if (!ok) break;
                 MenuManager.Instance.OpenMenuFromFooter(Menu.MAP);
                 break;
             case Menu.MAP:

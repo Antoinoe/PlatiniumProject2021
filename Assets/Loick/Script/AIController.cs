@@ -293,6 +293,8 @@ public class AIController : MonoBehaviour
     IEnumerator Revive()
     {
         yield return new WaitForSeconds(reviveTime);
+        anim.SetBool("IsDead", false);
+        yield return new WaitForSeconds(1.25f);
         OnRevive();
         yield return null;
     }
@@ -301,7 +303,7 @@ public class AIController : MonoBehaviour
     {
         //Debug.Log("Revive");
         agent.speed = Speed;
-        anim.SetBool("IsDead", false);
+        
         //GetComponentInChildren<SpriteRenderer>().color = aliveColor;
         isDead = false;
         GetComponent<BoxCollider2D>().enabled = true;
