@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class PlayerController : MonoBehaviour
@@ -11,9 +12,14 @@ public class PlayerController : MonoBehaviour
     public int teamNb = 0;
     public int playerNb = 0;
     public int contNbr = 0;
+    public Sprite[] bases,fillers; //liste des sprites dans l'odre de selection des joueurs dans le menu charac
     float killCooldown = 0.0f;
     float killIAaddCooldown = 0.0f;
     float currKillCooldown = 0.0f;
+    [SerializeField]
+    private GameObject assignedUI; // A quel UI appartient ce joueur
+
+    public Image actualBaseSprite, actualFillerSprite; // base = tête de mort | filler = jauge (cercle de couleur unie)
 
     public float KillCooldown
     {
@@ -45,6 +51,14 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<Controller>();
         controller.SetNum(playerNb, contNbr);
         gameManager = GameManager.GetInstance();
+        assignedUI = FindObjectOfType<UIManager>().uiImages[contNbr].gameObject;
+        print(assignedUI.transform.parent);
+        actualBaseSprite = assignedUI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
+        actualFillerSprite = assignedUI.transform.GetChild(0).GetComponent<Image>();
+
+        actualBaseSprite.sprite = bases[playerNb];
+        actualFillerSprite.sprite = fillers[playerNb];
+
         spriteRend = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
@@ -66,14 +80,20 @@ public class PlayerController : MonoBehaviour
     {
 
     }
-
+    public void changeUI(int nb)
+    {
+        #region Change player UI
+       
+        #endregion
+    }
     public void ChangeTeam(int nb)
     {
         #region Change player team
         Debug.Log("Team " + nb + " assimilated player " + playerNb);
 
         Sprite newSprite = gameManager.players[nb].playerSprite;
-
+        /*actualBaseSprite.sprite = null;
+        actualFillerSprite.sprite = null;*/
         if (invisible == 0)
         {
             spriteRend.sprite = newSprite;
