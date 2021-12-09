@@ -33,26 +33,32 @@ public class MenuManager : MonoBehaviour
     public Rewired.Player player;
     bool navLock = false;
     public GameObject[] charaArr;
-
+    public bool[] selectedChara;
+    public GameObject[] validateImg;
+    public bool switching;
+    public bool[] playersWait = { false, false, false, false };
 
     private void Start()
     {
         Data.isDebug = false;
         actualMenuOn = Menu.MAIN;
-        Debug.Log(ReInput.controllers.joystickCount);
+        //Debug.Log(ReInput.controllers.joystickCount);
         for (int i = 0; i < ReInput.controllers.joystickCount; i++)
         {
             //Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));
             ReInput.players.Players[i].controllers.AddController(ReInput.controllers.Joysticks[i], true);
-            Debug.Log(ReInput.players.GetPlayer(i).controllers.GetController(ControllerType.Joystick, i).hardwareName);
+            //Debug.Log(ReInput.players.GetPlayer(i).controllers.GetController(ControllerType.Joystick, i).hardwareName);
             charaArr[i].SetActive(true);   
         }
+        selectedChara = new bool[ReInput.controllers.joystickCount];
+        for (int i = 0; i < selectedChara.Length; i++)
+            selectedChara[i] = false;
         Data.playerNbr = ReInput.controllers.joystickCount;
         Data.SetSprites(ReInput.controllers.joystickCount);
         if (ReInput.controllers.joystickCount > 0)
         {
             player = ReInput.players.GetPlayer(0);
-            Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
+            //Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
         }
         GameObject canvas = GameObject.Find("Canvas");
         GameObject groupMenu = canvas.transform.Find("MenuGroup").gameObject;
@@ -73,6 +79,7 @@ public class MenuManager : MonoBehaviour
         if (navLock && nav == 0) navLock = false;
         if (actualMenuOn == Menu.MAIN && !navLock)
         {
+            nav = player.GetAxisRaw("MoveVertical");
             if (nav > 0)
             {
                 if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight())
@@ -89,8 +96,52 @@ public class MenuManager : MonoBehaviour
             if (player.GetButtonDown("Attack"))
                 eventsys.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
 
+        } 
+        else if (actualMenuOn == Menu.CHARACTER && !navLock)
+        {
+            for (int i = 0; i < ReInput.controllers.joystickCount; i++)
+            {
+                if (ReInput.players.GetPlayer(i).GetButtonDown("Attack") && !switching)
+                {
+                    Debug.Log("Call");
+                    PlayerSelectChara(i);
+                }
+            }
         }
         
+    }
+
+    void PlayerSelectChara(int _p)
+    {
+        validateImg[_p].SetActive(true);
+        Data.pSprite[_p] = p.it[_p];
+        Debug.Log(_p + "  " + p.it[_p] + "   " + Data.pSprite[_p]);
+        GameObject root = GameObject.Find("PlayersGrid");
+        for (int i = 0; i < ReInput.controllers.joystickCount; i++)
+        {
+            if (i != _p)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (j == FindObjectOfType<Selector>().pIt[_p])
+                    {
+                        Image img = root.transform.GetChild(i).GetChild(0).GetChild(j).GetComponent<Image>();
+                        img.color = new Color(img.color.r, img.color.g, img.color.b, 0.5f);
+                        Image img2 = img.gameObject.transform.GetChild(0).GetComponent<Image>();
+                        img2.color = new Color(img2.color.r, img2.color.g, img2.color.b, 0.5f);
+                    }
+                }
+            }
+        }
+        selectedChara[_p] = true;
+        //StartCoroutine(test(p));
+    }
+
+    IEnumerator test(int val)
+    {
+        yield return new WaitForSeconds(0.3f);
+        selectedChara[val] = true;
+        yield return null;
     }
 
     private static void OnControllerConnected(ControllerStatusChangedEventArgs args)
@@ -110,6 +161,8 @@ public class MenuManager : MonoBehaviour
             Debug.Log("Player in charge is:" + player.controllers.GetController(ControllerType.Joystick, 0).hardwareName);
         }
         Data.playerNbr++;
+        System.Array.Resize<bool>(ref selectedChara, ReInput.controllers.joystickCount);
+        selectedChara[selectedChara.Length] = false;
         Data.SetSprites(Data.playerNbr);
     }
 
@@ -124,7 +177,7 @@ public class MenuManager : MonoBehaviour
         {
             Menu menu = EventSystem.current.currentSelectedGameObject.gameObject.GetComponent<MenuSelector>().destination;
             actualMenuOn = menu;
-            print("going to " + menu);
+            //print("going to " + menu);
             switch (menu)
             {
                 case Menu.MAIN:
@@ -134,7 +187,7 @@ public class MenuManager : MonoBehaviour
                     eventsys.SetSelectedGameObject(null);
                     Camera.main.transform.DOMove((Vector2)charac.transform.position, switchMenuDuration);
                     break;
-                case Menu.MAP:
+                case Menu.MAP:                    
                     eventsys.SetSelectedGameObject(null);
                     Camera.main.transform.DOMove((Vector2)map.transform.position, switchMenuDuration);
                     break;
@@ -156,13 +209,14 @@ public class MenuManager : MonoBehaviour
                     Debug.LogError("No Map Selected. . .");
                     break;
             }
+            StartCoroutine(Switching());
         }
     }
     public void OpenMenuFromFooter(Menu menu)
     {
         if (SceneManager.GetActiveScene().name == "Main")
         {
-
+            print("going to " + menu);
             actualMenuOn = menu;
             switch (menu)
             {
@@ -173,8 +227,14 @@ public class MenuManager : MonoBehaviour
                     Camera.main.transform.DOMove((Vector2)charac.transform.position, switchMenuDuration);
                     break;
                 case Menu.MAP:
-                        Camera.main.transform.DOMove((Vector2)map.transform.position, switchMenuDuration);
-
+                    //bool ok = true;
+                    //for (int i = 0; i < selectedChara.Length; i++)
+                    //{
+                    //    if (selectedChara[i])
+                    //        ok = false;
+                    //}
+                    //if (!ok) break;
+                    Camera.main.transform.DOMove((Vector2)map.transform.position, switchMenuDuration);
                     break;
 
                 case Menu.OPTIONS:
@@ -193,8 +253,18 @@ public class MenuManager : MonoBehaviour
                     Debug.LogError("No Map Selected. . .");
                     break;
             }
+            StartCoroutine(Switching());
         }
     }
+
+    IEnumerator Switching()
+    {
+        switching = true;
+        yield return new WaitForSeconds(switchMenuDuration);
+        switching = false;
+        yield return null;
+    }
+
 
     public void OpenMainMenu()
     {
