@@ -339,6 +339,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2395257059248114103, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3105413909496588431, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -354,6 +358,14 @@ PrefabInstance:
     - target: {fileID: 3105413909496588431, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960032278363807167, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
+      propertyPath: m_Name
+      value: Jauge
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960032278363807167, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4036839160106901272, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
       propertyPath: m_Pivot.x
@@ -442,6 +454,14 @@ PrefabInstance:
     - target: {fileID: 4036839160106901279, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
       propertyPath: m_Name
       value: UiBox 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291158412529436032, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
+      propertyPath: m_Name
+      value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291158412529436032, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5795765545256508815, guid: e3b1e4e1f4f21fd47a2c811a6b5a2a3a, type: 3}
       propertyPath: m_AnchorMax.y

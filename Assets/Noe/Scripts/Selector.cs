@@ -190,6 +190,7 @@ public class Selector : MonoBehaviour
                 pIt[0]--;
                 root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[0] = pIt[0];
+                Data.pUiGame[0] = pIt[0];
             }
             else
                 haveToWait = false;
@@ -202,6 +203,7 @@ public class Selector : MonoBehaviour
                 pIt[0]++;
                 root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[0] = pIt[0];
+                Data.pUiGame[0] = pIt[0];
             }
             else
                 haveToWait = false;
@@ -225,6 +227,7 @@ public class Selector : MonoBehaviour
                 pIt[1]--;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[1] = pIt[1];
+                Data.pUiGame[1] = pIt[1];
             }
             else
                 haveToWait = false;
@@ -237,6 +240,7 @@ public class Selector : MonoBehaviour
                 pIt[1]++;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[1] = pIt[1];
+                Data.pUiGame[1] = pIt[1];
             }
             else
                 haveToWait = false;
@@ -260,6 +264,7 @@ public class Selector : MonoBehaviour
                 pIt[2]--;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[2] = pIt[2];
+                Data.pUiGame[2] = pIt[2];
             }
             else
                 haveToWait = false;
@@ -272,6 +277,7 @@ public class Selector : MonoBehaviour
                 pIt[2]++;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[2] = pIt[2];
+                Data.pUiGame[2] = pIt[2];
             }
             else
                 haveToWait = false;
@@ -295,6 +301,7 @@ public class Selector : MonoBehaviour
                 pIt[3]--;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[3] = pIt[3];
+                Data.pUiGame[3] = pIt[3];
             }
             else
                 haveToWait = false;
@@ -307,6 +314,7 @@ public class Selector : MonoBehaviour
                 pIt[3]++;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[3] = pIt[3];
+                Data.pUiGame[3] = pIt[3];
             }
             else
                 haveToWait = false;
