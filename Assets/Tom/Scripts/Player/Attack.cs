@@ -154,12 +154,7 @@ public class Attack : MonoBehaviour
                     StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().playerNb);
                 }
-
-                
-                
-                killOnCD = true;
-
-                
+                killOnCD = true; 
             }
             else
             {
