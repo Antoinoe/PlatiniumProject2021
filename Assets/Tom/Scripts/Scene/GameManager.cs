@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour
     }
 
     #region Random NavMesh Location
-    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
     {
         List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
         List<int> tempList = allOrientations;
@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
         float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
         Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-        randomPosition += origin;
+        randomPosition += posOrigin;
         NavMeshHit hit;
         Vector2 finalPosition = Vector2.zero;
         if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
@@ -339,7 +339,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
     {
         List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
         List<int> tempList = allOrientations;
@@ -356,7 +356,7 @@ public class GameManager : MonoBehaviour
         AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
         float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
         Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-        randomPosition += origin;
+        randomPosition += posOrigin;
         bool inArea = false;
         for (int i = 0; i < areaColliders.Count; i++)
         {
@@ -368,13 +368,13 @@ public class GameManager : MonoBehaviour
         }
         if (!inArea)
         {
-                Vector3 oldRandomPosition = randomPosition;
-            Debug.DrawLine(origin, randomPosition, Color.cyan, 5f);
-            Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition + "\n" + "radius :" + radius);
-            Debug.Log(Vector2.Distance(origin, randomPosition));
+                Vector2 oldRandomPosition = randomPosition;
+            Debug.DrawLine(posOrigin, randomPosition, Color.cyan, 5f);
+            Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
+            Debug.Log(Vector2.Distance(posOrigin, randomPosition));
             if (areaColliders.Count > 0)
             {
-                Vector3 newPos;
+                Vector2 newDir;
                 //tempList.Remove(randomIndex);
                 //randomIndex = Random.Range(0, tempList.Count);
                 //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
@@ -384,12 +384,13 @@ public class GameManager : MonoBehaviour
                 //int randomArea = Random.Range(0, areaColliders.Count);
                 //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
 
-                //newPos = randomPosition - origin;
-                //randomPosition = newPos/radius;
-                randomPosition = new Vector2(Mathf.Cos(-angle), Mathf.Sin(-angle)) / radius;
-                Debug.Log("Random Point Reset, New pos :" + randomPosition + "\n" + "radius :" + radius);
-                Debug.Log(Vector2.Distance(origin, randomPosition));
-                Debug.DrawLine(origin, randomPosition, Color.yellow, 5f);
+                newDir = randomPosition - posOrigin;
+                Vector2 newPos = posOrigin - newDir;
+                randomPosition = newPos;
+                //randomPosition = new Vector2(Mathf.Cos(-angle), Mathf.Sin(-angle)) / radius;
+                Debug.Log("Random Point Reset, New pos :" + randomPosition);
+                Debug.Log(Vector2.Distance(posOrigin, randomPosition));
+                Debug.DrawLine(posOrigin, randomPosition, Color.yellow, 5f);
                 Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
             }
             else
