@@ -103,7 +103,7 @@ public class MenuManager : MonoBehaviour
             {
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Attack") && !switching)
                 {
-                    Debug.Log("Call");
+                    //Debug.Log("Call");
                     PlayerSelectChara(i);
                 }
             }
@@ -113,17 +113,25 @@ public class MenuManager : MonoBehaviour
 
     void PlayerSelectChara(int _p)
     {
+        for (int i = 0; i < ReInput.controllers.joystickCount; i++)
+        {
+            if (i != _p)
+            {
+                Debug.Log(p.it[i] + "  " + p.it[_p]);
+                if (selectedChara[i] && p.it[i] == p.it[_p]) return;
+            }
+        }
         validateImg[_p].SetActive(true);
         Data.pSprite[_p] = p.it[_p];
-        Debug.Log(_p + "  " + p.it[_p] + "   " + Data.pSprite[_p]);
+        //Debug.Log(_p + "  " + p.it[_p] + "   " + Data.pSprite[_p]);
         GameObject root = GameObject.Find("PlayersGrid");
-        for (int i = 0; i < ReInput.controllers.joystickCount; i++)
+        for (int i = 0; i < /*ReInput.controllers.joystickCount*/4; i++)
         {
             if (i != _p)
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    if (j == FindObjectOfType<Selector>().pIt[_p])
+                    if (j == p.it[_p])
                     {
                         Image img = root.transform.GetChild(i).GetChild(0).GetChild(j).GetComponent<Image>();
                         img.color = new Color(img.color.r, img.color.g, img.color.b, 0.5f);
@@ -134,14 +142,6 @@ public class MenuManager : MonoBehaviour
             }
         }
         selectedChara[_p] = true;
-        //StartCoroutine(test(p));
-    }
-
-    IEnumerator test(int val)
-    {
-        yield return new WaitForSeconds(0.3f);
-        selectedChara[val] = true;
-        yield return null;
     }
 
     private static void OnControllerConnected(ControllerStatusChangedEventArgs args)

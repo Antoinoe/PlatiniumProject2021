@@ -189,7 +189,7 @@ public class Selector : MonoBehaviour
         #region move items
         if (input)
         {
-            Debug.Log(p.it[0] + "  " + items.Length);
+            //Debug.Log(p.it[0] + "  " + items.Length);
             if (p.it[0] > 0)
             {
                 p.it[0]--;
@@ -223,9 +223,9 @@ public class Selector : MonoBehaviour
         if (input)
         {
             //Debug.Log(pIt[1] + "  " + items.Length);
-            if (pIt[1] > 0)
+            if (p.it[1] > 0)
             {
-                pIt[1]--;
+                p.it[1]--;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
             }
             else
@@ -234,9 +234,9 @@ public class Selector : MonoBehaviour
         else
         {
             //Debug.Log(pIt[1] + "  " + items.Length);
-            if (pIt[1] < items.Length - 1)
+            if (p.it[1] < items.Length - 1)
             {
-                pIt[1]++;
+                p.it[1]++;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
             }
             else
@@ -256,9 +256,9 @@ public class Selector : MonoBehaviour
         if (input)
         {
             //Debug.Log(pIt[2] + "  " + items.Length);
-            if (pIt[2] > 0)
+            if (p.it[2] > 0)
             {
-                pIt[2]--;
+                p.it[2]--;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
             }
             else
@@ -267,9 +267,9 @@ public class Selector : MonoBehaviour
         else
         {
             //Debug.Log(pIt[2] + "  " + items.Length);
-            if (pIt[2] < items.Length - 1)
+            if (p.it[2] < items.Length - 1)
             {
-                pIt[2]++;
+                p.it[2]++;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
             }
             else
@@ -289,9 +289,9 @@ public class Selector : MonoBehaviour
         if (input)
         {
             //Debug.Log(pIt[3] + "  " + items.Length);
-            if (pIt[3] > 0)
+            if (p.it[3] > 0)
             {
-                pIt[3]--;
+                p.it[3]--;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
             }
             else
@@ -300,9 +300,9 @@ public class Selector : MonoBehaviour
         else
         {
             //Debug.Log(pIt[3] + "  " + items.Length);
-            if (pIt[3] < items.Length - 1)
+            if (p.it[3] < items.Length - 1)
             {
-                pIt[3]++;
+                p.it[3]++;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
             }
             else
