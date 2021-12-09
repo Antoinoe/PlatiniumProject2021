@@ -270,6 +270,11 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
 
+    public void ReloadScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 origin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
     {
