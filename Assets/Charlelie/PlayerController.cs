@@ -92,8 +92,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Team " + nb + " assimilated player " + playerNb);
 
         Sprite newSprite = gameManager.players[nb].playerSprite;
-        actualBaseSprite.sprite = null;
-        actualFillerSprite.sprite = null;
+        /*actualBaseSprite.sprite = null;
+        actualFillerSprite.sprite = null;*/
         if (invisible == 0)
         {
             spriteRend.sprite = newSprite;
