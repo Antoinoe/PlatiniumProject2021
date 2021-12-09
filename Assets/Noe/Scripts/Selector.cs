@@ -8,6 +8,11 @@ using UnityEngine.SceneManagement;
 using Rewired;
 using UnityEngine.EventSystems;
 
+public static class p
+{
+    public static int[] it = { 0, 0, 0, 0 };
+}
+
 public class Selector : MonoBehaviour
 {
     [HideInInspector]
@@ -24,8 +29,7 @@ public class Selector : MonoBehaviour
     public Rewired.Player player;
     public EventSystem eventSys;
     bool navLock = false;
-    bool[] playersWait = { false, false, false, false };
-    int[] pIt = { 0, 0, 0, 0 };
+    public int[] pIt = { 0, 0, 0, 0 };
 
     void Start()
     {
@@ -44,7 +48,7 @@ public class Selector : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
         //inputs
         float nav = player.GetAxisRaw("MoveHorizontal");
         if (MenuManager.Instance.actualMenuOn == thisMenu)
@@ -94,37 +98,38 @@ public class Selector : MonoBehaviour
 
         }
 
-        string str = "";
-        for (int i = 0; i < Data.pSprite.Length; i++)
-        {
-            str += " " + Data.pSprite[i] + " ";
-        }
-        Debug.Log(str);
+        //string str = "";
+        //for (int i = 0; i < Data.pSprite.Length; i++)
+        //{
+        //    str += " " + Data.pSprite[i] + " ";
+        //}
+        //Debug.Log(str);
     }
 
 
-    //C'est du big caca je sais dsl mais je m'en bas les c*** à molette
+    //C'est du big caca je sais dsl mais je m'en bas les c*** ï¿½ molette
     void ChangePlayer(int pId, bool input)
     {
+        if (MenuManager.Instance.selectedChara[pId]) return;
         switch (pId)
         {
             case 0:
-                if (!playersWait[0])
+                if (!MenuManager.Instance.playersWait[0])
                     StartCoroutine(ChangePlayer1(input));
                 break;
 
             case 1:
-                if (!playersWait[1])
+                if (!MenuManager.Instance.playersWait[1])
                     StartCoroutine(ChangePlayer2(input));
                 break;
 
             case 2:
-                if (!playersWait[2])
+                if (!MenuManager.Instance.playersWait[2])
                     StartCoroutine(ChangePlayer3(input));
                 break;
 
             case 3:
-                if (!playersWait[3])
+                if (!MenuManager.Instance.playersWait[3])
                     StartCoroutine(ChangePlayer4(input));
                 break;
         }
@@ -138,7 +143,7 @@ public class Selector : MonoBehaviour
         #region move items
         if (input)
         {
-            Debug.Log(it + "  " + items.Length);
+            //Debug.Log(it + "  " + items.Length);
             if (it > 0)
             {
                 it--;
@@ -152,7 +157,7 @@ public class Selector : MonoBehaviour
         }
         else
         {
-            Debug.Log(it + "  " + items.Length);
+            //Debug.Log(it + "  " + items.Length);
             if (it < items.Length - 1)
             {
                 it++;
@@ -180,28 +185,30 @@ public class Selector : MonoBehaviour
     IEnumerator ChangePlayer1(bool input)
     {
         GameObject root = GameObject.Find("PlayersGrid");
-        playersWait[0] = true;
+        MenuManager.Instance.playersWait[0] = true;
         #region move items
         if (input)
         {
-            Debug.Log(pIt[0] + "  " + items.Length);
-            if (pIt[0] > 0)
+            //Debug.Log(p.it[0] + "  " + items.Length);
+            if (p.it[0] > 0)
             {
-                pIt[0]--;
+                p.it[0]--;
                 root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[0] = pIt[0];
+                Data.pUiGame[0] = pIt[0];
             }
             else
                 haveToWait = false;
         }
         else
         {
-            Debug.Log(pIt[0] + "  " + items.Length);
-            if (pIt[0] < items.Length - 1)
+            //Debug.Log(pIt[0] + "  " + items.Length);
+            if (p.it[0] < items.Length - 1)
             {
-                pIt[0]++;
+                p.it[0]++;
                 root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[0] = pIt[0];
+                Data.pUiGame[0] = pIt[0];
             }
             else
                 haveToWait = false;
@@ -209,34 +216,36 @@ public class Selector : MonoBehaviour
         #endregion
 
         yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
-        playersWait[0] = false;
+        MenuManager.Instance.playersWait[0] = false;
     }
 
     IEnumerator ChangePlayer2(bool input)
     {
         GameObject root = GameObject.Find("PlayersGrid");
-        playersWait[1] = true;
+        MenuManager.Instance.playersWait[1] = true;
         #region move items
         if (input)
         {
-            Debug.Log(pIt[1] + "  " + items.Length);
-            if (pIt[1] > 0)
+            //Debug.Log(pIt[1] + "  " + items.Length);
+            if (p.it[1] > 0)
             {
-                pIt[1]--;
+                p.it[1]--;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[1] = pIt[1];
+                Data.pUiGame[1] = pIt[1];
             }
             else
                 haveToWait = false;
         }
         else
         {
-            Debug.Log(pIt[1] + "  " + items.Length);
-            if (pIt[1] < items.Length - 1)
+            //Debug.Log(pIt[1] + "  " + items.Length);
+            if (p.it[1] < items.Length - 1)
             {
-                pIt[1]++;
+                p.it[1]++;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[1] = pIt[1];
+                Data.pUiGame[1] = pIt[1];
             }
             else
                 haveToWait = false;
@@ -244,34 +253,36 @@ public class Selector : MonoBehaviour
         #endregion
 
         yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
-        playersWait[1] = false;
+        MenuManager.Instance.playersWait[1] = false;
     }
 
     IEnumerator ChangePlayer3(bool input)
     {
         GameObject root = GameObject.Find("PlayersGrid");
-        playersWait[2] = true;
+        MenuManager.Instance.playersWait[2] = true;
         #region move items
         if (input)
         {
-            Debug.Log(pIt[2] + "  " + items.Length);
-            if (pIt[2] > 0)
+            //Debug.Log(pIt[2] + "  " + items.Length);
+            if (p.it[2] > 0)
             {
-                pIt[2]--;
+                p.it[2]--;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[2] = pIt[2];
+                Data.pUiGame[2] = pIt[2];
             }
             else
                 haveToWait = false;
         }
         else
         {
-            Debug.Log(pIt[2] + "  " + items.Length);
-            if (pIt[2] < items.Length - 1)
+            //Debug.Log(pIt[2] + "  " + items.Length);
+            if (p.it[2] < items.Length - 1)
             {
-                pIt[2]++;
+                p.it[2]++;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[2] = pIt[2];
+                Data.pUiGame[2] = pIt[2];
             }
             else
                 haveToWait = false;
@@ -279,34 +290,36 @@ public class Selector : MonoBehaviour
         #endregion
 
         yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
-        playersWait[2] = false;
+        MenuManager.Instance.playersWait[2] = false;
     }
 
     IEnumerator ChangePlayer4(bool input)
     {
         GameObject root = GameObject.Find("PlayersGrid");
-        playersWait[3] = true;
+        MenuManager.Instance.playersWait[3] = true;
         #region move items
         if (input)
         {
-            Debug.Log(pIt[3] + "  " + items.Length);
-            if (pIt[3] > 0)
+            //Debug.Log(pIt[3] + "  " + items.Length);
+            if (p.it[3] > 0)
             {
-                pIt[3]--;
+                p.it[3]--;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[3] = pIt[3];
+                Data.pUiGame[3] = pIt[3];
             }
             else
                 haveToWait = false;
         }
         else
         {
-            Debug.Log(pIt[3] + "  " + items.Length);
-            if (pIt[3] < items.Length - 1)
+            //Debug.Log(pIt[3] + "  " + items.Length);
+            if (p.it[3] < items.Length - 1)
             {
-                pIt[3]++;
+                p.it[3]++;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[3] = pIt[3];
+                Data.pUiGame[3] = pIt[3];
             }
             else
                 haveToWait = false;
@@ -314,7 +327,7 @@ public class Selector : MonoBehaviour
         #endregion
 
         yield return new WaitForSeconds(swapDuration + (swapDuration * 0.05f)); //wait end of anim before switch again   
-        playersWait[3] = false;
+        MenuManager.Instance.playersWait[3] = false;
     }
 
     void ScaleItems()

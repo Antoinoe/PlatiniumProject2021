@@ -142,6 +142,7 @@ public class Attack : MonoBehaviour
                     StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
                     killOnCD = true;
+                    FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }
                 else if (target.CompareTag("NPC"))
                 {
@@ -156,6 +157,7 @@ public class Attack : MonoBehaviour
                     StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
                     killOnCD = true;
+                    FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }                       
             }
             else
