@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         isDebug = Data.isDebug;
-
+        FindObjectOfType<AudioManager>().Play("Music");
         if (!isDebug)
             playerNbrs = Data.playerNbr;
         teams = new int[players.Length];

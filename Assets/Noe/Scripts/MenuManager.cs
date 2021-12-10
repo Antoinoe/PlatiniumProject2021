@@ -82,14 +82,14 @@ public class MenuManager : MonoBehaviour
             nav = player.GetAxisRaw("MoveVertical");
             if (nav > 0)
             {
-                if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight())
-                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().gameObject);
+                if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp())
+                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp().gameObject);
                 navLock = true;
             }
             else if (nav < 0)
             {
-                if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft())
-                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft().gameObject);
+                if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown())
+                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown().gameObject);
                 navLock = true;
             }
 

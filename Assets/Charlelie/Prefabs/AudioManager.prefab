@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4926970940542026079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4926970940542026077}
+  - component: {fileID: 4926970940542026076}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4926970940542026077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926970940542026079}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9605525, y: 0.04122033, z: -13.572231}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4926970940542026076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926970940542026079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326c6b297b451fd4196d5e932b544926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Music
+    clips:
+    - {fileID: 8300000, guid: cf2f738ab61f90349b898976844cc524, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
+  - name: Attack
+    clips:
+    - {fileID: 8300000, guid: d8e6fd402d061c740a5aff4f9c391636, type: 3}
+    - {fileID: 8300000, guid: 1e27abe59775b1e40857ba5d3449cf52, type: 3}
+    - {fileID: 8300000, guid: 5afab1feacea9b24c8702c1a9952af7e, type: 3}
+    - {fileID: 8300000, guid: 5c859d341c07b824fbcb7845bf99d6cf, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
+  - name: IABones
+    clips:
+    - {fileID: 8300000, guid: f24d8e7c08e7e0d48a912b6b258a85b0, type: 3}
+    - {fileID: 8300000, guid: c1705b2da0de4774ab9d6882a54c3bfc, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
