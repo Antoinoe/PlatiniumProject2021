@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &86212761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2261216911044132703, guid: cec565b02277a0646bab30bf31146c9a, type: 3}
+  m_PrefabInstance: {fileID: 5547786383931848603}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &372604143
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,6 +487,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920.0001, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &878836197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 19940202898628262, guid: cec565b02277a0646bab30bf31146c9a, type: 3}
+  m_PrefabInstance: {fileID: 5547786383931848603}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +884,11 @@ RectTransform:
 --- !u!1 &1380003066 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3799469660728675300, guid: cec565b02277a0646bab30bf31146c9a, type: 3}
+  m_PrefabInstance: {fileID: 5547786383931848603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1399151444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2762412682486434487, guid: cec565b02277a0646bab30bf31146c9a, type: 3}
   m_PrefabInstance: {fileID: 5547786383931848603}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1438942488
@@ -3933,15 +3948,15 @@ PrefabInstance:
     - target: {fileID: 8376797468448253503, guid: b5fc7cbd8c9d702448491e640e7d68bb, type: 3}
       propertyPath: charaArr.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 878836197}
     - target: {fileID: 8376797468448253503, guid: b5fc7cbd8c9d702448491e640e7d68bb, type: 3}
       propertyPath: charaArr.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 86212761}
     - target: {fileID: 8376797468448253503, guid: b5fc7cbd8c9d702448491e640e7d68bb, type: 3}
       propertyPath: charaArr.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1399151444}
     - target: {fileID: 8376797468448253503, guid: b5fc7cbd8c9d702448491e640e7d68bb, type: 3}
       propertyPath: validateImg.Array.size
       value: 4
