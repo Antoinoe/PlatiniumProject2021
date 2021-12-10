@@ -43,8 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326c6b297b451fd4196d5e932b544926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isUsingSetting: 1
   sounds:
   - name: Music
+    audioType: 0
     clips:
     - {fileID: 8300000, guid: cf2f738ab61f90349b898976844cc524, type: 3}
     maxInstNb: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
     source: {fileID: 0}
     hasMultipleClips: 0
   - name: Attack
+    audioType: 1
     clips:
     - {fileID: 8300000, guid: d8e6fd402d061c740a5aff4f9c391636, type: 3}
     - {fileID: 8300000, guid: 1e27abe59775b1e40857ba5d3449cf52, type: 3}
@@ -70,6 +73,7 @@ MonoBehaviour:
     source: {fileID: 0}
     hasMultipleClips: 0
   - name: IABones
+    audioType: 1
     clips:
     - {fileID: 8300000, guid: f24d8e7c08e7e0d48a912b6b258a85b0, type: 3}
     - {fileID: 8300000, guid: c1705b2da0de4774ab9d6882a54c3bfc, type: 3}

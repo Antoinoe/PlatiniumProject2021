@@ -179,7 +179,7 @@ public class Attack : MonoBehaviour
             return;
         }
 
-        Debug.Log(passedTime);
+        //Debug.Log(passedTime);
     }
 
     private IEnumerator KillCooldown(float moveTime)

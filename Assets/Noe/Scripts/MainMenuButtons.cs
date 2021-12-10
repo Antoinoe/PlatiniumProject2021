@@ -33,7 +33,7 @@ public class MainMenuButtons : MonoBehaviour
 
     public void ResetSelectedObject()
     {
-        sys.SetSelectedGameObject(buttons[1]);
+        sys.SetSelectedGameObject(buttons[0]);
         selectedItem = sys.currentSelectedGameObject;
     }
 

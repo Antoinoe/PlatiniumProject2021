@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("__USE_SETTINGS__")]
+    public bool isUsingSetting;
+
     public Audio[] sounds;
     private Audio[] pausedSounds;
 
@@ -29,6 +32,26 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.playOnAwake = s.playOnAwake;
+        }
+    }
+
+    private void Start()
+    {
+        if (!isUsingSetting) return;
+        foreach (Audio audio in sounds)
+        {
+            if (audio.audioType == AudioType.MUSIC)
+            {
+                audio.volume *= AudioStatic.music;
+            }
+            else if (audio.audioType == AudioType.FX)
+            {
+                audio.volume *= AudioStatic.effect;
+            }
+
+            audio.volume *= AudioStatic.general;
+
+            audio.source.volume = audio.volume;
         }
     }
 
