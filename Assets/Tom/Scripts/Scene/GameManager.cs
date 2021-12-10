@@ -397,6 +397,22 @@ public class GameManager : MonoBehaviour
                 Debug.Log(Vector2.Distance(posOrigin, randomPosition));
                 Debug.DrawLine(posOrigin, randomPosition, Color.yellow, 5f);
                 Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
+                for (int i = 0; i < areaColliders.Count; i++)
+                {
+                    if (areaColliders[i].bounds.Contains(randomPosition))
+                    {
+                        inArea = true;
+                        break;
+                    }
+                }
+                if (!inArea)
+                {
+                    NavMeshHit newHit;
+                    if (NavMesh.SamplePosition(posOrigin, out newHit, radius, NavMesh.AllAreas))
+                    {
+                        randomPosition = newHit.position;
+                    }
+                }
             }
             else
             {
