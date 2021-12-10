@@ -237,6 +237,7 @@ public class AIController : MonoBehaviour
     {
         //Debug.Log("DIE");
         anim.SetTrigger("Death");
+        FindObjectOfType<AudioManager>().Play("IABones");
         anim.SetBool("IsDead", true);
         agent.speed = 0;
         //GetComponentInChildren<SpriteRenderer>().color = deadColor;
