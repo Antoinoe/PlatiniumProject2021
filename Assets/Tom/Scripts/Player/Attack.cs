@@ -139,8 +139,9 @@ public class Attack : MonoBehaviour
                     nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
-                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
+                    killCooldown = playerController.CurrKillCooldown;
                     killOnCD = true;
                     FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }
@@ -154,8 +155,9 @@ public class Attack : MonoBehaviour
                     playerController.OnKill(true);
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
-                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
+                    killCooldown = playerController.CurrKillCooldown;
                     killOnCD = true;
                     FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }                       
@@ -174,15 +176,20 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        if (Time.deltaTime == 0)
+        Debug.Log(killOnCD);
+        if (killOnCD)
         {
-            return;
-        }
+            if (controller.MovementVector != Vector2.zero)
+            {
+                killCooldown -= Time.deltaTime;
+                float val = (playerController.CurrKillCooldown - killCooldown) / playerController.CurrKillCooldown;
+            }
 
-        //Debug.Log(passedTime);
+            if (killCooldown <= 0) killOnCD = false;
+        }
     }
 
-    private IEnumerator KillCooldown(float moveTime)
+    /*private IEnumerator KillCooldown(float moveTime)
     {
         Debug.Log(controller.MovementVector);
         if (controller.MovementVector != Vector2.zero)
@@ -200,7 +207,7 @@ public class Attack : MonoBehaviour
             killOnCD = false;
             StopCoroutine(KillCooldown(moveTime));
         }
-    }
+    }*/
 
     public void spawnFX(Vector2 dir)
     {
