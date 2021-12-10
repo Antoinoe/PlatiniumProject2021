@@ -16,6 +16,8 @@ public class Attack : MonoBehaviour
     private PlayerController playerController;
     private Controller controller;
 
+    UIManager ui;
+
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown; //TO UI
@@ -51,6 +53,7 @@ public class Attack : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         controller = GetComponent<Controller>();
+        ui = FindObjectOfType<UIManager>();
     }
 
 
@@ -176,13 +179,13 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(killOnCD);
         if (killOnCD)
         {
             if (controller.MovementVector != Vector2.zero)
             {
                 killCooldown -= Time.deltaTime;
                 float val = (playerController.CurrKillCooldown - killCooldown) / playerController.CurrKillCooldown;
+                ui.UpdateCooldownOnUI(playerController.contNbr, val);
             }
 
             if (killCooldown <= 0) killOnCD = false;
