@@ -48,7 +48,7 @@ MonoBehaviour:
   - name: Music
     audioType: 0
     clips:
-    - {fileID: 8300000, guid: cf2f738ab61f90349b898976844cc524, type: 3}
+    - {fileID: 8300000, guid: 50bc849683228aa47a2d4c289badfd4a, type: 3}
     maxInstNb: 0
     curInstNb: 0
     volume: 0.3
@@ -77,6 +77,42 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: f24d8e7c08e7e0d48a912b6b258a85b0, type: 3}
     - {fileID: 8300000, guid: c1705b2da0de4774ab9d6882a54c3bfc, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
+  - name: UIUp
+    audioType: 1
+    clips:
+    - {fileID: 8300000, guid: d118da87f84bcb144ac59ef2e74a99ef, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
+  - name: UIDown
+    audioType: 1
+    clips:
+    - {fileID: 8300000, guid: fe8a912f320db1340838dfca1d9e377a, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
+  - name: UISelect
+    audioType: 1
+    clips:
+    - {fileID: 8300000, guid: 7f431b37a7963524fa4f6c3f8fc24dc6, type: 3}
     maxInstNb: 0
     curInstNb: 0
     volume: 0.4

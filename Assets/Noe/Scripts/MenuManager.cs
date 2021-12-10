@@ -84,19 +84,24 @@ public class MenuManager : MonoBehaviour
         {
             if (navVer > 0)
             {
+                FindObjectOfType<AudioManager>().Play("UIUp");
                 if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp().gameObject);
                 navLockVer = true;
             }
             else if (navVer < 0)
             {
+                FindObjectOfType<AudioManager>().Play("UIDown");
                 if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown().gameObject);
                 navLockVer = true;
             }
 
             if (player.GetButtonDown("Attack"))
+            {
+                FindObjectOfType<AudioManager>().Play("UISelect");
                 eventsys.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+            }
 
         } 
         else if (actualMenuOn == Menu.CHARACTER && !navLock)
@@ -145,6 +150,7 @@ public class MenuManager : MonoBehaviour
                 if (selectedChara[i] && p.it[i] == p.it[_p]) return;
             }
         }
+        FindObjectOfType<AudioManager>().Play("UISelect");
         validateImg[_p].SetActive(true);
         Data.pSprite[_p] = p.it[_p];
         //Debug.Log(_p + "  " + p.it[_p] + "   " + Data.pSprite[_p]);

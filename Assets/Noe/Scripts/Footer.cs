@@ -31,6 +31,7 @@ public class Footer : MonoBehaviour
 
     IEnumerator Continue()
     {
+        FindObjectOfType<AudioManager>().Play("UISelect");
         MenuManager.Instance.canSwitchMenu = false;
         switch (MenuManager.Instance.actualMenuOn)
         {
@@ -62,7 +63,7 @@ public class Footer : MonoBehaviour
     IEnumerator Return()
     {
         MenuManager.Instance.canSwitchMenu = false;
-
+        FindObjectOfType<AudioManager>().Play("UISelect");
         switch (MenuManager.Instance.actualMenuOn)
         {
             case Menu.OPTIONS:
