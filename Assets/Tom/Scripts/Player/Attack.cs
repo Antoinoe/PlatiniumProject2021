@@ -62,7 +62,23 @@ public class Attack : MonoBehaviour
         if (Application.isPlaying && controller.ShowGizmos)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            
+            if(controller.MovementVector != Vector2.zero)
+            {
+                Transform gizmosTransform = new GameObject().transform;
+                gizmosTransform.rotation = Quaternion.Euler(controller.MovementVector);
+
+                Gizmos.matrix = gizmosTransform.localToWorldMatrix;
+                Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * (attackRange / 2), new Vector3(targetDetectionBoxSize.x * attackRange, targetDetectionBoxSize.y, 0));
+            }
+            else
+            {
+                Transform gizmosTransform = new GameObject().transform;
+
+                Gizmos.matrix = gizmosTransform.localToWorldMatrix;
+                Gizmos.DrawWireCube(transform.position, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            }
+
         }
     }
 
@@ -72,8 +88,17 @@ public class Attack : MonoBehaviour
         {
             #region Targets aquisition
             List<GameObject> targets = new List<GameObject>();
+            Collider2D[] collidersInRange;
 
-            Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector * attackRange, targetDetectionBoxSize, 0);
+            if (controller.MovementVector != Vector2.zero)
+            {
+               collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector * (attackRange / 2), new Vector2(targetDetectionBoxSize.x * attackRange, targetDetectionBoxSize.y), Vector2.SignedAngle(Vector2.right, controller.MovementVector));
+            }
+            else
+            {
+               collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position, new Vector2(targetDetectionBoxSize.x, targetDetectionBoxSize.y), 0);
+            }
+
             foreach (Collider2D c in collidersInRange)
             {
                 GameObject collidingObject = c.gameObject;
