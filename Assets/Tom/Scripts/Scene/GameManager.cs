@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
         Instantiate(inputManager);
-        Debug.Log(playerNbrs);
+        //Debug.Log(playerNbrs);
         playerList = new List<int>();
         for (int i = 0; i < playerNbrs; i++)
         {
@@ -375,8 +375,8 @@ public class GameManager : MonoBehaviour
         {
                 Vector2 oldRandomPosition = randomPosition;
             Debug.DrawLine(posOrigin, randomPosition, Color.cyan, 5f);
-            Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
-            Debug.Log(Vector2.Distance(posOrigin, randomPosition));
+            //Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
+            //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
             if (areaColliders.Count > 0)
             {
                 Vector2 newDir;
@@ -393,26 +393,10 @@ public class GameManager : MonoBehaviour
                 Vector2 newPos = posOrigin - newDir;
                 randomPosition = newPos;
                 //randomPosition = new Vector2(Mathf.Cos(-angle), Mathf.Sin(-angle)) / radius;
-                Debug.Log("Random Point Reset, New pos :" + randomPosition);
-                Debug.Log(Vector2.Distance(posOrigin, randomPosition));
+                //Debug.Log("Random Point Reset, New pos :" + randomPosition);
+                //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
                 Debug.DrawLine(posOrigin, randomPosition, Color.yellow, 5f);
-                Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
-                for (int i = 0; i < areaColliders.Count; i++)
-                {
-                    if (areaColliders[i].bounds.Contains(randomPosition))
-                    {
-                        inArea = true;
-                        break;
-                    }
-                }
-                if (!inArea)
-                {
-                    NavMeshHit newHit;
-                    if (NavMesh.SamplePosition(posOrigin, out newHit, radius, NavMesh.AllAreas))
-                    {
-                        randomPosition = newHit.position;
-                    }
-                }
+                //Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
             }
             else
             {

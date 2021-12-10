@@ -158,14 +158,14 @@ public class Controller : MonoBehaviour
 
             if (attack.killOnCD && _movementVec != Vector2.zero)
             {
-                playerController.CurrKillCooldown -= Time.deltaTime;
+                /*playerController.CurrKillCooldown -= Time.deltaTime;
                 
 
                 if(playerController.CurrKillCooldown <= 0)
                 {
                     attack.killOnCD = false;
                     Debug.Log("FINISH");
-                }
+                }*/
             }
         } 
     }

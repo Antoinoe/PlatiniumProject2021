@@ -32,6 +32,7 @@ public class MenuManager : MonoBehaviour
     public float switchMenuDuration;
     public Rewired.Player player;
     bool navLock = false;
+    bool navLockVer = false;
     public GameObject[] charaArr;
     public bool[] selectedChara;
     public GameObject[] validateImg;
@@ -77,24 +78,30 @@ public class MenuManager : MonoBehaviour
         if (player == null) return;
         float nav = player.GetAxisRaw("MoveHorizontal");
         if (navLock && nav == 0) navLock = false;
-        if (actualMenuOn == Menu.MAIN && !navLock)
+        float navVer = player.GetAxisRaw("MoveVertical");
+        if (navLockVer && navVer == 0) navLockVer = false;
+        if (actualMenuOn == Menu.MAIN && !navLockVer)
         {
-            nav = player.GetAxisRaw("MoveVertical");
-            if (nav > 0)
+            if (navVer > 0)
             {
+                FindObjectOfType<AudioManager>().Play("UIUp");
                 if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp().gameObject);
-                navLock = true;
+                navLockVer = true;
             }
-            else if (nav < 0)
+            else if (navVer < 0)
             {
+                FindObjectOfType<AudioManager>().Play("UIDown");
                 if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown().gameObject);
-                navLock = true;
+                navLockVer = true;
             }
 
             if (player.GetButtonDown("Attack"))
+            {
+                FindObjectOfType<AudioManager>().Play("UISelect");
                 eventsys.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
+            }
 
         } 
         else if (actualMenuOn == Menu.CHARACTER && !navLock)
@@ -103,12 +110,34 @@ public class MenuManager : MonoBehaviour
             {
                 if (ReInput.players.GetPlayer(i).GetButtonDown("Attack") && !switching)
                 {
-                    //Debug.Log("Call");
                     PlayerSelectChara(i);
                 }
             }
         }
-        
+        else if (actualMenuOn == Menu.OPTIONS && !navLockVer)
+        {
+            if (navVer > 0)
+            {
+                if (eventsys.currentSelectedGameObject.GetComponent<Selectable>() && eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp())
+                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject);
+                navLockVer = true;
+            }
+            else if (navVer < 0)
+            {
+                if (eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown())
+                    eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject);
+                navLockVer = true;
+            }
+
+            if (eventsys.currentSelectedGameObject.GetComponent<Slider>())
+            {
+                if (nav < 0)
+                    eventsys.currentSelectedGameObject.GetComponent<Slider>().value -= eventsys.currentSelectedGameObject.GetComponent<Slider>().maxValue / 200;
+                else if (nav > 0)
+                    eventsys.currentSelectedGameObject.GetComponent<Slider>().value += eventsys.currentSelectedGameObject.GetComponent<Slider>().maxValue / 200;
+            }
+        }
+
     }
 
     void PlayerSelectChara(int _p)
@@ -121,6 +150,7 @@ public class MenuManager : MonoBehaviour
                 if (selectedChara[i] && p.it[i] == p.it[_p]) return;
             }
         }
+        FindObjectOfType<AudioManager>().Play("UISelect");
         validateImg[_p].SetActive(true);
         Data.pSprite[_p] = p.it[_p];
         //Debug.Log(_p + "  " + p.it[_p] + "   " + Data.pSprite[_p]);
