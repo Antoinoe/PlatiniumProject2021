@@ -16,6 +16,8 @@ public class Attack : MonoBehaviour
     private PlayerController playerController;
     private Controller controller;
 
+    UIManager ui;
+
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown; //TO UI
@@ -51,6 +53,7 @@ public class Attack : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         controller = GetComponent<Controller>();
+        ui = FindObjectOfType<UIManager>();
     }
 
 
@@ -59,7 +62,23 @@ public class Attack : MonoBehaviour
         if (Application.isPlaying && controller.ShowGizmos)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            
+            if(controller.MovementVector != Vector2.zero)
+            {
+                Transform gizmosTransform = new GameObject().transform;
+                gizmosTransform.rotation = Quaternion.Euler(controller.MovementVector);
+
+                Gizmos.matrix = gizmosTransform.localToWorldMatrix;
+                Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * (attackRange / 2), new Vector3(targetDetectionBoxSize.x * attackRange, targetDetectionBoxSize.y, 0));
+            }
+            else
+            {
+                Transform gizmosTransform = new GameObject().transform;
+
+                Gizmos.matrix = gizmosTransform.localToWorldMatrix;
+                Gizmos.DrawWireCube(transform.position, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            }
+
         }
     }
 
@@ -69,8 +88,17 @@ public class Attack : MonoBehaviour
         {
             #region Targets aquisition
             List<GameObject> targets = new List<GameObject>();
+            Collider2D[] collidersInRange;
 
-            Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector * attackRange, targetDetectionBoxSize, 0);
+            if (controller.MovementVector != Vector2.zero)
+            {
+               collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector * (attackRange / 2), new Vector2(targetDetectionBoxSize.x * attackRange, targetDetectionBoxSize.y), Vector2.SignedAngle(Vector2.right, controller.MovementVector));
+            }
+            else
+            {
+               collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position, new Vector2(targetDetectionBoxSize.x, targetDetectionBoxSize.y), 0);
+            }
+
             foreach (Collider2D c in collidersInRange)
             {
                 GameObject collidingObject = c.gameObject;
@@ -139,8 +167,9 @@ public class Attack : MonoBehaviour
                     nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
-                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
+                    killCooldown = playerController.CurrKillCooldown;
                     killOnCD = true;
                     FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }
@@ -154,8 +183,9 @@ public class Attack : MonoBehaviour
                     playerController.OnKill(true);
                     FindObjectOfType<AudioManager>().Play("Attack");
                     spawnFX(controller.MovementVector * attackRange);
-                    StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
+                    killCooldown = playerController.CurrKillCooldown;
                     killOnCD = true;
                     FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }                       
@@ -174,15 +204,20 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        if (Time.deltaTime == 0)
+        if (killOnCD)
         {
-            return;
-        }
+            if (controller.MovementVector != Vector2.zero)
+            {
+                killCooldown -= Time.deltaTime;
+                float val = (playerController.CurrKillCooldown - killCooldown) / playerController.CurrKillCooldown;
+                ui.UpdateCooldownOnUI(playerController.contNbr, val);
+            }
 
-        Debug.Log(passedTime);
+            if (killCooldown <= 0) killOnCD = false;
+        }
     }
 
-    private IEnumerator KillCooldown(float moveTime)
+    /*private IEnumerator KillCooldown(float moveTime)
     {
         Debug.Log(controller.MovementVector);
         if (controller.MovementVector != Vector2.zero)
@@ -200,7 +235,7 @@ public class Attack : MonoBehaviour
             killOnCD = false;
             StopCoroutine(KillCooldown(moveTime));
         }
-    }
+    }*/
 
     public void spawnFX(Vector2 dir)
     {

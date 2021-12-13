@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     public int playerNb = 0;
     public int contNbr = 0;
     public Sprite[] bases,fillers; //liste des sprites dans l'odre de selection des joueurs dans le menu charac
-    float killCooldown = 0.0f;
-    float killIAaddCooldown = 0.0f;
+    float killCooldown = 1.0f;
+    float killIAaddCooldown = 1.0f;
     float currKillCooldown = 0.0f;
     [SerializeField]
     private GameObject assignedUI; // A quel UI appartient ce joueur
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         controller.SetNum(playerNb, contNbr);
         gameManager = GameManager.GetInstance();
         assignedUI = FindObjectOfType<UIManager>().uiImages[contNbr].gameObject;
-        print(assignedUI.transform.parent);
+        //print(assignedUI.transform.parent);
         actualBaseSprite = assignedUI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
         actualFillerSprite = assignedUI.transform.GetChild(0).GetComponent<Image>();
 

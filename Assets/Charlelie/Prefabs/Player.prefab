@@ -164,6 +164,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f4ad370e75a682c41bf116501c00fbd9, type: 3}
   - {fileID: 21300000, guid: ca33446896e07fc48b4f62a97d816e6c, type: 3}
   - {fileID: 21300000, guid: 6f34e00a0b8170246830a89cec70a623, type: 3}
+  assignedUI: {fileID: 0}
+  actualBaseSprite: {fileID: 0}
+  actualFillerSprite: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!114 &8550446936934499499
 MonoBehaviour:
@@ -194,7 +197,7 @@ MonoBehaviour:
   killOnCD: 0
   killCooldown: 2
   passedTime: 0
-  attackRange: 1
+  attackRange: 2
   targetDetectionBoxSize: {x: 2, y: 2}
   attackFX: {fileID: 4100441004695599386, guid: 4ace4a27ed8844347bd1cdb74d52d987, type: 3}
   attackYSprite: {fileID: 21300000, guid: 5608923ff2604b44da6429247b51efa7, type: 3}
