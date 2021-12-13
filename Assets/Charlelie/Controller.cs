@@ -19,6 +19,8 @@ public class Controller : MonoBehaviour
     bool showGizmos = true;
     Vector3 previous;
     Vector3 velocity;
+    float acceleration;
+    float decceleration;
 
     public bool ShowGizmos
     {
@@ -39,14 +41,14 @@ public class Controller : MonoBehaviour
 
     public float Acceleration
     {
-        get { return ib.digitalAxisSensitivity; }
-        set { ib.digitalAxisSensitivity = value; }
+        get { return acceleration; }
+        set { acceleration = value; }
     }
 
     public float Decceleration
     {
-        get { return ib.digitalAxisGravity; }
-        set { ib.digitalAxisGravity = value; }
+        get { return decceleration; }
+        set { decceleration = value; }
     }
 
     void Start()
@@ -57,13 +59,13 @@ public class Controller : MonoBehaviour
         sR = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
 
-    public void SetNum(int val)
+    public void SetNum(int val, int cont)
     {
         playerNum = val;
-        player = ReInput.players.GetPlayer(playerNum);
+        player = ReInput.players.GetPlayer(cont);
         ib = player.controllers.maps.GetInputBehavior(0);
-        Decceleration = ib.digitalAxisGravity;
-        Acceleration = ib.digitalAxisSensitivity;
+        ib.digitalAxisGravity = Decceleration;
+        ib.digitalAxisSensitivity = Acceleration; 
         if (anim)
             anim.SetFloat("playerNbr", playerNum);
         else
@@ -76,6 +78,7 @@ public class Controller : MonoBehaviour
         {
             //Debug.Log("Attack");
             attack.OnAttack();
+            //Vibrate();
         }
 
         if (player.GetButtonDown("ReloadMap"))
@@ -83,8 +86,21 @@ public class Controller : MonoBehaviour
             Debug.Log("Reload");
             UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
         }
-    }
 
+        if (player.GetButtonDown("Pause"))
+        {
+            GameManager.GetInstance().Pause();
+        }
+    }
+    /*When you punch and get punch, when stamina is good, when dog near*/
+    void Vibrate()
+    {
+        int motorIndex = 0; // the first motor
+        float motorLevel = 1.0f; // full motor speed
+        float duration = 2.0f; // 2 seconds
+
+        player.SetVibration(motorIndex, motorLevel, duration);
+    }
 
     
     private void FixedUpdate()
@@ -135,20 +151,21 @@ public class Controller : MonoBehaviour
         if (player != null)
         {
             _movementVec = new Vector2(player.GetAxisRaw("MoveHorizontal"), player.GetAxisRaw("MoveVertical"));
+            _movementVec.Normalize();
             //anim.SetFloat("X", _movementVec.x);
             //anim.SetFloat("Y", _movementVec.y);
             transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
 
             if (attack.killOnCD && _movementVec != Vector2.zero)
             {
-                playerController.CurrKillCooldown -= Time.deltaTime;
+                /*playerController.CurrKillCooldown -= Time.deltaTime;
                 
 
                 if(playerController.CurrKillCooldown <= 0)
                 {
                     attack.killOnCD = false;
                     Debug.Log("FINISH");
-                }
+                }*/
             }
         } 
     }

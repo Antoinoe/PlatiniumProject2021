@@ -31,10 +31,18 @@ public class Footer : MonoBehaviour
 
     IEnumerator Continue()
     {
+        FindObjectOfType<AudioManager>().Play("UISelect");
         MenuManager.Instance.canSwitchMenu = false;
         switch (MenuManager.Instance.actualMenuOn)
         {
             case Menu.CHARACTER:
+                bool ok = true;
+                for (int i = 0; i < MenuManager.Instance.selectedChara.Length; i++)
+                {
+                    if (!MenuManager.Instance.selectedChara[i])
+                        ok = false;
+                }
+                if (!ok) break;
                 MenuManager.Instance.OpenMenuFromFooter(Menu.MAP);
                 break;
             case Menu.MAP:
@@ -55,8 +63,7 @@ public class Footer : MonoBehaviour
     IEnumerator Return()
     {
         MenuManager.Instance.canSwitchMenu = false;
-        MenuManager.Instance.lastMenu = MenuManager.Instance.actualMenuOn;
-
+        FindObjectOfType<AudioManager>().Play("UISelect");
         switch (MenuManager.Instance.actualMenuOn)
         {
             case Menu.OPTIONS:

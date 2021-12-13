@@ -153,6 +153,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamNb: 0
   playerNb: 0
+  contNbr: 0
+  bases:
+  - {fileID: 21300000, guid: fc4bb98dce23c174db799de3f01a5d2c, type: 3}
+  - {fileID: 21300000, guid: 0d7f62bc2e1e6e5408f9fb5c9823f08a, type: 3}
+  - {fileID: 21300000, guid: 21555dbee5efb1548866b96651ee2bb7, type: 3}
+  - {fileID: 21300000, guid: 77077c3c53f6a8e47aac660c803a896d, type: 3}
+  fillers:
+  - {fileID: 21300000, guid: 941443ee7f87bb24c995ba8bb85f9286, type: 3}
+  - {fileID: 21300000, guid: f4ad370e75a682c41bf116501c00fbd9, type: 3}
+  - {fileID: 21300000, guid: ca33446896e07fc48b4f62a97d816e6c, type: 3}
+  - {fileID: 21300000, guid: 6f34e00a0b8170246830a89cec70a623, type: 3}
+  assignedUI: {fileID: 0}
+  actualBaseSprite: {fileID: 0}
+  actualFillerSprite: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!114 &8550446936934499499
 MonoBehaviour:
@@ -181,9 +195,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killOnCD: 0
-  killCooldown: 0
-  attackRange: 1
+  killCooldown: 2
+  passedTime: 0
+  attackRange: 2
   targetDetectionBoxSize: {x: 2, y: 2}
+  attackFX: {fileID: 4100441004695599386, guid: 4ace4a27ed8844347bd1cdb74d52d987, type: 3}
+  attackYSprite: {fileID: 21300000, guid: 5608923ff2604b44da6429247b51efa7, type: 3}
 --- !u!70 &4937062595718465698
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

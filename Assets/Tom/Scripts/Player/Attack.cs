@@ -16,10 +16,13 @@ public class Attack : MonoBehaviour
     private PlayerController playerController;
     private Controller controller;
 
+    UIManager ui;
+
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
-    [SerializeField] private float killCooldown;
-    /*[HideInInspector]*/ public float passedTime = 0f;
+    [SerializeField] private float killCooldown; //TO UI
+    /*[HideInInspector]*/
+    public float passedTime = 0f; //TO UI
 
     //Target detection
     [SerializeField] private float attackRange;
@@ -36,17 +39,21 @@ public class Attack : MonoBehaviour
     private float actualScore = 0;
     public int bounty = 0;
 
-    //Mettez ça dans le GM Svp
+    //Mettez ï¿½a dans le GM Svp
     [SerializeField] private float scorePerKill = 10;
     [SerializeField] private int maxBounty = 4;
 
     public Text t_score, t_kills, t_bounty;*/
+
+    [SerializeField] private GameObject attackFX;
+    [SerializeField] private Sprite attackYSprite;
     #endregion
 
     private void Start()
     {
         playerController = GetComponent<PlayerController>();
         controller = GetComponent<Controller>();
+        ui = FindObjectOfType<UIManager>();
     }
 
 
@@ -55,253 +62,196 @@ public class Attack : MonoBehaviour
         if (Application.isPlaying && controller.ShowGizmos)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * attackRange, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            
+            if(controller.MovementVector != Vector2.zero)
+            {
+                Transform gizmosTransform = new GameObject().transform;
+                gizmosTransform.rotation = Quaternion.Euler(controller.MovementVector);
+
+                Gizmos.matrix = gizmosTransform.localToWorldMatrix;
+                Gizmos.DrawWireCube((Vector2)transform.position + controller.MovementVector * (attackRange / 2), new Vector3(targetDetectionBoxSize.x * attackRange, targetDetectionBoxSize.y, 0));
+            }
+            else
+            {
+                Transform gizmosTransform = new GameObject().transform;
+
+                Gizmos.matrix = gizmosTransform.localToWorldMatrix;
+                Gizmos.DrawWireCube(transform.position, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
+            }
+
         }
     }
 
     public void OnAttack()
     {
-        #region Targets aquisition
-        List<GameObject> targets = new List<GameObject>();
-
-        Collider2D[] collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector * attackRange, targetDetectionBoxSize, 0);
-        foreach (Collider2D c in collidersInRange)
+        if (!killOnCD)
         {
-            GameObject collidingObject = c.gameObject;
+            #region Targets aquisition
+            List<GameObject> targets = new List<GameObject>();
+            Collider2D[] collidersInRange;
 
-            if (collidingObject && collidingObject != gameObject)
+            if (controller.MovementVector != Vector2.zero)
             {
-                if (collidingObject.CompareTag("Player"))
+               collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position + controller.MovementVector * (attackRange / 2), new Vector2(targetDetectionBoxSize.x * attackRange, targetDetectionBoxSize.y), Vector2.SignedAngle(Vector2.right, controller.MovementVector));
+            }
+            else
+            {
+               collidersInRange = Physics2D.OverlapBoxAll((Vector2)transform.position, new Vector2(targetDetectionBoxSize.x, targetDetectionBoxSize.y), 0);
+            }
+
+            foreach (Collider2D c in collidersInRange)
+            {
+                GameObject collidingObject = c.gameObject;
+
+                if (collidingObject && collidingObject != gameObject)
                 {
-                    if (collidingObject.GetComponent<PlayerController>().teamNb != playerController.teamNb)
+                    if (collidingObject.CompareTag("Player"))
+                    {
+                        if (collidingObject.GetComponent<PlayerController>().teamNb != playerController.teamNb)
+                        {
+                            targets.Add(collidingObject);
+                        }
+                    }
+                    else if (collidingObject.CompareTag("NPC"))
                     {
                         targets.Add(collidingObject);
                     }
                 }
-                else if (collidingObject.CompareTag("NPC"))
-                {
-                    targets.Add(collidingObject);
-                }
-
             }
-        }
-        #endregion
+            #endregion
 
-        #region Attack target aquisition
-        float distance = float.PositiveInfinity;
-        GameObject target = null;
+            #region Attack target aquisition
+            float distance = float.PositiveInfinity;
+            GameObject target = null;
 
-        if (targets.Count > 0)
-        {
-            for (int i = 0; i < targets.Count; i++)
+            if (targets.Count > 0)
             {
-                if (targets[i] && targets[i] != gameObject)
+                for (int i = 0; i < targets.Count; i++)
                 {
-                    float targetDistance = Vector3.Distance(transform.position, targets[i].transform.position);
-                    if (targetDistance < distance)
+                    if (targets[i] && targets[i] != gameObject)
                     {
-                        target = targets[i];
+                        float targetDistance = Vector3.Distance(transform.position, targets[i].transform.position);
+                        if (targetDistance < distance)
+                        {
+                            target = targets[i];
+                        }
                     }
                 }
             }
-        }
-        #endregion
+            #endregion
 
-        #region Attack !
-        if (!killOnCD && target)
-        {
-            if (target.CompareTag("Player"))
+            #region Attack !
+            if (target)
             {
-                //Kill Player
-                PlayerController killedPlayerScript = target.GetComponent<PlayerController>();
 
-                killedPlayerScript.ChangeTeam(playerController.teamNb);
+                if (target.CompareTag("Player"))
+                {
+                    //Kill Player
+                    PlayerController killedPlayerScript = target.GetComponent<PlayerController>();
 
-                playerController.gameManager.Shake();
-                playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
+                    killedPlayerScript.ChangeTeam(playerController.teamNb);
 
-                /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tué 
+                    playerController.gameManager.Shake();
+                    playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
 
-                //PLAYER A FAIT UN KILL
-                actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = x²+10
+                    playerController.OnKill(false);
 
-                if (bounty < maxBounty) //augmente bounty si pas au max
-                    bounty++; 
+                    /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tuï¿½ 
 
-                nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
+                    //PLAYER A FAIT UN KILL
+                    actualScore += bounty * bounty + scorePerKill; //calcule le score de Player B en fonction du bounty du player A //f(x) = xï¿½+10
+
+                    if (bounty < maxBounty) //augmente bounty si pas au max
+                        bounty++; 
+
+                    nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
+                    FindObjectOfType<AudioManager>().Play("Attack");
+                    spawnFX(controller.MovementVector * attackRange);
+                    //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    controller.anim.SetTrigger("doAttack");
+                    killCooldown = playerController.CurrKillCooldown;
+                    killOnCD = true;
+                    FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
+                }
+                else if (target.CompareTag("NPC"))
+                {
+                    //Kill NPC
+                    //Debug.Log("NPC killed by Team " + playerController.teamNb);
+                    if (target.GetComponent<IAIdentity>().teamNb != playerController.teamNb) { target.GetComponent<AIController>().OnKilled(); playerController.gameManager.Shake(); }
+                    //else { target.GetComponent<AIController>().OnBone(); }
+
+                    playerController.OnKill(true);
+                    FindObjectOfType<AudioManager>().Play("Attack");
+                    spawnFX(controller.MovementVector * attackRange);
+                    //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
+                    controller.anim.SetTrigger("doAttack");
+                    killCooldown = playerController.CurrKillCooldown;
+                    killOnCD = true;
+                    FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
+                }                       
             }
-            else if (target.CompareTag("NPC"))
+            else
             {
-                //Kill NPC
-                //Debug.Log("NPC killed by Team " + playerController.teamNb);
-                if (target.GetComponent<IAIdentity>().teamNb != playerController.teamNb) { target.GetComponent<AIController>().OnKilled(); playerController.gameManager.Shake(); }
-                else { target.GetComponent<AIController>().OnBone(); }
-
-                
+                Debug.Log("noTarget");
             }
-
-
-            playerController.OnKill(target);
-            killOnCD = true;
-        }
-        else if (killOnCD)
-        {
-            Debug.LogError("onCooldown : " + playerController.teamNb);
-            RectTransform slider = GameObject.Find("Slider0" + (playerController.teamNb + 1)).GetComponent<RectTransform>();
-            StartCoroutine(ShakeIt(slider));
-            //Debug.LogError(playerController.CurrKillCooldown);
+            #endregion
         }
         else
         {
-            Debug.Log("noTarget");
+            Debug.Log("onCooldown");
         }
-        #endregion
     }
-    private IEnumerator ShakeIt(RectTransform transform)
-    {
-        for(int i = 0; i < 20; i++)
-        {
-            transform.anchoredPosition = UnityEngine.Random.insideUnitCircle * 5f;
-            yield return new WaitForFixedUpdate();
-        }
-        yield break;
-    }
+
     void Update()
     {
-        if (Time.deltaTime == 0)
+        if (killOnCD)
         {
-            return;
-        }
-
-        #region Targets detection
-        /*float distance = float.PositiveInfinity;
-        GameObject temporaryTarget = null;
-
-        if (targets.Count > 0)
-        {
-            for (int i = 0; i < targets.Count; i++)
+            if (controller.MovementVector != Vector2.zero)
             {
-                if (targets[i] && targets[i] != gameObject)
-                {
-                    float targetDistance = Vector3.Distance(transform.position, targets[i].transform.position);
-                    if (targetDistance < distance)
-                    {
-                        temporaryTarget = targets[i];
-                    }
-                }
-                else
-                {
-                    targets.Remove(targets[i]);
-                }
+                killCooldown -= Time.deltaTime;
+                float val = (playerController.CurrKillCooldown - killCooldown) / playerController.CurrKillCooldown;
+                ui.UpdateCooldownOnUI(playerController.contNbr, val);
             }
 
-           //Feedback visuel (highlight) 
-            if (temporaryTarget != focusedTarget && !killOnCD)
-            {
-                if (focusedTarget != null)
-                {
-                    if (focusedTarget.tag == "NPC")
-                    {
-                        focusedTarget.GetComponent<AIBehaviour>().sightsNb += -1;
-                    }
-                    else if (focusedTarget.tag == "Player")
-                    {
-                        focusedTarget.GetComponent<PlayerController>().sightsNb += -1;
-                    }
-
-                    if (focusedTarget.tag == "NPC" && focusedTarget.GetComponent<AIBehaviour>().sightsNb == 0)
-                    {
-                        focusedTarget.GetComponent<AIBehaviour>().marker.SetActive(false);
-                    }
-                    else if (focusedTarget.tag == "Player" && focusedTarget.GetComponent<PlayerController>().sightsNb == 0)
-                    {
-                        focusedTarget.GetComponent<PlayerController>().marker.SetActive(false);
-                    }
-                }
-
-
-                if (temporaryTarget && temporaryTarget.tag == "NPC")
-                {
-                    AIBehaviour controller = temporaryTarget.GetComponent<AIBehaviour>();
-                    controller.sightsNb += 1;
-                    controller.marker.SetActive(true);
-                    focusedTarget = temporaryTarget;
-                }
-                else if (temporaryTarget && temporaryTarget.tag == "Player")
-                {
-                    PlayerController controller = temporaryTarget.GetComponent<PlayerController>();
-                    controller.sightsNb += 1;
-                    controller.marker.SetActive(true);
-
-                    if (temporaryTarget.GetComponent<PlayerController>().teamNb != playerController.teamNb)
-                    {
-                        focusedTarget = temporaryTarget;
-                    }
-                }
-            }
+            if (killCooldown <= 0) killOnCD = false;
         }
-        else
-        {
-            if (focusedTarget != null)
-            {
-                if (focusedTarget.tag == "NPC")
-                {
-                    focusedTarget.GetComponent<AIBehaviour>().sightsNb += -1;
-                }
-                else if (focusedTarget.tag == "Player")
-                {
-                    focusedTarget.GetComponent<PlayerController>().sightsNb += -1;
-                }
-
-                if (focusedTarget.tag == "NPC" && focusedTarget.GetComponent<AIBehaviour>().sightsNb == 0)
-                {
-                    focusedTarget.GetComponent<AIBehaviour>().marker.SetActive(false);
-                }
-                else if (focusedTarget.tag == "Player" && focusedTarget.GetComponent<PlayerController>().sightsNb == 0)
-                {
-                    focusedTarget.GetComponent<PlayerController>().marker.SetActive(false);
-                }
-                
-                focusedTarget = null;
-            }
-        }
-        #endregion
-
-        #region Score
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            //RESET
-            actualScore = 0;
-            bounty = 0;
-            nbOfKills = 0;
-        }
-
-        //affiche les infos sur l ecran
-        //t_score.text = "score :" + actualScore.ToString();
-        //t_bounty.text = "bounty :" + bounty.ToString();
-        //t_kills.text = "kills : " + nbOfKills.ToString();*/
-        #endregion
     }
 
-    private IEnumerator KillCooldown(float moveTime)
+    /*private IEnumerator KillCooldown(float moveTime)
     {
         Debug.Log(controller.MovementVector);
-        if(controller.MovementVector != Vector2.zero)
+        if (controller.MovementVector != Vector2.zero)
         {
             passedTime += Time.deltaTime;
         }
 
-        if(passedTime < moveTime)
+        if (passedTime < moveTime)
         {
-            Debug.Log("aurevoir");
             yield return new WaitForSeconds(Time.deltaTime);
         }
         else
         {
-            Debug.Log("bonjour");
             passedTime = 0f;
             killOnCD = false;
             StopCoroutine(KillCooldown(moveTime));
         }
+    }*/
+
+    public void spawnFX(Vector2 dir)
+    {
+        float angle = Vector2.SignedAngle(Vector2.right, dir);
+        GameObject fist = GameObject.Instantiate(attackFX, transform.position, Quaternion.Euler(0, 0, angle));
+
+        if (dir.x < 0)
+        {
+            Vector3 scale = fist.transform.localScale;
+            fist.transform.localScale = new Vector3(scale.x, -scale.y, scale.z);
+        }
+        if(dir.y < -0.5 || dir.y > 0.5)
+        {
+            fist.GetComponentInChildren<SpriteRenderer>().sprite = attackYSprite;
+        }
+
+        GameObject.Destroy(fist, 0.35f);
     }
 }

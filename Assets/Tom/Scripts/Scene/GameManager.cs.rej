@@ -1,0 +1,10 @@
+diff a/Assets/Tom/Scripts/Scene/GameManager.cs b/Assets/Tom/Scripts/Scene/GameManager.cs	(rejected hunks)
+@@ -21,6 +21,8 @@
+     static GameManager _instance;
+ 
+     public GameObject winPanel;
++    public GameObject pause;
++    public bool isPause = false;
+ 
+     [Header("Managers")]
+     public Rewired.InputManager inputManager;

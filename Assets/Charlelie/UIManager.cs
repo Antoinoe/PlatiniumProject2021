@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public float incrementValue;
     public float valueToWin;
     public Slider[] uiSliders;
+    public Image[] uiImages;
     void Start()
     {
         Init();
@@ -21,24 +22,41 @@ public class UIManager : MonoBehaviour
         {
             if (i < GameManager.GetInstance().playerNbrs)
             {
-                Debug.Log(GameManager.GetInstance().playersOnBoard[i].name);
+                //Debug.Log(GameManager.GetInstance().playersOnBoard[i].name);
                 uiSliders[i].gameObject.SetActive(true);
                 GameManager.GetInstance().playersOnBoard[i].AddComponent<DogProximity>();
             }
             else
+            {
                 uiSliders[i].gameObject.SetActive(false);
+                uiImages[i].gameObject.SetActive(false);
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //UpdateCooldownOnUI();
     }
 
     public Slider GetPlayerSlider(int playerNbr)
     {
         return uiSliders[playerNbr];
+    }
+    public Image getPlayerImage(int playerNbr)
+    {
+        return uiImages[playerNbr];
+    }
+
+    public void UpdateCooldownOnUI(int playerNbr, float val)
+    {
+        uiImages[playerNbr].transform.GetChild(0).GetComponent<Image>().fillAmount = val;
+    }
+
+    public void EmptyBar(int index)
+    {
+        uiImages[index].transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
     }
 }
 

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("__USE_SETTINGS__")]
+    public bool isUsingSetting;
+
     public Audio[] sounds;
     private Audio[] pausedSounds;
 
@@ -32,12 +35,44 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (!isUsingSetting) return;
+        foreach (Audio audio in sounds)
+        {
+            if (audio.audioType == AudioType.MUSIC)
+            {
+                audio.volume *= AudioStatic.music;
+            }
+            else if (audio.audioType == AudioType.FX)
+            {
+                audio.volume *= AudioStatic.effect;
+            }
+
+            audio.volume *= AudioStatic.general;
+
+            audio.source.volume = audio.volume;
+        }
+    }
+
     public void Play(string name)
     {
-        Audio s = Array.Find(sounds, sound => sound.name == name);
+        //Audio s = Array.Find(sounds, sound => sound.name == name);
+        Audio s = null;
+        foreach(Audio audio in sounds)
+        {
+            if (audio.name == name)
+            {
+                s = audio;
+                break;
+            }
+        }
 
         if (s == null)
+        {
+            Debug.LogError("Cannot find audio in list!");
             return;
+        }
 
         if (s.hasMultipleClips)
         {

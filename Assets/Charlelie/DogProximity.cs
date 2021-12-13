@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DogProximity : MonoBehaviour
 {
     GameObject dog;
+    GameManager gm;
     UIManager manager;
     float range;
     float currProgress = 0;
@@ -15,12 +16,13 @@ public class DogProximity : MonoBehaviour
 
     void Start()
     {
+        gm = GameManager.GetInstance();
         dog = GameObject.FindGameObjectWithTag("SecondGoal");
         range = dog.GetComponent<AIController>().localMaxMoveRange;
         manager = FindObjectOfType<UIManager>();
         incrementValue = /*(manager as Test)*/manager.incrementValue;
         valueToWin = /*(manager as Test)*/manager.valueToWin;
-        slider = manager.GetPlayerSlider(gameObject.GetComponent<PlayerController>().playerNb);
+        slider = manager.GetPlayerSlider(gameObject.GetComponent<PlayerController>().contNbr);
         slider.value = 0;
         slider.maxValue = valueToWin;
     }
@@ -28,9 +30,9 @@ public class DogProximity : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, dog.transform.position) <= range)
+        if ((Vector2.Distance(transform.position, dog.transform.position) <= range) && !gm.isPause)
         {
-            Debug.Log("Increment");
+            //Debug.Log("Increment");
             currProgress += /*Time.deltaTime*/incrementValue;
             slider.value = currProgress;
             if (currProgress >= valueToWin)

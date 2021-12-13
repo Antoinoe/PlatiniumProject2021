@@ -7,6 +7,7 @@ public class IAIdentity : MonoBehaviour
     #region Variables
     [HideInInspector] public int teamNb;
     public SpriteRenderer spriteRend;
+    public AIController controllerIdentity;
     [HideInInspector] public int isInvisible = 0;
     #endregion
 }

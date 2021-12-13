@@ -83,6 +83,9 @@ TextureImporter:
   - first:
       213: 7546967192981012983
     second: Skull idle_1pivot_26
+  - first:
+      213: -8500195716013752215
+    second: Skull idle_1pivot_27
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -188,7 +191,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 3112
+        y: 5516
         width: 756
         height: 984
       alignment: 0
@@ -209,7 +212,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 856
-        y: 3112
+        y: 5516
         width: 756
         height: 984
       alignment: 0
@@ -230,7 +233,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1712
-        y: 3112
+        y: 5516
         width: 760
         height: 984
       alignment: 0
@@ -251,7 +254,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2568
-        y: 3112
+        y: 5512
         width: 760
         height: 984
       alignment: 0
@@ -272,7 +275,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3428
-        y: 3108
+        y: 5512
         width: 756
         height: 984
       alignment: 0
@@ -293,9 +296,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4284
-        y: 3104
+        y: 5508
         width: 756
-        height: 988
+        height: 984
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -314,7 +317,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5140
-        y: 3104
+        y: 5508
         width: 760
         height: 984
       alignment: 0
@@ -335,9 +338,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5996
-        y: 3100
+        y: 5504
         width: 760
-        height: 988
+        height: 984
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -356,7 +359,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6856
-        y: 3100
+        y: 5504
         width: 756
         height: 984
       alignment: 0
@@ -377,9 +380,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2000
+        y: 4404
         width: 756
-        height: 985
+        height: 984
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -398,9 +401,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 856
-        y: 1996
+        y: 4400
         width: 756
-        height: 988
+        height: 986
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -419,7 +422,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1712
-        y: 1996
+        y: 4400
         width: 760
         height: 986
       alignment: 0
@@ -440,7 +443,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2568
-        y: 1992
+        y: 4396
         width: 760
         height: 990
       alignment: 0
@@ -461,7 +464,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3428
-        y: 1992
+        y: 4396
         width: 756
         height: 990
       alignment: 0
@@ -482,7 +485,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4284
-        y: 1988
+        y: 4392
         width: 756
         height: 994
       alignment: 0
@@ -503,9 +506,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5140
-        y: 1992
+        y: 4392
         width: 760
-        height: 990
+        height: 991
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -524,9 +527,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5996
-        y: 1992
+        y: 4396
         width: 760
-        height: 990
+        height: 989
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -545,7 +548,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6856
-        y: 1996
+        y: 4400
         width: 756
         height: 986
       alignment: 0
@@ -566,9 +569,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 884
+        y: 3292
         width: 756
-        height: 988
+        height: 984
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -587,9 +590,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 856
-        y: 888
+        y: 3292
         width: 756
-        height: 984
+        height: 988
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -608,7 +611,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1712
-        y: 892
+        y: 3296
         width: 760
         height: 984
       alignment: 0
@@ -629,9 +632,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2568
-        y: 892
+        y: 3296
         width: 760
-        height: 984
+        height: 988
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -650,7 +653,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3428
-        y: 896
+        y: 3300
         width: 756
         height: 984
       alignment: 0
@@ -671,7 +674,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4284
-        y: 896
+        y: 3300
         width: 756
         height: 984
       alignment: 0
@@ -692,7 +695,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5140
-        y: 900
+        y: 3304
         width: 760
         height: 984
       alignment: 0
@@ -713,7 +716,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5996
-        y: 900
+        y: 3304
         width: 760
         height: 984
       alignment: 0
@@ -734,7 +737,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6856
-        y: 904
+        y: 3308
         width: 756
         height: 984
       alignment: 0
@@ -746,6 +749,27 @@ TextureImporter:
       bones: []
       spriteID: 7f1092d2da63cb860800000000000000
       internalID: 7546967192981012983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull idle_1pivot_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2208
+        width: 756
+        height: 984
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96004b1480d390a80800000000000000
+      internalID: -8500195716013752215
       vertices: []
       indices: 
       edges: []
