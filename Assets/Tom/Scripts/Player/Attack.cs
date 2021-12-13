@@ -15,6 +15,7 @@ public class Attack : MonoBehaviour
     //Player Controller
     private PlayerController playerController;
     private Controller controller;
+    private ParticleSystem fire;
 
     UIManager ui;
 
@@ -54,6 +55,12 @@ public class Attack : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         controller = GetComponent<Controller>();
         ui = FindObjectOfType<UIManager>();
+        if (GameObject.Find("Fire" + playerController.teamNb))
+        {
+            fire = GameObject.Find("Fire" + playerController.teamNb).GetComponent<ParticleSystem>();
+            fire.Stop();
+        }
+
     }
 
 
@@ -194,6 +201,7 @@ public class Attack : MonoBehaviour
             {
                 Debug.Log("noTarget");
             }
+            if (fire != null) fire.Stop();
             #endregion
         }
         else
@@ -213,7 +221,7 @@ public class Attack : MonoBehaviour
                 ui.UpdateCooldownOnUI(playerController.contNbr, val);
             }
 
-            if (killCooldown <= 0) killOnCD = false;
+            if (killCooldown <= 0) { killOnCD = false; if (fire != null) fire.Play(); }
         }
     }
 

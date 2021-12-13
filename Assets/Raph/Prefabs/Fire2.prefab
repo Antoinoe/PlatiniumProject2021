@@ -14466,7 +14466,7 @@ GameObject:
   - component: {fileID: 8615025728498291865}
   - component: {fileID: 8614548476869592715}
   m_Layer: 0
-  m_Name: PurpleFire
+  m_Name: Fire2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14480,7 +14480,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8451672726909531273}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -8.57, y: -4.35, z: 0}
+  m_LocalPosition: {x: -8.1, y: -4.25, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children:
   - {fileID: 8457513496129405083}
