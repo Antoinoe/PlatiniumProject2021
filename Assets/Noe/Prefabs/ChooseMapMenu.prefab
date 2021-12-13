@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7942581442821067725}
   - component: {fileID: 8737585805229590120}
   - component: {fileID: 2311294304486611416}
+  - component: {fileID: 3955839533106550785}
   m_Layer: 0
   m_Name: MapC (2)
   m_TagString: Untagged
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3955839533106550785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480951791684976265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ee4c6fc1b757a45819cb791b016219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapName: 
 --- !u!1 &833483717935235763
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +370,7 @@ GameObject:
   - component: {fileID: 3601860447045363836}
   - component: {fileID: 3861478722192798856}
   - component: {fileID: 769716303754933511}
+  - component: {fileID: 8635032226219746279}
   m_Layer: 0
   m_Name: MapC (1)
   m_TagString: Untagged
@@ -421,6 +436,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8635032226219746279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096352634137171054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ee4c6fc1b757a45819cb791b016219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapName: 
 --- !u!1 &6773705076677274950
 GameObject:
   m_ObjectHideFlags: 0
