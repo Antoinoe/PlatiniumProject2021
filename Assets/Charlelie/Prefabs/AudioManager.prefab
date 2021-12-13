@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 326c6b297b451fd4196d5e932b544926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUsingSetting: 1
+  isUsingSetting: 0
   sounds:
   - name: Music
     audioType: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 50bc849683228aa47a2d4c289badfd4a, type: 3}
     maxInstNb: 0
     curInstNb: 0
-    volume: 0.3
+    volume: 0.028
     pitch: 1
     loop: 1
     playOnAwake: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5c859d341c07b824fbcb7845bf99d6cf, type: 3}
     maxInstNb: 0
     curInstNb: 0
-    volume: 0.4
+    volume: 0.1
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: c1705b2da0de4774ab9d6882a54c3bfc, type: 3}
     maxInstNb: 0
     curInstNb: 0
-    volume: 0.4
+    volume: 0.1
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: d118da87f84bcb144ac59ef2e74a99ef, type: 3}
     maxInstNb: 0
     curInstNb: 0
-    volume: 0.4
+    volume: 0.2
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: fe8a912f320db1340838dfca1d9e377a, type: 3}
     maxInstNb: 0
     curInstNb: 0
-    volume: 0.4
+    volume: 0.2
     pitch: 1
     loop: 0
     playOnAwake: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 7f431b37a7963524fa4f6c3f8fc24dc6, type: 3}
     maxInstNb: 0
     curInstNb: 0
-    volume: 0.4
+    volume: 0.2
     pitch: 1
     loop: 0
     playOnAwake: 0
