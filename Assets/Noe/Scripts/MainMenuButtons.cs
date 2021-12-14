@@ -48,7 +48,7 @@ public class MainMenuButtons : MonoBehaviour
 
     private void UpdateNav()
     {
-        if(MenuManager.Instance.actualMenuOn == Menu.MAIN /*|| SceneManager.GetActiveScene().name == "DevTest"*/)
+        if(MenuManager.Instance.actualMenuOn == Menu.MAIN || SceneManager.GetActiveScene().name == "DevTest")
         {
             selectedItem = sys.currentSelectedGameObject;
             for (int i = 0; i < buttons.Length; i++)
