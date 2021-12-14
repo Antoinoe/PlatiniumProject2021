@@ -11398,7 +11398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16ee4c6fc1b757a45819cb791b016219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapName: TUTO
+  mapName: DevTest
 --- !u!222 &8644106579901135425
 CanvasRenderer:
   m_ObjectHideFlags: 0

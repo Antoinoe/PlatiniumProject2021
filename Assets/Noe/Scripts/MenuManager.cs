@@ -41,6 +41,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        p.Reset();
         Data.isDebug = false;
         FindObjectOfType<AudioManager>().Play("MenuMusic");
         actualMenuOn = Menu.MAIN;
