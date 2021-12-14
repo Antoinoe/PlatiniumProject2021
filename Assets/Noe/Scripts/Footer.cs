@@ -63,7 +63,7 @@ public class Footer : MonoBehaviour
     IEnumerator Return()
     {
         MenuManager.Instance.canSwitchMenu = false;
-        FindObjectOfType<AudioManager>().Play("UISelect");
+        FindObjectOfType<AudioManager>().Play("UIBack");
         switch (MenuManager.Instance.actualMenuOn)
         {
             case Menu.OPTIONS:

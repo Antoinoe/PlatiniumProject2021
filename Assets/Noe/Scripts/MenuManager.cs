@@ -44,7 +44,7 @@ public class MenuManager : MonoBehaviour
         Data.isDebug = false;
         FindObjectOfType<AudioManager>().Play("MenuMusic");
         actualMenuOn = Menu.MAIN;
-        Debug.Log(ReInput.controllers.joystickCount);
+        //Debug.Log(ReInput.controllers.joystickCount);
         for (int i = 0; i < ReInput.controllers.joystickCount; i++)
         {
             //Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));
@@ -117,13 +117,14 @@ public class MenuManager : MonoBehaviour
         }
         else if (actualMenuOn == Menu.OPTIONS && !navLockVer)
         {
-            if (navVer > 0)
+            navVer = player.GetAxis("MoveVertical");
+            if (navVer > 0.5f)
             {
                 if (eventsys.currentSelectedGameObject.GetComponent<Selectable>() && eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnUp().gameObject);
                 navLockVer = true;
             }
-            else if (navVer < 0)
+            else if (navVer < -0.5f)
             {
                 if (eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Selectable>().FindSelectableOnDown().gameObject);
@@ -165,7 +166,7 @@ public class MenuManager : MonoBehaviour
                     if (j == p.it[_p])
                     {
                         Image img = root.transform.GetChild(i).GetChild(0).GetChild(j).GetComponent<Image>();
-                        img.color = new Color(img.color.r, img.color.g, img.color.b, 0.5f);
+                        //img.color = new Color(img.color.r, img.color.g, img.color.b, 0.5f);
                         Image img2 = img.gameObject.transform.GetChild(0).GetComponent<Image>();
                         img2.color = new Color(img2.color.r, img2.color.g, img2.color.b, 0.5f);
                     }

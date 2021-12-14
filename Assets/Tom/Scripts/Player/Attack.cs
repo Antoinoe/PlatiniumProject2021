@@ -197,7 +197,7 @@ public class Attack : MonoBehaviour
                     //else { target.GetComponent<AIController>().OnBone(); }
 
                     playerController.OnKill(true);
-                    FindObjectOfType<AudioManager>().Play("Attack");
+                    FindObjectOfType<AudioManager>().Play("PunchIA");
                     spawnFX(controller.MovementVector * attackRange);
                     //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
