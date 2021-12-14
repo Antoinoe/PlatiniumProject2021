@@ -130,6 +130,11 @@ public class Attack : MonoBehaviour
                 {
                     if (targets[i] && targets[i] != gameObject)
                     {
+                        if (targets[i].CompareTag("Player"))
+                        {
+                            target = targets[i];
+                            break;
+                        }
                         float targetDistance = Vector3.Distance(transform.position, targets[i].transform.position);
                         if (targetDistance < distance)
                         {

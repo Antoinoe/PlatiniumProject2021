@@ -274,7 +274,7 @@ public class GameManager : MonoBehaviour
         uis.SetActive(false);
         isWin = true;
         FindObjectOfType<WinNav>().Init(teamNb);
-        //Debug.Log("Team " + teamNb + " win !");
+        Debug.Log("________Team " + teamNb + " win !");
         //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
         //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
     }
@@ -320,7 +320,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator MoveAllAItoZone()
     {
-        Debug.Log("Entrer dans la zone");
+        //Debug.Log("Entrer dans la zone");
         List<Collider2D> area = eventArea.areaColliders[eventIndex].zonesColliders;
         for (int i = 0; i < iATeams.Count; i++)
         {
@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(timeToEvent);
-        Debug.Log("Sortie de zone");
+        //Debug.Log("Sortie de zone");
         for (int i = 0; i < iATeams.Count; i++)
         {
             IAIdentity[] iATeam = iATeams[i];
@@ -354,7 +354,7 @@ public class GameManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(eventCooldown + timeToEvent);
             }
-            Debug.Log("fin du cooldown");
+            //Debug.Log("fin du cooldown");
             StartCoroutine(MoveAllAItoZone());
         }
     }

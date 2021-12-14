@@ -11,6 +11,14 @@ using UnityEngine.EventSystems;
 public static class p
 {
     public static int[] it = { 0, 0, 0, 0 };
+
+    public static void Reset()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            it[i] = 0;
+        }
+    }
 }
 
 public class Selector : MonoBehaviour

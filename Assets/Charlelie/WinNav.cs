@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Rewired;
+using DG.Tweening;
 
 public class WinNav : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class WinNav : MonoBehaviour
     public Image winnerHead;
     int winner;
     bool isReplay = true;
+    private Vector2 minusScale;
+    private Vector2 actualScale;
+    private float duration = 0.25f;
+    bool navLock = false;
     void Start()
     {
         
@@ -31,39 +36,37 @@ public class WinNav : MonoBehaviour
         replay.Select();
         eventSystem = FindObjectOfType<EventSystem>();
         eventSystem.SetSelectedGameObject(replay.gameObject);
+        actualScale = eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().sizeDelta;
+        minusScale = new Vector2(actualScale.x - 250, actualScale.y);
         winnerHead.sprite = heads[winner];
+        eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
+        eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
     }
 
 
     void Update()
     {
-        if (!good) return;
+        Debug.Log(eventSystem.currentSelectedGameObject.GetComponent<Button>().name);
+        if (ReInput.players.GetPlayer(0).GetAxisRaw("MoveHorizontal") == 0) navLock = false;
+        if (!good || navLock) return;
         for (int i = 0; i < ReInput.controllers.joystickCount; i++)
         {
-            if (ReInput.players.GetPlayer(i).GetButtonDown("Attack"))
+            if (ReInput.players.GetPlayer(0).GetButtonDown("Attack"))
                 eventSystem.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal") > 0)
-                if (isReplay)
-                {
-                    isReplay = !isReplay;
-                    eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().gameObject);
-                }
-                else
-                {
-                    isReplay = !isReplay;
-                    eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft().gameObject);
-                }
+            {
+                eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
+                eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().gameObject);
+                eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
+                navLock = true;
+            }
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal") < 0)
-                if (isReplay)
-                {
-                    isReplay = !isReplay;
-                    eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().gameObject);
-                }
-                else
-                {
-                    isReplay = !isReplay;
-                    eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft().gameObject);
-                }
+            {
+                eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
+                eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft().gameObject);
+                eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
+                navLock = true;
+            }                
         }
     }
 }
