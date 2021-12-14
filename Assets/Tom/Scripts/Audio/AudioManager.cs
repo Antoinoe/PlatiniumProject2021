@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
         foreach (Audio s in sounds)
         {
@@ -42,14 +42,30 @@ public class AudioManager : MonoBehaviour
         {
             if (audio.audioType == AudioType.MUSIC)
             {
-                audio.volume *= AudioStatic.music;
+                audio.volume = AudioStatic.music * AudioStatic.general;
             }
             else if (audio.audioType == AudioType.FX)
             {
-                audio.volume *= AudioStatic.effect;
+                audio.volume = AudioStatic.effect * AudioStatic.general;
             }
 
-            audio.volume *= AudioStatic.general;
+            audio.source.volume = audio.volume;
+        }
+    }
+
+    public void ChangeValues()
+    {        
+        if (!isUsingSetting) return;
+        foreach (Audio audio in sounds)
+        {
+            if (audio.audioType == AudioType.MUSIC)
+            {
+                audio.volume = AudioStatic.music * AudioStatic.general;
+            }
+            else if (audio.audioType == AudioType.FX)
+            {
+                audio.volume = AudioStatic.effect * AudioStatic.general;
+            }
 
             audio.source.volume = audio.volume;
         }

@@ -20,6 +20,12 @@ public static class AudioStatic
 
 public class AudioData : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioStatic.general = GameObject.Find("S_General").transform.GetChild(1).GetComponent<Slider>().value;
+        AudioStatic.music = GameObject.Find("S_Music").transform.GetChild(1).GetComponent<Slider>().value;
+        AudioStatic.effect = GameObject.Find("S_Effect").transform.GetChild(1).GetComponent<Slider>().value;
+    }
     public void ChangeValue(int audioType)
     {
         switch ((VolumeType)audioType)
@@ -36,5 +42,7 @@ public class AudioData : MonoBehaviour
                 AudioStatic.effect = GameObject.Find("S_Effect").transform.GetChild(1).GetComponent<Slider>().value;
                 break;
         }
+
+        FindObjectOfType<AudioManager>().ChangeValues();
     }
 }

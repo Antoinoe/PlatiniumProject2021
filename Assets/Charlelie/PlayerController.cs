@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     float killCooldown = 1.0f;
     float killIAaddCooldown = 1.0f;
     float currKillCooldown = 0.0f;
+    public bool isInvincible = false;
+    float invicibilityTime = 0.5f;
+    float currInvTime;
     [SerializeField]
     private GameObject assignedUI; // A quel UI appartient ce joueur
 
@@ -51,13 +54,17 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<Controller>();
         controller.SetNum(playerNb, contNbr);
         gameManager = GameManager.GetInstance();
-        assignedUI = FindObjectOfType<UIManager>().uiImages[contNbr].gameObject;
-        //print(assignedUI.transform.parent);
-        actualBaseSprite = assignedUI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
-        actualFillerSprite = assignedUI.transform.GetChild(0).GetComponent<Image>();
+        if (!FindObjectOfType<TUTOSCRIPT>())
+        {
+            assignedUI = FindObjectOfType<UIManager>().uiImages[contNbr].gameObject;
+            //print(assignedUI.transform.parent);
+            actualBaseSprite = assignedUI.transform.GetChild(0).transform.GetChild(0).GetComponent<Image>();
+            actualFillerSprite = assignedUI.transform.GetChild(0).GetComponent<Image>();
 
-        actualBaseSprite.sprite = bases[playerNb];
-        actualFillerSprite.sprite = fillers[playerNb];
+            actualBaseSprite.sprite = bases[playerNb];
+            actualFillerSprite.sprite = fillers[playerNb];
+        }
+            
 
         spriteRend = transform.GetChild(0).GetComponent<SpriteRenderer>();
     }
@@ -66,6 +73,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         spriteRend.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        if (isInvincible)
+            currInvTime -= Time.deltaTime;
+        if (currInvTime <= 0) isInvincible = false;
     }
 
     public void OnKill(bool isNPC)
@@ -76,10 +86,12 @@ public class PlayerController : MonoBehaviour
             currKillCooldown = killCooldown;
     }
 
-    void SetCooldown()
+    public void SetInv()
     {
-
+        currInvTime = invicibilityTime;
+        isInvincible = true;
     }
+
     public void changeUI(int nb)
     {
         #region Change player UI
@@ -90,30 +102,39 @@ public class PlayerController : MonoBehaviour
     {
         #region Change player team
         Debug.Log("Team " + nb + " assimilated player " + playerNb);
-
-        Sprite newSprite = gameManager.players[nb].playerSprite;
+        Sprite newSprite;
+        if (!FindObjectOfType<TUTOSCRIPT>())
+            newSprite = gameManager.players[nb].playerSprite;
+        else
+            newSprite = FindObjectOfType<TUTOSCRIPT>().players[nb].playerSprite;
         /*actualBaseSprite.sprite = null;
         actualFillerSprite.sprite = null;*/
         if (invisible == 0)
         {
             spriteRend.sprite = newSprite;
         }
-        gameManager.WinCheck(teamNb, nb);
-
+        if (!FindObjectOfType<TUTOSCRIPT>())
+            gameManager.WinCheck(teamNb, nb);
+        else
+            FindObjectOfType<TUTOSCRIPT>().WinCheck(teamNb, nb);
         teamNb = nb;
         controller.anim.SetFloat("playerNbr", teamNb);
         #endregion
 
-        #region Change AIs team
-        foreach (IAIdentity iA in gameManager.iATeams[contNbr])
+        if (!FindObjectOfType<TUTOSCRIPT>())
         {
-            iA.teamNb = teamNb;
-            iA.gameObject.GetComponent<AIController>().ChangeTeam();
-            if (iA.isInvisible == 0)
+            #region Change AIs team
+            foreach (IAIdentity iA in gameManager.iATeams[contNbr])
             {
-                iA.spriteRend.sprite = newSprite;
+                iA.teamNb = teamNb;
+                iA.gameObject.GetComponent<AIController>().ChangeTeam();
+                if (iA.isInvisible == 0)
+                {
+                    iA.spriteRend.sprite = newSprite;
+                }
             }
         }
+            
         #endregion
     }
 

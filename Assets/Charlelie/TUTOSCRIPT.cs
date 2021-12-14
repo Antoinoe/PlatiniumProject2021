@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,33 +6,19 @@ using DG.Tweening;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-[System.Serializable]
-public struct Accelerator
-{
-    public int delayBeforeAccel;
-    public Vector2 minMax;
-}
-
-public class GameManager : MonoBehaviour
+public class TUTOSCRIPT : MonoBehaviour
 {
     #region Variables
-    static GameManager _instance;
+    static TUTOSCRIPT _instance;
 
-    [Header("___DEBUG___")]
-    public bool isDebug;
 
-    [Space]
-    [Space]
-    [Space]
-
-    public GameObject winPanel;
-    public GameObject uis;
+    //public GameObject winPanel;
+    //public GameObject uis;
     [HideInInspector]
     public List<int> playerList;
-    public GameObject pause;
-    public bool isPause = false;
+    //public GameObject pause;
+    //public bool isPause = false;
 
     [HideInInspector]
     public bool isWin = false;
@@ -41,7 +26,7 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     public Rewired.InputManager inputManager;
 
-    public AudioManager audioManager;
+    //public AudioManager audioManager;
 
     [Header("Players")]
     public Player[] players;
@@ -50,15 +35,15 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int[] pSprite;
 
-    public List<Accelerator> accelerations = new List<Accelerator>();
-    Accelerator currAccel;
-    int currAccelIndex = 0;
-    float currTimer;
+    //public List<Accelerator> accelerations = new List<Accelerator>();
+    //Accelerator currAccel;
+    //int currAccelIndex = 0;
+    //float currTimer;
 
-    [SerializeField] private int iAPerPlayer;
+    //[SerializeField] private int iAPerPlayer;
 
     [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private GameObject iAPrefab;
+    //[SerializeField] private GameObject iAPrefab;
 
 
     private int[] teams;
@@ -75,41 +60,41 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float smokeDuration;
 
     //Camera Shake
-    public event Action OnCameraShake;
+    //public event Action OnCameraShake;
 
     [Header("Bushes")]
     public Sprite invisibleSprite;
 
-    public int IAPerPlayer
-    {
-        get { return iAPerPlayer; }
-        set { iAPerPlayer = value; }
-    }
+    //public int IAPerPlayer
+    //{
+    //    get { return iAPerPlayer; }
+    //    set { iAPerPlayer = value; }
+    //}
 
     #endregion
 
     private void Awake()
     {
         if (_instance != null && _instance != this)
-            Destroy(gameObject);    // Suppression d'une instance prï¿½cï¿½dente (sï¿½curitï¿½...sï¿½curitï¿½...)
+            Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
 
         _instance = this;
         StartCoroutine(CooldownForEvent());
     }
 
-    public static GameManager GetInstance()
+    public static TUTOSCRIPT GetInstance()
     {
         return _instance;
     }
 
     private void Start()
     {
-        isDebug = Data.isDebug;
-        FindObjectOfType<AudioManager>().Play("Music");
-        if (!isDebug)
-            playerNbrs = Data.playerNbr;
+        //isDebug = Data.isDebug;
+        //FindObjectOfType<AudioManager>().Play("Music");
+        //if (!isDebug)
+        //    playerNbrs = Data.playerNbr;
         teams = new int[players.Length];
-        iATeams = new List<IAIdentity[]>();
+        //iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
         Instantiate(inputManager);
         //Debug.Log(playerNbrs);
@@ -128,49 +113,49 @@ public class GameManager : MonoBehaviour
             playersOnBoard[i] = newPlayer;
             //team
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
-            if (!isDebug)
-            {
-                newPlayerController.playerNb = Data.pSprite[i];
-                newPlayerController.teamNb = Data.pSprite[i];
-            }
-            else
-            {
+            //if (!isDebug)
+           // {
+            //    newPlayerController.playerNb = Data.pSprite[i];
+           //     newPlayerController.teamNb = Data.pSprite[i];
+            //}
+            //else
+            //{
                 newPlayerController.playerNb = i;
                 newPlayerController.teamNb = i;
-            }
+            //}
             newPlayerController.contNbr = i;
             teams[i] = i;
             #endregion
 
             #region IA
             //Create team
-            IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
+            //IAIdentity[] iATeam = new IAIdentity[iAPerPlayer];
 
             //Create each AIs
-            for (int j = 0; j < iAPerPlayer; j++)
-            {
-                /*Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);*/
-                Vector2 initPos2 = RandomRectangleLocation();
-                GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), Quaternion.identity);
-                //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
-                IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
-                iAIdentity.controllerIdentity = newIA.GetComponent<AIController>();
-                if (!isDebug)
-                {
-                    iAIdentity.teamNb = Data.pSprite[i];
-                }
-                else
-                {
-                    iAIdentity.teamNb = i;
-                }
-
-                iAIdentity.spriteRend.sprite = players[i].playerSprite;
-
-                iATeam[j] = iAIdentity;
-            }
+            //for (int j = 0; j < iAPerPlayer; j++)
+            //{
+            //    /*Vector2 initPos2 = RandomNavmeshLocation(10, transform.position);*/
+            //    Vector2 initPos2 = RandomRectangleLocation();
+            //    GameObject newIA = GameObject.Instantiate(iAPrefab, new Vector3(initPos2.x, initPos2.y, 0), Quaternion.identity);
+            //    //newIA.transform.rotation = new Quaternion(0, 0, 0, 0);
+            //    IAIdentity iAIdentity = newIA.GetComponent<IAIdentity>();
+            //    iAIdentity.controllerIdentity = newIA.GetComponent<AIController>();
+            //    if (!isDebug)
+            //    {
+            //        iAIdentity.teamNb = Data.pSprite[i];
+            //    }
+            //    else
+            //    {
+            //        iAIdentity.teamNb = i;
+            //    }
+            //
+            //    iAIdentity.spriteRend.sprite = players[i].playerSprite;
+            //
+            //    iATeam[j] = iAIdentity;
+            //}
 
             //Allocate team to player
-            iATeams.Add(iATeam);
+            //iATeams.Add(iATeam);
             #endregion
         }
 
@@ -200,61 +185,57 @@ public class GameManager : MonoBehaviour
         {
             SpawnSmoke(Vector2.zero);
         }
-        currTimer -= Time.deltaTime;
-        if (currTimer < 0)
-        {
-            foreach (AIController ai in FindObjectsOfType<AIController>())
-            {
-                ai.delayMin = accelerations[currAccelIndex].minMax.x;
-                ai.delayMax = accelerations[currAccelIndex].minMax.y;
-            }
-            if (currAccelIndex + 1 < accelerations.Count)
-            {
-                currAccelIndex++;
-                currTimer = accelerations[currAccelIndex].delayBeforeAccel;
-            }
-        }
+        //currTimer -= Time.deltaTime;
+        //if (currTimer < 0)
+        //{
+        //    foreach (AIController ai in FindObjectsOfType<AIController>())
+        //    {
+        //        ai.delayMin = accelerations[currAccelIndex].minMax.x;
+        //        ai.delayMax = accelerations[currAccelIndex].minMax.y;
+        //    }
+        //    if (currAccelIndex + 1 < accelerations.Count)
+        //    {
+        //        currAccelIndex++;
+        //        currTimer = accelerations[currAccelIndex].delayBeforeAccel;
+        //    }
+        //}
     }
-    public void Pause()
-    {
-        isPause = !isPause;
-        pause.SetActive(isPause);
-        if (isPause)
-        {
-            //foreach (GameObject player in playersOnBoard)
-            //{
+    //public void Pause()
+    //{
+    //    isPause = !isPause;
+    //    pause.SetActive(isPause);
+    //    if (isPause)
+    //    {
+    //        //foreach (GameObject player in playersOnBoard)
+    //        //{
+    //
+    //        //}
+    //
+    //        /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
+    //        foreach (NavMeshAgent ia in ias)
+    //            ia.enabled = false;*/
+    //        Time.timeScale = 0;
+    //
+    //    }
+    //    else
+    //    {
+    //        /*AIController[] ias = FindObjectsOfType<AIController>();
+    //        foreach (AIController ia in ias)
+    //            ia.gameObject.GetComponent<NavMeshAgent>().speed = ia.Speed;*/
+    //
+    //        /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
+    //        foreach (NavMeshAgent ia in ias)
+    //            ia.enabled = true;*/
+    //        Time.timeScale = 1;
+    //    }
+    //}
 
-            //}
-
-            /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
-            foreach (NavMeshAgent ia in ias)
-                ia.enabled = false;*/
-            Time.timeScale = 0;
-            print("pausing/unpausing");
-            EventSystem.current.SetSelectedGameObject(pause.transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).gameObject);
-
-        }
-        else
-        {
-            /*AIController[] ias = FindObjectsOfType<AIController>();
-            foreach (AIController ia in ias)
-                ia.gameObject.GetComponent<NavMeshAgent>().speed = ia.Speed;*/
-
-            /*NavMeshAgent[] ias = FindObjectsOfType<NavMeshAgent>();
-            foreach (NavMeshAgent ia in ias)
-                ia.enabled = true;*/
-            Time.timeScale = 1;
-            EventSystem.current.SetSelectedGameObject(null);
-            print("pausing/unpausing");
-        }
-    }
-
-    public void OnValuesChanged(int _pNbr, int _iaPerPlayer)
-    {
-        playerNbrs = _pNbr;
-        iAPerPlayer = _iaPerPlayer;
-        Data.playerNbr = _pNbr;
-    }
+    //public void OnValuesChanged(int _pNbr, int _iaPerPlayer)
+    //{
+    //    playerNbrs = _pNbr;
+    //    iAPerPlayer = _iaPerPlayer;
+    //    Data.playerNbr = _pNbr;
+    //}
 
     #region Win
     public void WinCheck(int curTeam, int targetTeam)
@@ -267,10 +248,11 @@ public class GameManager : MonoBehaviour
     public void Win(int teamNb)
     {
         //winPanel.transform.GetChild(0).GetComponent<Text>().text = "Player " + (teamNb + 1) + " win!";
-        winPanel.SetActive(true);
-        uis.SetActive(false);
+        //winPanel.SetActive(true);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
+        //uis.SetActive(false);
         isWin = true;
-        FindObjectOfType<WinNav>().Init(teamNb);
+        //FindObjectOfType<WinNav>().Init(teamNb);
         //Debug.Log("Team " + teamNb + " win !");
         //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
         //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
@@ -385,7 +367,7 @@ public class GameManager : MonoBehaviour
         }
         if (!inArea)
         {
-                Vector2 oldRandomPosition = randomPosition;
+            Vector2 oldRandomPosition = randomPosition;
             Debug.DrawLine(posOrigin, randomPosition, Color.cyan, 5f);
             //Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
             //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
@@ -428,7 +410,7 @@ public class GameManager : MonoBehaviour
     #region Shake
     public void Shake()
     {
-        OnCameraShake();
+        //OnCameraShake();
     }
     #endregion
 

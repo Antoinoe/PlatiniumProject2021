@@ -158,10 +158,10 @@ MonoBehaviour:
   rangePoint: 0.25
   areaIndex: 0
   areaManager: {fileID: 0}
-  delayMin: 1
-  delayMax: 2
-  localMinMoveRange: 2.189435
-  localMaxMoveRange: 3.3684201
+  delayMin: 0
+  delayMax: 0
+  localMinMoveRange: 2.9558184
+  localMaxMoveRange: 4.1381454
   showDebug: 1
   dogTargetIsOn: 0
   areaColliderIsOn: 0

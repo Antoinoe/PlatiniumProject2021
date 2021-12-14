@@ -168,6 +168,7 @@ public class AIController : MonoBehaviour
     private void Update()
     {
         sprite.sortingOrder = Mathf.RoundToInt(transform.position.y * -10f);
+        if (GameManager.GetInstance().isWin) agent.speed = 0;
         UpdateNav();
     }
 
