@@ -267,6 +267,9 @@ public class GameManager : MonoBehaviour
     public void Win(int teamNb)
     {
         //winPanel.transform.GetChild(0).GetComponent<Text>().text = "Player " + (teamNb + 1) + " win!";
+        float timer = 1.0f;
+        while (timer > 0)
+            timer -= Time.deltaTime;
         winPanel.SetActive(true);
         uis.SetActive(false);
         isWin = true;

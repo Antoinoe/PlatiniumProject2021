@@ -297,6 +297,7 @@ public class TUTOSCRIPT : MonoBehaviour
         return finalPosition;
     }
 
+    /*
     public IEnumerator MoveAllAItoZone()
     {
         Debug.Log("Entrer dans la zone");
@@ -320,6 +321,7 @@ public class TUTOSCRIPT : MonoBehaviour
             }
         }
     }
+    */
 
     private IEnumerator CooldownForEvent()
     {
@@ -334,7 +336,7 @@ public class TUTOSCRIPT : MonoBehaviour
                 yield return new WaitForSeconds(eventCooldown + timeToEvent);
             }
             Debug.Log("fin du cooldown");
-            StartCoroutine(MoveAllAItoZone());
+            //StartCoroutine(MoveAllAItoZone());
         }
     }
 
