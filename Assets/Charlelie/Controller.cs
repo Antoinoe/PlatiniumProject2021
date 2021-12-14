@@ -74,23 +74,41 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
-        if (player.GetButtonDown("Attack"))
+        if (!FindObjectOfType<TUTOSCRIPT>())
         {
-            //Debug.Log("Attack");
-            attack.OnAttack();
-            //Vibrate();
-        }
+            if (player.GetButtonDown("Attack") && !GameManager.GetInstance().isWin)
+            {
+                //Debug.Log("Attack");
+                attack.OnAttack();
+                //Vibrate();
+            }
 
-        if (player.GetButtonDown("ReloadMap"))
-        {
-            Debug.Log("Reload");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
-        }
+            if (player.GetButtonDown("ReloadMap"))
+            {
+                Debug.Log("Reload");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
+            }
 
-        if (player.GetButtonDown("Pause"))
+            if (player.GetButtonDown("Pause") && !GameManager.GetInstance().isWin)
+            {
+                GameManager.GetInstance().Pause();
+            }
+        } else
         {
-            GameManager.GetInstance().Pause();
+            if (player.GetButtonDown("Attack"))
+            {
+                //Debug.Log("Attack");
+                attack.OnAttack();
+                //Vibrate();
+            }
+
+            if (player.GetButtonDown("ReloadMap"))
+            {
+                Debug.Log("Reload");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
+            }
         }
+            
     }
     /*When you punch and get punch, when stamina is good, when dog near*/
     void Vibrate()
@@ -147,27 +165,54 @@ public class Controller : MonoBehaviour
 
 
     private void Move()
-    {
-        if (player != null)
+    { 
+        if (!FindObjectOfType<TUTOSCRIPT>())
         {
-            _movementVec = new Vector2(player.GetAxisRaw("MoveHorizontal"), player.GetAxisRaw("MoveVertical"));
-            _movementVec.Normalize();
-            //anim.SetFloat("X", _movementVec.x);
-            //anim.SetFloat("Y", _movementVec.y);
-            transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
-
-            if (attack.killOnCD && _movementVec != Vector2.zero)
+            if (player != null && !GameManager.GetInstance().isWin)
             {
-                /*playerController.CurrKillCooldown -= Time.deltaTime;
-                
+                _movementVec = new Vector2(player.GetAxisRaw("MoveHorizontal"), player.GetAxisRaw("MoveVertical"));
+                _movementVec.Normalize();
+                //anim.SetFloat("X", _movementVec.x);
+                //anim.SetFloat("Y", _movementVec.y);
+                transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
 
-                if(playerController.CurrKillCooldown <= 0)
+                if (attack.killOnCD && _movementVec != Vector2.zero)
                 {
-                    attack.killOnCD = false;
-                    Debug.Log("FINISH");
-                }*/
+                    /*playerController.CurrKillCooldown -= Time.deltaTime;
+
+
+                    if(playerController.CurrKillCooldown <= 0)
+                    {
+                        attack.killOnCD = false;
+                        Debug.Log("FINISH");
+                    }*/
+                }
             }
-        } 
+        } else
+        {
+            if (player != null)
+            {
+                _movementVec = new Vector2(player.GetAxisRaw("MoveHorizontal"), player.GetAxisRaw("MoveVertical"));
+                _movementVec.Normalize();
+                //anim.SetFloat("X", _movementVec.x);
+                //anim.SetFloat("Y", _movementVec.y);
+                transform.Translate(_movementVec * speed * Time.fixedDeltaTime);
+
+                if (attack.killOnCD && _movementVec != Vector2.zero)
+                {
+                    /*playerController.CurrKillCooldown -= Time.deltaTime;
+
+
+                    if(playerController.CurrKillCooldown <= 0)
+                    {
+                        attack.killOnCD = false;
+                        Debug.Log("FINISH");
+                    }*/
+                }
+            }
+                
+        }
+        
     }
 
     public void OnValuesChanged

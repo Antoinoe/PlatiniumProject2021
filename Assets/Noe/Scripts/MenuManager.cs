@@ -42,8 +42,9 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Data.isDebug = false;
+        FindObjectOfType<AudioManager>().Play("MenuMusic");
         actualMenuOn = Menu.MAIN;
-        //Debug.Log(ReInput.controllers.joystickCount);
+        Debug.Log(ReInput.controllers.joystickCount);
         for (int i = 0; i < ReInput.controllers.joystickCount; i++)
         {
             //Debug.Log(ReInput.controllers.GetControllerCount(ControllerType.Joystick));

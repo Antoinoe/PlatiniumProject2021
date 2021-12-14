@@ -148,14 +148,24 @@ public class Attack : MonoBehaviour
                 {
                     //Kill Player
                     PlayerController killedPlayerScript = target.GetComponent<PlayerController>();
+                    if (killedPlayerScript.isInvincible) return;
 
                     killedPlayerScript.ChangeTeam(playerController.teamNb);
 
-                    playerController.gameManager.Shake();
-                    playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
+                    if (!FindObjectOfType<TUTOSCRIPT>())
+                    {
+                        playerController.gameManager.Shake();
+                        playerController.gameManager.SpawnSmoke(transform.position, playerController.teamNb);
+                    } else
+                    {
+
+                        FindObjectOfType<TUTOSCRIPT>().Shake();
+                        FindObjectOfType<TUTOSCRIPT>().SpawnSmoke(transform.position, playerController.teamNb);
+                    }
+                        
 
                     playerController.OnKill(false);
-
+                    playerController.SetInv();
                     /*killedPlayerScript.OnDieReset(); //reset le bounty du joueur tu� 
 
                     //PLAYER A FAIT UN KILL
@@ -165,13 +175,19 @@ public class Attack : MonoBehaviour
                         bounty++; 
 
                     nbOfKills++; //player gagne un kill (c est plus pour le debug sur ma scene)*/
-                    FindObjectOfType<AudioManager>().Play("Attack");
+                    if (!FindObjectOfType<TUTOSCRIPT>())
+                    {
+                        FindObjectOfType<AudioManager>().Play("Attack");
+                        FindObjectOfType<AudioManager>().Play("Smoke");
+                    }
+                        
                     spawnFX(controller.MovementVector * attackRange);
                     //StartCoroutine(KillCooldown(playerController.CurrKillCooldown));
                     controller.anim.SetTrigger("doAttack");
                     killCooldown = playerController.CurrKillCooldown;
                     killOnCD = true;
-                    FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
+                    if (!FindObjectOfType<TUTOSCRIPT>())
+                        FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }
                 else if (target.CompareTag("NPC"))
                 {
@@ -204,17 +220,24 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        if (killOnCD)
+        if (!FindObjectOfType<TUTOSCRIPT>())
         {
-            if (controller.MovementVector != Vector2.zero)
+            if (killOnCD)
             {
-                killCooldown -= Time.deltaTime;
-                float val = (playerController.CurrKillCooldown - killCooldown) / playerController.CurrKillCooldown;
-                ui.UpdateCooldownOnUI(playerController.contNbr, val);
-            }
+                if (controller.MovementVector != Vector2.zero)
+                {
+                    killCooldown -= Time.deltaTime;
+                    float val = (playerController.CurrKillCooldown - killCooldown) / playerController.CurrKillCooldown;
+                    ui.UpdateCooldownOnUI(playerController.contNbr, val);
+                }
 
-            if (killCooldown <= 0) killOnCD = false;
+                if (killCooldown <= 0) killOnCD = false;
+            }
+        } else
+        {
+            killOnCD = false;
         }
+            
     }
 
     /*private IEnumerator KillCooldown(float moveTime)

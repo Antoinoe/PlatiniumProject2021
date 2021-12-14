@@ -55,6 +55,27 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void ChangeValues()
+    {
+        Debug.Log(AudioStatic.general + "  " + AudioStatic.music + "  " + AudioStatic.effect);
+        if (!isUsingSetting) return;
+        foreach (Audio audio in sounds)
+        {
+            if (audio.audioType == AudioType.MUSIC)
+            {
+                audio.volume *= AudioStatic.music;
+            }
+            else if (audio.audioType == AudioType.FX)
+            {
+                audio.volume *= AudioStatic.effect;
+            }
+
+            audio.volume *= AudioStatic.general;
+
+            audio.source.volume = audio.volume;
+        }
+    }
+
     public void Play(string name)
     {
         //Audio s = Array.Find(sounds, sound => sound.name == name);

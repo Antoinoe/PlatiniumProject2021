@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Charlelie/TUTO.unity
+    guid: 82577c0bf00addc4faf21cabf9a0c19a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 0e98f7a2d457a2f459b4c9acc76d2d95, type: 2}
