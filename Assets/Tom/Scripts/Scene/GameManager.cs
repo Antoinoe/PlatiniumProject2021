@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         if (_instance != null && _instance != this)
-            Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
+            Destroy(gameObject);    // Suppression d'une instance prï¿½cï¿½dente (sï¿½curitï¿½...sï¿½curitï¿½...)
 
         _instance = this;
         StartCoroutine(CooldownForEvent());
