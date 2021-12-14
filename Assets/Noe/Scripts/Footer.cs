@@ -48,11 +48,11 @@ public class Footer : MonoBehaviour
             case Menu.MAP:
                 try
                 {
-                    SceneManager.LoadScene(MenuManager.Instance.map.transform.GetChild(2).GetComponent<Selector>().SelectMap());
+                    SceneManager.LoadScene(MenuManager.Instance.map.transform.GetChild(1).GetComponent<Selector>().SelectMap());
                 }
                 catch
                 {
-                    Debug.LogError("Could not load map : scene was not found. Verify name of the scene & the name of the map GameObject");
+                    Debug.LogError("Could not load map : scene was not found. Verify name of the scene & the name of the map GameObject. \nCurrent map trying selecting : " + MenuManager.Instance.map.transform.GetChild(2).GetComponent<Selector>().SelectMap());
                 }
                 break;
         }

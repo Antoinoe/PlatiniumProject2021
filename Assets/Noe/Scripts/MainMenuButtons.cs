@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class MainMenuButtons : MonoBehaviour
 {
@@ -23,6 +24,14 @@ public class MainMenuButtons : MonoBehaviour
         //print(sys);
         ResetSelectedObject();
         actualScale = buttons[1].GetComponent<RectTransform>().sizeDelta;
+        try 
+        {
+            UpdateNav();
+        }
+        catch
+        {
+
+        }
     }
     private void Update()
     {
@@ -39,7 +48,7 @@ public class MainMenuButtons : MonoBehaviour
 
     private void UpdateNav()
     {
-        if(MenuManager.Instance.actualMenuOn == Menu.MAIN)
+        if(MenuManager.Instance.actualMenuOn == Menu.MAIN /*|| SceneManager.GetActiveScene().name == "DevTest"*/)
         {
             selectedItem = sys.currentSelectedGameObject;
             for (int i = 0; i < buttons.Length; i++)
