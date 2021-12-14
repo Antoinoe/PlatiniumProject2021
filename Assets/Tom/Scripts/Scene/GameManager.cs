@@ -7,6 +7,7 @@ using DG.Tweening;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [System.Serializable]
 public struct Accelerator
@@ -229,6 +230,8 @@ public class GameManager : MonoBehaviour
             foreach (NavMeshAgent ia in ias)
                 ia.enabled = false;*/
             Time.timeScale = 0;
+            print("pausing/unpausing");
+            EventSystem.current.SetSelectedGameObject(pause.transform.GetChild(0).transform.GetChild(2).transform.GetChild(0).gameObject);
 
         }
         else
@@ -241,6 +244,8 @@ public class GameManager : MonoBehaviour
             foreach (NavMeshAgent ia in ias)
                 ia.enabled = true;*/
             Time.timeScale = 1;
+            EventSystem.current.SetSelectedGameObject(null);
+            print("pausing/unpausing");
         }
     }
 
