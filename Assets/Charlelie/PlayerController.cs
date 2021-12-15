@@ -98,10 +98,10 @@ public class PlayerController : MonoBehaviour
        
         #endregion
     }
-    public void ChangeTeam(int nb)
+    public void ChangeTeam(int nb, int cont)
     {
         #region Change player team
-        Debug.Log("Team " + nb + " assimilated player " + playerNb);
+        //Debug.Log("Team " + nb + " assimilated player " + playerNb);
         Sprite newSprite;
         if (!FindObjectOfType<TUTOSCRIPT>())
             newSprite = gameManager.players[nb].playerSprite;
@@ -113,11 +113,11 @@ public class PlayerController : MonoBehaviour
         {
             spriteRend.sprite = newSprite;
         }
+        teamNb = nb;
         if (!FindObjectOfType<TUTOSCRIPT>())
-            gameManager.WinCheck(teamNb, nb);
+            gameManager.WinCheck(teamNb, nb, contNbr);
         else
             FindObjectOfType<TUTOSCRIPT>().WinCheck(teamNb, nb);
-        teamNb = nb;
         controller.anim.SetFloat("playerNbr", teamNb);
         #endregion
 

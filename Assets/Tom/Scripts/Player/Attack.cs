@@ -155,7 +155,7 @@ public class Attack : MonoBehaviour
                     PlayerController killedPlayerScript = target.GetComponent<PlayerController>();
                     if (killedPlayerScript.isInvincible) return;
 
-                    killedPlayerScript.ChangeTeam(playerController.teamNb);
+                    killedPlayerScript.ChangeTeam(playerController.teamNb, playerController.contNbr);
 
                     if (!FindObjectOfType<TUTOSCRIPT>())
                     {
@@ -213,13 +213,13 @@ public class Attack : MonoBehaviour
             }
             else
             {
-                Debug.Log("noTarget");
+                //Debug.Log("noTarget");
             }
             #endregion
         }
         else
         {
-            Debug.Log("onCooldown");
+            //Debug.Log("onCooldown");
         }
     }
 
