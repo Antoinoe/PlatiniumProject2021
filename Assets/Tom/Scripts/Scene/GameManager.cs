@@ -16,6 +16,7 @@ public struct Accelerator
     public Vector2 minMax;
 }
 
+
 public class GameManager : MonoBehaviour
 {
     #region Variables
@@ -105,7 +106,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
         isDebug = Data.isDebug;
         FindObjectOfType<AudioManager>().Play("Music");
         if (!isDebug)
@@ -304,6 +304,15 @@ public class GameManager : MonoBehaviour
         //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
         //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
     }
+
+    public void WinWithSecondObjective(int teamNb)
+    {
+        winPanel.SetActive(true);
+        uis.SetActive(false);
+        isWin = true;
+        FindObjectOfType<WinNav>().Init(teamNb);
+    }
+
     #endregion
 
     public void LoadScene(string sceneName)
@@ -383,7 +392,7 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(eventCooldown + timeToEvent);
             }
             //Debug.Log("fin du cooldown");
-            StartCoroutine(MoveAllAItoZone());
+            //StartCoroutine(MoveAllAItoZone());
         }
     }
 
