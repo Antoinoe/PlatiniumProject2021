@@ -19,6 +19,7 @@ public class WinNav : MonoBehaviour
     private Vector2 actualScale;
     private float duration = 0.25f;
     bool navLock = false;
+    public Color selectColor;
     void Start()
     {
         
@@ -41,6 +42,7 @@ public class WinNav : MonoBehaviour
         winnerHead.sprite = heads[winner];
         eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
         eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
+        eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = selectColor;
     }
 
 
@@ -56,15 +58,19 @@ public class WinNav : MonoBehaviour
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal") > 0)
             {
                 eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
+                eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = Color.white;
                 eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().gameObject);
                 eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
+                eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = selectColor;
                 navLock = true;
             }
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal") < 0)
             {
                 eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
+                eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = Color.white;
                 eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft().gameObject);
                 eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
+                eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = selectColor;
                 navLock = true;
             }                
         }

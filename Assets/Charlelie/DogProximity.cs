@@ -42,6 +42,6 @@ public class DogProximity : MonoBehaviour
 
     void Win()
     {
-
+        GameManager.GetInstance().WinWithSecondObjective(GetComponent<PlayerController>().teamNb);
     }
 }
