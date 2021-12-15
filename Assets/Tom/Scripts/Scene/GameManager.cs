@@ -16,6 +16,7 @@ public struct Accelerator
     public Vector2 minMax;
 }
 
+
 public class GameManager : MonoBehaviour
 {
     #region Variables
@@ -81,6 +82,13 @@ public class GameManager : MonoBehaviour
     [Header("Bushes")]
     public Sprite invisibleSprite;
 
+    [Header("UI")]
+    [SerializeField] private Image victorPlayerIcon;
+    [SerializeField] private Sprite[] playersIcon;
+
+    [SerializeField] private GameObject conversionVictoryText;
+    [SerializeField] private GameObject houndVictoryText;
+
     public int IAPerPlayer
     {
         get { return iAPerPlayer; }
@@ -105,7 +113,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
         isDebug = Data.isDebug;
         FindObjectOfType<AudioManager>().Play("Music");
         if (!isDebug)
@@ -281,7 +288,7 @@ public class GameManager : MonoBehaviour
         PlayerController[] players = FindObjectsOfType<PlayerController>();
         int team = 0;
         Debug.Log("CURRTEAM : " + targetTeam);
-        foreach (PlayerController player in players)
+        foreach(PlayerController player in players)
         {
             team = player.teamNb;
             Debug.Log(team);
@@ -297,6 +304,8 @@ public class GameManager : MonoBehaviour
         while (timer > 0)
             timer -= Time.deltaTime;
         winPanel.SetActive(true);
+        victorPlayerIcon.sprite = playersIcon[teamNb];
+        conversionVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;
         FindObjectOfType<WinNav>().Init(teamNb);
@@ -304,6 +313,17 @@ public class GameManager : MonoBehaviour
         //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
         //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
     }
+
+    public void WinWithSecondObjective(int teamNb)
+    {
+        winPanel.SetActive(true);
+        victorPlayerIcon.sprite = playersIcon[teamNb];
+        houndVictoryText.SetActive(true);
+        uis.SetActive(false);
+        isWin = true;
+        FindObjectOfType<WinNav>().Init(teamNb);
+    }
+
     #endregion
 
     public void LoadScene(string sceneName)
@@ -316,7 +336,7 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-
+    
 
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
@@ -383,7 +403,7 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(eventCooldown + timeToEvent);
             }
             //Debug.Log("fin du cooldown");
-            StartCoroutine(MoveAllAItoZone());
+            //StartCoroutine(MoveAllAItoZone());
         }
     }
 
@@ -416,7 +436,7 @@ public class GameManager : MonoBehaviour
         }
         if (!inArea)
         {
-            Vector2 oldRandomPosition = randomPosition;
+                Vector2 oldRandomPosition = randomPosition;
             Debug.DrawLine(posOrigin, randomPosition, Color.cyan, 5f);
             //Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
             //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
@@ -439,32 +459,6 @@ public class GameManager : MonoBehaviour
                 //Debug.Log("Random Point Reset, New pos :" + randomPosition);
                 //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
                 Debug.DrawLine(posOrigin, randomPosition, Color.yellow, 5f);
-                for (int i = 0; i < areaColliders.Count; i++)
-                {
-                    if (areaColliders[i].bounds.Contains(randomPosition))
-                    {
-                        inArea = true;
-                        break;
-                    }
-                }
-                if (!inArea)
-                {
-                    Debug.Log("OutOfArea");
-                    while (!inArea)
-                    {
-                         angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-                         randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-                        randomPosition += posOrigin;
-                        for (int i = 0; i < areaColliders.Count; i++)
-                        {
-                            if (areaColliders[i].bounds.Contains(randomPosition))
-                            {
-                                inArea = true;
-                                break;
-                            }
-                        }
-                    }
-                }
                 //Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
             }
             else
