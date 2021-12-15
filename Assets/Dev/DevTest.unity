@@ -2767,6 +2767,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7637730910667469826, guid: b38682ae8e14f7948ab840f3233afe99, type: 3}
   m_PrefabInstance: {fileID: 1490907613}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1490907616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1551154408756079486, guid: b38682ae8e14f7948ab840f3233afe99, type: 3}
+  m_PrefabInstance: {fileID: 1490907613}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1490907617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9209648351216118234, guid: b38682ae8e14f7948ab840f3233afe99, type: 3}
+  m_PrefabInstance: {fileID: 1490907613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1490907618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4336271412272848917, guid: b38682ae8e14f7948ab840f3233afe99, type: 3}
+  m_PrefabInstance: {fileID: 1490907613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1529565734
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,9 +3678,41 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: houndVictoryText
+      value: 
+      objectReference: {fileID: 1490907617}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: victorPlayerIcon
+      value: 
+      objectReference: {fileID: 1490907616}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: conversionVictoryText
+      value: 
+      objectReference: {fileID: 1490907618}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: playersIcon.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
       propertyPath: accelerations.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: players.Array.data[0].UISprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d313428dd918e314ea1f8cd3c7cd96d8, type: 3}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: players.Array.data[1].UISprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 228eac4636286ae4889f56873da42c65, type: 3}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: players.Array.data[2].UISprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 97d355f2e04538f46b64a66de0dc6e08, type: 3}
+    - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
+      propertyPath: players.Array.data[3].UISprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bd0aa0b847232404f8b22fd83538299c, type: 3}
     - target: {fileID: 1372656406282575740, guid: f674197e8930e764eaf4cc7ac5954f17, type: 3}
       propertyPath: players.Array.data[2].smokeSystem
       value: 

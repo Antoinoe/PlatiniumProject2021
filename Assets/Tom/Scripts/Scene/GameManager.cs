@@ -306,8 +306,8 @@ public class GameManager : MonoBehaviour
         winPanel.SetActive(true);
         FindObjectOfType<AudioManager>().Stop("Music");
         FindObjectOfType<AudioManager>().Play("Victory");
-        //victorPlayerIcon.sprite = playersIcon[teamNb];
-        //conversionVictoryText.SetActive(true);
+        victorPlayerIcon.sprite = players[teamNb].UISprite;
+        conversionVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;
         FindObjectOfType<WinNav>().Init(teamNb);
@@ -320,12 +320,12 @@ public class GameManager : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Stop("Music");
         FindObjectOfType<AudioManager>().Play("Victory");
-        /*winPanel.SetActive(true);
-        victorPlayerIcon.sprite = playersIcon[teamNb];
+        winPanel.SetActive(true);
+        victorPlayerIcon.sprite = players[teamNb].UISprite;
         houndVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;
-        FindObjectOfType<WinNav>().Init(teamNb);*/
+        FindObjectOfType<WinNav>().Init(teamNb);
     }
 
     #endregion
