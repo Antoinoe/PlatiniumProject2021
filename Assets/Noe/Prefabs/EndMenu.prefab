@@ -230,7 +230,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player Achievemnt
+  m_Text: PLAYER ACHIEVEMENT
 --- !u!1 &7637730908866154196
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +384,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play Again
+  m_Text: PLAY AGAIN
 --- !u!1 &7637730909054640889
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +970,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quit
+  m_Text: QUIT
 --- !u!1 &7637730909759853530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,7 +1293,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player Achievemnt
+  m_Text: PLAYER ACHIEVEMENT
 --- !u!1 &7637730910159871512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,7 +1714,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player Achievemnt
+  m_Text: PLAYER ACHIEVEMENT
 --- !u!1 &7637730910466743512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,7 +1793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Player Achievemnt
+  m_Text: PLAYER ACHIEVEMENT
 --- !u!1 &7637730910654293122
 GameObject:
   m_ObjectHideFlags: 0
