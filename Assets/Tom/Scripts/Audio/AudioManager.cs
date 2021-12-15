@@ -60,6 +60,7 @@ public class AudioManager : MonoBehaviour
         {
             if (audio.audioType == AudioType.MUSIC)
             {
+                Debug.Log(AudioStatic.general);
                 audio.volume = AudioStatic.music * AudioStatic.general;
             }
             else if (audio.audioType == AudioType.FX)
@@ -96,7 +97,13 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.clips[newIndex];
         }
 
-        if (IsPlaying(name))
+        if (name == "UIChangeBtn")
+        {
+            s.source.Play();
+            return;
+        }
+
+        if (IsPlaying(name) && (name != "UISelect"/* || name != "UIChangeBtn"*/))
         {
             if(s.curInstNb < s.maxInstNb)
             {
@@ -122,8 +129,16 @@ public class AudioManager : MonoBehaviour
 
     public void Stop(string name)
     {
-        Audio s = Array.Find(sounds, sound => sound.name == name);
-
+        //Audio s = Array.Find(sounds, sound => sound.name == name);
+        Audio s = null;
+        foreach (Audio audio in sounds)
+        {
+            if (audio.name == name)
+            {
+                s = audio;
+                break;
+            }
+        }
         if (s == null)
             return;
 

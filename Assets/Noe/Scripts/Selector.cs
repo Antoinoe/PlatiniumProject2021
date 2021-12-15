@@ -65,7 +65,7 @@ public class Selector : MonoBehaviour
             {
                 if (nav > 0)
                 {
-                    FindObjectOfType<AudioManager>().Play("UIUp");
+                    FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                     rArrowAnim.SetBool("isActivate", true);
                     if (canSwitch)
                         StartCoroutine(Change(true,false,0));
@@ -75,7 +75,7 @@ public class Selector : MonoBehaviour
                     rArrowAnim.SetBool("isActivate", false);
                 if (nav < 0)
                 {
-                    FindObjectOfType<AudioManager>().Play("UIDown");
+                    FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                     lArrowAnim.SetBool("isActivate", true);
                     if (canSwitch)
                         StartCoroutine(Change(false, false, 0));
@@ -100,12 +100,12 @@ public class Selector : MonoBehaviour
             {
                 if (nav > 0 && canSwitch) //right
                 {
-                    FindObjectOfType<AudioManager>().Play("UIUp");
+                    FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                     StartCoroutine(Change(false, false, 0));
                 }
                 if (nav < 0 && canSwitch) //left
                 {
-                    FindObjectOfType<AudioManager>().Play("UIDown");
+                    FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                     StartCoroutine(Change(true, false, 0));
                 }
             }
@@ -208,7 +208,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(p.it[0] + "  " + items.Length);
             if (p.it[0] > 0)
             {
-                FindObjectOfType<AudioManager>().Play("UIUp");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[0]--;
                 root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[0] = pIt[0];
@@ -222,7 +222,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(pIt[0] + "  " + items.Length);
             if (p.it[0] < items.Length - 1)
             {
-                FindObjectOfType<AudioManager>().Play("UIDown");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[0]++;
                 root.transform.GetChild(0).GetChild(0).DOLocalMoveX(root.transform.GetChild(0).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[0] = pIt[0];
@@ -247,7 +247,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(pIt[1] + "  " + items.Length);
             if (p.it[1] > 0)
             {
-                FindObjectOfType<AudioManager>().Play("UIUp");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[1]--;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[1] = pIt[1];
@@ -261,7 +261,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(pIt[1] + "  " + items.Length);
             if (p.it[1] < items.Length - 1)
             {
-                FindObjectOfType<AudioManager>().Play("UIDown");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[1]++;
                 root.transform.GetChild(1).GetChild(0).DOLocalMoveX(root.transform.GetChild(1).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[1] = pIt[1];
@@ -286,7 +286,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(pIt[2] + "  " + items.Length);
             if (p.it[2] > 0)
             {
-                FindObjectOfType<AudioManager>().Play("UIUp");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[2]--;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[2] = pIt[2];
@@ -300,7 +300,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(pIt[2] + "  " + items.Length);
             if (p.it[2] < items.Length - 1)
             {
-                FindObjectOfType<AudioManager>().Play("UIDown");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[2]++;
                 root.transform.GetChild(2).GetChild(0).DOLocalMoveX(root.transform.GetChild(2).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[2] = pIt[2];
@@ -325,7 +325,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(pIt[3] + "  " + items.Length);
             if (p.it[3] > 0)
             {
-                FindObjectOfType<AudioManager>().Play("UIUp");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[3]--;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x + XdistToGo, swapDuration);
                 Data.pSprite[3] = pIt[3];
@@ -339,7 +339,7 @@ public class Selector : MonoBehaviour
             //Debug.Log(pIt[3] + "  " + items.Length);
             if (p.it[3] < items.Length - 1)
             {
-                FindObjectOfType<AudioManager>().Play("UIDown");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 p.it[3]++;
                 root.transform.GetChild(3).GetChild(0).DOLocalMoveX(root.transform.GetChild(3).GetChild(0).transform.localPosition.x - XdistToGo, swapDuration);
                 Data.pSprite[3] = pIt[3];
