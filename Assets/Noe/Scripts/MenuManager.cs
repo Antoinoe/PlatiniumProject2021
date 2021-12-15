@@ -290,7 +290,12 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    IEnumerator Switching()
+    public void StartSwitching()
+    {
+        StartCoroutine(Switching());
+    }
+
+    public IEnumerator Switching()
     {
         switching = true;
         yield return new WaitForSeconds(switchMenuDuration);

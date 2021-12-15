@@ -57,6 +57,7 @@ public class Footer : MonoBehaviour
                 break;
         }
         yield return new WaitForSeconds(MenuManager.Instance.switchMenuDuration);
+        MenuManager.Instance.StartSwitching();
         MenuManager.Instance.canSwitchMenu = true;
     }
 
@@ -85,5 +86,6 @@ public class Footer : MonoBehaviour
         }
         yield return new WaitForSeconds(MenuManager.Instance.switchMenuDuration);
         MenuManager.Instance.canSwitchMenu = true;
+        MenuManager.Instance.StartSwitching();
     }
 }
