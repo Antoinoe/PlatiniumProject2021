@@ -85,7 +85,7 @@ public class Controller : MonoBehaviour
 
             if (player.GetButtonDown("ReloadMap"))
             {
-                Debug.Log("Reload");
+               // Debug.Log("Reload");
                 UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
             }
 

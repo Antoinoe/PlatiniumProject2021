@@ -92,7 +92,7 @@ public class TUTOSCRIPT : MonoBehaviour
         //isDebug = Data.isDebug;
         //FindObjectOfType<AudioManager>().Play("Music");
         //if (!isDebug)
-        //    playerNbrs = Data.playerNbr;
+        playerNbrs = /*Data.playerNbr*/4;
         teams = new int[players.Length];
         //iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];

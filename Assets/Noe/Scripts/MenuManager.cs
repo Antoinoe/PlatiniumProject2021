@@ -149,7 +149,7 @@ public class MenuManager : MonoBehaviour
         {
             if (i != _p)
             {
-                Debug.Log(p.it[i] + "  " + p.it[_p]);
+                //Debug.Log(p.it[i] + "  " + p.it[_p]);
                 if (selectedChara[i] && p.it[i] == p.it[_p]) return;
             }
         }
@@ -249,7 +249,7 @@ public class MenuManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Main")
         {
-            print("going to " + menu);
+            //print("going to " + menu);
             actualMenuOn = menu;
             switch (menu)
             {

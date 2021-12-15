@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
     public GameObject winPanel;
     public GameObject uis;
     [HideInInspector]
-    public List<int> playerList;
+    public int[] playerList;
+    int listIndex;
     public GameObject pause;
     public bool isPause = false;
 
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        
         isDebug = Data.isDebug;
         FindObjectOfType<AudioManager>().Play("Music");
         if (!isDebug)
@@ -113,11 +115,12 @@ public class GameManager : MonoBehaviour
         playersOnBoard = new GameObject[playerNbrs];
         Instantiate(inputManager);
         //Debug.Log(playerNbrs);
-        playerList = new List<int>();
+        playerList = new int[playerNbrs];
         for (int i = 0; i < playerNbrs; i++)
         {
-            playerList.Add(i);
+            playerList[i] = i;
         }
+        listIndex = playerList.Length;
         for (int i = 0; i < playerNbrs; i++)
         {
             #region Player
@@ -257,11 +260,34 @@ public class GameManager : MonoBehaviour
     }
 
     #region Win
-    public void WinCheck(int curTeam, int targetTeam)
+    public void WinCheck(int curTeam, int targetTeam, int contNbr)
     {
-        playerList.Remove(curTeam);
-        if (playerList.Count == 1)
-            Win(playerList[0]);
+        /*Debug.Log(targetTeam + " " + playerList.Length);
+        playerList[contNbr] = 999;
+        listIndex--;
+        if (listIndex == 1)
+        {
+            string str = "";
+            for (int i = 0; i < playerList.Length; i++)
+            {
+                str += i + " : " + playerList[i] + " , ";
+            }
+            Debug.Log(str);
+            for (int i = 0; i < playerList.Length; i++)
+            {
+                //if (playerList[i] != 999) Win(targetTeam);
+            }
+        }*/
+        PlayerController[] players = FindObjectsOfType<PlayerController>();
+        int team = 0;
+        Debug.Log("CURRTEAM : " + targetTeam);
+        foreach(PlayerController player in players)
+        {
+            team = player.teamNb;
+            Debug.Log(team);
+            if (team != targetTeam) return;
+        }
+        Win(targetTeam);
     }
 
     public void Win(int teamNb)
@@ -289,6 +315,8 @@ public class GameManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
+
+    
 
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
