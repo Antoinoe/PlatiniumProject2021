@@ -304,7 +304,9 @@ public class GameManager : MonoBehaviour
         while (timer > 0)
             timer -= Time.deltaTime;
         winPanel.SetActive(true);
-        victorPlayerIcon.sprite = playersIcon[teamNb];
+        FindObjectOfType<AudioManager>().Stop("Music");
+        FindObjectOfType<AudioManager>().Play("Victory");
+        victorPlayerIcon.sprite = players[teamNb].UISprite;
         conversionVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;
@@ -316,8 +318,10 @@ public class GameManager : MonoBehaviour
 
     public void WinWithSecondObjective(int teamNb)
     {
+        FindObjectOfType<AudioManager>().Stop("Music");
+        FindObjectOfType<AudioManager>().Play("Victory");
         winPanel.SetActive(true);
-        victorPlayerIcon.sprite = playersIcon[teamNb];
+        victorPlayerIcon.sprite = players[teamNb].UISprite;
         houndVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;

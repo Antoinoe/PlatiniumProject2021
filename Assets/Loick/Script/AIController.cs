@@ -310,6 +310,7 @@ public class AIController : MonoBehaviour
         
         //GetComponentInChildren<SpriteRenderer>().color = aliveColor;
         isDead = false;
+        FindObjectOfType<AudioManager>().Play("Respawn");
         GetComponent<BoxCollider2D>().enabled = true;
     }
 

@@ -86,14 +86,14 @@ public class MenuManager : MonoBehaviour
         {
             if (navVer > 0)
             {
-                FindObjectOfType<AudioManager>().Play("UIUp");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp().gameObject);
                 navLockVer = true;
             }
             else if (navVer < 0)
             {
-                FindObjectOfType<AudioManager>().Play("UIDown");
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 if (eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown())
                     eventsys.SetSelectedGameObject(eventsys.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown().gameObject);
                 navLockVer = true;
