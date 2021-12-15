@@ -82,6 +82,13 @@ public class GameManager : MonoBehaviour
     [Header("Bushes")]
     public Sprite invisibleSprite;
 
+    [Header("UI")]
+    [SerializeField] private Image victorPlayerIcon;
+    [SerializeField] private Sprite[] playersIcon;
+
+    [SerializeField] private Text conversionVictoryText;
+    [SerializeField] private Text houndVictoryText;
+
     public int IAPerPlayer
     {
         get { return iAPerPlayer; }
@@ -297,6 +304,7 @@ public class GameManager : MonoBehaviour
         while (timer > 0)
             timer -= Time.deltaTime;
         winPanel.SetActive(true);
+        victorPlayerIcon.sprite = playersIcon[teamNb];
         uis.SetActive(false);
         isWin = true;
         FindObjectOfType<WinNav>().Init(teamNb);
