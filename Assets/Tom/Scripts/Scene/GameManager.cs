@@ -16,6 +16,7 @@ public struct Accelerator
     public Vector2 minMax;
 }
 
+
 public class GameManager : MonoBehaviour
 {
     #region Variables
@@ -81,6 +82,13 @@ public class GameManager : MonoBehaviour
     [Header("Bushes")]
     public Sprite invisibleSprite;
 
+    [Header("UI")]
+    [SerializeField] private Image victorPlayerIcon;
+    [SerializeField] private Sprite[] playersIcon;
+
+    [SerializeField] private GameObject conversionVictoryText;
+    [SerializeField] private GameObject houndVictoryText;
+
     public int IAPerPlayer
     {
         get { return iAPerPlayer; }
@@ -105,7 +113,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
         isDebug = Data.isDebug;
         FindObjectOfType<AudioManager>().Play("Music");
         if (!isDebug)
@@ -297,6 +304,8 @@ public class GameManager : MonoBehaviour
         while (timer > 0)
             timer -= Time.deltaTime;
         winPanel.SetActive(true);
+        victorPlayerIcon.sprite = playersIcon[teamNb];
+        conversionVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;
         FindObjectOfType<WinNav>().Init(teamNb);
@@ -304,6 +313,17 @@ public class GameManager : MonoBehaviour
         //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
         //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
     }
+
+    public void WinWithSecondObjective(int teamNb)
+    {
+        winPanel.SetActive(true);
+        victorPlayerIcon.sprite = playersIcon[teamNb];
+        houndVictoryText.SetActive(true);
+        uis.SetActive(false);
+        isWin = true;
+        FindObjectOfType<WinNav>().Init(teamNb);
+    }
+
     #endregion
 
     public void LoadScene(string sceneName)
@@ -383,7 +403,7 @@ public class GameManager : MonoBehaviour
                 yield return new WaitForSeconds(eventCooldown + timeToEvent);
             }
             //Debug.Log("fin du cooldown");
-            StartCoroutine(MoveAllAItoZone());
+            //StartCoroutine(MoveAllAItoZone());
         }
     }
 
