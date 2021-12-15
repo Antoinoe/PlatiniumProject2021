@@ -73,7 +73,9 @@ public class Attack : MonoBehaviour
             }
             else
             {
-                Transform gizmosTransform = new GameObject().transform;
+                GameObject newObject = new GameObject();
+                Transform gizmosTransform = newObject.transform;
+                GameObject.Destroy(newObject, 0);
 
                 Gizmos.matrix = gizmosTransform.localToWorldMatrix;
                 Gizmos.DrawWireCube(transform.position, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
