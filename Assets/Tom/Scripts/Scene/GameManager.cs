@@ -86,8 +86,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image victorPlayerIcon;
     [SerializeField] private Sprite[] playersIcon;
 
-    [SerializeField] private Text conversionVictoryText;
-    [SerializeField] private Text houndVictoryText;
+    [SerializeField] private GameObject conversionVictoryText;
+    [SerializeField] private GameObject houndVictoryText;
 
     public int IAPerPlayer
     {
@@ -305,6 +305,7 @@ public class GameManager : MonoBehaviour
             timer -= Time.deltaTime;
         winPanel.SetActive(true);
         victorPlayerIcon.sprite = playersIcon[teamNb];
+        conversionVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;
         FindObjectOfType<WinNav>().Init(teamNb);
@@ -316,6 +317,8 @@ public class GameManager : MonoBehaviour
     public void WinWithSecondObjective(int teamNb)
     {
         winPanel.SetActive(true);
+        victorPlayerIcon.sprite = playersIcon[teamNb];
+        houndVictoryText.SetActive(true);
         uis.SetActive(false);
         isWin = true;
         FindObjectOfType<WinNav>().Init(teamNb);
