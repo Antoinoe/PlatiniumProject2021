@@ -59,7 +59,7 @@ public class Attack : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (Application.isPlaying && controller.ShowGizmos)
+        /*if (Application.isPlaying && controller.ShowGizmos)
         {
             Gizmos.color = Color.red;
             
@@ -81,7 +81,7 @@ public class Attack : MonoBehaviour
                 Gizmos.DrawWireCube(transform.position, new Vector3(targetDetectionBoxSize.x, targetDetectionBoxSize.y, 0));
             }
 
-        }
+        }*/
     }
 
     public void OnAttack()

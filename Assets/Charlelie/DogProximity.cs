@@ -30,7 +30,7 @@ public class DogProximity : MonoBehaviour
 
     void Update()
     {
-        if ((Vector2.Distance(transform.position, dog.transform.position) <= range) && !gm.isPause)
+        if ((Vector2.Distance(transform.position, dog.transform.position) <= range) && !gm.isPause && !gm.isWin)
         {
             //Debug.Log("Increment");
             currProgress += /*Time.deltaTime*/incrementValue;

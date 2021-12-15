@@ -48,7 +48,7 @@ MonoBehaviour:
   - name: Music
     audioType: 0
     clips:
-    - {fileID: 8300000, guid: cf2f738ab61f90349b898976844cc524, type: 3}
+    - {fileID: 8300000, guid: c1556fa2c03ec0546b87787ab213dcfd, type: 3}
     maxInstNb: 0
     curInstNb: 0
     volume: 1
@@ -94,22 +94,10 @@ MonoBehaviour:
     playOnAwake: 0
     source: {fileID: 0}
     hasMultipleClips: 0
-  - name: UIUp
+  - name: UIChangeBtn
     audioType: 1
     clips:
-    - {fileID: 8300000, guid: d118da87f84bcb144ac59ef2e74a99ef, type: 3}
-    maxInstNb: 0
-    curInstNb: 0
-    volume: 1
-    pitch: 1
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
-    hasMultipleClips: 0
-  - name: UIDown
-    audioType: 1
-    clips:
-    - {fileID: 8300000, guid: fe8a912f320db1340838dfca1d9e377a, type: 3}
+    - {fileID: 8300000, guid: 53fcbcb67d409924395a268affa5e73b, type: 3}
     maxInstNb: 0
     curInstNb: 0
     volume: 1
@@ -121,7 +109,7 @@ MonoBehaviour:
   - name: UISelect
     audioType: 1
     clips:
-    - {fileID: 8300000, guid: 7f431b37a7963524fa4f6c3f8fc24dc6, type: 3}
+    - {fileID: 8300000, guid: d6f189a70e13ef64fa708242ea1b7d47, type: 3}
     maxInstNb: 0
     curInstNb: 0
     volume: 1
@@ -133,7 +121,7 @@ MonoBehaviour:
   - name: MenuMusic
     audioType: 0
     clips:
-    - {fileID: 8300000, guid: 35d7cd5ad42246e46b3ba7e98da7b1fc, type: 3}
+    - {fileID: 8300000, guid: cf2f738ab61f90349b898976844cc524, type: 3}
     maxInstNb: 0
     curInstNb: 0
     volume: 1
@@ -163,6 +151,30 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
+  - name: Respawn
+    audioType: 1
+    clips:
+    - {fileID: 8300000, guid: 64a700e54079ef04a92829604af56fe0, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+    hasMultipleClips: 0
+  - name: Victory
+    audioType: 0
+    clips:
+    - {fileID: 8300000, guid: 5e698fc74cdb2fa4cb478edf8230562b, type: 3}
+    maxInstNb: 0
+    curInstNb: 0
+    volume: 1
+    pitch: 1
+    loop: 1
     playOnAwake: 0
     source: {fileID: 0}
     hasMultipleClips: 0
