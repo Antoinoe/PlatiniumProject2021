@@ -16,7 +16,7 @@ public class TUTOSCRIPT : MonoBehaviour
     //public GameObject winPanel;
     //public GameObject uis;
     [HideInInspector]
-    public List<int> playerList;
+    public int[] playerList;
     //public GameObject pause;
     //public bool isPause = false;
 
@@ -92,16 +92,16 @@ public class TUTOSCRIPT : MonoBehaviour
         //isDebug = Data.isDebug;
         //FindObjectOfType<AudioManager>().Play("Music");
         //if (!isDebug)
-        playerNbrs = /*Data.playerNbr*/4;
+        playerNbrs = Data.playerNbr;
         teams = new int[players.Length];
         //iATeams = new List<IAIdentity[]>();
         playersOnBoard = new GameObject[playerNbrs];
-        Instantiate(inputManager);
+        //Instantiate(inputManager);
         //Debug.Log(playerNbrs);
-        playerList = new List<int>();
+        playerList = new int[playerNbrs];
         for (int i = 0; i < playerNbrs; i++)
         {
-            playerList.Add(i);
+            playerList[i] = i;
         }
         for (int i = 0; i < playerNbrs; i++)
         {
@@ -115,13 +115,13 @@ public class TUTOSCRIPT : MonoBehaviour
             PlayerController newPlayerController = newPlayer.GetComponent<PlayerController>();
             //if (!isDebug)
            // {
-            //    newPlayerController.playerNb = Data.pSprite[i];
-           //     newPlayerController.teamNb = Data.pSprite[i];
+            newPlayerController.playerNb = Data.pSprite[i];
+            newPlayerController.teamNb = Data.pSprite[i];
             //}
             //else
             //{
-                newPlayerController.playerNb = i;
-                newPlayerController.teamNb = i;
+            //    newPlayerController.playerNb = i;
+            //    newPlayerController.teamNb = i;
             //}
             newPlayerController.contNbr = i;
             teams[i] = i;
@@ -199,6 +199,11 @@ public class TUTOSCRIPT : MonoBehaviour
         //        currTimer = accelerations[currAccelIndex].delayBeforeAccel;
         //    }
         //}
+        for (int i = 0; i < ReInput.controllers.joystickCount; i++)
+        {
+            if (ReInput.players.Players[i].GetButtonDown("Pause"))
+                UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
+        }
     }
     //public void Pause()
     //{
@@ -240,22 +245,26 @@ public class TUTOSCRIPT : MonoBehaviour
     #region Win
     public void WinCheck(int curTeam, int targetTeam)
     {
-        playerList.Remove(curTeam);
-        if (playerList.Count == 1)
-            Win(playerList[0]);
+        PlayerController[] players = FindObjectsOfType<PlayerController>();
+        int team = 0;
+        Debug.Log("CURRTEAM : " + targetTeam);
+        foreach (PlayerController player in players)
+        {
+            team = player.teamNb;
+            Debug.Log(team);
+            if (team != targetTeam) return;
+        }
+        Win(targetTeam);
     }
 
     public void Win(int teamNb)
     {
-        //winPanel.transform.GetChild(0).GetComponent<Text>().text = "Player " + (teamNb + 1) + " win!";
-        //winPanel.SetActive(true);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("DevTest");
-        //uis.SetActive(false);
-        isWin = true;
-        //FindObjectOfType<WinNav>().Init(teamNb);
-        //Debug.Log("Team " + teamNb + " win !");
-        //Camera.main.transform.DOMoveX(playersOnBoard[teamNb].transform.position.x, 3);
-        //Camera.main.transform.DOMoveY(playersOnBoard[teamNb].transform.position.y, 3);
+        float timer = 2.0f;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene("TUTO");
     }
     #endregion
 
