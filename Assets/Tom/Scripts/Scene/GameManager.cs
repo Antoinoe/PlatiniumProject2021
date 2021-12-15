@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
         PlayerController[] players = FindObjectsOfType<PlayerController>();
         int team = 0;
         Debug.Log("CURRTEAM : " + targetTeam);
-        foreach(PlayerController player in players)
+        foreach (PlayerController player in players)
         {
             team = player.teamNb;
             Debug.Log(team);
@@ -336,35 +336,9 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    
 
-    #region Random NavMesh Location
-    public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
-    {
-        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
-        List<int> tempList = allOrientations;
-        for (int i = 0; i < allOrientations.Count; i++)
-        {
-            if (tempList[i] == (int)navmeshOrientation)
-            {
-                tempList.Remove(tempList[i]);
-                break;
-            }
-        }
-        int randomIndex = Random.Range(0, allOrientations.Count);
-        navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
-        AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
-        float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-        Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-        randomPosition += posOrigin;
-        NavMeshHit hit;
-        Vector2 finalPosition = Vector2.zero;
-        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
-        {
-            finalPosition = hit.position;
-        }
-        return finalPosition;
-    }
+
+    #region IA AreaZone
 
     public IEnumerator MoveAllAItoZone()
     {
@@ -407,73 +381,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
-    {
-        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
-        List<int> tempList = allOrientations;
-        for (int i = 0; i < allOrientations.Count; i++)
-        {
-            if (tempList[i] == (int)navmeshOrientation)
-            {
-                tempList.Remove(tempList[i]);
-                break;
-            }
-        }
-        int randomIndex = Random.Range(0, tempList.Count);
-        navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
-        AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
-        float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-        Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
-        randomPosition += posOrigin;
-        bool inArea = false;
-        for (int i = 0; i < areaColliders.Count; i++)
-        {
-            if (areaColliders[i].bounds.Contains(randomPosition))
-            {
-                inArea = true;
-                break;
-            }
-        }
-        if (!inArea)
-        {
-                Vector2 oldRandomPosition = randomPosition;
-            Debug.DrawLine(posOrigin, randomPosition, Color.cyan, 5f);
-            //Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
-            //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
-            if (areaColliders.Count > 0)
-            {
-                Vector2 newDir;
-                //tempList.Remove(randomIndex);
-                //randomIndex = Random.Range(0, tempList.Count);
-                //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
 
-                //iAOrientation = new AIController.CircleOrientation(oldOrientation);
-                //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
-                //int randomArea = Random.Range(0, areaColliders.Count);
-                //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
-
-                newDir = randomPosition - posOrigin;
-                Vector2 newPos = posOrigin - newDir;
-                randomPosition = newPos;
-                //randomPosition = new Vector2(Mathf.Cos(-angle), Mathf.Sin(-angle)) / radius;
-                //Debug.Log("Random Point Reset, New pos :" + randomPosition);
-                //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
-                Debug.DrawLine(posOrigin, randomPosition, Color.yellow, 5f);
-                //Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
-            }
-            else
-            {
-                Debug.LogError("Liste de collider vide");
-            }
-        }
-        NavMeshHit hit;
-        Vector2 finalPosition = Vector2.zero;
-        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
-        {
-            finalPosition = hit.position;
-        }
-        return finalPosition;
-    }
     #endregion
 
     #region Shake

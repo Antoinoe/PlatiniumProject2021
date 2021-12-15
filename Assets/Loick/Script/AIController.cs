@@ -119,6 +119,8 @@ public class AIController : MonoBehaviour
 
     #endregion
 
+    private const int POINTCOLTRIES = 10;
+
     #region UnityFunction
 
     private void Awake()
@@ -153,12 +155,12 @@ public class AIController : MonoBehaviour
         randomRange = GetRandomRange();
         if (areaColliderIsOn)
         {
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+            zonePoint = RandomNavmeshLocation(randomRange, transform.position,
             ref currentOrientation, currentArea);
         }
         else
         {
-            zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
+            zonePoint = RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
         }
         StartCoroutine(Delay());
         feel = GetComponent<EntityMoveFeel>();
@@ -336,13 +338,13 @@ public class AIController : MonoBehaviour
                 }
                 else
                 {
-                    zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position,
+                    zonePoint = RandomNavmeshLocation(randomRange, transform.position,
                         ref currentOrientation, currentArea);
                 }
             }
             else
             {
-                zonePoint = GameManager.RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
+                zonePoint = RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
             }
             if (!isWating)
             {
@@ -367,6 +369,137 @@ public class AIController : MonoBehaviour
     #endregion
 
     #region Zone Area Function
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
+    {
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
+        List<int> tempList = allOrientations;
+        for (int i = 0; i < allOrientations.Count; i++)
+        {
+            if (tempList[i] == (int)navmeshOrientation)
+            {
+                tempList.Remove(tempList[i]);
+                break;
+            }
+        }
+        int randomIndex = Random.Range(0, allOrientations.Count);
+        navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
+        AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
+        float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+        Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+        randomPosition += posOrigin;
+        NavMeshHit hit;
+        Vector2 finalPosition = Vector2.zero;
+        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    }
+
+    public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation, List<Collider2D> areaColliders)
+    {
+        List<int> allOrientations = new List<int>() { 0, 1, 2, 3, 0, 1, 2, 3 };
+        List<int> tempList = allOrientations;
+        for (int i = 0; i < allOrientations.Count; i++)
+        {
+            if (tempList[i] == (int)navmeshOrientation)
+            {
+                tempList.Remove(tempList[i]);
+                break;
+            }
+        }
+        int randomIndex = Random.Range(0, tempList.Count);
+        navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
+        AIController.CircleOrientation iAOrientation = new AIController.CircleOrientation(navmeshOrientation);
+        float angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+        Vector2 randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+        randomPosition += posOrigin;
+        bool inArea = false;
+        for (int i = 0; i < areaColliders.Count; i++)
+        {
+            if (areaColliders[i].bounds.Contains(randomPosition))
+            {
+                inArea = true;
+                break;
+            }
+        }
+        if (!inArea)
+        {
+            Vector2 oldRandomPosition = randomPosition;
+            Debug.DrawLine(posOrigin, randomPosition, Color.cyan, 5f);
+            //Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
+            //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
+            if (areaColliders.Count > 0)
+            {
+                Vector2 newDir;
+                //tempList.Remove(randomIndex);
+                //randomIndex = Random.Range(0, tempList.Count);
+                //navmeshOrientation = (AIController.CircleOrientation.Orientation)tempList[randomIndex];
+
+                //iAOrientation = new AIController.CircleOrientation(oldOrientation);
+                //angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                //int randomArea = Random.Range(0, areaColliders.Count);
+                //newPos = Physics2D.ClosestPoint(, areaColliders[randomArea]);
+
+                newDir = randomPosition - posOrigin;
+                Vector2 newPos = posOrigin - newDir;
+                randomPosition = newPos;
+                //randomPosition = new Vector2(Mathf.Cos(-angle), Mathf.Sin(-angle)) / radius;
+                //Debug.Log("Random Point Reset, New pos :" + randomPosition);
+                //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
+                Debug.DrawLine(posOrigin, randomPosition, Color.yellow, 5f);
+                //Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
+                for (int i = 0; i < areaColliders.Count; i++)
+                {
+                    if (areaColliders[i].bounds.Contains(randomPosition))
+                    {
+                        inArea = true;
+                        break;
+                    }
+                }
+                if (!inArea)
+                {
+                    Debug.Log("Out Of Area");
+                    int nbretries = POINTCOLTRIES;
+                    while (!inArea && nbretries > 0)
+                    {
+                        angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                        randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                        randomPosition += posOrigin;
+                        for (int i = 0; i < areaColliders.Count; i++)
+                        {
+                            if (areaColliders[i].bounds.Contains(randomPosition))
+                            {
+                                inArea = true;
+                                break;
+                            }
+                        }
+                        nbretries--;
+                    }
+
+                    if (!inArea)
+                    {
+                        int randomColliderindex = Random.Range(0, areaColliders.Count);
+                        Bounds areabBounds = areaColliders[randomColliderindex].bounds;
+                        float boundX = Random.Range(areabBounds.min.x, areabBounds.max.x);
+                        float boundY = Random.Range(areabBounds.min.y, areabBounds.max.y);
+                        randomPosition = new Vector2(boundX, boundY);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError("Liste de collider vide");
+            }
+        }
+        NavMeshHit hit;
+        Vector2 finalPosition = Vector2.zero;
+        if (NavMesh.SamplePosition(randomPosition, out hit, radius, 1))
+        {
+            finalPosition = hit.position;
+        }
+        return finalPosition;
+    }
 
     public void GoToEvent(List<Collider2D> newCollider)
     {
