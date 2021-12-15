@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        
+
         isDebug = Data.isDebug;
         FindObjectOfType<AudioManager>().Play("Music");
         if (!isDebug)
@@ -281,7 +281,7 @@ public class GameManager : MonoBehaviour
         PlayerController[] players = FindObjectsOfType<PlayerController>();
         int team = 0;
         Debug.Log("CURRTEAM : " + targetTeam);
-        foreach(PlayerController player in players)
+        foreach (PlayerController player in players)
         {
             team = player.teamNb;
             Debug.Log(team);
@@ -316,7 +316,7 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    
+
 
     #region Random NavMesh Location
     public static Vector2 RandomNavmeshLocation(float radius, Vector2 posOrigin, ref AIController.CircleOrientation.Orientation navmeshOrientation)
@@ -416,7 +416,7 @@ public class GameManager : MonoBehaviour
         }
         if (!inArea)
         {
-                Vector2 oldRandomPosition = randomPosition;
+            Vector2 oldRandomPosition = randomPosition;
             Debug.DrawLine(posOrigin, randomPosition, Color.cyan, 5f);
             //Debug.Log("Random Point Reset, Old pos :" + oldRandomPosition);
             //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
@@ -439,6 +439,32 @@ public class GameManager : MonoBehaviour
                 //Debug.Log("Random Point Reset, New pos :" + randomPosition);
                 //Debug.Log(Vector2.Distance(posOrigin, randomPosition));
                 Debug.DrawLine(posOrigin, randomPosition, Color.yellow, 5f);
+                for (int i = 0; i < areaColliders.Count; i++)
+                {
+                    if (areaColliders[i].bounds.Contains(randomPosition))
+                    {
+                        inArea = true;
+                        break;
+                    }
+                }
+                if (!inArea)
+                {
+                    Debug.Log("OutOfArea");
+                    while (!inArea)
+                    {
+                         angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
+                         randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
+                        randomPosition += posOrigin;
+                        for (int i = 0; i < areaColliders.Count; i++)
+                        {
+                            if (areaColliders[i].bounds.Contains(randomPosition))
+                            {
+                                inArea = true;
+                                break;
+                            }
+                        }
+                    }
+                }
                 //Debug.Log("Random Point Reset, newZ pos :" + randomPosition);
             }
             else
