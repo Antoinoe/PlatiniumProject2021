@@ -153,6 +153,7 @@ public class AIController : MonoBehaviour
         sprite = GetComponentInChildren<SpriteRenderer>();
         zonePoint = transform.position;
         randomRange = GetRandomRange();
+        StartCoroutine(Delay());
         if (areaColliderIsOn)
         {
             zonePoint = RandomNavmeshLocation(randomRange, transform.position,
@@ -162,7 +163,6 @@ public class AIController : MonoBehaviour
         {
             zonePoint = RandomNavmeshLocation(randomRange, transform.position, ref currentOrientation);
         }
-        StartCoroutine(Delay());
         feel = GetComponent<EntityMoveFeel>();
         transform.rotation = new Quaternion(0, 0, 0, 0);
     }
@@ -298,6 +298,7 @@ public class AIController : MonoBehaviour
     {
         yield return new WaitForSeconds(reviveTime);
         anim.SetBool("IsDead", false);
+        FindObjectOfType<AudioManager>().Play("Respawn");
         yield return new WaitForSeconds(1.25f);
         OnRevive();
         yield return null;
@@ -310,7 +311,7 @@ public class AIController : MonoBehaviour
         
         //GetComponentInChildren<SpriteRenderer>().color = aliveColor;
         isDead = false;
-        FindObjectOfType<AudioManager>().Play("Respawn");
+        
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
