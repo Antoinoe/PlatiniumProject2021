@@ -467,6 +467,9 @@ public class AIController : MonoBehaviour
                         angle = Random.Range(iAOrientation.angleMin, iAOrientation.angleMax);
                         randomPosition = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;
                         randomPosition += posOrigin;
+                        newDir = randomPosition - posOrigin;
+                        newPos = posOrigin - newDir;
+                        randomPosition = newPos;
                         for (int i = 0; i < areaColliders.Count; i++)
                         {
                             if (areaColliders[i].bounds.Contains(randomPosition))
