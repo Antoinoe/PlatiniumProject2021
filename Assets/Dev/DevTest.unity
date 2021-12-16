@@ -741,7 +741,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4
+  orthographic size: 5.3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeDur: 1
-  shakeStrenght: 0.1
+  shakeStrenght: 0.15
   shakeStrenghtV3: {x: 0.1, y: 0.1, z: 0.1}
   shakeStrenghtWithVector3: 0
   shakeVibrato: 5

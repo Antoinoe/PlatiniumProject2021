@@ -18,6 +18,8 @@ public class Attack : MonoBehaviour
 
     UIManager ui;
 
+    private GameManager gm;
+
     //Kill CD
     [HideInInspector] public bool killOnCD = false;
     [SerializeField] private float killCooldown; //TO UI
@@ -51,6 +53,7 @@ public class Attack : MonoBehaviour
 
     private void Start()
     {
+        gm = GameManager.GetInstance();
         playerController = GetComponent<PlayerController>();
         controller = GetComponent<Controller>();
         ui = FindObjectOfType<UIManager>();
@@ -283,5 +286,8 @@ public class Attack : MonoBehaviour
         }
 
         GameObject.Destroy(fist, 0.35f);
+
+        //Camera Shake
+        gm.Shake();
     }
 }
