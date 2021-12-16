@@ -78684,7 +78684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -4032, y: -350}
+  m_AnchoredPosition: {x: -800, y: -350}
   m_SizeDelta: {x: 4800, y: 700}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &4458061825202094673
@@ -81912,7 +81912,7 @@ MonoBehaviour:
   items: []
   lArrowAnim: {fileID: 0}
   rArrowAnim: {fileID: 0}
-  swapDuration: 0.5
+  swapDuration: 0.8
   mapScaleMin: 0.8
   mapScaleMax: 1.2
   it: 0
