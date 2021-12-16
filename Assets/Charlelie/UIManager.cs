@@ -10,6 +10,8 @@ public class UIManager : MonoBehaviour
     public float valueToWin;
     public Slider[] uiSliders;
     public Image[] uiImages;
+    public GameObject[] uiFireObject;
+    public GameObject[] fireEffect;
     void Start()
     {
         Init();
@@ -30,6 +32,8 @@ public class UIManager : MonoBehaviour
             {
                 uiSliders[i].gameObject.SetActive(false);
                 uiImages[i].gameObject.SetActive(false);
+                uiFireObject[i].gameObject.SetActive(false);
+
             }
         }
     }
@@ -47,6 +51,31 @@ public class UIManager : MonoBehaviour
     public Image getPlayerImage(int playerNbr)
     {
         return uiImages[playerNbr];
+    }
+
+    public GameObject GetPlayerFireEffect( int playerNbr)
+    {
+        return fireEffect[playerNbr];
+    }
+    public GameObject GetPlayerEffectObject(int playerNbr)
+    {
+        return uiFireObject[playerNbr];
+    }
+
+    public void SetFlammes(int playerNbr, int nbteam)
+    {
+        GameObject flamme = Instantiate(fireEffect[playerNbr], uiFireObject[nbteam].transform.position, Quaternion.identity);
+        flamme.transform.parent = uiFireObject[nbteam].transform;
+    }
+
+    public void ActivateFireObject(int playerNbr)
+    {
+        uiFireObject[playerNbr].SetActive(true);
+    }
+
+    public void DesactivateFireObject(int playerNbr)
+    {
+        uiFireObject[playerNbr].SetActive(false);
     }
 
     public void UpdateCooldownOnUI(int playerNbr, float val)

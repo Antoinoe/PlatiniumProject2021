@@ -57,6 +57,11 @@ public class Attack : MonoBehaviour
         playerController = GetComponent<PlayerController>();
         controller = GetComponent<Controller>();
         ui = FindObjectOfType<UIManager>();
+        if (!FindObjectOfType<TUTOSCRIPT>())
+        {
+            ui.SetFlammes(playerController.teamNb, GetComponent<PlayerController>().contNbr);
+        }
+            
     }
 
 
@@ -86,6 +91,7 @@ public class Attack : MonoBehaviour
 
         }*/
     }
+
 
     public void OnAttack()
     {
@@ -196,6 +202,7 @@ public class Attack : MonoBehaviour
                     controller.anim.SetTrigger("doAttack");
                     killCooldown = playerController.CurrKillCooldown;
                     killOnCD = true;
+                    FindObjectOfType<UIManager>().DesactivateFireObject(GetComponent<PlayerController>().contNbr); //désactive l'effet de flamme 
                     if (!FindObjectOfType<TUTOSCRIPT>())
                         FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
                 }
@@ -214,6 +221,7 @@ public class Attack : MonoBehaviour
                     killCooldown = playerController.CurrKillCooldown;
                     killOnCD = true;
                     FindObjectOfType<UIManager>().EmptyBar(GetComponent<PlayerController>().contNbr);
+                    FindObjectOfType<UIManager>().DesactivateFireObject(GetComponent<PlayerController>().contNbr); //désactive l'effet de flamme
                 }                       
             }
             else
@@ -241,7 +249,11 @@ public class Attack : MonoBehaviour
                     ui.UpdateCooldownOnUI(playerController.contNbr, val);
                 }
 
-                if (killCooldown <= 0) killOnCD = false;
+                if (killCooldown <= 0)
+                {
+                    FindObjectOfType<UIManager>().ActivateFireObject(GetComponent<PlayerController>().contNbr); //activate l'effet de flamme
+                    killOnCD = false;
+                }
             }
         } else
         {
