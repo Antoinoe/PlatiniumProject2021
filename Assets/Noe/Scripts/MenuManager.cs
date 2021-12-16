@@ -142,7 +142,10 @@ public class MenuManager : MonoBehaviour
         }
 
     }
-
+    public void LoadScene(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
     void PlayerSelectChara(int _p)
     {
         for (int i = 0; i < ReInput.controllers.joystickCount; i++)

@@ -3,39 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 
 public class RollCredits : MonoBehaviour
 {
-    
-    [Header("Credits Settings")]
-    [Tooltip("Temps du déroulement des crédits en secondes.")]
-    [SerializeField]private float progressSpeed;
-    [Tooltip("GameObject comprennant les crédits.")]
-    [SerializeField] private Rigidbody2D credits;
-    private bool hasCreditsAnimationEnded = false;
+    [SerializeField]
+    private GameObject slider;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float distance;
     private void Start()
     {
         StartCredits();
+        StartCoroutine(BackToTheMenu());
     }
 
     private void Update()
     {
-        if (hasCreditsAnimationEnded)
-            SceneManager.LoadScene("Main");
+        // forcer le retour menu
     }
 
     void StartCredits()
     {
-        StartCoroutine(Delay());
+        Vector3 startPos = slider.transform.position;
+        slider.GetComponent<RectTransform>().DOLocalMoveX(-distance, speed); 
     }
 
-    IEnumerator Delay()
+    IEnumerator BackToTheMenu()
     {
-        print("showing credits...");
-        yield return new WaitForSeconds(3f);
-        hasCreditsAnimationEnded = true;
-
+        yield return new WaitForSeconds(speed + 3.0f);
+        SceneManager.LoadScene("Main");
     }
+
 
 }
