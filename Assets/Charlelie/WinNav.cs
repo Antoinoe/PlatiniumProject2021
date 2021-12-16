@@ -57,6 +57,7 @@ public class WinNav : MonoBehaviour
                 eventSystem.currentSelectedGameObject.GetComponent<Button>().onClick.Invoke();
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal") > 0)
             {
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
                 eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = Color.white;
                 eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnRight().gameObject);
@@ -66,6 +67,7 @@ public class WinNav : MonoBehaviour
             }
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveHorizontal") < 0)
             {
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
                 eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = Color.white;
                 eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnLeft().gameObject);

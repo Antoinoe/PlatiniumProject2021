@@ -48,6 +48,7 @@ public class PauseNav : MonoBehaviour
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveVertical") > 0)
             {
                 //eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = Color.white;
                 eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnUp().gameObject);
                 //eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
@@ -57,6 +58,7 @@ public class PauseNav : MonoBehaviour
             else if (ReInput.players.GetPlayer(i).GetAxisRaw("MoveVertical") < 0)
             {
                 //eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(minusScale, duration);
+                FindObjectOfType<AudioManager>().Play("UIChangeBtn");
                 eventSystem.currentSelectedGameObject.transform.GetChild(0).GetComponent<Text>().color = Color.white;
                 eventSystem.SetSelectedGameObject(eventSystem.currentSelectedGameObject.GetComponent<Button>().FindSelectableOnDown().gameObject);
                 //eventSystem.currentSelectedGameObject.GetComponent<RectTransform>().DOSizeDelta(actualScale, duration);
